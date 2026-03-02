@@ -1978,654 +1978,7 @@ This master guide consolidates years of web design iteration, framework churn, a
 
 ---
 
-## 5. The CSS Mathematics Engine: Trigonometry, Stepping & Algebra
-
-CSS is now a Turing-complete calculation engine, capable of performing advanced trigonometry and mathematical normalization at 120 FPS via the GPU.
-
-### 5.1 The Core Modifiers: `calc()`, `min()`, `max()`, `clamp()`
-
-- `calc(100% - 2rem)`: Perform basic math, mixing units freely.
-- `min(50vw, 800px)`: Enforce a ceiling. Returns the _smallest_ value. "Take up half the screen, but NEVER exceed 800px."
-- `max(20rem, 100%)`: Enforce a floor. Returns the _largest_ value. "Always be 100% wide, but if the container gets too small, stop shrinking at 20rem."
-- `clamp(MIN, IDEAL, MAX)`: The fluid typography god. `clamp(1rem, 2vw, 2rem)`
-
-### 5.2 Trigonometry (`sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2`)
-
-Place elements on circular paths, create interactive sun-dials, or calculate border offsets based on rotation angles.
-Takes `deg`, `rad`, `grad`, or `turn`.
-
-**Example: A Circular Clock UI Layout purely in CSS:**
-
-```css
-.dial {
-  --radius: 15rem;
-  --angle: 30deg; /* Updated by JS as time ticks */
-
-  position: absolute;
-  /* x = r * cos(θ), y = r * sin(θ) */
-  translate: calc(cos(var(--angle)) * var(--radius))
-    calc(sin(var(--angle)) * var(--radius));
-}
-```
-
-### 5.3 Exponents & Logarithms (`pow`, `sqrt`, `hypot`, `log`, `exp`)
-
-- `pow(base, exponent)`: Calculate powers. Useful for creating modular font scales purely in CSS variables!
-- `sqrt(x)`: Square root.
-- `hypot(x, y)`: Calculate the hypotenuse (the diagonal distance). Useful for calculating the exact distance connecting two coordinates.
-
-### 5.4 Stepping & Gradients (`round`, `mod`, `rem`)
-
-- **`round(strategy, value, step)`:** Snaps a fluid value to a hard grid.
-  - _Strategies:_ `nearest`, `up`, `down`, `to-zero`
-  - _Usage:_ `width: round(nearest, var(--calculated-width), 50px);` ensures a progress bar only visually moves in 50px chunks.
-- **`mod()` and `rem()` (Modulo & Remainder):**
-  - Useful for alternating patterns or infinite loops natively in CSS keyframes by evaluating the remainder of a division.
-
-### 5.5 Sign Metrics (`abs`, `sign`)
-
-- **`abs(val)`:** Always returns the positive absolute value.
-- **`sign(val)`:** Returns `1` if positive, `-1` if negative, `0` if zero. Vital for setting variable directions (Left/Right) in generic animations.
-
----
-
-## 6. Animations, Transitions & Scroll-Driven Architectures
-
-The most requested CSS features in web history have been solved in the 2024-2025 specs: Transitioning to `height: auto` and transitioning out of `display: none`.
-
-### 6.1 Intrinsic Size Interpolation (`height: auto` transition)
-
-Historically, you could not animate `height: 0` to `height: auto`. This is fixed via two mechanisms:
-
-#### Mechanism A: `interpolate-size` (The Global Opt-in)
-If you want your entire application to allow transitioning to intrinsic sizes (`min-content`, `fit-content`, `auto`), flip the global switch on the root:
-
-```css
-:root {
-  /* Tells the engine: "Yes, you are allowed to calculate math between 0 and keywords like 'auto'" */
-  interpolate-size: allow-keywords;
-}
-
-.accordion-body {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.4s ease-out;
-}
-
-.accordion-body.is-open {
-  height: auto; /* It will animate perfectly! */
-}
-```
-
-#### Mechanism B: `calc-size()` (The Math Operator)
-If you need to perform math _while_ transitioning an intrinsic size, use `calc-size(basis, calculation)`.
-
-```css
-.card-drawer {
-  /* Animate height up to natural content size, PLUS 50px extra */
-  height: calc-size(max-content, size + 50px);
-}
-```
-
-### 6.2 `transition-behavior: allow-discrete` (Display None to Block)
-
-You cannot transition a boolean (none -> block). However, applying `allow-discrete` forces the browser to wait for OTHER animations (like opacity) to finish before flipping the discrete boolean property.
-
-**The 50% Discrete Transition Rule:**
-When transitioning `display: none` to `block`, the visibility flips instantly at **0%**. From `block` to `none`, it flips at **100%**. For other discrete properties (like `justify-content`), the flip happens at the **50% mark**.
-
-### 6.3 `@starting-style`
-
-Defines the "zero state" of an element BEFORE it hits the DOM or switches from `display: none`.
-
-**The Ultimate Dialog/Toast Pattern:**
-
-```css
-.toast {
-  transition:
-    opacity 0.5s,
-    transform 0.5s,
-    display 0.5s allow-discrete;
-
-  opacity: 1;
-  transform: translateY(0);
-  display: flex;
-
-  @starting-style {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-}
-
-.toast.is-hidden {
-  opacity: 0;
-  transform: translateY(-20px);
-  display: none; /* Waits 0.5s before applying! */
-}
-```
-
-### 6.4 Native CSS Scroll-Driven Animations
-
-Links animations to scroll position via the GPU, replacing `IntersectionObserver` or `GSAP` scroll triggers.
-
-#### 1. The `scroll()` Timeline
-Links an animation to the physical distance a container has scrolled.
-
-```css
-.reading-progress-bar {
-  animation: fill-bar linear;
-  animation-timeline: scroll(root block); /* Vertical window scroll */
-}
-```
-
-#### 2. The `view()` Timeline
-Links an animation to an element's _intersection_ with the viewport.
-
-```css
-.animate-on-scroll {
-  animation: fade-in-up linear both;
-  animation-timeline: view();
-  /* Range: triggers at 10% from bottom, ends at 40% up */
-  animation-range: entry 10% cover 40%;
-}
-```
-
-#### 3. Advanced Timeline Controls
-- **`timeline-scope`**: Hoists a descendant's scroll timeline to a parent, allowing siblings to animate based on that scroller.
-- **Scroll-Triggered Animations (Chrome 145+)**: A declarative alternative that fires an animation exactly ONCE when an offset is reached, rather than scrubbing it.
-
-### 6.5 Resolving GSAP vs CSS Conflicts
-
-**CRITICAL RULE:** Never animate the same property with both CSS `transition` and `GSAP`.
-- SEGREGATE concerns: CSS handles `:hover`/`:focus` (fast states); GSAP handles complexity (parallax, sequences).
-- REMOVE `all` from CSS transitions; use explicit names like `transition: color 0.3s;`.
-
-
----
-
-## 7. Focus States & Advanced Accessibility Mechanics
-
-We must balance strict ADA/WCAG accessibility guidelines with visually pleasing aesthetics.
-
-### 7.1 The Focus Hierarchy
-
-- **`:focus`**: Applies on ANY input modality (Click, Touch, Tab). *Avoid for styling.*
-- **`:focus-within`**: Applies to a parent if any child receives focus.
-- **`:focus-visible`**: Applies ONLY on Keyboard navigation. The gold standard for UI.
-- **`inert` attribute**: Natively marks a DOM subtree as non-interactive, removing it from the tab order and accessibility tree. Perfect for background content when a modal is open.
-
-### 7.2 Best Practice Implementation
-
-```css
-/* Eradicate explicit focus outlines and default to focus-visible */
-:focus { outline: none; }
-
-:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Leverage :focus-within for input groups */
-.input-wrapper:focus-within {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
-}
-```
-
----
-
-## 8. Next-Gen Formatting: `text-box-trim` & `corner-shape`
-
-### 8.1 Eradicating Typographical Leading (`text-box-trim`)
-
-Font files embed empty space (leading) above and below letters. `text-box-trim` (formerly `leading-trim`) chops the bounding-box physically down to the characters.
-
-**Keywords:**
-- `text-box-trim`: `trim-start`, `trim-end`, `trim-both`, `none`.
-- `text-box-edge`: `cap` (uppercase top), `alphabetic` (baseline), `ex` (lowercase top), `text` (native box).
-
-```css
-.perfect-btn {
-  text-box-trim: both;
-  text-box-edge: cap alphabetic;
-}
-```
-
-### 8.2 Architectural Angles (`corner-shape`)
-
-Forget `border-radius`. `corner-shape` uses superellipse math to map edges.
-
-- `superellipse(1)` = `round` (standard arc)
-- `superellipse(2)` = `squircle` (iOS style)
-- `superellipse(0)` = `bevel` (diagonal cut)
-- `superellipse(-1)` = `scoop` (inward curve)
-
-```css
-.mech-panel {
-  border-radius: 20px;
-  corner-shape: bevel; /* Slices corners as angled chamfers */
-}
-```
-
----
-
-## 9. Color Spaces, Mixing & Variables
-
-We no longer need SCSS functions like `darken()` or `transparentize()`.
-
-### 9.1 CSS Native `color-mix()`
-
-Directly blend colors in any space (`srgb`, `oklch`, `hsl`).
-
-```css
-.badge-warning {
-  background: color-mix(in srgb, var(--color-warning) 15%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-warning) 30%, white);
-}
-```
-
-### 9.2 Relative Color Syntax (RCS)
-
-Unpack a color on the fly to manipulate channels.
-
-```css
-.card-hover {
-  /* Take primary and force blue to 255 */
-  background: rgb(from var(--color-primary) r g 255);
-  /* Apply 50% opacity without needing RGB split variables */
-  box-shadow: 0 4px 20px rgb(from var(--color-primary) r g b / 50%);
-}
-```
-
-### 9.3 The OKLCH Color Model
-
-Ensures uniform perceptual brightness across hues. HSL is flawed; OKLCH is human-centric.
-
-```css
-:root {
-  --primary: oklch(60% 0.15 250); /* Blue */
-  --secondary: oklch(60% 0.15 45); /* Orange - EXACTLY matched brightness! */
-}
-```
-
----
-
-## 10. Modern Vanilla JavaScript Paradigms
-
-1. **ClassList Toggling Only:** Never write `.style.display = 'block'`. Use `element.classList.toggle('is-active')` and let CSS manage the `allow-discrete` transitions.
-2. **CSS Variable Bridge:** Feed JS data into CSS Variables.
-   ```javascript
-   document.addEventListener("mousemove", (e) => {
-     document.body.style.setProperty("--mouse-x", `${e.clientX}px`);
-   });
-   ```
-3. **Data Attributes for State:** Map complex logic to `data-*`.
-   ```css
-   button[data-status="loading"] { pointer-events: none; opacity: 0.7; }
-   ```
-
----
-
-## 11. Design Tokens & Architectural Patterns
-
-### The 3-Tier Variable Paradigm
-
-1. **Primitive Tokens (Raw):** `--blue-500: #0ea5e9;` (Never use directly).
-2. **Semantic Tokens (Meaning):** `--color-primary: var(--blue-500);` (The app's rules).
-3. **Component Tokens (Local):** `--card-bg: white;` (Instant overrides).
-
----
-
-## 12. Advanced UI Trends & Material Simulations
-
-### 12.1 Glassmorphism (Frosted Glass)
-```css
-.card-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-}
-```
-
-### 12.2 Neumorphism (Soft UI)
-```css
-.btn-neu {
-  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
-}
-```
-
-### 12.3 Neobrutalism (Bold/Hard)
-```css
-.card-brutal { border: 4px solid #000; box-shadow: 8px 8px 0px #000; }
-```
-
-### 12.4 Aurora UI (Mesh Gradients)
-Uses multiple overlapping `radial-gradient` backgrounds with an `auroraFlow` animation.
-
-
----
-
-## 13. Custom Cursor Architectures
-
-A premium custom cursor replaces the default OS arrow with a dynamic, interactive element.
-
-### 13.1 Native SVG Pointer
-Lightest, most performant way via CSS.
-```css
-body { cursor: url("../assets/icons/custom-cursor.svg") 16 16, auto; }
-button { cursor: url("../assets/icons/cursor-pointer.svg") 16 16, pointer; }
-```
-
-### 13.2 JavaScript Follower (The "Aura")
-Uses a fixed DOM element driven by mouse-aware JS (GSAP).
-```css
-.cursor-follower {
-  position: fixed; pointer-events: none; mix-blend-mode: difference; z-index: 9999;
-}
-```
-
----
-
-## 14. Masonry Layouts
-
-Fits elements together vertically without empty rows.
-
-### 14.1 Native CSS Grid Masonry (Experimental)
-```css
-.masonry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-template-rows: masonry; /* The magic keyword */
-}
-```
-
-### 14.2 CSS Column Hack (Production)
-```css
-.masonry-container { column-count: 3; column-gap: 1.5rem; }
-.masonry-item { break-inside: avoid; }
-```
-
----
-
-## 15. Comprehensive Color Theory & Psychological Mapping
-
-- **60-30-10 Rule**: 60% Dominant (Mood), 30% Secondary (Data), 10% Accent (CTA).
-- **Psychological Mapping**:
-  - **Blue**: Trust, calm (Corporate standard).
-  - **Red**: Urgency, danger (Stimulating).
-  - **Emerald**: Safety, success (Positive).
-  - **Purple**: Luxury, AI (Premium).
-  - **Amber**: Warning (Fatiguing if overused).
-
----
-
-## 16. Typographical Scales & Pairing Strategies
-
-### 16.1 Modular Scales
-Do not guess font sizes. Use a multiplier like **1.333 (Perfect Fourth)**.
-```css
-:root { --scale: 1.333; --text-lg: calc(var(--text-md) * var(--scale)); }
-```
-
-### 16.2 Next-Gen Text Wrapping Dynamics
-Controlling line-breaks without manual `<br>` tags.
-- **`text-wrap: balance`**: Equalizes line lengths. Perfect for headlines (capped at ~6 lines).
-- **`text-wrap: pretty`**: Eradicates "orphans" (lonely words on the final line) by adjusting spacing.
-
----
-
-## 17. The Modern CSS Architecture
-
-We no longer use BEM logic which leads to class bloat. We use Cascade Layers and Proximity Scoping.
-
-### 17.1 Cascade Layers (`@layer`)
-Explicitly defines priority BEFORE parsing. Overpowers specificity.
-```css
-@layer reset, tokens, base, layout, components, utilities, overrides;
-
-@layer utilities {
-  .text-center { text-align: center; } /* Bypasses component specificity! */
-}
-```
-
-### 17.2 Scoping (`@scope`)
-The Holy Grail of encapsulation.
-- ** encapsulation**: `@scope (.card) { p { color: blue; } }` (Only affects paragraphs inside `.card`).
-- **Donut Scope**: `@scope (.card) to (.card-content) { p { color: red; } }` (Stops at the inner boundary).
-- **Proximity Rule**: If two scopes conflict, the browser picks the one with the *fewest DOM hops* to the root.
-
----
-
-## 18. Container Queries (Size, Style & Scroll-State)
-
-### 18.1 Size Queries
-Style elements based on their parent's physical dimensions.
-```css
-.wrapper { container-type: inline-size; container-name: sidebar; }
-@container sidebar (max-width: 300px) { .menu-text { display: none; } }
-```
-
-### 18.2 Style Queries
-Apply styles based on a COMPUTED value on the parent.
-```css
-@container style(--theme: dark) { .card { background: black; } }
-```
-
-### 18.3 Scroll-State Queries
-Tracks dynamic scroller variables.
-- `scroll-state(stuck)`: Triggers when `position: sticky` physically sticks.
-- `scroll-state(snapped)`: Triggers when scroll snapping connects.
-
-
----
-
-## 19. The Complete At-Rules (`@`) Matrix
-
-- `@import url("theme.css") layer(theme);`: Imports into a cascade layer.
-- `@supports`: Native feature queries.
-- `@font-palette-values`: Adjusts the internal color palette for multi-color (emoji) fonts.
-- `@color-profile`: Defines custom color space profiles.
-- `@page`: Master controller for Print Layouts (including `@top-left`, `@bottom-right-corner`, etc.).
-- `@counter-style`: Custom emoji bullet/list counter systems.
-
----
-
-## 20. Turing Complete Logic: `if()` and Typed `attr()`
-
-### 20.1 Inline Conditionals: `if()`
-Evaluates binary logic natively, replacing complex `@media` chains for individual properties.
-```css
-.btn {
-  width: if(media(max-width: 600px), 100%, fit-content);
-  background: if(style(--theme: neon), linear-gradient(135deg, #0f0f23, #1a1a2e), #fff);
-}
-```
-
-### 20.2 Typed Attributes: `attr(type)`
-Pulls data directly from HTML and casts it to a CSS type.
-```html
-<div class="progress" data-fill="75%" data-color="#ff0000"></div>
-<style>
-.progress::after {
-  width: attr(data-fill type(<length-percentage>), 0%);
-  background: attr(data-color type(<color>), blue);
-}
-</style>
-```
-
----
-
-## 21. Control Mechanisms: Isolation, Z-Index & Blend Modes
-
-### 21.1 Isolation
-Forces an impenetrable stacking context.
-```css
-.card { isolation: isolate; } /* Child z-index: 9999 never leaks out. */
-```
-
-### 21.2 Stacking Context Triggers
-By 2026, ANY of these create a context:
-1. `opacity < 1`
-2. `transform != none`
-3. `filter != none`
-4. `display: flex/grid` + `z-index != auto`
-5. `contain: layout/paint`
-
-### 21.3 Blend Modes (`mix-blend-mode`)
-```css
-.text { mix-blend-mode: difference; } /* Inverts color over image. */
-```
-
----
-
-## 22. Anchor Positioning API
-
-Eliminates JS for tooltips and absolute-positioned floaters.
-
-### 22.1 Defining the Anchor
-```css
-.anchor-btn { anchor-name: --trigger; }
-```
-
-### 22.2 Positioning the Floater
-```css
-.tooltip {
-  position-anchor: --trigger;
-  position-area: top; /* Sit directly above anchor */
-  position-try-fallbacks: flip-block; /* Fallback to bottom if top clipped */
-}
-```
-
-### 22.3 `anchor-scope` (Scoping)
-Prevents anchor name leakage.
-```css
-.container { anchor-scope: --trigger; } /* --trigger name only works in this subtree */
-```
-
----
-
-## 23. Logical Properties & Advanced Selectors
-
-### 23.1 Logical Properties (RTL/LTR Agnostic)
-- `margin-inline-start`: English (Left), Arabic (Right).
-- `padding-block-start`: Replaces `padding-top`.
-- `inset`: Shorthand for top/right/bottom/left coordinates.
-
-### 23.2 The Selector Trio: `:has()`, `:is()`, `:where()`
-- **`:is()`**: Groups selectors; inherits highest specificity.
-- **`:where()`**: Groups selectors; ZERO specificity (great for framework resets).
-- **`:has()` (Parent Selector)**: Style parent based on children.
-  ```css
-  form:has(input:invalid) { border: 2px solid red; }
-  ```
-
----
-
-## 24. View Transitions API (Same-Doc & Cross-Doc)
-
-Smoothly morphs elements between page states.
-
-### 24.1 Same-Document (DOM Swaps)
-Wrap JS updates: `document.startViewTransition(() => updateDOM())`.
-
-### 24.2 Cross-Document (Multi-Page Apps)
-Enable native page-to-page transitions in the CSS header:
-```css
-@view-transition { navigation: auto; }
-```
-
----
-
-## 25. Type-Safe Custom Properties: `@property` & Houdini
-
-Instructs the engine on a variable's data type, enabling smooth animations for non-interpolatable values (like gradients).
-
-```css
-@property --grad-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-.card {
-  background: linear-gradient(var(--grad-angle), blue, red);
-  animation: spin 3s infinite linear;
-}
-
-@keyframes spin { from { --grad-angle: 0deg; } to { --grad-angle: 360deg; } }
-```
-
-
----
-
-## 26. CSS Motion Path Animation
-
-Animate elements along complex vector paths natively.
-
-```css
-.animated-element {
-  /* Define path */
-  offset-path: path("M20,20 C20,100 200,0 200,100");
-  /* Animate progress */
-  animation: movePath 5s linear infinite;
-}
-@keyframes movePath {
-  from { offset-distance: 0%; offset-rotate: auto; }
-  to { offset-distance: 100%; offset-rotate: auto; }
-}
-```
-
----
-
-## 27. Advanced Gradient Masking (`mask-composite`)
-
-Enables complex borders by combining multiple mask layers.
-
-```css
-.card {
-  border: 4px solid transparent;
-  background-clip: padding-box;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) border-box;
-  mask-composite: exclude; /* Subtracts content-box from border-box to leave a border */
-}
-```
-
----
-
-## 28. Native HTML APIs & Declarative UI Primitives
-
-Eliminating JS for standard UI behaviors.
-
-### 28.1 The Popover API
-Top-layer management without z-index wars.
-```html
-<button popovertarget="my-pop">Open</button>
-<div id="my-pop" popover>...</div>
-```
-
-### 28.2 Invoker Commands
-Declarative control of interactive elements via standard attributes.
-```html
-<button commandfor="modalDialog" command="show-modal">Open Modal</button>
-<dialog id="modalDialog">...</dialog>
-```
-
-### 28.3 The `<search>` Element
-Semantic container for search/filtering interfaces.
-```html
-<search>
-  <form action="/search">
-    <input type="search" name="q">
-    <button>Search</button>
-  </form>
-</search>
-```
-
----
-
-## 29. Forms & UI Styling Primitives
+## 29. Additional Forms & UI Styling Primitives
 
 ### 29.1 Customizable `<select>`
 Styling the "unstyleable" native dropdown.
@@ -2653,7 +2006,7 @@ textarea {
 
 ---
 
-## 30. The Vanguard of JavaScript (2025/2026 API Replacements)
+## 30. Additional JavaScript Features of JavaScript (2025/2026 API Replacements)
 
 ### 30.1 The Temporal API
 Replacing `Date` and `Moment.js` with strictly immutable, timezone-aware objects.
@@ -2676,7 +2029,7 @@ const spliced = arr.toSpliced(1, 1, 'new');
 
 ---
 
-## 31. Performance & Content Visibility
+## 31. Additional Performance & Content Visibility
 
 ### 31.1 `content-visibility`
 Optimizes rendering for off-screen content.
@@ -2692,11 +2045,290 @@ Hint the browser on resource importance.
 
 ---
 
-## 32. Cutting-Edge & Experimental Features
+## 32. Additional Cutting-Edge & Experimental Features
 
 - **`shape()` function**: Animatable, responsive non-polygon clip-paths.
 - **Native Carousels**: `::scroll-button()`, `::scroll-marker`, `::scroll-marker-group`.
 - **`scrollbar-gutter`**: Reserves space for the scrollbar to prevent layout shifts.
+
+---
+
+## 33. ES2025/2026 JavaScript Features
+
+### 33.1 Pattern Matching (`match`/`case`)
+
+**Status:** ES2026 — Rolling out in browsers 2026.
+
+```javascript
+const result = match(value) {
+  when 0 => 'zero',
+  when 1 => 'one',
+  when { type: 'success', data } => `Success: ${data}`,
+  when { type: 'error', code } => `Error ${code}`,
+  when [first, ...rest] => `Array with ${rest.length + 1} elements`,
+  when null || undefined => 'No value',
+  else => `Default: ${value}`
+};
+
+// With guards
+const httpStatus = match(statusCode) {
+  when code if code >= 200 && code < 300 => 'Success',
+  when code if code >= 400 && code < 500 => 'Client Error',
+  when code if code >= 500 => 'Server Error',
+  else => 'Unknown'
+};
+```
+
+### 33.2 Record & Tuple (Immutable Data Structures)
+
+**Status:** ES2026 — Stage 3 proposal.
+
+```javascript
+// Record: Immutable object
+const config = #{ theme: 'dark', language: 'en' };
+
+// Tuple: Immutable array
+const coordinates = #[10, 20, 30];
+
+// Structural equality
+const config2 = #{ theme: 'dark', language: 'en' };
+console.log(config === config2); // true!
+```
+
+### 33.3 Pipeline Operator (`|>`)
+
+**Status:** ES2026 — Stage 3 proposal.
+
+```javascript
+const result = users
+  |> filterActive
+  |> toUpperCase
+  |> trim;
+
+const total = items
+  |> filter(item => item.active)
+  |> map(item => item.price)
+  |> reduce((sum, price) => sum + price, 0);
+```
+
+### 33.4 `Float16Array` (ES2025)
+
+**Status:** Baseline 2025 — Chrome 123+, Firefox 124+, Safari 17.4+.
+
+```javascript
+// 50% smaller than Float32Array
+const positions = new Float16Array([1.5, 2.7, 3.14, -0.5]);
+const imageData = new Float16Array(width * height * 4); // RGBA pixels
+```
+
+### 33.5 `using` Keyword (ES2026)
+
+**Status:** ES2026 — Coming to browsers 2026.
+
+```javascript
+// Automatic resource cleanup
+{
+  using file = await openFile('data.txt');
+  const content = await file.read();
+  // file automatically closed when exiting scope
+}
+
+// Multiple resources
+{
+  using db = await connectDatabase();
+  using transaction = db.beginTransaction();
+  await transaction.execute('INSERT...');
+  // Both cleaned up automatically
+}
+```
+
+### 33.6 Import Attributes (ES2025)
+
+**Status:** Baseline 2025 — All modern browsers.
+
+```javascript
+// Import JSON securely
+import config from './config.json' with { type: "json" };
+
+// Import CSS as stylesheet
+import styles from './styles.css' with { type: "css" };
+
+// Dynamic imports
+const data = await import('./data.json', { with: { type: "json" } });
+```
+
+### 33.7 `Array.fromAsync()` (ES2026)
+
+**Status:** ES2026 — Rolling out 2026.
+
+```javascript
+async function* fetchPages(urls) {
+  for (const url of urls) {
+    yield fetch(url).then(r => r.json());
+  }
+}
+
+const data = await Array.fromAsync(fetchPages(['/api/1', '/api/2']));
+```
+
+---
+
+## 34. WebGPU & Graphics APIs
+
+**Browser Support:** Baseline 2024 — Chrome 113+, Firefox 124+, Safari 17.5+, Edge 113+.
+
+```javascript
+// Initialize WebGPU
+const adapter = await navigator.gpu.requestAdapter();
+const device = await adapter.requestDevice();
+
+// Create shader module
+const shader = device.createShaderModule({
+  code: `
+    @vertex
+    fn vs(@builtin(vertex_index) vi: u32) -> @builtin(position) vec4<f32> { }
+    @fragment
+    fn fs() -> @location(0) vec4<f32> { }
+  `
+});
+
+// Create render pipeline
+const pipeline = device.createRenderPipeline({
+  layout: 'auto',
+  vertex: { module: shader, entryPoint: 'vs' },
+  fragment: { module: shader, entryPoint: 'fs', targets: [{ format: 'bgra8unorm' }] }
+});
+```
+
+**Use Cases:**
+- 3D Graphics: Games, data visualization, CAD
+- Machine Learning: TensorFlow.js backend, on-device inference
+- Image/Video Processing: Filters, encoding, computer vision
+- Scientific Computing: Simulations, numerical analysis
+
+---
+
+## 35. File System Access API
+
+**Browser Support:** Chrome 86+, Edge 86+ — Firefox/Safari under consideration.
+
+### 35.1 Reading Files
+
+```javascript
+async function readFile() {
+  const [fileHandle] = await window.showOpenFilePicker({
+    types: [{ description: 'Text Files', accept: { 'text/plain': ['.txt'] } }]
+  });
+  const file = await fileHandle.getFile();
+  const contents = await file.text();
+}
+```
+
+### 35.2 Writing Files
+
+```javascript
+async function writeFile() {
+  const fileHandle = await window.showSaveFilePicker({
+    suggestedName: 'document.txt',
+    types: [{ description: 'Text Files', accept: { 'text/plain': ['.txt'] } }]
+  });
+  const writable = await fileHandle.createWritable();
+  await writable.write('Hello, File System!');
+  await writable.close();
+}
+```
+
+### 35.3 Origin Private File System (OPFS)
+
+```javascript
+// Get root directory of OPFS
+const root = await navigator.storage.getDirectory();
+
+// Create a file
+const fileHandle = await root.getFileHandle('data.db', { create: true });
+const writable = await fileHandle.createWritable();
+await writable.write('Binary data...');
+await writable.close();
+```
+
+---
+
+## 36. Browser Support Matrix & Stability Indicators
+
+### 36.1 Stability Status Legend
+
+| Status | Meaning | Production Ready |
+|--------|---------|------------------|
+| **Baseline** | Available in Chrome, Firefox, Safari, Edge | ✅ Yes |
+| **Experimental** | Chrome-only or subject to spec changes | ⚠️ Use with caution |
+| **Coming 2026** | ES2026 or browser implementation in progress | ❌ Not yet |
+
+### 36.2 CSS Features Matrix
+
+| Feature | Chrome | Firefox | Safari | Edge | Status |
+|---------|--------|---------|--------|------|--------|
+| CSS Nesting | 112+ | 117+ | 17+ | 112+ | Baseline |
+| `:has()` | 105+ | 121+ | 17.2+ | 105+ | Baseline |
+| `@scope` | 118+ | 126+ | 17.5+ | 118+ | Baseline |
+| `@layer` | 99+ | 107+ | 15.4+ | 99+ | Baseline |
+| Container Queries | 105+ | 110+ | 16+ | 105+ | Baseline |
+| Scroll-Driven Animations | 115+ | 123+ | 17.5+ | 115+ | Baseline |
+| View Transitions | 111+ | 126+ | 17.5+ | 111+ | Baseline |
+| Anchor Positioning | 125+ | 128+ | 18.2+ | 125+ | Baseline |
+| `interpolate-size` | 123+ | 125+ | 17.5+ | 123+ | Baseline |
+| `@starting-style` | 117+ | 125+ | 17.5+ | 117+ | Baseline |
+| `color-mix()` | 111+ | 113+ | 16+ | 111+ | Baseline |
+| `light-dark()` | 119+ | 121+ | 17.4+ | 119+ | Baseline |
+| `text-box-trim` | 124+ | 126+ | 18+ | 124+ | Baseline |
+| `field-sizing: content` | 123+ | 143+ | 18.4+ | 123+ | Baseline |
+| `::details-content` | 131+ | 143+ | 18.4+ | 131+ | Baseline |
+| `corner-shape` | 139+ | - | - | 139+ | Experimental |
+| `if()` | 137+ | - | - | 137+ | Experimental |
+
+### 36.3 JavaScript Features Matrix
+
+| Feature | Chrome | Firefox | Safari | Edge | Status |
+|---------|--------|---------|--------|------|--------|
+| Top-Level Await | 89+ | 104+ | 15+ | 89+ | Baseline |
+| `Object.hasOwn()` | 93+ | 92+ | 15.4+ | 93+ | Baseline |
+| `Array.toSorted()` | 110+ | 110+ | 16.4+ | 110+ | Baseline |
+| `Array.toReversed()` | 110+ | 110+ | 16.4+ | 110+ | Baseline |
+| `Array.toSpliced()` | 110+ | 110+ | 16.4+ | 110+ | Baseline |
+| Set Methods (7) | 123+ | 124+ | 17.4+ | 123+ | Baseline |
+| Iterator Helpers | 123+ | 124+ | 17.4+ | 123+ | Baseline |
+| `Promise.withResolvers()` | 119+ | 121+ | 17.5+ | 119+ | Baseline |
+| `Float16Array` | 123+ | 124+ | 17.4+ | 123+ | Baseline |
+| Import Attributes | 120+ | 121+ | 17.5+ | 120+ | Baseline |
+| Pattern Matching | 135+ | - | - | 135+ | Coming 2026 |
+| Record & Tuple | 135+ | - | - | 135+ | Coming 2026 |
+| `using` keyword | 130+ | - | - | 130+ | Coming 2026 |
+
+### 36.4 Web APIs Matrix
+
+| API | Chrome | Firefox | Safari | Edge | Status |
+|-----|--------|---------|--------|------|--------|
+| WebGPU | 113+ | 124+ | 17.5+ | 113+ | Baseline |
+| File System Access | 86+ | - | - | 86+ | Chrome Only |
+| OPFS | 109+ | 125+ | 17.4+ | 109+ | Baseline |
+| WebXR | 79+ | - | 17.2+ | 79+ | Partial |
+
+### 36.5 Feature Detection Patterns
+
+```javascript
+// CSS Feature Detection
+if (CSS.supports('selector(:has(*))')) { /* Use :has() */ }
+if (CSS.supports('animation-timeline: scroll()')) { /* Use scroll-driven */ }
+
+// JavaScript Feature Detection
+if ('showOpenFilePicker' in window) { /* Use File System API */ }
+if ('gpu' in navigator) { /* Use WebGPU */ }
+if ('Temporal' in window) { /* Use Temporal API */ }
+
+// Graceful Fallbacks
+const sortArray = Array.prototype.toSorted 
+  ? (arr, fn) => arr.toSorted(fn)
+  : (arr, fn) => [...arr].sort(fn);
+```
 
 ---
 
