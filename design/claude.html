@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design & Color Theory — Complete Web Design Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d;
+    --paper: #f5f2eb;
+    --cream: #ede9de;
+    --accent: #c84b31;
+    --accent2: #2d6a4f;
+    --accent3: #1d3557;
+    --gold: #c9a84c;
+    --muted: #7a7165;
+    --rule: rgba(15,14,13,0.12);
+    --card: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.03) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.03) 60px);
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #f5f2eb 0%, #c9a84c 50%, #f5f2eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(245,242,235,0.5);
+    letter-spacing: 0.15em;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 2;
+  }
+
+  .hero-chapters {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .chapter-pill {
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    padding: 0.5rem 1.2rem;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .chapter-pill:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  /* ===== LAYOUT ===== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-num {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 700px;
+    line-height: 1.9;
+    margin-bottom: 4rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+
+  /* ===== GRID SYSTEMS ===== */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .card-accent { border-left: 4px solid var(--accent); }
+  .card-accent2 { border-left: 4px solid var(--accent2); }
+  .card-accent3 { border-left: 4px solid var(--accent3); }
+  .card-gold { border-left: 4px solid var(--gold); }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+  }
+
+  .card p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+  .card .tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 2px 8px;
+  }
+
+  /* ===== COLOR THEORY ===== */
+  .color-wheel-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 6rem 2rem;
+  }
+
+  .color-wheel-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .color-wheel-section .section-num { color: var(--gold); }
+  .color-wheel-section .section-title { color: var(--paper); }
+  .color-wheel-section .section-lead { color: rgba(245,242,235,0.6); border-left-color: var(--gold); }
+
+  .color-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1px;
+    margin-bottom: 3rem;
+  }
+
+  .swatch {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .swatch:hover { transform: translateY(-4px); }
+
+  .swatch-name {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .swatch-hex {
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  .color-scheme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .scheme-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem;
+  }
+
+  .scheme-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  .scheme-card p { font-size: 12px; color: rgba(245,242,235,0.6); margin-bottom: 1rem; line-height: 1.7; }
+
+  .scheme-swatches {
+    display: flex;
+    gap: 4px;
+    height: 32px;
+  }
+
+  .scheme-swatches span { flex: 1; border-radius: 2px; }
+
+  /* ===== TYPOGRAPHY SECTION ===== */
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 3rem 0;
+  }
+
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .type-label {
+    width: 80px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .type-size-label {
+    width: 50px;
+    font-size: 10px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .type-sample {
+    font-family: 'Playfair Display', serif;
+    flex: 1;
+    line-height: 1.1;
+  }
+
+  .font-pairing {
+    background: var(--cream);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--rule);
+  }
+
+  .font-pairing h4 {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .font-pairing-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .font-pairing-body {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ===== SPACING ===== */
+  .spacing-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .spacing-label {
+    width: 60px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .spacing-bar-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .spacing-bar {
+    height: 24px;
+    background: var(--accent);
+    opacity: 0.8;
+  }
+
+  .spacing-value {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ===== VISUAL HIERARCHY ===== */
+  .vh-demo {
+    background: var(--cream);
+    padding: 3rem;
+    border: 1px solid var(--rule);
+    margin: 2rem 0;
+  }
+
+  /* ===== ADMIN TEMPLATE SECTION ===== */
+  .admin-demo {
+    background: #f0f2f5;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  .admin-topbar {
+    background: #1d3557;
+    color: white;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    gap: 1rem;
+    font-size: 13px;
+    justify-content: space-between;
+  }
+
+  .admin-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+
+  .admin-nav { display: flex; gap: 0.5rem; }
+
+  .admin-nav span {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .admin-body {
+    display: flex;
+    min-height: 400px;
+  }
+
+  .admin-sidebar {
+    width: 220px;
+    background: #1a2744;
+    color: rgba(255,255,255,0.75);
+    padding: 1.5rem 0;
+    flex-shrink: 0;
+  }
+
+  .sidebar-section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    padding: 1rem 1.5rem 0.5rem;
+  }
+
+  .sidebar-item {
+    padding: 0.6rem 1.5rem;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: all 0.2s;
+  }
+
+  .sidebar-item.active {
+    background: rgba(200,75,49,0.2);
+    color: white;
+    border-left: 3px solid var(--accent);
+  }
+
+  .sidebar-item:hover { background: rgba(255,255,255,0.05); color: white; }
+
+  .sidebar-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+  .sidebar-item.active .sidebar-dot { opacity: 1; background: var(--accent); }
+
+  .admin-content {
+    flex: 1;
+    padding: 2rem;
+    overflow: auto;
+  }
+
+  .admin-content-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; color: #1d3557; }
+  .admin-breadcrumb { font-size: 11px; color: var(--muted); margin-bottom: 1.5rem; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .kpi-card {
+    background: white;
+    border: 1px solid #e0e4ea;
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .kpi-label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .kpi-value { font-size: 1.4rem; font-weight: 700; color: #1d3557; }
+  .kpi-delta { font-size: 10px; }
+  .kpi-delta.pos { color: #2d6a4f; }
+  .kpi-delta.neg { color: #c84b31; }
+
+  .kpi-strip { width: 100%; height: 3px; border-radius: 2px; margin-top: 0.5rem; }
+
+  .admin-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+
+  .chart-box {
+    background: white;
+    border: 1px solid #e0e4ea;
+    border-radius: 6px;
+    padding: 1.2rem;
+  }
+
+  .chart-title { font-size: 11px; font-weight: 600; color: #1d3557; margin-bottom: 1rem; letter-spacing: 0.05em; }
+
+  .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+
+  .bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    background: #1d3557;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .bar:hover { opacity: 1; }
+  .bar.highlight { background: var(--accent); opacity: 1; }
+
+  .donut-wrap { display: flex; align-items: center; gap: 1rem; }
+
+  .donut {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) 0 35%, #2d6a4f 35% 60%, var(--accent3) 60% 80%, var(--gold) 80% 100%);
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .donut::after {
+    content: '';
+    position: absolute;
+    inset: 15px;
+    border-radius: 50%;
+    background: white;
+  }
+
+  .donut-legend { display: flex; flex-direction: column; gap: 4px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ===== PRINCIPLE BOXES ===== */
+  .principle-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .principle-box::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+  }
+
+  .principle-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+  }
+
+  .principle-box p { color: rgba(245,242,235,0.7); line-height: 1.9; max-width: 700px; }
+
+  /* ===== RULE TABLES ===== */
+  .rule-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 13px; }
+
+  .rule-table th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--rule);
+    padding: 0.8rem 1rem;
+  }
+
+  .rule-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+
+  .rule-table tr:hover td { background: var(--cream); }
+
+  .rule-table .em { color: var(--accent); font-weight: 500; }
+  .rule-table .good { color: var(--accent2); }
+  .rule-table .bad { color: var(--accent); }
+
+  /* ===== WCAG BOX ===== */
+  .wcag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .wcag-box {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .wcag-ratio {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .wcag-level { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .wcag-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  /* ===== CODE SNIPPET ===== */
+  .code-block {
+    background: #0f0e0d;
+    color: #c9a84c;
+    padding: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--accent);
+  }
+
+  .code-block .comment { color: rgba(245,242,235,0.3); }
+  .code-block .prop { color: #7fb3f5; }
+  .code-block .val { color: #c9a84c; }
+  .code-block .func { color: #c084fc; }
+
+  /* ===== GESTALT ===== */
+  .gestalt-demo {
+    background: var(--cream);
+    padding: 2rem;
+    border: 1px solid var(--rule);
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .gestalt-visual { flex-shrink: 0; }
+
+  .dots-proximity {
+    display: grid;
+    grid-template-columns: repeat(6, 12px);
+    gap: 4px;
+  }
+
+  .dot-g { width: 10px; height: 10px; border-radius: 50%; background: var(--ink); opacity: 0.5; }
+
+  .dots-proximity .dot-g:nth-child(n+4) { margin-left: 12px; }
+
+  /* ===== RESPONSIVE DEMOS ===== */
+  .breakpoint-demo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .bp-box {
+    border: 2px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .bp-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+  .bp-name { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .bp-range { font-size: 12px; color: var(--accent); font-weight: 500; }
+  .bp-cols { font-size: 11px; color: var(--muted); }
+
+  /* ===== NAVIGATION ===== */
+  .toc {
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+  }
+
+  .toc a {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--muted);
+    text-decoration: none;
+    transition: all 0.3s;
+    opacity: 0.5;
+    display: block;
+    position: relative;
+  }
+
+  .toc a:hover {
+    opacity: 1;
+    background: var(--accent);
+    transform: scale(1.5);
+  }
+
+  .toc a::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 2px 6px;
+    opacity: 0;
+    pointer-events: none;
+    border: 1px solid var(--rule);
+    transition: opacity 0.2s;
+  }
+
+  .toc a:hover::after { opacity: 1; }
+
+  @media (max-width: 900px) {
+    .toc { display: none; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .admin-charts { grid-template-columns: 1fr; }
+    .admin-sidebar { display: none; }
+    .breakpoint-demo { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    border-left: 4px solid var(--gold);
+    background: rgba(201,168,76,0.08);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .callout strong { color: var(--gold); }
+
+  /* ===== DIVIDER ===== */
+  .fancy-divider {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .fancy-divider::before, .fancy-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .fancy-divider::before { left: 0; }
+  .fancy-divider::after { right: 0; }
+
+  /* ===== COLOR PSYCHOLOGY ===== */
+  .psych-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .psych-card {
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--rule);
+  }
+
+  .psych-swatch { width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 1rem; }
+  .psych-color { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .psych-words { font-size: 11px; color: var(--muted); line-height: 1.7; }
+  .psych-use { font-size: 10px; color: var(--accent); margin-top: 0.5rem; letter-spacing: 0.05em; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--ink);
+    color: rgba(245,242,235,0.4);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+  }
+
+  .footer span { color: var(--gold); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * { animation: fadeUp 0.8s ease both; }
+  .hero-badge { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.3s; }
+  .hero-sub { animation-delay: 0.5s; }
+  .hero-chapters { animation-delay: 0.7s; }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s ease; }
+  .revealed { opacity: 1; transform: translateY(0); }
+
+  /* ===== INLINE CHIP ===== */
+  .chip {
+    display: inline-block;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    font-size: 11px;
+    padding: 1px 8px;
+    letter-spacing: 0.05em;
+    margin: 2px;
+  }
+
+  .chip.r { background: rgba(200,75,49,0.1); border-color: rgba(200,75,49,0.3); color: var(--accent); }
+  .chip.g { background: rgba(45,106,79,0.1); border-color: rgba(45,106,79,0.3); color: var(--accent2); }
+  .chip.b { background: rgba(29,53,87,0.1); border-color: rgba(29,53,87,0.3); color: var(--accent3); }
+  .chip.y { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- TOC -->
+<nav class="toc">
+  <a href="#design-theory" data-label="Design Theory"></a>
+  <a href="#color-theory" data-label="Color Theory"></a>
+  <a href="#color-psychology" data-label="Psychology"></a>
+  <a href="#typography" data-label="Typography"></a>
+  <a href="#spacing" data-label="Spacing"></a>
+  <a href="#visual-hierarchy" data-label="Hierarchy"></a>
+  <a href="#gestalt" data-label="Gestalt"></a>
+  <a href="#admin" data-label="Admin Templates"></a>
+  <a href="#frontend" data-label="Frontend Design"></a>
+  <a href="#accessibility" data-label="Accessibility"></a>
+  <a href="#responsive" data-label="Responsive"></a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div>
+    <div class="hero-badge">Complete Reference · 2025/26</div>
+    <h1 class="hero-title">Design &amp;<br>Color Theory</h1>
+    <p class="hero-sub">
+      A deep, comprehensive guide to design theory, color systems, typography,<br>
+      spacing, visual hierarchy, admin templates &amp; frontend design
+    </p>
+    <div class="hero-chapters">
+      <a href="#design-theory" class="chapter-pill">Design Theory</a>
+      <a href="#color-theory" class="chapter-pill">Color Theory</a>
+      <a href="#typography" class="chapter-pill">Typography</a>
+      <a href="#spacing" class="chapter-pill">Spacing</a>
+      <a href="#admin" class="chapter-pill">Admin UI</a>
+      <a href="#frontend" class="chapter-pill">Frontend</a>
+      <a href="#accessibility" class="chapter-pill">Accessibility</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ SECTION 1: DESIGN THEORY ═══════════════════════════ -->
+<section class="section reveal" id="design-theory">
+  <div class="section-num">Chapter 01 / 11</div>
+  <h2 class="section-title">Foundational Design Theory</h2>
+  <p class="section-lead">
+    Design theory is the systematic framework that transforms aesthetic instinct into deliberate, 
+    purposeful decisions. Every pixel, every pause, every contrast ratio tells the user what 
+    to think, feel, and do next.
+  </p>
+
+  <div class="grid-3">
+    <div class="card card-accent reveal">
+      <span class="tag">Principle</span>
+      <h3>Contrast</h3>
+      <p>The visual difference between elements — in size, color, weight, shape, or texture. Contrast drives attention. Without it, everything competes equally and nothing wins.</p>
+    </div>
+    <div class="card card-accent2 reveal">
+      <span class="tag">Principle</span>
+      <h3>Alignment</h3>
+      <p>Every element should have a visual connection to something else on the page. Alignment creates order, reduces visual noise, and communicates professionalism and structure.</p>
+    </div>
+    <div class="card card-accent3 reveal">
+      <span class="tag">Principle</span>
+      <h3>Repetition</h3>
+      <p>Repeating visual elements throughout a design (fonts, colors, shapes, spacing) builds unity and brand cohesion. Inconsistency breaks trust; repetition builds it.</p>
+    </div>
+    <div class="card card-gold reveal">
+      <span class="tag">Principle</span>
+      <h3>Proximity</h3>
+      <p>Elements that are related should be placed near each other. Proximity reduces cognitive load — the eye groups nearby objects together, creating implicit structure.</p>
+    </div>
+    <div class="card card-accent reveal">
+      <span class="tag">Principle</span>
+      <h3>Balance</h3>
+      <p>Visual equilibrium between elements. Can be symmetrical (formal, stable, corporate) or asymmetrical (dynamic, modern, editorial). Both are intentional — never accidental.</p>
+    </div>
+    <div class="card card-accent2 reveal">
+      <span class="tag">Principle</span>
+      <h3>White Space</h3>
+      <p>Negative space is not empty — it is breathing room. Generous white space signals luxury, clarity, and sophistication. Cramped layouts signal overwhelm and poor hierarchy.</p>
+    </div>
+  </div>
+
+  <div class="principle-box" data-num="01" style="margin-top:3rem;">
+    <h3>The Golden Ratio & Rule of Thirds</h3>
+    <p>
+      The golden ratio (1:1.618) appears throughout nature and is inherently pleasing to the human eye. 
+      In web design, it guides layout proportions, font size scales, and spatial relationships. The Rule of Thirds 
+      divides your canvas into a 3×3 grid; placing focal elements along these grid lines — especially at 
+      the intersections — creates visually engaging, naturally balanced compositions that feel effortless.
+    </p>
+  </div>
+
+  <table class="rule-table reveal">
+    <thead>
+      <tr>
+        <th>Principle</th>
+        <th>Do This</th>
+        <th>Avoid This</th>
+        <th>Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="em">Contrast</td>
+        <td class="good">High contrast between CTA and background</td>
+        <td class="bad">Same weight/color on interactive + static elements</td>
+        <td>Buttons, headings, alerts</td>
+      </tr>
+      <tr>
+        <td class="em">Alignment</td>
+        <td class="good">Align to an invisible 8px or 12px grid</td>
+        <td class="bad">Random pixel nudges creating visual discord</td>
+        <td>All layouts, cards, forms</td>
+      </tr>
+      <tr>
+        <td class="em">Repetition</td>
+        <td class="good">Reuse the same 3–4 color palette tokens</td>
+        <td class="bad">One-off colors for each new UI element</td>
+        <td>Design systems, brand</td>
+      </tr>
+      <tr>
+        <td class="em">Proximity</td>
+        <td class="good">Labels sit directly above their input fields</td>
+        <td class="bad">Equal spacing between all elements regardless of relation</td>
+        <td>Forms, data tables, cards</td>
+      </tr>
+      <tr>
+        <td class="em">White Space</td>
+        <td class="good">Padding ≥ 24px inside cards; margins ≥ 40px between sections</td>
+        <td class="bad">Filling every corner to "use space efficiently"</td>
+        <td>Landing pages, dashboards</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════ SECTION 2: COLOR THEORY ═══════════════════════════ -->
+<div class="color-wheel-section" id="color-theory">
+  <div class="color-wheel-inner">
+    <div class="section-num">Chapter 02 / 11</div>
+    <h2 class="section-title">Color Theory</h2>
+    <p class="section-lead">
+      Sir Isaac Newton's 1666 prism experiment revealed that white light contains all colors. 
+      That insight gave birth to the color wheel — still the most powerful tool in a designer's arsenal 
+      for creating harmony, contrast, and emotion.
+    </p>
+
+    <!-- Spectrum Swatches -->
+    <div class="color-swatches">
+      <div class="swatch" style="background:#c0392b"><span class="swatch-name" style="color:white">Red</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#C0392B</span></div>
+      <div class="swatch" style="background:#e74c3c"><span class="swatch-name" style="color:white">Crimson</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#E74C3C</span></div>
+      <div class="swatch" style="background:#e67e22"><span class="swatch-name" style="color:white">Orange</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#E67E22</span></div>
+      <div class="swatch" style="background:#f39c12"><span class="swatch-name" style="color:white">Amber</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#F39C12</span></div>
+      <div class="swatch" style="background:#f1c40f"><span class="swatch-name" style="color:#333">Yellow</span><span class="swatch-hex" style="color:rgba(0,0,0,0.4)">#F1C40F</span></div>
+      <div class="swatch" style="background:#2ecc71"><span class="swatch-name" style="color:white">Emerald</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#2ECC71</span></div>
+      <div class="swatch" style="background:#27ae60"><span class="swatch-name" style="color:white">Green</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#27AE60</span></div>
+      <div class="swatch" style="background:#1abc9c"><span class="swatch-name" style="color:white">Teal</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#1ABC9C</span></div>
+      <div class="swatch" style="background:#3498db"><span class="swatch-name" style="color:white">Blue</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#3498DB</span></div>
+      <div class="swatch" style="background:#2980b9"><span class="swatch-name" style="color:white">Cobalt</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#2980B9</span></div>
+      <div class="swatch" style="background:#9b59b6"><span class="swatch-name" style="color:white">Violet</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#9B59B6</span></div>
+      <div class="swatch" style="background:#8e44ad"><span class="swatch-name" style="color:white">Purple</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">#8E44AD</span></div>
+    </div>
+
+    <!-- Color Schemes -->
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:0.5rem; color:var(--gold)">Color Harmony Systems</h3>
+    <p style="color:rgba(245,242,235,0.5); font-size:13px; margin-bottom:1.5rem; line-height:1.8;">
+      Color harmony is achieved by selecting colors whose relationships follow predictable, perceptually pleasing patterns on the color wheel.
+    </p>
+
+    <div class="color-scheme-grid">
+      <div class="scheme-card">
+        <h4>Monochromatic</h4>
+        <p>Single hue in varying shades, tints, and tones. Creates sophisticated unity and strong brand recall. Easiest to get right; hardest to make interesting.</p>
+        <div class="scheme-swatches">
+          <span style="background:#1d3557"></span>
+          <span style="background:#2b4f81"></span>
+          <span style="background:#3a6aab"></span>
+          <span style="background:#6d9fd4"></span>
+          <span style="background:#b8d4ef"></span>
+        </div>
+      </div>
+      <div class="scheme-card">
+        <h4>Analogous</h4>
+        <p>3–5 colors adjacent on the wheel. Naturally harmonious and found in nature. Creates a serene, cohesive feel. Choose one dominant, one supporting, one accent.</p>
+        <div class="scheme-swatches">
+          <span style="background:#1d7573"></span>
+          <span style="background:#1d9e9a"></span>
+          <span style="background:#27ae60"></span>
+          <span style="background:#5dbd44"></span>
+          <span style="background:#a8d62f"></span>
+        </div>
+      </div>
+      <div class="scheme-card">
+        <h4>Complementary</h4>
+        <p>Two colors directly opposite on the wheel. Maximum contrast and vibrant energy. Use one as dominant (≈70%) and the other as accent (≈30%) to avoid visual chaos.</p>
+        <div class="scheme-swatches">
+          <span style="background:#c84b31"></span>
+          <span style="background:#e8a99a"></span>
+          <span style="background:#f5f2eb"></span>
+          <span style="background:#9ab8e8"></span>
+          <span style="background:#3172c8"></span>
+        </div>
+      </div>
+      <div class="scheme-card">
+        <h4>Split-Complementary</h4>
+        <p>A color plus the two colors on either side of its complement. High contrast but less tension than pure complementary. More flexible for web UI.</p>
+        <div class="scheme-swatches">
+          <span style="background:#c84b31"></span>
+          <span style="background:#f5f2eb"></span>
+          <span style="background:#31a8c8"></span>
+          <span style="background:#f5f2eb"></span>
+          <span style="background:#3158c8"></span>
+        </div>
+      </div>
+      <div class="scheme-card">
+        <h4>Triadic</h4>
+        <p>Three colors evenly spaced (120° apart). Vibrant and balanced. Always let one color dominate. Extremely difficult to balance well — use sparingly in UI.</p>
+        <div class="scheme-swatches">
+          <span style="background:#c84b31"></span>
+          <span style="background:#f5f2eb"></span>
+          <span style="background:#31c84b"></span>
+          <span style="background:#f5f2eb"></span>
+          <span style="background:#4b31c8"></span>
+        </div>
+      </div>
+      <div class="scheme-card">
+        <h4>Tetradic / Square</h4>
+        <p>Four colors, two complementary pairs. Very rich but complex to manage. Keep saturation/value consistent to maintain harmony. Best for illustration, not minimal UI.</p>
+        <div class="scheme-swatches">
+          <span style="background:#c84b31"></span>
+          <span style="background:#c89431"></span>
+          <span style="background:#31c84b"></span>
+          <span style="background:#314bc8"></span>
+          <span style="background:#c831b4"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HSB Explanation -->
+    <div style="margin-top:3rem; padding:2rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);">
+      <h4 style="font-family:'Playfair Display',serif; color:var(--gold); margin-bottom:1rem;">The HSB Color Model (Hue · Saturation · Brightness)</h4>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem;">
+        <div>
+          <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Hue (0°–360°)</div>
+          <p style="color:rgba(245,242,235,0.6); font-size:13px; line-height:1.8;">The pure color — position on the color wheel. Red=0°, Yellow=60°, Green=120°, Cyan=180°, Blue=240°, Magenta=300°.</p>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Saturation (0–100%)</div>
+          <p style="color:rgba(245,242,235,0.6); font-size:13px; line-height:1.8;">Color intensity. 100% = vivid, pure. 0% = gray. Lower saturation for backgrounds, backgrounds, supporting elements. Higher for CTAs and accents.</p>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Brightness (0–100%)</div>
+          <p style="color:rgba(245,242,235,0.6); font-size:13px; line-height:1.8;">Lightness of the color. 0% = black, 100% = full color. Use brightness shifts to create shade/tint scales for your design system tokens.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ SECTION 3: COLOR PSYCHOLOGY ═══════════════════════════ -->
+<section class="section reveal" id="color-psychology">
+  <div class="section-num">Chapter 03 / 11</div>
+  <h2 class="section-title">Color Psychology</h2>
+  <p class="section-lead">
+    Colors don't just look — they speak. Every hue carries cultural, emotional, and psychological 
+    weight that shapes user perception before they read a single word. Match color to intent.
+  </p>
+
+  <div class="psych-grid">
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#c0392b"></div>
+      <div class="psych-color">Red</div>
+      <div class="psych-words">Urgency · Passion · Danger · Energy · Power</div>
+      <div class="psych-use">CTAs · Sales · Alerts · Food brands</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#e67e22"></div>
+      <div class="psych-color">Orange</div>
+      <div class="psych-words">Enthusiasm · Creativity · Warmth · Affordability</div>
+      <div class="psych-use">Startups · Retail · Entertainment</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#f1c40f"></div>
+      <div class="psych-color">Yellow</div>
+      <div class="psych-words">Optimism · Clarity · Attention · Caution</div>
+      <div class="psych-use">Warnings · Children · Hospitality</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#27ae60"></div>
+      <div class="psych-color">Green</div>
+      <div class="psych-words">Growth · Health · Nature · Safety · Money</div>
+      <div class="psych-use">Finance · Health · Environment · SaaS</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#2980b9"></div>
+      <div class="psych-color">Blue</div>
+      <div class="psych-words">Trust · Calm · Professionalism · Reliability</div>
+      <div class="psych-use">Tech · Banking · Healthcare · B2B</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#8e44ad"></div>
+      <div class="psych-color">Purple</div>
+      <div class="psych-words">Luxury · Wisdom · Creativity · Mystery</div>
+      <div class="psych-use">Beauty · Premium · AI · Spirituality</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#e91e8c"></div>
+      <div class="psych-color">Pink</div>
+      <div class="psych-words">Playfulness · Romance · Femininity · Care</div>
+      <div class="psych-use">Fashion · Beauty · Lifestyle · Youth</div>
+    </div>
+    <div class="psych-card reveal">
+      <div class="psych-swatch" style="background:#0f0e0d"></div>
+      <div class="psych-color">Black</div>
+      <div class="psych-words">Sophistication · Luxury · Authority · Mystery</div>
+      <div class="psych-use">Luxury brands · High fashion · SaaS dark mode</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Cultural Context Matters:</strong> White signifies purity in Western cultures but mourning in parts of Asia. Red means luck in China but danger in Western UX. Always validate color choices against your primary user's cultural background before finalizing a palette.
+  </div>
+
+  <!-- 60-30-10 Rule -->
+  <div class="principle-box" data-num="60">
+    <h3>The 60–30–10 Rule</h3>
+    <p>
+      The single most reliable formula for balanced color distribution in any design system. 
+      <strong style="color:var(--gold)">60%</strong> — your dominant/neutral color (backgrounds, large surfaces). 
+      <strong style="color:var(--gold)">30%</strong> — your secondary color (sidebars, cards, secondary text). 
+      <strong style="color:var(--gold)">10%</strong> — your accent color (CTAs, highlights, interactive elements, links). 
+      In admin templates and frontend UIs, this ratio prevents visual fatigue while maintaining brand presence.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 4: TYPOGRAPHY ═══════════════════════════ -->
+<section class="section reveal" id="typography">
+  <div class="section-num">Chapter 04 / 11</div>
+  <h2 class="section-title">Typography Systems</h2>
+  <p class="section-lead">
+    Typography is 95% of web design. The goal is invisibility — type should guide without being noticed, 
+    communicate without demanding attention. Every typographic choice from scale to kerning shapes reading 
+    experience, brand perception, and cognitive load.
+  </p>
+
+  <!-- Type Classification -->
+  <div class="grid-2 reveal" style="margin-bottom:3rem;">
+    <div class="card card-accent">
+      <h3>Serif Typefaces</h3>
+      <p style="font-family:'Playfair Display',serif; font-size:1.4rem; margin:1rem 0 0.5rem; color:var(--ink)">The quick brown fox</p>
+      <p>Small strokes (serifs) at the end of letterforms. Convey tradition, authority, credibility, and editorial gravitas. Best for: newspapers, luxury brands, editorial, long-form reading. Examples: <span class="chip">Playfair Display</span> <span class="chip">Georgia</span> <span class="chip">Merriweather</span> <span class="chip">Garamond</span></p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Sans-Serif Typefaces</h3>
+      <p style="font-family:sans-serif; font-size:1.4rem; margin:1rem 0 0.5rem; color:var(--ink)">The quick brown fox</p>
+      <p>Clean, strokeless letterforms. Convey modernity, clarity, and approachability. Best for: tech, UI, body copy on screens, admin dashboards. Examples: <span class="chip">DM Sans</span> <span class="chip">Nunito</span> <span class="chip">Plus Jakarta</span> <span class="chip">Outfit</span></p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Monospace Typefaces</h3>
+      <p style="font-family:'DM Mono',monospace; font-size:1.2rem; margin:1rem 0 0.5rem; color:var(--ink)">The quick brown fox</p>
+      <p>Each character occupies identical horizontal space. Convey precision, technical depth, developer culture. Best for: code blocks, data, terminal UIs, badges. Examples: <span class="chip">DM Mono</span> <span class="chip">JetBrains Mono</span> <span class="chip">Fira Code</span></p>
+    </div>
+    <div class="card card-gold">
+      <h3>Display / Expressive Typefaces</h3>
+      <p style="font-family:'Fraunces',serif; font-size:1.4rem; margin:1rem 0 0.5rem; font-style:italic; color:var(--ink)">Fraunces Optical</p>
+      <p>Highly stylized faces designed for large sizes, headlines, and hero text only. Never use for body. Convey personality and brand distinctiveness. Examples: <span class="chip">Fraunces</span> <span class="chip">Syne</span> <span class="chip">Unbounded</span></p>
+    </div>
+  </div>
+
+  <!-- Type Scale -->
+  <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:1rem;">Modular Type Scale — Major Third (1.25×)</h3>
+  <div class="type-scale reveal">
+    <div class="type-row">
+      <span class="type-label">Display</span>
+      <span class="type-size-label">64px</span>
+      <span class="type-sample" style="font-size:2.5rem;">Design Intent</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">H1</span>
+      <span class="type-size-label">48px</span>
+      <span class="type-sample" style="font-size:2rem;">Heading One</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">H2</span>
+      <span class="type-size-label">36px</span>
+      <span class="type-sample" style="font-size:1.6rem;">Heading Two</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">H3</span>
+      <span class="type-size-label">28px</span>
+      <span class="type-sample" style="font-size:1.3rem;">Heading Three</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">H4</span>
+      <span class="type-size-label">22px</span>
+      <span class="type-sample" style="font-size:1.1rem;">Heading Four</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">Body L</span>
+      <span class="type-size-label">18px</span>
+      <span class="type-sample" style="font-size:1rem; font-family:'DM Mono',monospace; font-weight:300;">Large body copy for intro paragraphs and lead text</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">Body</span>
+      <span class="type-size-label">16px</span>
+      <span class="type-sample" style="font-size:0.9rem; font-family:'DM Mono',monospace; font-weight:300;">Regular body copy — the workhorse of your typography system</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">Small</span>
+      <span class="type-size-label">14px</span>
+      <span class="type-sample" style="font-size:0.8rem; font-family:'DM Mono',monospace; font-weight:300;">Captions, labels, meta information, table data</span>
+    </div>
+    <div class="type-row">
+      <span class="type-label">Caption</span>
+      <span class="type-size-label">12px</span>
+      <span class="type-sample" style="font-size:0.72rem; font-family:'DM Mono',monospace; letter-spacing:0.08em; text-transform:uppercase;">OVERLINE TEXT · TAGS · LABELS · BADGES</span>
+    </div>
+  </div>
+
+  <!-- Typography Properties -->
+  <div class="grid-3 reveal" style="margin-top:3rem;">
+    <div class="card card-accent">
+      <h3>Line Height (Leading)</h3>
+      <p>The vertical space between lines of text. Body text: 1.5–1.7. Headings: 1.1–1.2. UI labels: 1.0–1.2. Too tight creates claustrophobia; too loose breaks the visual chain between lines.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Letter Spacing (Tracking)</h3>
+      <p>Uniform spacing between all characters. Tighten slightly for large headings (−0.02em to −0.04em). Expand for uppercase labels and small text (+0.05em to +0.2em) to improve legibility.</p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Measure (Line Length)</h3>
+      <p>Optimal line length for body text is 45–75 characters (about 65ch in CSS). Too short = fatiguing eye jumps. Too long = losing your place on return. Use <code style="background:var(--cream);padding:1px 4px">max-width: 65ch</code> on content containers.</p>
+    </div>
+    <div class="card card-gold">
+      <h3>Kerning</h3>
+      <p>Spacing between two specific characters. Most modern fonts handle this automatically (OpenType kerning pairs). Watch for awkward gaps in display type — especially in AV, Ty, and WA combinations at large sizes.</p>
+    </div>
+    <div class="card card-accent">
+      <h3>Font Weight</h3>
+      <p>Use 2–3 weights maximum. A common system: 300 (light, captions), 400 (regular, body), 600 (semibold, labels/subheadings), 700 (bold, headings). Variable fonts give you infinitely precise weight control.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Font Pairing</h3>
+      <p>Combine a distinctive display/heading font with a neutral, readable body font. Create contrast in category (serif + sans-serif) but harmony in mood. Avoid pairing fonts with similar personalities — the contrast is the point.</p>
+    </div>
+  </div>
+
+  <!-- Code Example -->
+  <div class="code-block reveal">
+<span class="comment">/* ─── Typography CSS Custom Properties System ─── */</span>
+<span class="prop">:root</span> {
+  <span class="comment">/* Font families */</span>
+  <span class="prop">--font-display</span>: <span class="val">'Playfair Display', Georgia, serif</span>;
+  <span class="prop">--font-body</span>: <span class="val">'DM Sans', system-ui, sans-serif</span>;
+  <span class="prop">--font-mono</span>: <span class="val">'DM Mono', 'Fira Code', monospace</span>;
+
+  <span class="comment">/* Modular scale (Major Third × 1.25) */</span>
+  <span class="prop">--text-xs</span>: <span class="val">0.75rem</span>;    <span class="comment">/* 12px */</span>
+  <span class="prop">--text-sm</span>: <span class="val">0.875rem</span>;   <span class="comment">/* 14px */</span>
+  <span class="prop">--text-base</span>: <span class="val">1rem</span>;      <span class="comment">/* 16px */</span>
+  <span class="prop">--text-lg</span>: <span class="val">1.125rem</span>;   <span class="comment">/* 18px */</span>
+  <span class="prop">--text-xl</span>: <span class="val">1.25rem</span>;    <span class="comment">/* 20px */</span>
+  <span class="prop">--text-2xl</span>: <span class="val">1.5rem</span>;     <span class="comment">/* 24px */</span>
+  <span class="prop">--text-3xl</span>: <span class="val">1.875rem</span>;   <span class="comment">/* 30px */</span>
+  <span class="prop">--text-4xl</span>: <span class="val">2.25rem</span>;    <span class="comment">/* 36px */</span>
+  <span class="prop">--text-5xl</span>: <span class="val">3rem</span>;        <span class="comment">/* 48px */</span>
+
+  <span class="comment">/* Line heights */</span>
+  <span class="prop">--leading-tight</span>: <span class="val">1.1</span>;
+  <span class="prop">--leading-snug</span>: <span class="val">1.375</span>;
+  <span class="prop">--leading-normal</span>: <span class="val">1.5</span>;
+  <span class="prop">--leading-relaxed</span>: <span class="val">1.7</span>;
+  <span class="prop">--leading-loose</span>: <span class="val">2</span>;
+}
+
+<span class="comment">/* Fluid typography using clamp() */</span>
+<span class="prop">h1</span> {
+  <span class="prop">font-size</span>: <span class="func">clamp</span>(<span class="val">2rem, 5vw, 3.5rem</span>);
+  <span class="prop">font-family</span>: <span class="val">var(--font-display)</span>;
+  <span class="prop">line-height</span>: <span class="val">var(--leading-tight)</span>;
+  <span class="prop">letter-spacing</span>: <span class="val">-0.03em</span>;
+}
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 5: SPACING ═══════════════════════════ -->
+<section class="section reveal" id="spacing">
+  <div class="section-num">Chapter 05 / 11</div>
+  <h2 class="section-title">Spacing & Layout Systems</h2>
+  <p class="section-lead">
+    Spacing is the grammar of design. It tells the eye which elements belong together, establishes 
+    rhythm, creates breathing room, and communicates hierarchy before any content is read. 
+    Consistent spacing is the mark of a design system that scales.
+  </p>
+
+  <!-- 8pt Grid -->
+  <div class="principle-box" data-num="8" style="margin-bottom:3rem;">
+    <h3>The 8pt Grid System</h3>
+    <p>
+      All spacing values should be multiples of 8px: 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 128.
+      This creates an invisible underlying rhythm that makes designs feel "just right" even to non-designers.
+      8px divides evenly into screen sizes and maps cleanly to most type scales. 
+      Many design systems (Material Design, Ant Design, Tailwind CSS) are built on this foundation.
+      For tighter UI, use a 4pt base with the same multiples.
+    </p>
+  </div>
+
+  <!-- Spacing Scale -->
+  <div class="spacing-scale reveal">
+    <div class="spacing-row">
+      <span class="spacing-label">4px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:16px"></div>
+        <span class="spacing-value">Micro — icon gaps, badge padding, border-radius</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">8px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:32px"></div>
+        <span class="spacing-value">XSmall — inline element gaps, chip padding, tight lists</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">12px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:48px"></div>
+        <span class="spacing-value">Small — label-to-input gaps, compact card padding</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">16px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:64px"></div>
+        <span class="spacing-value">Base — default padding unit, list item gaps, form row gaps</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">24px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:96px"></div>
+        <span class="spacing-value">Medium — card padding, between form groups, sidebar items</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">32px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:128px"></div>
+        <span class="spacing-value">Large — between sections within a card, between card rows</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">48px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:192px"></div>
+        <span class="spacing-value">XLarge — between content sections, hero internal padding</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">64px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:256px; background:var(--accent3)"></div>
+        <span class="spacing-value">2XL — major section separation, page-level padding</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">96px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:384px; background:var(--accent2)"></div>
+        <span class="spacing-value">3XL — between page sections, scroll-reveal breathing room</span>
+      </div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">128px</span>
+      <div class="spacing-bar-wrap">
+        <div class="spacing-bar" style="width:100%; max-width:512px; background:var(--gold); opacity:0.6"></div>
+        <span class="spacing-value">4XL — hero height, full-page sections, landing page blocks</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacing Code -->
+  <div class="code-block reveal">
+<span class="comment">/* ─── 8pt Spacing Tokens ─── */</span>
+<span class="prop">:root</span> {
+  <span class="prop">--space-1</span>: <span class="val">4px</span>;    <span class="prop">--space-2</span>: <span class="val">8px</span>;
+  <span class="prop">--space-3</span>: <span class="val">12px</span>;   <span class="prop">--space-4</span>: <span class="val">16px</span>;
+  <span class="prop">--space-6</span>: <span class="val">24px</span>;   <span class="prop">--space-8</span>: <span class="val">32px</span>;
+  <span class="prop">--space-10</span>: <span class="val">40px</span>;  <span class="prop">--space-12</span>: <span class="val">48px</span>;
+  <span class="prop">--space-16</span>: <span class="val">64px</span>;  <span class="prop">--space-20</span>: <span class="val">80px</span>;
+  <span class="prop">--space-24</span>: <span class="val">96px</span>;  <span class="prop">--space-32</span>: <span class="val">128px</span>;
+}
+
+<span class="comment">/* ─── Component Spacing Examples ─── */</span>
+<span class="prop">.card</span> { <span class="prop">padding</span>: <span class="val">var(--space-6)</span>; }                <span class="comment">/* 24px */</span>
+<span class="prop">.card + .card</span> { <span class="prop">margin-top</span>: <span class="val">var(--space-4)</span>; }      <span class="comment">/* 16px */</span>
+<span class="prop">.section</span> { <span class="prop">padding-block</span>: <span class="val">var(--space-24)</span>; }         <span class="comment">/* 96px top/bottom */</span>
+<span class="prop">.form-group + .form-group</span> { <span class="prop">margin-top</span>: <span class="val">var(--space-6)</span>; }
+<span class="prop">.label</span> { <span class="prop">margin-bottom</span>: <span class="val">var(--space-2)</span>; }             <span class="comment">/* 8px */</span>
+  </div>
+
+  <!-- Layout Types -->
+  <div class="grid-3 reveal" style="margin-top:3rem;">
+    <div class="card card-accent">
+      <h3>CSS Grid</h3>
+      <p>Best for 2D layouts with both rows and columns. Use for page-level structure, card grids, dashboard layouts, and any layout where alignment matters in both axes simultaneously.</p>
+      <p style="margin-top:0.8rem; font-size:12px; font-family:'DM Mono',monospace; color:var(--accent)">grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Flexbox</h3>
+      <p>Best for 1D layouts — a row of items or a column of items. Use for navigation bars, button groups, card headers, form rows, and anywhere items need to align along a single axis.</p>
+      <p style="margin-top:0.8rem; font-size:12px; font-family:'DM Mono',monospace; color:var(--accent2)">display:flex; align-items:center; gap:16px</p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Container Queries</h3>
+      <p>Modern replacement for media queries in component-based design. Components respond to their container size, not the viewport. Essential for admin templates with resizable sidebars.</p>
+      <p style="margin-top:0.8rem; font-size:12px; font-family:'DM Mono',monospace; color:var(--accent3)">@container card (min-width: 400px) { ... }</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 6: VISUAL HIERARCHY ═══════════════════════════ -->
+<section class="section reveal" id="visual-hierarchy">
+  <div class="section-num">Chapter 06 / 11</div>
+  <h2 class="section-title">Visual Hierarchy</h2>
+  <p class="section-lead">
+    Visual hierarchy is the design of attention. It answers: "In what order does the user see things?" 
+    Through size, color, weight, contrast, and positioning, hierarchy tells the visual story of your interface.
+  </p>
+
+  <!-- Demo -->
+  <div class="vh-demo reveal">
+    <p style="font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem;">Category Label</p>
+    <h1 style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; line-height:1.1; margin-bottom:1rem;">Primary Headline<br>Commands Attention</h1>
+    <p style="font-size:1.1rem; color:var(--muted); margin-bottom:1.5rem; line-height:1.7;">This lead paragraph is slightly larger and lighter than body text, establishing a second tier of hierarchy that bridges the headline and the main content.</p>
+    <p style="font-size:0.95rem; color:var(--muted); max-width:600px; line-height:1.8; margin-bottom:1.5rem;">Regular body copy sits here at a comfortable reading size. Notice how your eye naturally moves from the large headline downward through decreasing levels of visual weight. This is hierarchy at work.</p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+      <button style="background:var(--accent); color:white; border:none; padding:12px 28px; font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.05em; cursor:pointer;">Primary Action</button>
+      <button style="background:transparent; border:2px solid var(--ink); color:var(--ink); padding:10px 24px; font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.05em; cursor:pointer;">Secondary</button>
+      <a href="#" style="color:var(--muted); font-size:13px; text-decoration:underline;">Tertiary link</a>
+    </div>
+  </div>
+
+  <!-- Hierarchy Tools -->
+  <div class="grid-2 reveal">
+    <div class="card card-accent">
+      <h3>Size & Scale</h3>
+      <p>The most powerful hierarchy cue. Larger = more important. A 3× difference in size creates clear dominance. Use your type scale systematically — don't pick sizes ad hoc.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Color & Contrast</h3>
+      <p>High contrast draws the eye first. Dark on light, or a brand color accent, immediately signals importance. Use full-opacity color for primary elements, muted for secondary.</p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Weight & Style</h3>
+      <p>Bold text reads before regular text. Italic creates emphasis without size change. Weight is a subtle but powerful hierarchy signal, especially in data-dense admin UIs.</p>
+    </div>
+    <div class="card card-gold">
+      <h3>Position & Movement</h3>
+      <p>Western users read F-pattern (top-left first). Place most important content top-left. Animated elements always win attention over static ones — use this power sparingly and intentionally.</p>
+    </div>
+  </div>
+
+  <!-- F and Z Patterns -->
+  <div class="callout">
+    <strong>Eye-Tracking Patterns:</strong> Users on text-heavy pages follow an <strong style="color:var(--ink)">F-Pattern</strong> — reading across the top, then scanning down the left edge. On image-heavy or minimal pages, they follow a <strong style="color:var(--ink)">Z-Pattern</strong> — top-left → top-right → diagonal to bottom-left → bottom-right. Design your most critical elements along these natural scanning paths.
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 7: GESTALT ═══════════════════════════ -->
+<section class="section reveal" id="gestalt">
+  <div class="section-num">Chapter 07 / 11</div>
+  <h2 class="section-title">Gestalt Principles</h2>
+  <p class="section-lead">
+    Gestalt psychology (German: "form") describes how the human brain automatically organizes 
+    visual information into meaningful patterns. Designers who understand these principles design 
+    with the brain — not against it.
+  </p>
+
+  <table class="rule-table reveal">
+    <thead>
+      <tr>
+        <th>Principle</th>
+        <th>What It Means</th>
+        <th>Web Design Application</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="em">Proximity</td>
+        <td>Objects close together are perceived as a group</td>
+        <td>Group form labels with their inputs; cluster related navigation items; cards group their content visually</td>
+      </tr>
+      <tr>
+        <td class="em">Similarity</td>
+        <td>Elements that look alike are perceived as related</td>
+        <td>All primary buttons share the same style; all links share the same color; consistent icon style across a product</td>
+      </tr>
+      <tr>
+        <td class="em">Continuity</td>
+        <td>The eye follows smooth paths, lines, and curves</td>
+        <td>Breadcrumbs, progress bars, step indicators, carousels, scrolling content feeds</td>
+      </tr>
+      <tr>
+        <td class="em">Closure</td>
+        <td>The mind completes incomplete shapes</td>
+        <td>Logo design, icon design, hamburger menus, skeleton screens that suggest full content</td>
+      </tr>
+      <tr>
+        <td class="em">Figure/Ground</td>
+        <td>We perceive foreground vs. background</td>
+        <td>Modal overlays with dimmed backgrounds; tooltips floating above content; sticky headers above page</td>
+      </tr>
+      <tr>
+        <td class="em">Common Fate</td>
+        <td>Elements moving in the same direction are perceived as a group</td>
+        <td>Parallax scrolling; coordinated animations; items that animate together signal they belong together</td>
+      </tr>
+      <tr>
+        <td class="em">Prägnanz</td>
+        <td>The mind prefers the simplest interpretation</td>
+        <td>Use the simplest possible shape/layout that communicates the message. Complexity has a cognitive cost.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════ SECTION 8: ADMIN TEMPLATES ═══════════════════════════ -->
+<section class="section reveal" id="admin">
+  <div class="section-num">Chapter 08 / 11</div>
+  <h2 class="section-title">Admin Template Design</h2>
+  <p class="section-lead">
+    Admin interfaces are dense, data-rich environments where efficiency, clarity, and learnability 
+    take precedence over visual flair. Every design decision must reduce cognitive load and accelerate 
+    the path from question to insight.
+  </p>
+
+  <!-- Live Admin Demo -->
+  <div class="admin-demo reveal">
+    <div class="admin-topbar">
+      <div class="admin-logo">AdminBase</div>
+      <div style="display:flex; align-items:center; gap:1rem; font-size:12px;">
+        <span style="opacity:0.6">⌘K Search...</span>
+        <div class="admin-nav">
+          <span title="Notifications"></span>
+          <span title="Settings"></span>
+          <span style="background:#c84b31" title="User"></span>
+        </div>
+      </div>
+    </div>
+    <div class="admin-body">
+      <nav class="admin-sidebar">
+        <div class="sidebar-section-label">Overview</div>
+        <div class="sidebar-item active"><span class="sidebar-dot"></span>Dashboard</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>Analytics</div>
+        <div class="sidebar-section-label">Management</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>Users</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>Products</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>Orders</div>
+        <div class="sidebar-section-label">System</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>Settings</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>API Keys</div>
+        <div class="sidebar-item"><span class="sidebar-dot"></span>Logs</div>
+      </nav>
+      <div class="admin-content">
+        <div class="admin-content-title">Dashboard Overview</div>
+        <div class="admin-breadcrumb">Home / Dashboard</div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Revenue</span>
+            <span class="kpi-value">$84.2K</span>
+            <span class="kpi-delta pos">▲ 12.4% vs last month</span>
+            <div class="kpi-strip" style="background:linear-gradient(90deg,#27ae60,#2ecc71)"></div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Orders</span>
+            <span class="kpi-value">1,284</span>
+            <span class="kpi-delta pos">▲ 8.1% this week</span>
+            <div class="kpi-strip" style="background:linear-gradient(90deg,#2980b9,#3498db)"></div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Users</span>
+            <span class="kpi-value">32.6K</span>
+            <span class="kpi-delta pos">▲ 5.2% new this month</span>
+            <div class="kpi-strip" style="background:linear-gradient(90deg,#8e44ad,#9b59b6)"></div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Churn Rate</span>
+            <span class="kpi-value">2.3%</span>
+            <span class="kpi-delta neg">▼ 0.4% vs last quarter</span>
+            <div class="kpi-strip" style="background:linear-gradient(90deg,#c84b31,#e74c3c)"></div>
+          </div>
+        </div>
+        <div class="admin-charts">
+          <div class="chart-box">
+            <div class="chart-title">MONTHLY REVENUE · 2025</div>
+            <div class="bar-chart">
+              <div class="bar" style="height:40%"></div>
+              <div class="bar" style="height:55%"></div>
+              <div class="bar" style="height:45%"></div>
+              <div class="bar" style="height:70%"></div>
+              <div class="bar" style="height:60%"></div>
+              <div class="bar" style="height:80%"></div>
+              <div class="bar" style="height:65%"></div>
+              <div class="bar highlight" style="height:90%"></div>
+              <div class="bar" style="height:75%"></div>
+              <div class="bar" style="height:85%"></div>
+              <div class="bar" style="height:70%"></div>
+              <div class="bar" style="height:60%"></div>
+            </div>
+          </div>
+          <div class="chart-box">
+            <div class="chart-title">TRAFFIC SOURCES</div>
+            <div class="donut-wrap">
+              <div class="donut"></div>
+              <div class="donut-legend">
+                <div class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>Organic 35%</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#2d6a4f"></span>Paid 25%</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#1d3557"></span>Social 20%</div>
+                <div class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span>Referral 20%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Principles -->
+  <div class="grid-2 reveal" style="margin-top:3rem;">
+    <div class="card card-accent">
+      <h3>Sidebar Navigation Design</h3>
+      <p>Width: 220–280px collapsed. Use icons + labels (not icons alone). Group items into labeled sections. Highlight active state with left border accent + background fill. Collapse to 64px icon-only rail on smaller viewports. Never exceed 2 levels of nesting without accordion groups.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Color in Admin UIs</h3>
+      <p>Use a dark, desaturated primary (navy, slate, charcoal) for sidebars and top bars. White or near-white content areas. Single brand accent for primary actions. Status colors: green (success), red (error), amber (warning), blue (info). Never use more than 5 semantic colors.</p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Data Tables Best Practices</h3>
+      <p>Zebra striping OR hover highlighting (not both). Fixed header on scroll. Right-align numbers; left-align text. Use monospace for numeric columns. Minimum 44px row height for touch targets. Sort arrows on all sortable columns. Pagination vs infinite scroll — choose based on user task type.</p>
+    </div>
+    <div class="card card-gold">
+      <h3>KPI Card Design</h3>
+      <p>Label (small, uppercase, muted) → Value (large, bold, prominent) → Delta (colored, directional arrow). Use colored bottom borders or left strips to categorize card types. Keep padding consistent (20–24px). Never mix horizontal and vertical card orientations in the same grid.</p>
+    </div>
+    <div class="card card-accent">
+      <h3>Form Design in Admin</h3>
+      <p>Stack labels above inputs (never inline for dense forms). Use consistent 8px gap between label and input. Group related fields in fieldsets with 24px inter-group spacing. Error messages appear immediately below the relevant field, in red, with an icon. Required fields marked clearly.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Typography for Admin</h3>
+      <p>Body: 14px (denser than marketing sites). Table data: 13px monospace for numbers. Headings: 18–24px, semibold, 1.1 line-height. Sidebar labels: 12px, 400 weight. Section labels: 10–11px, uppercase, 0.1–0.2em letter-spacing, muted color. Maximum 2 typefaces.</p>
+    </div>
+  </div>
+
+  <!-- Admin Color Palette -->
+  <div class="code-block reveal">
+<span class="comment">/* ─── Admin Template Color Tokens ─── */</span>
+<span class="prop">:root</span> {
+  <span class="comment">/* Surface */</span>
+  <span class="prop">--bg-app</span>: <span class="val">#f0f2f5</span>;       <span class="comment">/* App background */</span>
+  <span class="prop">--bg-card</span>: <span class="val">#ffffff</span>;      <span class="comment">/* Card / panel */</span>
+  <span class="prop">--bg-sidebar</span>: <span class="val">#1a2744</span>;  <span class="comment">/* Sidebar dark */</span>
+  <span class="prop">--bg-topbar</span>: <span class="val">#1d3557</span>;   <span class="comment">/* Top navigation */</span>
+
+  <span class="comment">/* Text */</span>
+  <span class="prop">--text-primary</span>: <span class="val">#1a2030</span>;
+  <span class="prop">--text-secondary</span>: <span class="val">#5a6478</span>;
+  <span class="prop">--text-muted</span>: <span class="val">#8898aa</span>;
+  <span class="prop">--text-on-dark</span>: <span class="val">rgba(255,255,255,0.85)</span>;
+
+  <span class="comment">/* Border */</span>
+  <span class="prop">--border</span>: <span class="val">#e0e4ea</span>;
+  <span class="prop">--border-dark</span>: <span class="val">rgba(255,255,255,0.1)</span>;
+
+  <span class="comment">/* Semantic status */</span>
+  <span class="prop">--color-success</span>: <span class="val">#27ae60</span>;
+  <span class="prop">--color-warning</span>: <span class="val">#f39c12</span>;
+  <span class="prop">--color-danger</span>: <span class="val">#c84b31</span>;
+  <span class="prop">--color-info</span>: <span class="val">#3498db</span>;
+
+  <span class="comment">/* Brand accent */</span>
+  <span class="prop">--color-primary</span>: <span class="val">#c84b31</span>;
+  <span class="prop">--color-primary-light</span>: <span class="val">rgba(200,75,49,0.12)</span>;
+}
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 9: FRONTEND DESIGN ═══════════════════════════ -->
+<section class="section reveal" id="frontend">
+  <div class="section-num">Chapter 09 / 11</div>
+  <h2 class="section-title">Frontend / Marketing Design</h2>
+  <p class="section-lead">
+    Frontend (marketing/public-facing) design has a fundamentally different objective than admin UI. 
+    Here, the mission is persuasion, emotion, and brand storytelling — not efficiency. 
+    Boldness, personality, and delight are features, not bugs.
+  </p>
+
+  <div class="grid-2 reveal">
+    <div class="card card-gold">
+      <h3>Hero Section Design</h3>
+      <p>Above-the-fold content. Maximum 12 words in the headline. One clear, high-contrast CTA. Use a visual focal point (product image, illustration, or background gradient) to anchor the composition. White space is your most powerful tool here — resist the urge to fill it.</p>
+    </div>
+    <div class="card card-accent">
+      <h3>Landing Page Flow</h3>
+      <p>Hero → Problem/Pain → Solution/Value → Social Proof → Features → FAQ → Final CTA. This narrative arc mirrors the user's trust journey. Each section should answer the next natural question in a skeptic's mind. Sections should alternate visual weight (dark/light) to create rhythm.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>CTA Design</h3>
+      <p>Primary CTA: high-contrast filled button, prominent size (min 44px height), action-oriented verb ("Start Free Trial", not "Submit"). One primary CTA per view. Secondary CTAs should be visually subordinate — ghost/outline or text link. Never two filled CTAs of equal visual weight.</p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Social Proof Patterns</h3>
+      <p>Testimonial cards: avatar + name + role + quote (max 2–3 lines). Star ratings above fold. Logo carousels for recognizable brand associations. Case study numbers with specific metrics ("$2.4M revenue in 90 days" beats "significant revenue growth"). Specificity = credibility.</p>
+    </div>
+    <div class="card card-gold">
+      <h3>Motion & Microinteractions</h3>
+      <p>Hover states: 150–250ms ease transitions. Button presses: scale(0.97) on active for tactile feedback. Scroll animations: fade-up on enter, 400–600ms, stagger 100ms between siblings. Loading states: skeleton screens over spinners. Entrance animations: under 300ms, exit: under 200ms.</p>
+    </div>
+    <div class="card card-accent">
+      <h3>Dark Mode Design</h3>
+      <p>Dark ≠ black. Use dark grays (e.g. #0f1117, #1a1d24, #242730) for depth layering. Reduce saturation of accent colors by 10–15% in dark mode. Shadows lose impact — use subtle borders and elevation instead. Light text: 85–95% opacity white, not pure white, to reduce eye strain.</p>
+    </div>
+  </div>
+
+  <!-- Component Standards -->
+  <div class="principle-box" data-num="UI">
+    <h3>Component-First Design Thinking</h3>
+    <p>
+      Modern frontend design is component-based. Every UI element — buttons, inputs, cards, modals, 
+      badges, tooltips — should be designed as a reusable, variant-aware system component before any page 
+      is designed. Define your button in 5 states (default, hover, active, disabled, loading) and 3 sizes 
+      (sm, md, lg) before building a single page. This atomic approach ensures consistency at scale 
+      and eliminates "design drift" that happens when components are invented per-page.
+    </p>
+  </div>
+
+  <!-- Design System Code -->
+  <div class="code-block reveal">
+<span class="comment">/* ─── Frontend Design Token System ─── */</span>
+<span class="prop">:root</span> {
+  <span class="comment">/* Brand palette */</span>
+  <span class="prop">--brand-50</span>: <span class="val">#fef4f2</span>;   <span class="prop">--brand-100</span>: <span class="val">#fde3de</span>;
+  <span class="prop">--brand-500</span>: <span class="val">#c84b31</span>;  <span class="prop">--brand-600</span>: <span class="val">#a33a23</span>;
+  <span class="prop">--brand-900</span>: <span class="val">#3d1109</span>;
+
+  <span class="comment">/* Semantic aliases */</span>
+  <span class="prop">--color-action</span>: <span class="val">var(--brand-500)</span>;
+  <span class="prop">--color-action-hover</span>: <span class="val">var(--brand-600)</span>;
+  <span class="prop">--color-action-bg</span>: <span class="val">var(--brand-50)</span>;
+
+  <span class="comment">/* Shadows */</span>
+  <span class="prop">--shadow-sm</span>: <span class="val">0 1px 2px rgba(0,0,0,0.05)</span>;
+  <span class="prop">--shadow-md</span>: <span class="val">0 4px 12px rgba(0,0,0,0.08)</span>;
+  <span class="prop">--shadow-lg</span>: <span class="val">0 12px 40px rgba(0,0,0,0.12)</span>;
+  <span class="prop">--shadow-xl</span>: <span class="val">0 24px 64px rgba(0,0,0,0.16)</span>;
+
+  <span class="comment">/* Border radius */</span>
+  <span class="prop">--radius-sm</span>: <span class="val">4px</span>;   <span class="prop">--radius-md</span>: <span class="val">8px</span>;
+  <span class="prop">--radius-lg</span>: <span class="val">12px</span>;  <span class="prop">--radius-xl</span>: <span class="val">20px</span>;
+  <span class="prop">--radius-full</span>: <span class="val">9999px</span>;
+
+  <span class="comment">/* Motion */</span>
+  <span class="prop">--ease-in</span>: <span class="val">cubic-bezier(0.4, 0, 1, 1)</span>;
+  <span class="prop">--ease-out</span>: <span class="val">cubic-bezier(0, 0, 0.2, 1)</span>;
+  <span class="prop">--ease-inout</span>: <span class="val">cubic-bezier(0.4, 0, 0.2, 1)</span>;
+  <span class="prop">--duration-fast</span>: <span class="val">150ms</span>;
+  <span class="prop">--duration-base</span>: <span class="val">250ms</span>;
+  <span class="prop">--duration-slow</span>: <span class="val">400ms</span>;
+}
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 10: ACCESSIBILITY ═══════════════════════════ -->
+<section class="section reveal" id="accessibility">
+  <div class="section-num">Chapter 10 / 11</div>
+  <h2 class="section-title">Color Accessibility & WCAG</h2>
+  <p class="section-lead">
+    Accessible design is not a limitation — it's a mark of craft. WCAG 2.1 and 2.2 provide the 
+    internationally recognized standards for visual accessibility. Meeting these standards broadens 
+    your audience and often improves clarity for all users.
+  </p>
+
+  <div class="wcag-grid reveal">
+    <div class="wcag-box">
+      <div class="wcag-ratio" style="color:var(--accent)">3:1</div>
+      <div class="wcag-level">WCAG AA — Large Text</div>
+      <div class="wcag-desc">Large text (18pt+ or 14pt+ bold). Minimum for UI components and graphical objects.</div>
+    </div>
+    <div class="wcag-box">
+      <div class="wcag-ratio" style="color:var(--accent2)">4.5:1</div>
+      <div class="wcag-level">WCAG AA — Normal Text</div>
+      <div class="wcag-desc">Standard body text. The most common compliance requirement for web text content.</div>
+    </div>
+    <div class="wcag-box">
+      <div class="wcag-ratio" style="color:var(--accent3)">7:1</div>
+      <div class="wcag-level">WCAG AAA — Normal Text</div>
+      <div class="wcag-desc">Enhanced accessibility for users with low vision. Target for medical/government interfaces.</div>
+    </div>
+    <div class="wcag-box">
+      <div class="wcag-ratio" style="color:var(--gold)">Any</div>
+      <div class="wcag-level">Not for Decorative Only</div>
+      <div class="wcag-desc">Purely decorative elements have no contrast requirement. Only elements conveying information are checked.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin:2rem 0;">
+    <strong>Quick Test:</strong> A classic check — if you convert your design to grayscale and it still communicates all meaning, your hierarchy is not relying solely on color. Add icons, shapes, or labels alongside color-only indicators for colorblind users (affects ~8% of males, ~0.5% of females globally).
+  </div>
+
+  <table class="rule-table reveal">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Minimum Ratio</th>
+        <th>Best Practice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Body text (< 18pt)</td>
+        <td class="good">4.5:1</td>
+        <td>Aim for 7:1 on white backgrounds</td>
+      </tr>
+      <tr>
+        <td>Large text (≥ 18pt regular or 14pt bold)</td>
+        <td class="good">3:1</td>
+        <td>4.5:1 for better readability</td>
+      </tr>
+      <tr>
+        <td>UI components (buttons, inputs, checkboxes)</td>
+        <td class="good">3:1</td>
+        <td>Ensure focus rings visible at 3:1 against both background and element</td>
+      </tr>
+      <tr>
+        <td>Placeholder text</td>
+        <td class="bad">Often fails</td>
+        <td>Must meet 4.5:1; many designs fail this silently</td>
+      </tr>
+      <tr>
+        <td>Disabled elements</td>
+        <td>Exempt</td>
+        <td>Still aim for 3:1 to avoid confusion about whether disabled or broken</td>
+      </tr>
+      <tr>
+        <td>Focus indicators</td>
+        <td class="good">3:1</td>
+        <td>WCAG 2.2 requires minimum 2px outline with 3:1 contrast; prefer 3px with brand color</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Inclusive Design Cards -->
+  <div class="grid-3 reveal">
+    <div class="card card-accent">
+      <h3>Color Blindness</h3>
+      <p>Never use color as the only differentiator. Pair red/green status indicators with icons (✓/✗) or labels. Use tools: Stark (Figma plugin), Sim Daltonism (macOS) to simulate deuteranopia, protanopia, tritanopia.</p>
+    </div>
+    <div class="card card-accent2">
+      <h3>Motion Sensitivity</h3>
+      <p>Respect <code style="background:var(--cream);padding:1px 4px">prefers-reduced-motion</code>. Any autoplay animation, parallax, or scroll-triggered effect should be disabled or reduced when this media query is active. Never have looping animations that cannot be paused.</p>
+    </div>
+    <div class="card card-accent3">
+      <h3>Screen Readers & Semantics</h3>
+      <p>Use semantic HTML (button, nav, main, header, aside). All images need alt text. Icon buttons need aria-label. Color information must have text alternative. Test with NVDA (Windows) or VoiceOver (Mac/iOS) regularly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SECTION 11: RESPONSIVE ═══════════════════════════ -->
+<section class="section reveal" id="responsive">
+  <div class="section-num">Chapter 11 / 11</div>
+  <h2 class="section-title">Responsive Design System</h2>
+  <p class="section-lead">
+    A responsive design system doesn't just resize — it restructures, reflows, and reimagines content 
+    for each context. Design mobile-first: start with the tightest constraints and progressively enhance 
+    as viewport width increases.
+  </p>
+
+  <!-- Breakpoints -->
+  <div class="breakpoint-demo reveal">
+    <div class="bp-box">
+      <div class="bp-icon">📱</div>
+      <div class="bp-name">Mobile</div>
+      <div class="bp-range">&lt; 640px</div>
+      <div class="bp-cols">1 column · Full width components · Collapsed nav · Stack everything</div>
+    </div>
+    <div class="bp-box" style="border-color:var(--accent); background:rgba(200,75,49,0.03);">
+      <div class="bp-icon">📟</div>
+      <div class="bp-name">Tablet</div>
+      <div class="bp-range">640–1024px</div>
+      <div class="bp-cols">2 columns · Sidebar collapses to overlay · Card grids emerge</div>
+    </div>
+    <div class="bp-box">
+      <div class="bp-icon">💻</div>
+      <div class="bp-name">Laptop</div>
+      <div class="bp-range">1024–1440px</div>
+      <div class="bp-cols">3 columns · Sidebar visible · Full nav · Split layouts</div>
+    </div>
+    <div class="bp-box">
+      <div class="bp-icon">🖥️</div>
+      <div class="bp-name">Desktop</div>
+      <div class="bp-range">&gt; 1440px</div>
+      <div class="bp-cols">4+ columns · Wide sidebar · Max-width container · Spacious</div>
+    </div>
+  </div>
+
+  <!-- Responsive Typography Code -->
+  <div class="code-block reveal">
+<span class="comment">/* ─── Mobile-First Responsive System ─── */</span>
+
+<span class="comment">/* Base: mobile (no query needed) */</span>
+<span class="prop">.page-container</span> {
+  <span class="prop">padding-inline</span>: <span class="val">16px</span>;
+  <span class="prop">max-width</span>: <span class="val">100%</span>;
+}
+
+<span class="comment">/* Tablet */</span>
+<span class="func">@media</span> (<span class="prop">min-width</span>: <span class="val">640px</span>) {
+  <span class="prop">.page-container</span> { <span class="prop">padding-inline</span>: <span class="val">32px</span>; }
+  <span class="prop">.grid</span> { <span class="prop">grid-template-columns</span>: <span class="val">repeat(2, 1fr)</span>; }
+}
+
+<span class="comment">/* Laptop */</span>
+<span class="func">@media</span> (<span class="prop">min-width</span>: <span class="val">1024px</span>) {
+  <span class="prop">.page-container</span> { <span class="prop">padding-inline</span>: <span class="val">48px</span>; }
+  <span class="prop">.grid</span> { <span class="prop">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>; }
+  <span class="prop">.sidebar</span> { <span class="prop">display</span>: <span class="val">block</span>; }
+}
+
+<span class="comment">/* Desktop */</span>
+<span class="func">@media</span> (<span class="prop">min-width</span>: <span class="val">1440px</span>) {
+  <span class="prop">.page-container</span> { <span class="prop">max-width</span>: <span class="val">1280px</span>; <span class="prop">margin-inline</span>: <span class="val">auto</span>; }
+  <span class="prop">.grid</span> { <span class="prop">grid-template-columns</span>: <span class="val">repeat(4, 1fr)</span>; }
+}
+
+<span class="comment">/* Fluid typography with clamp() */</span>
+<span class="prop">:root</span> {
+  <span class="prop">--text-h1</span>: <span class="func">clamp</span>(<span class="val">1.8rem, 4vw + 1rem, 4rem</span>);
+  <span class="prop">--text-body</span>: <span class="func">clamp</span>(<span class="val">0.875rem, 0.5vw + 0.75rem, 1rem</span>);
+}
+  </div>
+
+  <!-- Final Checklist -->
+  <div class="principle-box" data-num="✓" style="margin-top:3rem;">
+    <h3>The Complete Design Checklist</h3>
+    <p>
+      <strong style="color:var(--gold)">Color:</strong> 60-30-10 rule applied · Harmony scheme chosen · All text passes WCAG 4.5:1 · Semantic status colors consistent · Works in grayscale &nbsp;|&nbsp;
+      <strong style="color:var(--gold)">Typography:</strong> Max 2 typefaces · Modular scale used · Line heights set · Measure ≤ 75ch · Responsive with clamp() &nbsp;|&nbsp;
+      <strong style="color:var(--gold)">Spacing:</strong> 8pt grid used · Consistent component padding · Proximity groups related items · White space used deliberately &nbsp;|&nbsp;
+      <strong style="color:var(--gold)">Hierarchy:</strong> One dominant element per view · Eye path designed · Button states all defined · F/Z pattern considered &nbsp;|&nbsp;
+      <strong style="color:var(--gold)">Responsive:</strong> Mobile-first · 4 breakpoints tested · Typography fluid · Touch targets ≥ 44px · Navigation works at all sizes &nbsp;|&nbsp;
+      <strong style="color:var(--gold)">Accessibility:</strong> All images have alt text · Focus states visible · Color not the only indicator · Motion respects prefers-reduced-motion
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Design & Color Theory — Complete Web Design Reference &nbsp;·&nbsp; <span>Research-backed · 2025/26 Edition</span></p>
+  <p style="margin-top:0.5rem; opacity:0.5">Covering: Design Principles · Color Theory · Color Psychology · Typography · Spacing · Visual Hierarchy · Gestalt · Admin Templates · Frontend Design · Accessibility · Responsive Systems</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Smooth scroll for TOC
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
