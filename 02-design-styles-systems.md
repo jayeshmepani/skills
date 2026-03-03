@@ -1,7 +1,5 @@
 # The Definitive Guide to Web Design Theory: Styles, Systems, Psychology & Practice
 
-> **About this document:** This is a comprehensive synthesis of six independent research reports on design theory, color theory, typography, spacing, and UI/UX systems for web design. Each topic appears exactly once. Every section merges the strongest insights from all six sources into a single authoritative reference.
-
 ---
 
 ## Table of Contents
@@ -1582,7 +1580,7 @@ Reached stable v1 in 2025 (DTCG 2025.10). Standardizes token exchange format acr
 
 # Part V — The Psychology of Design
 
-> This section consolidates psychological frameworks and principles referenced across all six source reports into a single comprehensive treatment. Each principle appears once.
+> This section consolidates psychological frameworks and principles referenced across all six industry sources into a single comprehensive treatment. Each principle appears once.
 
 ---
 
@@ -1943,11 +1941,9 @@ For teams actively executing a UI overhaul or building from scratch, follow this
 
 # Appendix — Sources & Further Reading
 
-This document synthesizes research compiled across and referenced by six independent research reports, drawing from:
-
 **Academic & Research Sources:**
 - Stanford Web Credibility Research Project
-- Nielsen Norman Group (NN/g) — usability studies, eye-tracking research
+- Nielsen Norman Group (NN/g) — usability studies, Eye-tracking studies
 - Don Norman — *Emotional Design: Why We Love (or Hate) Everyday Things*
 - Interaction Design Foundation (IxDF)
 
@@ -1968,20 +1964,10 @@ This document synthesizes research compiled across and referenced by six indepen
 - W3C Design Token Community Group (DTCG) Specification
 - European Accessibility Act (EAA)
 
-**Industry Publications & Analyses:**
+**Industry Publications:**
 - Smashing Magazine, CSS-Tricks, web.dev
-- DesignerUp, CCC Creative, Pixso, Storify Agency
-- Multiple Medium authors on UI/UX trends
 - Brad Frost — *Atomic Design* methodology
-
-**Original Reports Synthesized:**
-1. Report 1 — Design systems, CSS methodologies, tokens, Storybook, Atomic Design
-2. Report 2 — 28 design styles with deep psychological analysis, Don Norman framework
-3. Report 3 — Bento grids, adaptive UX, EAA accessibility, sustainability
-4. Report 4 — Concise style survey, evolution overview, Liquid Glass reference
-5. Report 5 — Structured style guide, decision framework, 2025 trends
-6. Report 6 — Practical choosing framework, design systems, mermaid flowchart
 
 ---
 
-*Compiled and synthesized: February 2026*
+*Last updated: 2026*

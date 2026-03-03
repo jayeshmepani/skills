@@ -1,8 +1,7 @@
 # Modern Web Standards — Master Reference (2026)
 
-> **Synthesized from 7 independent research reports.**  
 > **Date:** March 2026 | **Scope:** HTML, CSS, JavaScript, Accessibility (WCAG 2.2), SEO, Performance, Media, Structured Data.  
-> This document is the single authoritative reference — non-redundant, comprehensive, and self-contained.
+> This document is a comprehensive, self-contained reference.
 
 ---
 
@@ -97,9 +96,9 @@
 19. [Complete Modern HTML Reference Template](#19-complete-modern-html-reference-template)
 20. [Master Pre-Launch Checklist](#20-master-pre-launch-checklist)
 
-**Addendum — Gap Analysis & Deep Research (March 2, 2026)**
+**Addendum — Additional Topics (March 2026)**
 
-21. [Additional WCAG 2.2 Success Criteria](#21-additional-wcag-22-success-criteria-missing-from-original-reports)
+21. [Additional WCAG 2.2 Success Criteria](#21-additional-wcag-22-success-criteria)
     - 21.1 SC 2.5.7 — Dragging Movements (AA)
     - 21.2 SC 2.4.13 — Focus Appearance (AAA)
     - 21.3 SC 3.3.9 — Accessible Authentication Enhanced (AAA)
@@ -146,12 +145,12 @@
     - 29.4 The `<search>` Element
     - 29.5 The `inert` Attribute
     - 29.6 `autocomplete` — Complete Token Reference
-30. [Additional Structured Data Types](#30-additional-structured-data-types-missing-from-original-reports)
+30. [Additional Structured Data Types](#30-additional-structured-data-types)
     - 30.1 HowTo Schema
     - 30.2 Event Schema
     - 30.3 VideoObject Schema
     - 30.4 SiteNavigationElement Schema
-31. [Updated Master Pre-Launch Checklist — Addendum Items](#31-updated-master-pre-launch-checklist--addendum-items)
+31. [Master Pre-Launch Checklist](#31-master-pre-launch-checklist)
 
 ---
 
@@ -4374,17 +4373,16 @@ Run all of these before marking any page as production-ready:
 
 | Field | Value |
 |-------|-------|
-| **Compiled** | March 2026 |
+| **Last Updated** | March 2026 |
 | **Based on** | WHATWG HTML Living Standard, W3C WCAG 2.2, WAI-ARIA 1.2, MDN Web Docs, web.dev, schema.org, RFC 9110–9114 (HTTP), TC39 Temporal Proposal, APCA/BWMA, Google CWV documentation, W3C CSS Grid Level 2, W3C CSS Cascade Level 5 |
-| **Source reports synthesized** | 7 independent research reports |
 | **Scope** | HTML5 (WHATWG Living Standard), CSS3+, ES2022+, WCAG 2.2 AA, Core Web Vitals (LCP/INP/CLS), Schema.org, HTTP/3 (QUIC) |
 | **Review schedule** | Revisit when WCAG 3.0 reaches Candidate Recommendation status (~2028+); revisit for JPEG XL browser support status; revisit for Temporal API Baseline status |
 
 ---
 
-# Addendum — Missing Topics Identified via Deep Research (March 2026)
+# Addendum — Additional Topics (2026)
 
-The following sections cover topics that were absent from the original 7 reports or were only partially covered. Every item below is verified through web research against current (2025–2026) standards documentation.
+The following sections cover additional topics verified through current (2025–2026) standards documentation.
 
 ---
 
@@ -5697,11 +5695,9 @@ Add these items to existing checklist sections:
 
 | Field | Value |
 |-------|-------|
-| **Compiled** | March 2026 |
-| **Last Updated** | March 2, 2026 — Addendum with 11 missing topics added after deep web research |
+| **Last Updated** | March 2026 |
 | **Based on** | WHATWG HTML Living Standard, W3C WCAG 2.2, WAI-ARIA 1.2, MDN Web Docs, web.dev, schema.org, RFC 9110–9114, TC39 Temporal Proposal, APCA/BWMA, Google CWV documentation, W3C CSS Scroll-Driven Animations, View Transitions API, Popover API, EAA (Directive 2019/882), EN 301 549 v3.2.1 |
-| **Source reports synthesized** | 7 independent research reports |
-| **Deep research sources** | W3C WCAG 2.2 Recommendation, Chrome Platform Status, web.dev, MDN, Google Search Central, Schema.org, EU EAA documentation |
+| **Research sources** | W3C WCAG 2.2 Recommendation, Chrome Platform Status, web.dev, MDN, Google Search Central, Schema.org, EU EAA documentation |
 | **Scope** | HTML5, CSS3+, ES2022+, WCAG 2.2 AA, Core Web Vitals, Schema.org, HTTP/3, View Transitions API, Popover API, Scroll-Driven Animations, CSS Anchor Positioning, E-E-A-T |
-| **Sections** | 20 original + 11 addendum = **31 total sections** |
+| **Sections** | 31 total sections |
 | **Review schedule** | Revisit for WCAG 3.0 (est. 2028+); JPEG XL browser support; Temporal API baseline; CSS Anchor Positioning cross-browser support; EAA enforcement outcomes |

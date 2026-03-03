@@ -36,7 +36,7 @@ _This is a living master document intended to supersede all external UI framewor
 24. [24. Turing Complete Logic: `if()` and Typed `attr()`](#24-turing-complete-logic-if-and-typed-attr)
 25. [25. Control Mechanisms: Isolation, Z-Index, & Blend Modes](#25-control-mechanisms-isolation-z-index-blend-modes)
 26. [26. The Vanguard of JavaScript (2025/2026 API Replacements)](#26-the-vanguard-of-javascript-2025/2026-api-replacements)
-27. [27. The 2025/2026 Research Addendum: Edge Cases & Advanced APIs](#27-the-2025/2026-research-addendum-edge-cases-advanced-apis)
+27. [27. The 2025/2026 Advanced Features: Edge Cases & Advanced APIs](#27-the-2025/2026-advanced-features-edge-cases-advanced-apis)
 28. [28. Absolute Edge-Case Dictionary (100% Specification Coverage)](#28-absolute-edge-case-dictionary-100%-specification-coverage)
 
 ---
@@ -905,7 +905,7 @@ The golden ratio of UI color distribution ensures a balanced interface that does
 - **Blue (Trust, Corporate, Calm):** Used universally for tech, banking, and data analytics (hence, Poetry Analyzer's core aesthetic). It is mathematically proven to be the most "accessible" color across cultures.
 - **Red / Rose (Urgency, Passion, Danger):** Highly stimulating. Triggers fight-or-flight in UI (Delete buttons, critical errors).
 - **Green / Emerald (Growth, Success, Nature):** Signals safety, completion, and financial positive movement.
-- **Purple / Violet (Luxury, Creativity, Mystery):** The rarest color in nature. Excellent for AI software, premium subscriptions, and imaginative tools.
+- **Purple / Violet (Luxury, Creativity, Mystery):** The rarest color in nature. Excellent for modern software, premium subscriptions, and imaginative tools.
 - **Yellow / Amber (Warning, Sunshine, Anxiety):** The most visible color from a distance. Use extremely sparingly for warnings; large blocks of yellow induce fatigue rapidly.
 
 ---
@@ -1420,7 +1420,7 @@ counter.set(1); // the Computed value automatically re-evaluates!
 
 ---
 
-## 27. The 2025/2026 Research Addendum: Edge Cases & Advanced APIs
+## 27. The 2025/2026 Advanced Features: Edge Cases & Advanced APIs
 
 While the previous chapters cover the vast majority of modern CSS, this addendum serves to document the absolute bleeding-edge features and specific architectural synergies that reached maturity in late 2025 and 2026.
 
