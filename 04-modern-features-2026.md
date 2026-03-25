@@ -37,7 +37,20 @@ _This is a living master document intended to supersede all external UI framewor
 25. [25. Control Mechanisms: Isolation, Z-Index, & Blend Modes](#25-control-mechanisms-isolation-z-index-blend-modes)
 26. [26. The Vanguard of JavaScript (2025/2026 API Replacements)](#26-the-vanguard-of-javascript-2025/2026-api-replacements)
 27. [27. The 2025/2026 Advanced Features: Edge Cases & Advanced APIs](#27-the-2025/2026-advanced-features-edge-cases-advanced-apis)
-28. [28. Absolute Edge-Case Dictionary (100% Specification Coverage)](#28-absolute-edge-case-dictionary-100%-specification-coverage)
+28. [28. Absolute Edge-Case Dictionary (100% Specification Coverage)](#28-absolute-edge-case-dictionary-100-specification-coverage)
+29. [29. Additional Forms & UI Styling Primitives](#29-additional-forms-ui-styling-primitives)
+30. [30. Shadow DOM & Web Components Architecture](#30-shadow-dom-web-components-architecture)
+31. [31. Advanced Graphics & Display: HDR, P3, and Shapes](#31-advanced-graphics-display-hdr-p3-and-shapes)
+32. [32. Invoker Commands: Declarative Action Handling](#32-invoker-commands-declarative-action-handling)
+33. [33. Additional Native HTML APIs (No-JS Components)](#33-additional-native-html-apis-no-js-components)
+34. [34. WebGPU & Graphics APIs](#34-webgpu-graphics-apis)
+35. [35. File System Access API](#35-file-system-access-api)
+36. [36. Browser Support Matrix & Stability Indicators](#36-browser-support-matrix-stability-indicators)
+37. [37. Shadow DOM & Web Components Architecture](#37-shadow-dom-web-components-architecture)
+38. [38. Advanced Graphics & Display: HDR, P3, and Shapes](#38-advanced-graphics-display-hdr-p3-and-shapes)
+39. [39. Invoker Commands: Declarative Action Handling](#39-invoker-commands-declarative-action-handling)
+40. [40. Cutting-Edge Web Features (2024-2026 Expansion)](#40-cutting-edge-web-features-2024-2026-expansion)
+
 
 ---
 
@@ -219,6 +232,18 @@ Never use these on screen interfaces unless doing exact mathematical projections
 - `pt` (Points), `pc` (Picas) - Derived from print typography.
 - `cm`, `mm`, `in` - Centimeters, millimeters, inches.
 
+### 3.5 Relative Color Units from Elements
+
+- **`currentcolor`**: References the element's computed `color` property.
+  - _Usage:_ `border-color: currentcolor;` ensures borders match text color automatically.
+- **`light-dark(light, dark)`**: Automatically switches between light and dark mode values.
+  ```css
+  :root {
+    --bg: light-dark(white, black);
+    --text: light-dark(black, white);
+  }
+  ```
+
 ---
 
 ## 4. Intrinsic Sizing & Layout Control: Stretch, Fit-Content
@@ -294,10 +319,42 @@ Takes `deg`, `rad`, `grad`, or `turn`.
 - **`mod()` and `rem()` (Modulo & Remainder):**
   - Useful for alternating patterns or infinite loops natively in CSS keyframes by evaluating the remainder of a division.
 
-### 5.5 Sign Metrics (`abs`, `sign`)
+### 5.5 Sign Metrics & Visual Curvature (`abs`, `sign`)
 
 - **`abs(val)`:** Always returns the positive absolute value.
 - **`sign(val)`:** Returns `1` if positive, `-1` if negative, `0` if zero. Vital for setting variable directions (Left/Right) in generic animations.
+
+**The Golden Curvature Formula (Visual Consistency):**
+When nesting boxes with borders, use this formula to ensure the inner curve matches the outer curve perfectly:
+- `r_outer = r_inner + gap`
+- `r_inner = r_outer - gap`
+
+**Dynamic Scaling Formula:**
+- `radius = k * min(height, width)` (where `k` is a factor like 0.2).
+
+### 5.6 CSS Functions (`@function`) — Chrome 139+
+
+Define reusable functions with typed parameters and return values.
+
+```css
+@function --tint(--base <color>, --amount <number>: 0.15) {
+  result: color-mix(in oklch, var(--base) calc(var(--amount) * 100%), white);
+}
+
+@function --shade(--base <color>, --amount <number>: 0.2) {
+  result: color-mix(in oklch, var(--base) calc((1 - var(--amount)) * 100%), black);
+}
+
+@function --fluid-space(--min <length>: 1rem, --max <length>: 3rem) {
+  result: clamp(var(--min), 4vw, var(--max));
+}
+
+/* Usage */
+.button {
+  background: var(--tint(--brand, 0.3));
+  padding: var(--fluid-space);
+}
+```
 
 ---
 
@@ -420,6 +477,12 @@ When building complex UI controls consisting of an wrapper `<div class="input-gr
 .input-wrapper:focus-within i.icon {
   color: var(--color-primary);
 }
+
+### 7.3 Advanced Accessibility Control
+
+- **`reading-flow`**: Controls the order in which screen readers and tab-navigation process elements, regardless of their visual CSS order (flex/grid).
+  - `reading-flow: flex-visual;` (Follows visual order instead of DOM order).
+- **`forced-color-adjust`**: Allows opting out of certain elements from the browser's High Contrast Mode to preserve branding where safe.
 ```
 
 ---
@@ -458,6 +521,35 @@ Forget `border-radius`. `corner-shape` introduces polygonal edge mapping native 
   /* corner-shape: notch; (Rectangular cutouts) */
 }
 ```
+
+### 8.3 Advanced Inline Formatting
+
+- **`initial-letter`**: Native replacement for `::first-letter` float hacks.
+  - `initial-letter: 3 2;` (Size 3 lines, sink 2 lines).
+- **`box-decoration-break: clone`**: When a span wraps across two lines, `clone` ensures the padding and border are applied to BOTH ends of the break, rather than slicing the element open.
+- **`zoom`**: While `transform: scale()` is standard, the legacy `zoom` property has been revived for non-destructive layout-aware scaling.
+
+### 8.4 Text Wrap Optimization
+
+- **`text-wrap: balance`**: Balances line lengths in headings for better typography.
+- **`text-wrap: pretty`**: Prevents widows (single words on last line).
+- **`text-wrap: wrap`**: Default wrapping behavior.
+
+```css
+h1 { text-wrap: balance; }
+p { text-wrap: pretty; }
+```
+
+### 8.5 Initial Letter Styling
+
+- **`initial-letter: 3 2`**: Creates drop caps (size 3 lines, sink 2 lines).
+  ```css
+  p::first-letter {
+    initial-letter: 3 2;
+    font-weight: bold;
+    color: var(--accent);
+  }
+  ```
 
 ---
 
@@ -510,6 +602,25 @@ Human eyes don't process "Lightness" equally across hues. HSL breaks down becaus
 }
 ```
 
+### 9.4 Font Palette Control
+
+- **`font-palette`**: Select color variants in color fonts (emoji).
+- **`@font-palette-values`**: Define custom emoji color schemes.
+
+```css
+@font-palette-values --custom {
+  font-family: 'Noto Color Emoji';
+  base-palette: 0;
+  override-colors: 
+    0 var(--accent),
+    1 var(--accent-2);
+}
+
+.emoji {
+  font-palette: --custom;
+}
+```
+
 ---
 
 ## 10. Modern Vanilla JavaScript Paradigms
@@ -537,6 +648,50 @@ Human eyes don't process "Lightness" equally across hues. HSL breaks down becaus
      pointer-events: none;
      opacity: 0.7;
    }
+   ```
+
+4. **Iterator Helpers (2025):** Chainable operations on iterators without intermediate arrays.
+   ```javascript
+   const squares = [1, 2, 3, 4, 5]
+     .values()
+     .map(x => x * x)
+     .filter(x => x > 10)
+     .take(2)
+     .toArray(); // [16, 25]
+   ```
+
+5. **Set Methods (2025):** Native set operations for better data structure handling.
+   ```javascript
+   const a = new Set([1, 2, 3]);
+   const b = new Set([3, 4, 5]);
+
+   a.union(b);        // Set {1, 2, 3, 4, 5}
+   a.intersection(b); // Set {3}
+   a.difference(b);   // Set {1, 2}
+   a.symmetricDifference(b); // Set {1, 2, 4, 5}
+   a.isSubsetOf(b);   // false
+   ```
+
+6. **Promise.try() (2025):** Handle sync/async code uniformly.
+   ```javascript
+   Promise.try(() => {
+     const data = loadData(); // May be sync or async
+     return processData(data);
+   }).catch(handleError);
+   ```
+
+7. **RegExp.escape() (2025):** Safely escape special regex characters.
+   ```javascript
+   const userInput = "How much $ for 1+1?";
+   const safe = RegExp.escape(userInput);
+   // "How much \\$ for 1\\+1\\?"
+   const regex = new RegExp(safe, 'g');
+   ```
+
+8. **Array Grouping (2025):**
+   ```javascript
+   const grouped = Object.groupBy(items, item => item.category);
+   const mapped = Map.groupBy(items, item => [item.key, item.value]);
    ```
 
 ---
@@ -1116,11 +1271,120 @@ When dealing with massive DOM trees (like a table with 5000 rows), the browser s
 
 > **End of Annex.** We have reached total architectural purity. No preprocessors. No abstracted utility frameworks. Pure, unadulterated web engineering natively rendered by the browser GPU.
 
-## 19. The Native CSS Nesting Ruleset (2025 Deep Dive)
+## 19. Advanced Select & Option Styling (2025-2026)
+
+### 19.1 `appearance: base-select` — Chrome 135+
+
+Full customization of native `<select>` dropdowns while maintaining OS-level accessibility.
+
+```css
+select {
+  appearance: base-select;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+}
+
+select::picker(select) {
+  appearance: base-select;
+  background: var(--surface-strong);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  padding: 0.4rem;
+  animation: picker-in 0.2s ease;
+}
+
+select option {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+}
+
+select option:hover {
+  background: var(--surface-2);
+}
+
+select option:checked {
+  background: var(--accent);
+  color: white;
+}
+
+select option::checkmark {
+  color: rgba(255,255,255,0.8);
+}
+
+@starting-style {
+  select::picker(select) {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+}
+```
+
+### 19.2 `selectedcontent` Element
+
+Custom display of selected option content.
+
+```html
+<select class="custom-select">
+  <selectedcontent>
+    <span class="icon">🎨</span>
+    <span class="label">Color</span>
+  </selectedcontent>
+  <option value="1">🎨 Color</option>
+  <option value="2">📐 Size</option>
+</select>
+```
+
+### 19.3 Rich Options with Icons
+
+```css
+select.rich option {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 1rem;
+}
+
+select.rich option::checkmark {
+  content: "✓";
+  color: var(--accent);
+  font-weight: 700;
+  order: 1;
+  margin-left: auto;
+}
+```
+
+### 19.4 Optgroup Styling
+
+```css
+select optgroup {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+select optgroup legend,
+select optgroup[label]::before {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  padding: 0.4rem 0.9rem 0.25rem;
+  display: block;
+  background: var(--surface-2);
+}
+```
+
+## 20. The Native CSS Nesting Ruleset (2025 Deep Dive)
 
 CSS nesting is inherently different from SCSS. While SCSS simply concatenates strings before compilation, Native CSS evaluates the DOM tree dynamically. Understanding the `&` (ampersand) is critical.
 
-### 19.1 The 6 Ironclad Nesting Rules
+### 20.1 The 6 Ironclad Nesting Rules
 
 - **1. Implicit Descendant:**
   When you nest without `&`, it assumes a space character (descendant combinator).
@@ -1166,8 +1430,16 @@ Browser engines process instructions hierarchically. At-rules define the absolut
 
 ### 20.4 Advanced Typographical & Variable At-Rules
 
-- `@font-face` - Imports external woff2 typography.
-- `@property --my-color` - Registers a custom CSS variable, locking its type (e.g., `syntax: "<color>"`) so the browser GPU knows exactly how to animate it mathematically.
+- **`@font-face`**: Imports external woff2 typography.
+- **`@property --my-color`**: Registers a custom CSS variable, locking its type (e.g., `syntax: "<color>"`) so the browser GPU knows exactly how to animate it mathematically.
+- **`@font-palette-values`**: Adjusts the internal color palette used by advanced multi-color fonts (like specific Emoji fonts).
+- **`@color-profile`**: Defines a custom color space profile for use within `color()` and `color-mix()` functions.
+- **`@function` (Experimental - Chrome 139+)**: Bringing DRY logic directly to CSS without SCSS mixins.
+  ```css
+  @function --calculate-fluid-space(--min, --max) {
+    result: clamp(var(--min), 5vw, var(--max));
+  }
+  ```
 
 ---
 
@@ -1247,10 +1519,22 @@ Links an animation to an element's _intersection_ with the viewport (When it ent
   /* Triggers when the element intersects the nearest scroll container */
   animation-timeline: view();
 
-  /* The animation begins when the element is 10% from the bottom of the screen, 
-     and finishes when it has travelled 40% up the viewport */
-  animation-range: entry 10% cover 40%;
+### 22.3 Advanced Pseudo-Element Animations
+
+- **`::scroll-marker` / `::scroll-marker-group`**: Natively creates pagination dots for scrollers without JS.
+- **`::scroll-button()`**: Natively creates next/prev buttons for scrollers.
+- **`::details-content`**: Allows you to finally style and animate the internal container of a `<details>` element (previously impossible).
+
+```css
+details::details-content {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s, content-visibility 0.3s allow-discrete;
 }
+details[open]::details-content {
+  opacity: 1;
+}
+```
 ```
 
 ---
@@ -1267,6 +1551,11 @@ Instead, map coordinates to the _flow_ of text:
 - `padding-block-start`: Replaces `padding-top`.
 - `padding-block-end`: Replaces `padding-bottom`.
 - `inset`: Shorthand for top/right/bottom/left (`inset: 0;` replaces `top:0; bottom:0; left:0; right:0;`)
+- **Logical Border Radius**:
+  - `border-start-start-radius`
+  - `border-start-end-radius`
+  - `border-end-start-radius`
+  - `border-end-end-radius`
 
 ### 23.2 Advanced Structural Selectors
 
@@ -1278,9 +1567,11 @@ Instead, map coordinates to the _flow_ of text:
 - **:not() (Exclusion):** Styles everything _except_ what is inside the parenthesis.
   - `.list-item:not(:last-child) { border-bottom: 1px solid gray; }`
 
-### 23.3 Sibling Counting (`sibling-index()` & `sibling-count()`)
+### 23.3 Sibling Counting & Flow Control
 
-Perform layout math based on how many elements live in the DOM without JS counting them!
+- **`sibling-index()` & `sibling-count()`**: Perform layout math based on how many elements live in the DOM without JS counting them!
+- **`column-rule` / `row-rule`**: Styles the "gap" line between flex items or grid columns natively, without needing extra border wrappers or `:not(:last-child)` hacks.
+  - `column-rule: 2px dashed blue;`
 
 ```css
 .list-item {
@@ -1418,7 +1709,112 @@ const isEven = new Signal.Computed(() => counter.get() % 2 === 0);
 counter.set(1); // the Computed value automatically re-evaluates!
 ```
 
+### 26.5 Resource Management (`using`)
+Explicitly manage resource cleanup (like DB connections or file handles) natively.
+```javascript
+{
+  await using connection = await db.connect();
+  // connection is automatically closed when block scope ends!
+}
+```
+
+### 26.6 The Navigation API
+A modern, unified replacement for `window.history` that actually understands single-page navigation.
+```javascript
+navigation.addEventListener('navigate', (event) => {
+  if (shouldIntercept(event)) {
+    event.intercept({
+      async handler() {
+        await updateThePageContent();
+      }
+    });
+  }
+});
+```
+
+### 26.7 Esoteric Primitive Enhancements
+- **`Promise.try()`**: Wraps synchronous code in a promise chain safely.
+- **`RegExp.escape()`**: Natively escapes special characters for regex (e.g., `RegExp.escape("https://google.com")`).
+- **`Float16Array`**: Memory-efficient 16-bit floating point numbers for heavy math/WebGL.
+- **Import Attributes**: Native JSON/CSS imports: `import data from './meta.json' with { type: 'json' };`
+
+### 26.8 Non-Mutating Array Methods (ES2023)
+Produce a new array instead of modifying the original.
+```javascript
+const sorted = arr.toSorted();
+const reversed = arr.toReversed();
+const spliced = arr.toSpliced(1, 1, 'new');
+```
+
+### 26.9 New Static Creation Methods
+- **`Array.fromAsync()`**: Creates an array from an async iterable (e.g., a stream or a series of fetches).
+- **`Iterator.from()`**: Wraps any iterable in a rich Iterator object with `.map()`, `.filter()`, etc.
+- **`Set.from()`**: Directly create a Set from an iterable with potential mapping logic.
+
 ---
+
+## 26.5 Scroll-State Queries & Sibling Functions (2025)
+
+### 26.5.1 `container-type: scroll-state`
+
+Detect scroll position states natively in CSS.
+
+```css
+.scroll-wrapper {
+  height: 200px;
+  overflow-y: scroll;
+  container-type: scroll-state;
+  container-name: scroll-wrapper;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s;
+}
+
+@container scroll-wrapper scroll-state(stuck: top) {
+  .sticky-header {
+    background: color-mix(in oklch, var(--teal) 12%, var(--surface-strong));
+    color: var(--teal);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+}
+```
+
+### 26.5.2 `sibling-index()` & `sibling-count()`
+
+Progressive styling based on element position.
+
+```css
+.sibling-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sibling-item {
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border-radius: 6px;
+  /* Progressive hue rotation */
+  border-left: 4px solid oklch(
+    from var(--accent) l c 
+    calc(h + sibling-index() * 20)
+  );
+  /* Progressive opacity */
+  opacity: calc(sibling-index() / sibling-count());
+  /* Progressive scale */
+  scale: calc(0.6 + sibling-index() / sibling-count() * 0.6);
+  transition: all 0.3s;
+}
+
+.sibling-item:hover {
+  transform: translateX(4px);
+}
+```
 
 ## 27. The 2025/2026 Advanced Features: Edge Cases & Advanced APIs
 
@@ -1588,25 +1984,15 @@ div {
 }
 ```
 
-### 27.8 CSS Houdini in Vanilla JavaScript
+### 27.9 Advanced Border & Outline Control
 
-To fully leverage `@property` (typed custom properties that can be perfectly animated) from within your JavaScript logic, you use the CSS Houdini API `CSS.registerProperty()`:
-
-```javascript
-// This enables JavaScript to define a strict CSS variable type dynamically.
-// CSS will now smoothly animate this variable instead of instantly snapping it!
-CSS.registerProperty({
-  name: "--dynamic-border-radius",
-  syntax: "<length>",
-  inherits: false,
-  initialValue: "0px",
-});
-
-// Feature detection checks in JS:
-if (!CSS.supports("color", "var(--primary)")) {
-  // Apply fallback logic
-}
-```
+- **`border-image`**: Use images or gradients as borders with full slicing control.
+  - `border-image: linear-gradient(to right, red, blue) 1;`
+- **`outline-offset`**: Can take negative values to pull the outline *inside* the element for unique "inner border" effects.
+- **`outline-color: Highlight`**: Uses the system's native selection color, ensuring perfect visibility in accessibility/forced-colors modes.
+- **`box-shadow` vs `filter: drop-shadow()`**:
+  - `box-shadow` follows the rectangular box model.
+  - `filter: drop-shadow()` follows the actual alpha transparency of an image or irregular shape.
 
 ## 28. Absolute Edge-Case Dictionary (100% Specification Coverage)
 
@@ -1719,21 +2105,24 @@ To finalize `text-box-trim` and `text-box-edge`, these are the precise layout en
 
 When transitioning `display: none` to `block`, the visibility flips instantly at the **0%** mark natively. When transitioning from `block` to `none`, it waits and flips at the **100%** mark. However, for most other discrete animations (like animating `justify-content` or `box-sizing`), the internal engine flip typically happens at the **50% mark** of the transition duration.
 
-### 28.15 The Temporal Object Matrix
+### 28.16 Advanced Native Highlighting (`::highlight()`)
+Custom selection highlighting without modifying the underlying DOM structure.
+```javascript
+const userRange = new Range();
+CSS.highlights.set("search-term", new Highlight(userRange));
+```
+```css
+::highlight(search-term) {
+  background-color: yellow;
+  color: black;
+  text-decoration: underline wavy red;
+}
+```
 
-To completely replace Moment.js/Date with the Temporal API, there are exactly 7 distinct, specialized objects:
-
-1. `Temporal.Instant` (Absolute points in time)
-2. `Temporal.ZonedDateTime` (Time-zone-aware)
-3. `Temporal.PlainDate` (Time-zone-unaware, just a calendar date)
-4. `Temporal.PlainTime` (Just a time on a clock)
-5. `Temporal.PlainDateTime` (Date and time, unaware of zones)
-6. `Temporal.Duration` (Span of time, specifically used with `.until()`)
-7. `Temporal.Now` (Current system acquisition)
-
----
-
-## Final Acknowledgement
+### 28.17 Color Fonts & `font-palette`
+Customize the layered colors inside modern color-aware font files (like COLRv1).
+- `@font-palette-values`: Overrides internal font colors.
+- `font-palette: --my-custom-palette;`
 
 > **Master Guide Final Notice (v3 2026 - 100% Specification Coverage):**
 > We have successfully documented the absolute precipice of modern web engineering. From GPU-accelerated trigonometric CSS logic to immutable timezone handling in JS and esoteric at-rules spanning the print engine, this document serves as the Rosetta Stone for building the performant, dependency-free enterprise applications of the future.
@@ -1980,16 +2369,56 @@ This master guide consolidates years of web design iteration, framework churn, a
 
 ## 29. Additional Forms & UI Styling Primitives
 
-### 29.1 Customizable `<select>`
-Styling the "unstyleable" native dropdown.
+### 29.1 Customizable `<select>` (The `base-select` Era)
+Styling the "unstyleable" native dropdown is now possible without complex JS "custom select" libraries.
 ```css
 select {
   appearance: base-select; /* Unlocks internal styling */
 }
+
+/* Style the popup container */
 select::picker(select) {
   background: var(--card-bg);
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  padding: 8px;
+  border: 1px solid var(--border-color);
 }
+
+/* Style individual options */
+option {
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  
+  &:hover {
+    background: var(--color-primary-subtle);
+  }
+  
+  &::checkmark {
+    /* Style the native checkmark icon! */
+    color: var(--color-primary);
+  }
+}
+
+/* Customize the native dropdown arrow! */
+select::picker-icon {
+  background: url("arrow.svg");
+  width: 1em;
+  height: 1em;
+}
+```
+
+**The `<selectedcontent>` Element:**
+Allows you to customize exactly what is displayed in the select button when an option is chosen.
+```html
+<select appearance="base-select">
+  <button>
+    <selectedcontent></selectedcontent> <!-- Renders the active selection -->
+    <span class="icon">▼</span>
+  </button>
+  <option value="1">Option 1</option>
+</select>
 ```
 
 ### 29.2 Auto-Growing Textareas (`field-sizing`)
@@ -2003,6 +2432,7 @@ textarea {
 ### 29.3 Form Styling Selectors
 - **`accent-color`**: One-line branding for radios/checkboxes/sliders.
 - **`:user-valid` / `:user-invalid`**: Applies styles ONLY after user interaction (prevents premature error states).
+- **`:open`**: Targets a `<select>` or `<details>` that is currently in the open state.
 
 ---
 
@@ -2253,6 +2683,352 @@ await writable.close();
 
 ---
 
+## 37. Shadow DOM & Web Components Architecture
+
+Web Components allow you to create reusable, encapsulated UI elements that work in any framework (or no framework at all).
+
+### 37.1 The Shadow DOM Triple
+
+1.  **Shadow Host:** The regular DOM element that contains the shadow DOM.
+2.  **Shadow Root:** The root node of the shadow tree (`attachShadow({mode: 'open'})`).
+3.  **Shadow Tree:** The encapsulated DOM tree inside the shadow root.
+
+### 37.2 CSS Selectors for Shadow DOM
+
+-   **`:host`**: Selects the shadow host itself.
+-   **`:host(selector)`**: Selects the host only if it matches a specific selector.
+-   **`:host-context(selector)`**: Styles the host based on its ancestors (useful for theme-aware components).
+-   **`::slotted(selector)`**: Styles elements that are passed into the component via a `<slot>`.
+
+```css
+:host {
+  display: block;
+  background: var(--component-bg, #eee);
+}
+:host-context(.dark-theme) {
+  --component-bg: #333;
+}
+::slotted(span) {
+  font-weight: bold;
+}
+```
+
+### 37.3 Lifecycle Callbacks
+
+-   `connectedCallback()`: Component added to DOM.
+-   `disconnectedCallback()`: Component removed from DOM.
+-   `attributeChangedCallback(name, old, new)`: Observed attribute changed.
+-   `static get observedAttributes()`: Returns an array of attributes to watch.
+
+### 37.4 Complete Shadow DOM JavaScript API
+
+```javascript
+class MyComponent extends HTMLElement {
+  constructor() {
+    super();
+    this.shadow = this.attachShadow({
+      mode: 'open',
+      delegatesFocus: true
+    });
+  }
+
+  connectedCallback() {
+    this.render();
+    this.setupEventListeners();
+  }
+
+  disconnectedCallback() {
+    this.cleanup();
+  }
+
+  static get observedAttributes() {
+    return ['data-value', 'disabled'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'data-value') {
+      this.updateValue(newValue);
+    }
+  }
+
+  render() {
+    this.shadow.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          --primary-color: blue;
+        }
+        :host(.active) {
+          border: 2px solid red;
+        }
+        :host-context(.dark-theme) {
+          background: black;
+          color: white;
+        }
+        ::slotted(span) {
+          font-weight: bold;
+        }
+      </style>
+      <slot name="title">Default Title</slot>
+      <slot>Default content</slot>
+    `;
+  }
+
+  setupEventListeners() {
+    this.shadow.addEventListener('click', this.handleClick.bind(this));
+    
+    this.dispatchEvent(new CustomEvent('componentReady', {
+      detail: { component: this },
+      bubbles: true,
+      composed: true
+    }));
+  }
+}
+```
+
+### 37.5 CSS Custom Properties for Theming
+
+```css
+/* Inside Shadow DOM */
+:host {
+  --primary-color: blue;
+  --text-size: 16px;
+}
+
+.content {
+  color: var(--primary-color);
+  font-size: var(--text-size);
+  background: var(--bg-color, white); /* Fallback */
+}
+
+/* From outside */
+my-component {
+  --primary-color: red;
+  --text-size: 20px;
+  --bg-color: lightgray;
+}
+```
+
+---
+
+## 38. Advanced Graphics & Display: HDR, P3, and Shapes
+
+Modern browser engines leverage hardware acceleration for high-fidelity graphics.
+
+### 38.1 High Dynamic Range (HDR) & Color Gamut
+
+-   **`dynamic-range-limit`**: Controls how HDR content is mapped (e.g., `high` or `standard`).
+-   **`color(display-p3 r g b)`**: Accesses the wide-gamut P3 color space for colors that are physically impossible in standard sRGB.
+-   **`contrast-color()`**: (Experimental) Automatically picks the highest-contrast foreground color based on a background.
+
+### 38.2 Complex Shape Mapping
+
+-   **`shape()`**: An extension of `clip-path` and `offset-path` that allows animatable, responsive non-polygon paths.
+-   **`mask-composite`**: Combine multiple mask layers (e.g., `exclude`, `intersect`, `xor`).
+
+---
+
+## 39. Invoker Commands: Declarative Action Handling
+
+Eliminate boilerplate JS event listeners for common UI actions like opening/closing modals or popovers.
+
+```html
+<!-- Trigger -->
+<button commandfor="my-dialog" command="show-modal">Open Modal</button>
+
+<!-- Target -->
+<dialog id="my-dialog">
+  <p>Content</p>
+  <button commandfor="my-dialog" command="close">Close</button>
+</dialog>
+```
+
+-   **`commandfor`**: Points to the target element's ID.
+-   **`command`**: The action to perform (e.g., `show-modal`, `close`, `toggle-popover`).
+
+---
+
+## 40. Cutting-Edge Web Features (2024-2026 Expansion)
+
+### 40.1 Field Sizing & Animate-to-Auto (2025)
+
+#### 40.1.1 `field-sizing: content`
+
+Auto-resize inputs and textareas based on content.
+
+```css
+textarea.auto-grow {
+  field-sizing: content;
+  min-height: 2.5rem;
+  max-height: 20rem;
+  resize: none;
+}
+
+input.auto-width {
+  field-sizing: content;
+  min-width: 3ch;
+  width: auto;
+}
+```
+
+#### 40.1.2 `interpolate-size: allow-keywords`
+
+Animate height/width from 0 to auto natively.
+
+```css
+:root {
+  interpolate-size: allow-keywords;
+}
+
+.accordion-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s ease-out;
+}
+
+.accordion-body.is-open {
+  height: auto;
+}
+```
+
+#### 40.1.3 `transition-behavior: allow-discrete`
+
+Transition display: none with fade effects.
+
+```css
+.toast {
+  transition:
+    opacity 0.5s,
+    transform 0.5s,
+    display 0.5s allow-discrete;
+  
+  opacity: 1;
+  transform: translateY(0);
+  display: flex;
+  
+  @starting-style {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.toast.is-hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  display: none;
+}
+```
+
+#### 40.1.4 `@view-transition` — Cross-Document Transitions
+
+Enable smooth page-to-page transitions in MPAs.
+
+```css
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(section-content) {
+  animation: vt-out 0.3s ease forwards;
+}
+
+::view-transition-new(section-content) {
+  animation: vt-in 0.3s ease forwards;
+}
+
+@keyframes vt-out {
+  to { opacity: 0; transform: translateX(-20px); }
+}
+
+@keyframes vt-in {
+  from { opacity: 0; transform: translateX(20px); }
+}
+```
+
+#### 40.1.5 Native CSS Carousel with Scroll Markers
+
+```css
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-marker-group: after;
+}
+
+.carousel::scroll-marker-group {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  padding-top: 0.75rem;
+}
+
+.carousel-slide::scroll-marker {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mid);
+}
+
+.carousel-slide::scroll-marker:target-current {
+  background: var(--accent);
+  width: 18px;
+  border-radius: 3px;
+}
+```
+
+#### 40.1.6 `::highlight()` API
+
+Custom selection and search highlighting.
+
+```css
+::highlight(search) {
+  background-color: oklch(85% 0.15 90);
+  color: oklch(40% 0.2 50);
+}
+
+::highlight(keyword) {
+  background-color: oklch(30% 0.15 280 / 0.4);
+  color: oklch(75% 0.18 300);
+}
+```
+
+#### 40.1.7 `clip-path: shape()`
+
+Draw custom shapes with path syntax.
+
+```css
+.arrow {
+  clip-path: shape(
+    from top left,
+    hline to 70%,
+    vline to 30%,
+    hline to 100%,
+    vline to 50%,
+    hline to 100%,
+    vline to 70%,
+    hline to 70%,
+    vline to 100%,
+    hline to 0%,
+    close
+  );
+}
+
+.badge {
+  clip-path: shape(
+    from 50% 0%,
+    curve to 100% 50% with 100% 15%,
+    curve to 50% 100% with 100% 85%,
+    curve to 0% 50% with 0% 85%,
+    curve to 50% 0% with 0% 15%,
+    close
+  );
+}
+```
+
+---
+
 ## 36. Browser Support Matrix & Stability Indicators
 
 ### 36.1 Stability Status Legend
@@ -2284,6 +3060,9 @@ await writable.close();
 | `::details-content` | 131+ | 143+ | 18.4+ | 131+ | Baseline |
 | `corner-shape` | 139+ | - | - | 139+ | Experimental |
 | `if()` | 137+ | - | - | 137+ | Experimental |
+| `reading-flow` | 141+ | 143+ | 18.5+ | 141+ | Baseline |
+| `base-select` | 139+ | - | - | 139+ | Experimental |
+| `Invoker Commands` | 135+ | - | - | 135+ | Experimental |
 
 ### 36.3 JavaScript Features Matrix
 
@@ -2302,6 +3081,8 @@ await writable.close();
 | Pattern Matching | 135+ | - | - | 135+ | Coming 2026 |
 | Record & Tuple | 135+ | - | - | 135+ | Coming 2026 |
 | `using` keyword | 130+ | - | - | 130+ | Coming 2026 |
+| `Promise.try()` | 128+ | 130+ | 18.2+ | 128+ | Baseline |
+| `RegExp.escape()` | 132+ | 134+ | 18.5+ | 132+ | Baseline |
 
 ### 36.4 Web APIs Matrix
 
@@ -2311,6 +3092,8 @@ await writable.close();
 | File System Access | 86+ | - | - | 86+ | Chrome Only |
 | OPFS | 109+ | 125+ | 17.4+ | 109+ | Baseline |
 | WebXR | 79+ | - | 17.2+ | 79+ | Partial |
+| Shadow DOM | 67+ | 63+ | 10.1+ | 79+ | Baseline |
+| Navigation API | 102+ | - | - | 102+ | Chrome Only |
 
 ### 36.5 Feature Detection Patterns
 
