@@ -1,160 +1,99 @@
 # Modern Web Standards — Master Reference (2026)
 
-> **Date:** March 2026 | **Scope:** HTML, CSS, JavaScript, Accessibility (WCAG 2.2), SEO, Performance, Media, Structured Data.  
-> This document is a comprehensive, self-contained reference.
+> **Revision date:** 10 July 2026  
+> **Purpose:** A comprehensive, self-contained, production-oriented reference for standards compliance, semantic HTML, accessibility, SEO, performance, media, delivery, and testing.  
+> **Editorial policy:** Every unique topic from the source document has been retained; repeated material has been consolidated; outdated or overconfident claims have been corrected; unstable features are explicitly labelled.
 
----
+> [!IMPORTANT]
+> Browser support, search-result features, legislation, and draft specifications change. Treat dated support tables as snapshots, use feature detection, and verify legal requirements for the relevant jurisdiction and contract.
 
 ## Table of Contents
 
-1. [Philosophy & Mental Model](#1-philosophy--mental-model)
-2. [Foundational Standards & Compliance](#2-foundational-standards--compliance)
-   - 2.1 WCAG 2.2 — Principles, Levels, Key Criteria
-   - 2.2 Core Web Vitals (CWV)
-   - 2.3 EN 301 549 / AS EN 301 549
-   - 2.4 The Upcoming WCAG 3.0
-3. [Obsolete & Deprecated HTML Elements](#3-obsolete--deprecated-html-elements)
-4. [Obsolete & Deprecated HTML Attributes](#4-obsolete--deprecated-html-attributes)
-5. [Semantic HTML & Document Landmarks](#5-semantic-html--document-landmarks)
-   - 5.1 Sectioning Elements & Implicit ARIA Roles
-   - 5.2 Text Content Elements
-   - 5.3 Interactive Elements — Button vs. Link
-   - 5.4 Lists — `ul`, `ol`, `dl`
-   - 5.5 Form Elements Best Practices
-   - 5.6 Tables — Accessible Structure
-6. [ARIA — Roles, States, Properties, Patterns](#6-aria--roles-states-properties-patterns)
-   - 6.1 The Rules of ARIA
-   - 6.2 Landmark Roles Table
-   - 6.3 Key ARIA States & Properties Reference
-   - 6.4 Naming Hierarchy (accessible names)
-   - 6.5 Common ARIA Patterns (Code)
-7. [Accessibility Deep Dive](#7-accessibility-deep-dive)
-   - 7.1 Color Contrast — WCAG 2.x Formula & Thresholds
-   - 7.2 APCA — Advanced Perceptual Contrast Algorithm
-   - 7.3 Keyboard & Focus Management
-   - 7.4 Skip Links & Bypass Blocks
-   - 7.5 Motion Preferences (`prefers-reduced-motion`)
-   - 7.6 Live Regions & Dynamic announcements
-   - 7.7 Target Size (WCAG 2.2 SC 2.5.8)
-8. [SEO & `<head>` Complete Reference](#8-seo--head-complete-reference)
-   - 8.1 Essential Meta Tags
-   - 8.2 Open Graph Protocol
-   - 8.3 Twitter / X Cards
-   - 8.4 Canonicalization & Robots Directives
-   - 8.5 Hreflang for Internationalization
-   - 8.6 Favicons & PWA Manifest
-9. [JSON-LD Structured Data](#9-json-ld-structured-data)
-   - 9.1 Why JSON-LD
-   - 9.2 Organization
-   - 9.3 Article / NewsArticle
-   - 9.4 BreadcrumbList
-   - 9.5 FAQPage
-   - 9.6 Product with AggregateRating
-   - 9.7 LocalBusiness
-   - 9.8 WebPage
-10. [CSS — Obsolete Patterns & Modern Replacements](#10-css--obsolete-patterns--modern-replacements)
-    - 10.1 Layout Evolution (Float → Flexbox → Grid)
-    - 10.2 Vendor Prefixes
-    - 10.3 CSS-in-JS Runtime vs. Zero-Runtime
-    - 10.4 Modern CSS Selectors & Features
-    - 10.5 CSS Accessibility Best Practices
-    - 10.6 Media Queries — Modern Discrete Features
-    - 10.7 CSS Stability Levels (WD → CR → REC)
-11. [JavaScript — Deprecated Patterns & Modern Replacements](#11-javascript--deprecated-patterns--modern-replacements)
-    - 11.1 Deprecated Global Functions & APIs
-    - 11.2 Asynchronous Patterns
-    - 11.3 Memory Management — WeakRef & FinalizationRegistry
-    - 11.4 The Temporal API
-    - 11.5 Keyboard & DOM Events
-    - 11.6 Code Splitting & Dynamic Import
-    - 11.7 Web Workers & Main Thread Relief
-    - 11.8 Scheduler API & INP Optimization
-12. [Media Optimization — Images](#12-media-optimization--images)
-    - 12.1 Format Hierarchy 2026
-    - 12.2 The `<picture>` Element — Format Fallbacks & Art Direction
-    - 12.3 `srcset` & `sizes` Explained
-    - 12.4 Critical Image Attributes
-    - 12.5 GIF Replacement with Video
-13. [Video Codecs & Containers](#13-video-codecs--containers)
-14. [Resource Hints & Critical Path](#14-resource-hints--critical-path)
-    - 14.1 Resource Hints Reference Table
-    - 14.2 Script Loading Strategies
-    - 14.3 Critical CSS & Font Optimization
-    - 14.4 `content-visibility` & `contain-intrinsic-size`
-    - 14.5 Priority Hints — `fetchpriority`
-15. [Observer APIs](#15-observer-apis)
-    - 15.1 IntersectionObserver
-    - 15.2 ResizeObserver
-    - 15.3 MutationObserver
-    - 15.4 PerformanceObserver
-16. [Core Web Vitals — Optimization Strategies](#16-core-web-vitals--optimization-strategies)
-    - 16.1 LCP — Largest Contentful Paint
-    - 16.2 INP — Interaction to Next Paint
-    - 16.3 CLS — Cumulative Layout Shift
-17. [Network, Delivery & Caching Layer](#17-network-delivery--caching-layer)
-18. [Testing, Auditing & CI/CD Integration](#18-testing-auditing--cicd-integration)
-19. [Complete Modern HTML Reference Template](#19-complete-modern-html-reference-template)
-20. [Master Pre-Launch Checklist](#20-master-pre-launch-checklist)
-
-**Addendum — Additional Topics (March 2026)**
-
-21. [Additional WCAG 2.2 Success Criteria](#21-additional-wcag-22-success-criteria)
-    - 21.1 SC 2.5.7 — Dragging Movements (AA)
-    - 21.2 SC 2.4.13 — Focus Appearance (AAA)
-    - 21.3 SC 3.3.9 — Accessible Authentication Enhanced (AAA)
-    - 21.4 SC 4.1.1 Parsing — Removed
-22. [The `<dialog>` Element — Native Modal & Non-Modal Dialogs](#22-the-dialog-element--native-modal--non-modal-dialogs)
-    - 22.1 Modal Dialog (`.showModal()`)
-    - 22.2 Non-Modal Dialog (`.show()`)
-    - 22.3 Styling the Dialog
-    - 22.4 `<dialog>` vs. Custom Modal
-23. [The Popover API — Native Overlays Without JS](#23-the-popover-api--native-overlays-without-js)
-    - 23.1 Basic Popover (Declarative)
-    - 23.2 Popover Types
-    - 23.3 Programmatic Control
-    - 23.4 Popover Actions
-    - 23.5 Accessibility with Popovers
-    - 23.6 `<dialog>` vs. Popover — When to Use Which
-24. [`<details>` & `<summary>` — Native Disclosure & Exclusive Accordions](#24-details--summary--native-disclosure-widgets--exclusive-accordions)
-    - 24.1 Basic Disclosure Widget
-    - 24.2 Exclusive Accordion (`name` Attribute)
-    - 24.3 Styling
-    - 24.4 FAQ Structured Data Integration
-25. [E-E-A-T — Content Quality Signals for SEO](#25-e-e-a-t--content-quality-signals-for-seo)
-    - 25.1 The Four Pillars
-    - 25.2 YMYL (Your Money or Your Life)
-    - 25.3 Technical Implementation
-    - 25.4 JSON-LD for E-E-A-T (Author & Organization Schema)
-26. [Search Overviews & SGE — Impact on SEO Strategy](#26-search-overviews--sge--impact-on-seo-strategy)
-    - 26.1 How Search Overviews Change SEO
-    - 26.2 Optimizing for Search Overviews
-    - 26.3 Content Freshness
-27. [XML Sitemap Best Practices & IndexNow Protocol](#27-xml-sitemap-best-practices--indexnow-protocol)
-    - 27.1 XML Sitemap Requirements
-    - 27.2 Sitemap Index File
-    - 27.3 `robots.txt` Best Practices
-    - 27.4 IndexNow Protocol
-28. [European Accessibility Act (EAA) — 2025 Enforcement](#28-european-accessibility-act-eaa--2025-enforcement)
-    - 28.1 Technical Standard
-    - 28.2 Key Differences from ADA
-    - 28.3 Practical Compliance Checklist
-29. [Emerging Web Platform APIs (2025–2026)](#29-emerging-web-platform-apis-20252026)
-    - 29.1 View Transitions API
-    - 29.2 CSS Scroll-Driven Animations
-    - 29.3 CSS Anchor Positioning
-    - 29.4 The `<search>` Element
-    - 29.5 The `inert` Attribute
-    - 29.6 `autocomplete` — Complete Token Reference
-30. [Additional Structured Data Types](#30-additional-structured-data-types)
-    - 30.1 HowTo Schema
-    - 30.2 Event Schema
-    - 30.3 VideoObject Schema
-    - 30.4 SiteNavigationElement Schema
-31. [Master Pre-Launch Checklist](#31-master-pre-launch-checklist)
+- [1. Philosophy and Mental Model](#1-philosophy-and-mental-model)
+- [2. Accessibility Standards, Conformance, and Legal Context](#2-accessibility-standards-conformance-and-legal-context)
+  - [2.1 Foundational Standards & Compliance](#21-foundational-standards-compliance)
+  - [2.2 Additional WCAG 2.2 Success Criteria](#22-additional-wcag-22-success-criteria)
+  - [2.3 European Accessibility Act (EAA) — requirements applicable from 28 June 2025](#23-european-accessibility-act-eaa-requirements-applicable-from-28-june-2025)
+- [3. HTML Conformance: Obsolete Elements and Attributes](#3-html-conformance-obsolete-elements-and-attributes)
+  - [3.1 Obsolete & Deprecated HTML Elements](#31-obsolete-deprecated-html-elements)
+  - [3.2 Obsolete & Deprecated HTML Attributes](#32-obsolete-deprecated-html-attributes)
+- [4. Semantic HTML, Landmarks, Forms, Lists, and Tables](#4-semantic-html-landmarks-forms-lists-and-tables)
+  - [4.1 Sectioning Elements & Implicit ARIA Roles](#41-sectioning-elements-implicit-aria-roles)
+  - [4.2 Text Content Elements](#42-text-content-elements)
+  - [4.3 Interactive Elements — Button vs. Link](#43-interactive-elements-button-vs-link)
+  - [4.4 Lists — `<ul>`, `<ol>`, `<dl>`](#44-lists-ul-ol-dl)
+  - [4.5 Form Elements Best Practices](#45-form-elements-best-practices)
+  - [4.6 Tables — Accessible Structure](#46-tables-accessible-structure)
+- [5. ARIA Roles, States, Properties, and Patterns](#5-aria-roles-states-properties-and-patterns)
+  - [5.1 The Rules of ARIA](#51-the-rules-of-aria)
+  - [5.2 Landmark Roles Table](#52-landmark-roles-table)
+  - [5.3 Key ARIA States & Properties Reference](#53-key-aria-states-properties-reference)
+  - [5.4 Naming Hierarchy (Accessible Names)](#54-naming-hierarchy-accessible-names)
+  - [5.5 Common ARIA Patterns (Code)](#55-common-aria-patterns-code)
+- [6. Accessibility Implementation Patterns](#6-accessibility-implementation-patterns)
+  - [6.1 Accessibility Deep Dive](#61-accessibility-deep-dive)
+  - [6.2 The `<dialog>` Element — Native Modal & Non-Modal Dialogs](#62-the-dialog-element-native-modal-non-modal-dialogs)
+  - [6.3 The Popover API — Native Overlays Without JS](#63-the-popover-api-native-overlays-without-js)
+  - [6.4 `<details>` & `<summary>` — Native Disclosure Widgets & Exclusive Accordions](#64-details-summary-native-disclosure-widgets-exclusive-accordions)
+- [7. SEO, Search Features, Crawl Control, and Content Quality](#7-seo-search-features-crawl-control-and-content-quality)
+  - [7.1 SEO & `<head>` Complete Reference](#71-seo-head-complete-reference)
+  - [7.2 E-E-A-T — Content Quality Signals for SEO](#72-e-e-a-t-content-quality-signals-for-seo)
+  - [7.3 AI Overviews, AI Mode, and Search Features — Impact on SEO Strategy](#73-ai-overviews-ai-mode-and-search-features-impact-on-seo-strategy)
+  - [7.4 XML Sitemap Best Practices & IndexNow Protocol](#74-xml-sitemap-best-practices-indexnow-protocol)
+- [8. Structured Data and JSON-LD](#8-structured-data-and-json-ld)
+  - [8.1 JSON-LD Structured Data](#81-json-ld-structured-data)
+  - [8.2 Additional Structured Data Types](#82-additional-structured-data-types)
+- [9. CSS Modernization and Accessible Styling](#9-css-modernization-and-accessible-styling)
+  - [9.1 Layout Evolution (Float → Flexbox → Grid)](#91-layout-evolution-float-flexbox-grid)
+  - [9.2 Vendor Prefixes](#92-vendor-prefixes)
+  - [9.3 CSS-in-JS Runtime vs. Zero-Runtime](#93-css-in-js-runtime-vs-zero-runtime)
+  - [9.4 Modern CSS Selectors & Features](#94-modern-css-selectors-features)
+  - [9.5 CSS Accessibility Best Practices](#95-css-accessibility-best-practices)
+  - [9.6 Media Queries — Modern Discrete Features](#96-media-queries-modern-discrete-features)
+  - [9.7 CSS Stability Levels](#97-css-stability-levels)
+- [10. JavaScript Modernization and Main-Thread Health](#10-javascript-modernization-and-main-thread-health)
+  - [10.1 Deprecated Global Functions & APIs](#101-deprecated-global-functions-apis)
+  - [10.2 Asynchronous Patterns](#102-asynchronous-patterns)
+  - [10.3 Memory Management — WeakRef & FinalizationRegistry](#103-memory-management-weakref-finalizationregistry)
+  - [10.4 The Temporal API](#104-the-temporal-api)
+  - [10.5 Keyboard & DOM Events](#105-keyboard-dom-events)
+  - [10.6 Code Splitting & Dynamic Import](#106-code-splitting-dynamic-import)
+  - [10.7 Web Workers & Main Thread Relief](#107-web-workers-main-thread-relief)
+  - [10.8 Scheduler API & INP Optimization](#108-scheduler-api-inp-optimization)
+- [11. Images, Responsive Media, Video, and Codecs](#11-images-responsive-media-video-and-codecs)
+  - [11.1 Media Optimization — Images](#111-media-optimization-images)
+  - [11.2 Video Codecs & Containers](#112-video-codecs-containers)
+- [12. Critical Rendering Path, Resource Hints, Scripts, and Fonts](#12-critical-rendering-path-resource-hints-scripts-and-fonts)
+  - [12.1 The Critical Rendering Path](#121-the-critical-rendering-path)
+  - [12.2 Resource Hints Reference Table](#122-resource-hints-reference-table)
+  - [12.3 Script Loading Strategies](#123-script-loading-strategies)
+  - [12.4 Critical CSS & Font Optimization](#124-critical-css-font-optimization)
+  - [12.5 Priority Hints — `fetchpriority`](#125-priority-hints-fetchpriority)
+- [13. Observer APIs and Emerging Web Platform Features](#13-observer-apis-and-emerging-web-platform-features)
+  - [13.1 Observer APIs](#131-observer-apis)
+  - [13.2 Emerging Web Platform APIs (2025–2026)](#132-emerging-web-platform-apis-20252026)
+- [14. Core Web Vitals Optimization](#14-core-web-vitals-optimization)
+  - [14.1 LCP — Largest Contentful Paint](#141-lcp-largest-contentful-paint)
+  - [14.2 INP — Interaction to Next Paint](#142-inp-interaction-to-next-paint)
+  - [14.3 CLS — Cumulative Layout Shift](#143-cls-cumulative-layout-shift)
+- [15. Network Delivery, Compression, Caching, CDN, and Offline](#15-network-delivery-compression-caching-cdn-and-offline)
+  - [15.1 HTTP Protocol Evolution](#151-http-protocol-evolution)
+  - [15.2 Compression](#152-compression)
+  - [15.3 Caching Strategy](#153-caching-strategy)
+  - [15.4 Content Delivery Networks (CDN)](#154-content-delivery-networks-cdn)
+  - [15.5 Service Workers & Offline Strategy](#155-service-workers-offline-strategy)
+- [16. Testing, Auditing, and CI/CD](#16-testing-auditing-and-cicd)
+  - [16.1 Automated Testing Tools](#161-automated-testing-tools)
+  - [16.2 Manual Accessibility Testing](#162-manual-accessibility-testing)
+  - [16.3 Lighthouse CI Integration](#163-lighthouse-ci-integration)
+- [17. Complete Modern HTML Reference Template](#17-complete-modern-html-reference-template)
+- [18. Master Pre-Launch Checklist](#18-master-pre-launch-checklist)
+  - [18.1 Master Pre-Launch Checklist](#181-master-pre-launch-checklist)
+  - [18.2 Additional Pre-Launch Checks](#182-additional-pre-launch-checks)
 
 ---
 
-## 1. Philosophy & Mental Model
+## 1. Philosophy and Mental Model
 
 Modern front-end engineering is built on **three aligned stacks** that must be kept in sync at all times:
 
@@ -182,7 +121,7 @@ Modern Web
 
 **Guiding Principles:**
 1. **HTML First.** Use native elements before reaching for ARIA or JS. Native elements carry built-in roles, keyboard events, and focus management at zero cost.
-2. **No ARIA is better than Bad ARIA.** WebAIM studies show pages using ARIA incorrectly average **41% more accessibility errors** than pages without it.
+2. **No ARIA is better than Bad ARIA.** WebAIM's recurring large-scale audits have found that pages using ARIA often contain more automatically detected accessibility errors, largely because ARIA is frequently misapplied. Treat this as a warning about implementation quality, not evidence that ARIA itself causes errors.
 3. **Standards over convention.** Features marked *obsolete*, *deprecated*, or *non-conforming* by WHATWG, W3C, or platform docs must be actively removed — not tolerated for legacy reasons.
 4. **Measure real users.** Lab data (Lighthouse) is not a substitute for field data (CrUX / PageSpeed Insights 75th percentile). Core Web Vitals assessments are based on the **75th percentile of field data**.
 5. **Progressive enhancement.** Core content must function without JavaScript; JS enhances the experience.
@@ -190,11 +129,12 @@ Modern Web
 
 ---
 
-## 2. Foundational Standards & Compliance
+## 2. Accessibility Standards, Conformance, and Legal Context
 
-### 2.1 WCAG 2.2 — Principles, Levels, Key Criteria
+### 2.1 Foundational Standards & Compliance
+#### 2.1.1 WCAG 2.2 — Principles, Levels, Key Criteria
 
-WCAG (Web Content Accessibility Guidelines) is the internationally recognized legal benchmark for web accessibility, developed by the W3C Web Accessibility Initiative. The current required standard is **WCAG 2.2 (finalized October 2023)**, and it is the legal target under ADA (USA), EAA (Europe), and analogous legislation globally.
+WCAG (Web Content Accessibility Guidelines) is the internationally recognized technical standard for web accessibility, developed by the W3C Web Accessibility Initiative. **WCAG 2.2 became a W3C Recommendation on 5 October 2023 and received an editorial update on 12 December 2024.** Laws and procurement rules adopt or reference accessibility requirements differently: do not assume that WCAG 2.2 is automatically the legally mandated version in every jurisdiction. For example, the current harmonized EN 301 549 v3.2.1 still maps web requirements primarily to WCAG 2.1 AA, while many organizations voluntarily use WCAG 2.2 AA as the stronger engineering baseline.
 
 **The four core principles — POUR:**
 
@@ -209,8 +149,8 @@ WCAG (Web Content Accessibility Guidelines) is the internationally recognized le
 
 | Level | Description | Practical Requirement |
 |-------|-------------|----------------------|
-| **A** | Minimum — addresses the most severe barriers | Legal floor |
-| **AA** | Addresses common barriers; the **legal target** for most organizations | 4.5:1 text contrast, captions for video, etc. |
+| **A** | Minimum conformance level — addresses some of the most severe barriers | Legal and contractual obligations vary |
+| **AA** | Addresses common barriers and is the most common organizational conformance target | 4.5:1 normal-text contrast, captions for prerecorded synchronized media, and other criteria |
 | **AAA** | Enhanced — highest level; not achievable for all content types | Aim where feasible |
 
 **Key NEW criteria in WCAG 2.2 (vs. 2.1):**
@@ -228,9 +168,9 @@ WCAG (Web Content Accessibility Guidelines) is the internationally recognized le
 
 ---
 
-### 2.2 Core Web Vitals (CWV)
+#### 2.1.2 Core Web Vitals (CWV)
 
-Google's Core Web Vitals are quantitative, real-user metrics that directly impact search engine rankings. As of **March 2024**, INP officially replaced FID as the third metric.
+Google's Core Web Vitals are quantitative real-user experience metrics used within Google's broader page-experience systems. They may contribute to ranking, but relevance and content quality remain primary and CWV is not a direct one-to-one ranking formula. As of **March 2024**, INP officially replaced FID as the third metric.
 
 | Metric | Full Name | Measures | **Good** | **Needs Improvement** | **Poor** |
 |--------|-----------|----------|----------|-----------------------|---------|
@@ -247,36 +187,203 @@ Google's Core Web Vitals are quantitative, real-user metrics that directly impac
 
 ---
 
-### 2.3 EN 301 549 / AS EN 301 549
+#### 2.1.3 EN 301 549 / AS EN 301 549
 
-Beyond WCAG, the **EN 301 549** standard (Europe) and **AS EN 301 549** (Australia) mandate functional accessibility for all ICT products — covering web, non-web documents, software, and hardware. These standards use WCAG 2.1/2.2 as their core web accessibility reference. Products must be independently usable by users with visual, auditory, motor, and cognitive impairments.
+Beyond WCAG, **EN 301 549** defines accessibility requirements for ICT products and services in European procurement and policy contexts, while Australia has adopted an aligned **AS EN 301 549** standard. EN 301 549 covers websites, non-web documents, software, hardware, support documentation, and related ICT. The currently harmonized EN 301 549 v3.2.1 references WCAG 2.1 for web and non-web content; verify the edition incorporated by the relevant law, contract, or procurement framework rather than assuming WCAG 2.2 has already been adopted everywhere.
 
 ---
 
-### 2.4 The Upcoming WCAG 3.0
+#### 2.1.4 The Upcoming WCAG 3.0
 
-A major Working Draft for WCAG 3.0 was published in September 2025. It is not expected to be finalized until 2028–2030, but its direction matters for planning:
+A new WCAG 3.0 Working Draft was published on 3 March 2026. It remains an **in-progress exploratory draft**: W3C explicitly warns that guidelines, requirements, scoring, and terminology will change. There is no authoritative publication date for a final Recommendation, so production conformance must continue to use WCAG 2.x and applicable legal standards.
 
 | Change | Details |
 |--------|---------|
 | **Expanded Scope** | Beyond web content → AR/VR, mobile apps, IoT, digital documents |
-| **Scoring Model** | Replaces binary Pass/Fail (A/AA/AAA) with a holistic tiered conformance: **Bronze, Silver, Gold** |
-| **APCA Contrast** | Replaces WCAG 2.x mathematical contrast ratio with the Advanced Perceptual Contrast Algorithm (APCA), which accounts for font size, weight, and polarity |
+| **Conformance model** | Explores outcomes, methods, assertions, and more nuanced scoring than WCAG 2.x; current draft mechanics are not final |
+| **Contrast research** | Explores perceptual contrast approaches. APCA is useful research and a design-evaluation tool, but it is **not yet a normative WCAG 3 requirement or a guaranteed replacement** for WCAG 2.x contrast ratios |
 | **Testing** | More emphasis on user testing with people with disabilities, not just automated checks |
 
-> **For now:** Ensure WCAG 2.2 AA compliance. **Also** evaluate designs with APCA tools as a design quality check, since WCAG 2.x math can produce misleading results (e.g., orange-on-white "passes" 4.5:1 but is perceptually difficult to read).
+> **For now:** Use the WCAG version required by the applicable policy or contract, and generally target WCAG 2.2 AA for new work. APCA may be used as an additional, non-normative design check, but it must not replace required WCAG 2.x testing.
+
+### 2.2 Additional WCAG 2.2 Success Criteria
+The original sections covered SC 2.4.11, 2.4.12, 2.5.8, 3.2.6, 3.3.7, and 3.3.8. The following WCAG 2.2 criteria were omitted:
+
+#### 2.2.1 SC 2.5.7 — Dragging Movements (Level AA)
+
+**Requirement:** All functionality that uses dragging movements (drag-and-drop) must be operable via a single-pointer alternative (click/tap, or keyboard) — unless dragging is essential.
+
+**Why it matters:** Users with motor impairments, tremors, or who use head pointers / eye-tracking cannot perform drag operations. Touch screen users with limited dexterity also struggle with drag gestures.
+
+**Compliant implementation:**
+
+```html
+<!-- ✅ Sortable list with both drag AND button-based reordering -->
+<ul role="listbox" aria-label="Priority tasks (reorderable)">
+  <li role="option" draggable="true" aria-grabbed="false">
+    <span>Task A</span>
+    <button type="button" aria-label="Move Task A up"
+            onclick="moveUp(this)">↑</button>
+    <button type="button" aria-label="Move Task A down"
+            onclick="moveDown(this)">↓</button>
+  </li>
+  <li role="option" draggable="true" aria-grabbed="false">
+    <span>Task B</span>
+    <button type="button" aria-label="Move Task B up">↑</button>
+    <button type="button" aria-label="Move Task B down">↓</button>
+  </li>
+</ul>
+
+<!-- ✅ File upload: drag-and-drop zone WITH a standard file input -->
+<div class="dropzone" role="region" aria-label="Drop files here to upload">
+  <p>Drag files here, or:</p>
+  <label for="file-upload" class="btn">Choose files</label>
+  <input type="file" id="file-upload" multiple accept=".pdf,.jpg,.png">
+</div>
+```
+
+**Key rule:** If a user can drag-and-drop to accomplish something, they must *also* be able to accomplish the same thing with click/tap actions or keyboard.
 
 ---
 
-## 3. Obsolete & Deprecated HTML Elements
+#### 2.2.2 SC 2.4.13 — Focus Appearance (Level AAA)
 
+**Requirement:** When a UI component receives keyboard focus, the focus indicator must:
+- Have an area at least as large as a **2 CSS pixel thick perimeter** of the unfocused component
+- Have a contrast ratio of **3:1** between the focused and unfocused states
+- Have a contrast ratio of **3:1** against adjacent non-focus-indicator colors
+
+**Practical implementation:**
+
+```css
+/* ✅ WCAG 2.2 SC 2.4.13 compliant focus indicator */
+:focus-visible {
+  outline: 3px solid #1a73e8;     /* 3px > 2px minimum perimeter */
+  outline-offset: 3px;            /* Offset prevents overlap with element border */
+  border-radius: 3px;             /* Match component's border-radius */
+  /* Ensure #1a73e8 has ≥ 3:1 contrast against adjacent background colors */
+}
+
+/* ✅ For dark backgrounds */
+.dark-section :focus-visible {
+  outline-color: #8ab4f8;         /* Lighter blue for dark backgrounds */
+}
+
+/* ✅ High-contrast focus for links within text */
+a:focus-visible {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+  background-color: #e8f0fe;      /* Additional visual cue */
+  border-radius: 2px;
+}
+```
+
+**Note:** SC 2.4.13 is AAA-level, so it's aspirational not mandatory, but best-practice designs should follow it. The related SC 2.4.11 (Focus Not Obscured, Level AA) **is** mandatory — focused elements must not be entirely covered by sticky headers, cookie banners, or other positioned content.
+
+---
+
+#### 2.2.3 SC 3.3.9 — Accessible Authentication (Enhanced) (Level AAA)
+
+**Requirement (beyond AA SC 3.3.8):** Authentication must not require **any** cognitive function test — no object recognition, no personal content recognition, no puzzles. Only exceptions: objects provided by the site (not the user's personal items) and passkeys/WebAuthn.
+
+**Practical guidance:**
+- Passwords with password managers are compliant (paste is allowed, autocomplete works)
+- Passkeys / WebAuthn biometric login is ideal — fully compliant
+- CAPTCHA alternatives: invisible reCAPTCHA, hCaptcha accessibility mode, Turnstile
+- SMS OTP with `autocomplete="one-time-code"` is compliant (user doesn't need to memorize)
+
+```html
+<!-- ✅ Login form optimized for accessible authentication -->
+<form action="/auth/login" method="post" aria-label="Sign in">
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email"
+         autocomplete="username"
+         required aria-required="true">
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password"
+         autocomplete="current-password"
+         required aria-required="true">
+
+  <!-- Allow paste for password managers -->
+  <!-- NEVER add onpaste="return false" -->
+
+  <button type="submit">Sign in</button>
+
+  <!-- Passkey alternative (WebAuthn) -->
+  <button type="button" onclick="startPasskeyAuth()">
+    Sign in with Passkey
+  </button>
+</form>
+
+<!-- ✅ OTP field with autocomplete for SMS codes -->
+<label for="otp">Verification code (sent to your phone)</label>
+<input type="text" id="otp" name="otp"
+       autocomplete="one-time-code"
+       inputmode="numeric"
+       pattern="[0-9]{6}"
+       maxlength="6"
+       aria-describedby="otp-hint">
+<span id="otp-hint">Enter the 6-digit code from your SMS.</span>
+```
+
+---
+
+#### 2.2.4 WCAG 2.2 SC 4.1.1 Parsing — Removed
+
+**Important change:** WCAG 2.2 **removed** Success Criterion 4.1.1 (Parsing) entirely. This is because:
+- Modern browsers are now highly resilient to parsing errors — they follow the HTML5 parsing algorithm, which defines error recovery behavior for all malformed markup
+- The criterion was effectively obsolete — browsers handle duplicate IDs, unclosed tags, and nesting errors consistently
+- However: clean, valid HTML is still strongly recommended for maintainability, AT compatibility, and professional quality
+- Use the W3C Nu HTML Checker (validator.nu) as a quality tool, not a compliance requirement
+
+### 2.3 European Accessibility Act (EAA) — requirements applicable from 28 June 2025
+The **European Accessibility Act (Directive (EU) 2019/882)** required Member States to apply its accessibility requirements from **28 June 2025** to covered products and consumer services. Scope, exemptions, transition rules, enforcement, and penalties depend on the implementing law of each Member State. Covered areas include:
+
+| Scope | Requirements |
+|-------|-------------|
+| **E-commerce websites and apps** | Must be accessible to people with disabilities |
+| **Banking and financial services** | Online platforms must meet accessibility standards |
+| **E-books and digital reading** | Must offer accessible formats |
+| **Transport services** | Booking and ticketing websites must be accessible |
+| **Telecommunications** | Digital communication tools must be accessible |
+| **Consumer hardware** | Computers, smartphones, self-service terminals |
+
+#### 2.3.1 Technical Standard
+
+The EAA references **EN 301 549** as the harmonized standard, which in turn maps to WCAG 2.1 AA (and is expected to update to WCAG 2.2 AA). **Practically, building to WCAG 2.2 AA ensures EAA compliance for web content.**
+
+#### 2.3.2 Key Differences from ADA
+
+| Aspect | ADA (USA) | EAA (EU) |
+|--------|-----------|----------|
+| Scope | Websites of "places of public accommodation" | Products and services sold in the EU market (broader scope) |
+| Standard referenced | None explicitly (courts apply WCAG 2.0/2.1 AA) | EN 301 549 → WCAG 2.1/2.2 AA explicitly |
+| Enforcement | Private lawsuits (reactive) | Proactive market surveillance by EU member state authorities |
+| Penalties | Compensatory/punitive damages from courts | Fines, product bans, market withdrawal — set by member states |
+| Microenterprises | Not exempted | Exempted if < 10 employees AND < €2M annual turnover |
+
+#### 2.3.3 Practical Compliance Checklist
+
+- [ ] WCAG 2.2 AA conformance on all public-facing web pages
+- [ ] Accessibility statement published (required by EAA and EN 301 549)
+- [ ] Feedback mechanism for users to report accessibility barriers
+- [ ] Regular accessibility audits (automated + manual with assistive technologies)
+- [ ] Staff training on accessibility requirements
+- [ ] Accessibility integrated into design and development processes (not retrofitted)
+
+---
+
+## 3. HTML Conformance: Obsolete Elements and Attributes
+
+### 3.1 Obsolete & Deprecated HTML Elements
 The WHATWG HTML Living Standard categorizes legacy features into two types:
 - **Non-conforming / Entirely Obsolete** — must not be used under any circumstances.
 - **Obsolete but Conforming** — browsers still render them, but they trigger warnings in conformance checkers and must not be used in new authoring.
 
 The core principle: **HTML describes what content *is*; CSS handles how it *looks*.** Presentational elements violate this principle, confuse assistive technologies, and produce inconsistent rendering.
 
-### Entirely Obsolete Elements (Never Use)
+#### 3.1.1 Entirely Obsolete Elements (Never Use)
 
 | Element | Legacy Purpose | Modern Replacement | Impact if Used |
 |---------|---------------|-------------------|----------------|
@@ -303,7 +410,7 @@ The core principle: **HTML describes what content *is*; CSS handles how it *look
 | `<spacer>` | Layout spacing | CSS `margin` / `padding` | Netscape proprietary |
 | `<nobr>` | Prevent line wrapping | CSS `white-space: nowrap` | Purely presentational |
 
-### Obsolete but Conforming (Discouraged — Trigger Validator Warnings)
+#### 3.1.2 Obsolete but Conforming (Discouraged — Trigger Validator Warnings)
 
 | Element / Attribute | Issue | Modern Alternative |
 |--------------------|-------|-------------------|
@@ -312,21 +419,18 @@ The core principle: **HTML describes what content *is*; CSS handles how it *look
 | `<u>` (as underline) | Confuses users expecting hyperlinks | CSS `text-decoration: underline`; `<u>` only for unarticulated annotations |
 | `<small>` (as visual size) | Valid for legal/fine print semantics; not for general size reduction | CSS `font-size` for visual sizing |
 | `<s>` | Valid for no-longer-accurate text; not just strikethrough styling | CSS `text-decoration: line-through` for pure styling |
-| `<hgroup>` | Originally grouped headings; deemed redundant and obsoleted | Place subheading in `<p>` immediately following the main heading |
+| `<hgroup>` | **Valid in the current HTML Living Standard.** Groups a heading with one or more secondary headings, taglines, or subtitles | Use when the grouped heading/subheading relationship is meaningful; otherwise use a heading followed by ordinary text |
 
-### Obsolete but Semantically Refined (Special Cases)
+#### 3.1.3 Obsolete but Semantically Refined (Special Cases)
 
 - **`<b>`** — In HTML5, `<b>` was redefined as "bring attention to" text (like a keyword or product name) — **not** simply bold text. Bold styling with no semantic meaning → use CSS only.
 - **`<i>`** — Redefined for idiomatic text, technical terms, foreign phrases, or thoughts. For stress emphasis that changes the meaning of a sentence → use `<em>`.
 - **`<small>`** — Redefined for "side comments" like fine print, legal disclaimers. Not for general font-size reduction.
 
----
-
-## 4. Obsolete & Deprecated HTML Attributes
-
+### 3.2 Obsolete & Deprecated HTML Attributes
 Many HTML4 attributes that controlled presentation or had specialized scripting behaviors are explicitly marked obsolete. They belong in CSS, not HTML.
 
-### Styling & Presentational Attributes (All Element Types)
+#### 3.2.1 Styling & Presentational Attributes (All Element Types)
 
 | Attribute | On Element(s) | Modern Replacement |
 |-----------|--------------|-------------------|
@@ -344,7 +448,7 @@ Many HTML4 attributes that controlled presentation or had specialized scripting 
 | `color` | `<hr>`, `<font>` | CSS: `color` |
 | `nohref` | `<area>` | N/A — just omit `href` |
 
-### Scripting & Linking Attributes
+#### 3.2.2 Scripting & Linking Attributes
 
 | Attribute | On Element | Modern Replacement | Notes |
 |-----------|-----------|-------------------|-------|
@@ -362,7 +466,7 @@ Many HTML4 attributes that controlled presentation or had specialized scripting 
 | `accept` | `<form>` | Move `accept` attribute to `<input type="file">` | |
 | `usemap` | Non-image elements | N/A | Only valid on `<img>`, `<object>` |
 
-### Table-Specific Obsolete Attributes
+#### 3.2.3 Table-Specific Obsolete Attributes
 
 | Attribute | Replacement |
 |-----------|-------------|
@@ -371,7 +475,7 @@ Many HTML4 attributes that controlled presentation or had specialized scripting 
 | `frame` / `rules` on `<table>` | CSS borders |
 | `abbr` on `<td>` | Move content to `<th>` with proper `scope`; provide visible abbreviations |
 
-### Before vs. After Comparison
+#### 3.2.4 Before vs. After Comparison
 
 ```html
 <!-- ❌ OLD / OBSOLETE -->
@@ -392,48 +496,48 @@ Many HTML4 attributes that controlled presentation or had specialized scripting 
 
 ---
 
-## 5. Semantic HTML & Document Landmarks
+## 4. Semantic HTML, Landmarks, Forms, Lists, and Tables
 
 Using the correct semantic element gives you **implicit ARIA roles, built-in keyboard behavior, and accessible focus management — all for free.** This is why "HTML First" is rule #1.
 
-### 5.1 Sectioning Elements & Implicit ARIA Roles
+### 4.1 Sectioning Elements & Implicit ARIA Roles
 
 | Element | Implicit ARIA Role | Landmark Context | When to Use | ID/Labelling |
 |---------|-------------------|-----------------|-------------|-------------|
-| `<header>` | `banner` (only when direct child of `<body>`) | Yes — page header | Site header containing logo, branding, main nav. If placed inside `<article>` or `<section>`, it's just a local header — **not** a landmark | Label not needed if unique; use `aria-label` if multiple `<header>` elements exist |
+| `<header>` | `banner` when not nested within `article`, `aside`, `main`, `nav`, or `section` | Yes — page header | Site header containing logo, branding, main nav. If placed inside `<article>` or `<section>`, it's just a local header — **not** a landmark | Label not needed if unique; use `aria-label` if multiple `<header>` elements exist |
 | `<nav>` | `navigation` | Yes | Major navigation blocks: main menu, breadcrumbs, table of contents. **Not** every group of links — only significant navigation | **Required** `aria-label` (e.g., `"Main"`, `"Breadcrumbs"`, `"Footer"`) when multiple `<nav>` elements exist on same page |
 | `<main>` | `main` | Yes | The primary, dominant content of the page. **Only ONE visible `<main>` per page**. Must not be nested inside `<article>`, `<aside>`, `<nav>`, `<header>`, or `<footer>` | Give it an `id` (e.g., `id="content"`) to serve as the skip-link target |
-| `<footer>` | `contentinfo` (only when direct child of `<body>`) | Yes — page footer | Footer of nearest sectioning ancestor. Can appear inside `<article>` as a local footer | Use `aria-label` if multiple footers |
+| `<footer>` | `contentinfo` when not nested within `article`, `aside`, `main`, `nav`, or `section` | Yes — page footer | Footer of nearest sectioning ancestor. Can appear inside `<article>` as a local footer | Use `aria-label` if multiple footers |
 | `<aside>` | `complementary` | Yes | Content tangentially related to the surrounding content — sidebars, pull quotes, related-article lists, ads. NOT for unrelated wrappers | `aria-labelledby` or `aria-label` when multiple asides exist |
 | `<article>` | `article` | No | A **self-contained, independently distributable, or syndicatable** piece of content — blog posts, news articles, forum threads, product cards, comments, widgets. Ask: "Could this stand alone in an RSS feed?" | Should contain a heading; can have its own `<header>`/`<footer>` |
 | `<section>` | `region` (only if it has an accessible name) | Only when named | A **thematic grouping** of content that would appear in a page's table of contents. NOT a generic container — use `<div>` for that | **Should** have a heading (`<h2>`–`<h6>`); use `aria-labelledby="heading-id"` or `aria-label` |
 | `<div>` | None | No | Generic block container with no meaning. Use only when no semantic element is appropriate | N/A unless you add an explicit ARIA role |
 | `<span>` | None | No | Generic inline container with no meaning | N/A |
 | `<form>` | `form` (if it has an accessible name) | Yes when named | Any HTML form | Add `aria-labelledby` or `aria-label` to make it a form landmark |
-| `<search>` (HTML5.3) | `search` | Yes | Identifies a search component — wraps the search form | `aria-label="Search"` recommended |
+| `<search>` (HTML Living Standard) | `search` | Yes | Identifies a search component — wraps the search form | `aria-label="Search"` recommended |
 | `<figure>` | `figure` | No | Media wrapper — pairs with `<figcaption>` for captions | Pair with `<figcaption>`; role `caption` applies |
 | `<address>` | N/A | No | Contact information for the **nearest `<article>` or `<body>` ancestor** — not for postal addresses in general | N/A |
 
 **Critical rules for sectioning:**
-- Every visible piece of content must be inside a landmark so screen reader users can navigate to all parts of the page.
+- Organize the page's **major regions** with appropriate landmarks so assistive-technology users can navigate efficiently; ordinary content does not need to be wrapped in a landmark merely to satisfy a quota.
 - `<section>` without an accessible name does **not** become a `region` landmark — skip it if you can't name it, or use `<div>` instead.
 - Never nest `<main>` inside other landmarks.
-- `<header>` and `<footer>` only become landmarks (`banner` / `contentinfo`) when they are direct children of `<body>` — not when nested inside sectioning elements.
+- `<header>` and `<footer>` expose page-level landmark roles only when they are not scoped by sectioning content such as `article`, `aside`, `main`, `nav`, or `section`; nested headers and footers usually describe their nearest section instead.
 
 ---
 
-### 5.2 Text Content Elements
+### 4.2 Text Content Elements
 
 | Element | Correct Meaning | Common Misuse to Avoid |
 |---------|----------------|------------------------|
-| `<h1>`–`<h6>` | Section headings in **strict hierarchical order**. One `<h1>` per page (usually). Never skip levels just for visual size | Using headings for visual styling, not document hierarchy |
+| `<h1>`–`<h6>` | Section headings in a meaningful hierarchy. A single page-level `<h1>` is a clear and widely used convention, but HTML does not make multiple `<h1>` elements non-conforming. Avoid skipping levels merely for visual size | Using headings for visual styling rather than document structure |
 | `<p>` | A paragraph of text | Using `<br><br>` to create fake paragraphs |
 | `<strong>` | **Strong importance**, seriousness, or urgency — not just bold | Using `<b>` when importance is intended |
 | `<em>` | **Stress emphasis** that changes meaning of the sentence | Using `<i>` when emphasis is intended |
 | `<b>` | **Bring attention** to text without implying extra importance (key terms, product names, lead sentence) | Using it as a generic bold wrapper |
 | `<i>` | **Idiomatic text**, technical terms, foreign phrases, thoughts, ship names | Using for generic italics |
 | `<mark>` | **Highlighted/searched text** for reference purposes | Using for general design highlights without semantic meaning |
-| `<time>` | Dates, times, durations — **always include `datetime` attribute** in machine-readable format | Writing dates as plain text without semantic value |
+| `<time>` | Dates, times, and durations. Add `datetime` when the visible text is not already a valid machine-readable value or when an explicit normalized value is useful | Treating every human-readable date as requiring the element, or supplying an invalid `datetime` value |
 | `<abbr>` | Abbreviations — include `title` for the full expansion | Not providing the expansion in `title`; still using `<acronym>` |
 | `<cite>` | The **title of a creative work** being referenced (book, film, article) | Using for person names (it's for work titles only) |
 | `<q>` | **Short inline quotations** (browser adds quotation marks via CSS) | Manually inserting `"quotes"` that aren't semantically quotations |
@@ -449,7 +553,7 @@ Using the correct semantic element gives you **implicit ARIA roles, built-in key
 
 ---
 
-### 5.3 Interactive Elements — Button vs. Link
+### 4.3 Interactive Elements — Button vs. Link
 
 **Golden Rule:** Use `<a href>` to go somewhere. Use `<button>` to do something.
 
@@ -462,6 +566,7 @@ Using the correct semantic element gives you **implicit ARIA roles, built-in key
 | `<select>` | Choose from list of options | N/A | Native keyboard navigation | Avoid replacing with custom `<div>` selects unless absolutely necessary — complex keyboard implementation required |
 
 **Never do this:**
+
 ```html
 <!-- ❌ WRONG — div/span as button -->
 <div onclick="doThing()" class="btn">Click me</div>
@@ -480,7 +585,7 @@ If you absolutely must use a non-button element as an interactive control, you *
 
 ---
 
-### 5.4 Lists — `<ul>`, `<ol>`, `<dl>`
+### 4.4 Lists — `<ul>`, `<ol>`, `<dl>`
 
 ```html
 <!-- Unordered: when order doesn't matter -->
@@ -516,7 +621,7 @@ If you absolutely must use a non-button element as an interactive control, you *
 
 ---
 
-### 5.5 Form Elements Best Practices
+### 4.5 Form Elements Best Practices
 
 Every form control must have an accessible label. The preferred approaches, in order of preference:
 
@@ -555,7 +660,7 @@ Every form control must have an accessible label. The preferred approaches, in o
 
 ---
 
-### 5.6 Tables — Accessible Structure
+### 4.6 Tables — Accessible Structure
 
 Tables are **only for tabular data** — never for visual layout.
 
@@ -595,11 +700,11 @@ Tables are **only for tabular data** — never for visual layout.
 
 ---
 
-## 6. ARIA — Roles, States, Properties, Patterns
+## 5. ARIA Roles, States, Properties, and Patterns
 
 ARIA (Accessible Rich Internet Applications) is a W3C specification that adds supplementary semantics to HTML for assistive technologies. It is **supplemental to, not a replacement for**, native HTML semantics.
 
-### 6.1 The Rules of ARIA
+### 5.1 The Rules of ARIA
 
 **Rule 1 — HTML First (most important):** If a native HTML element or attribute has the semantics and behavior you require already built in, use it instead of re-purposing another element and adding ARIA.
 
@@ -615,7 +720,7 @@ ARIA (Accessible Rich Internet Applications) is a W3C specification that adds su
 
 ---
 
-### 6.2 Landmark Roles Table
+### 5.2 Landmark Roles Table
 
 | HTML Element | Implicit ARIA Role | When Explicit Role Is Needed | Labelling Strategy |
 |--------------|-------------------|-----------------------------|-------------------|
@@ -631,7 +736,7 @@ ARIA (Accessible Rich Internet Applications) is a W3C specification that adds su
 
 ---
 
-### 6.3 Key ARIA States & Properties Reference
+### 5.3 Key ARIA States & Properties Reference
 
 | Attribute | Purpose | Values |
 |-----------|---------|--------|
@@ -664,7 +769,7 @@ ARIA (Accessible Rich Internet Applications) is a W3C specification that adds su
 
 ---
 
-### 6.4 Naming Hierarchy (Accessible Names)
+### 5.4 Naming Hierarchy (Accessible Names)
 
 The browser calculates an accessible name using this precedence order (highest → lowest):
 
@@ -699,7 +804,7 @@ The browser calculates an accessible name using this precedence order (highest �
 
 ---
 
-### 6.5 Common ARIA Patterns (Code)
+### 5.5 Common ARIA Patterns (Code)
 
 ```html
 <!-- 1. Accessible Navigation with current page indicator -->
@@ -789,9 +894,10 @@ The browser calculates an accessible name using this precedence order (highest �
 
 ---
 
-## 7. Accessibility Deep Dive
+## 6. Accessibility Implementation Patterns
 
-### 7.1 Color Contrast — WCAG 2.x Formula & Thresholds
+### 6.1 Accessibility Deep Dive
+#### 6.1.1 Color Contrast — WCAG 2.x Formula & Thresholds
 
 **The Formula:**
 
@@ -812,7 +918,7 @@ Where:
 | **Normal text** (< 18pt regular or < 14pt bold) | **4.5:1** | **7:1** |
 | **Large text** (≥ 18pt / 24px regular, or ≥ 14pt / 18.67px bold) | **3:1** | **4.5:1** |
 | **Non-text UI** (icons, input borders, focus rings, chart elements needed to understand the content) | **3:1** | — |
-| **Focus indicators** (WCAG 2.2 SC 2.4.11) | **3:1** against adjacent colors | — |
+| **Focus indicators** | Must be visible at Level AA; use a robust indicator with strong contrast. WCAG 2.2 SC 2.4.13 defines enhanced Level AAA area/contrast requirements | — |
 | Incidental text (inactive UI, decorative) | Exempt | Exempt |
 | Logotypes | Exempt | Exempt |
 | Placeholder text in inputs | **4.5:1** (NOT exempt) | — |
@@ -848,11 +954,11 @@ Where:
 
 ---
 
-### 7.2 APCA — Advanced Perceptual Contrast Algorithm
+#### 6.1.2 APCA — Advanced Perceptual Contrast Algorithm
 
-APCA is the contrast algorithm being developed for WCAG 3.0. Unlike the WCAG 2.x formula, APCA is **directional** (foreground and background order matters) and **context-sensitive** (accounts for font size, weight, and polarity — dark-on-light vs. light-on-dark).
+APCA is a perceptual contrast model developed outside the normative WCAG 2.x algorithm and discussed in accessibility research around future guidance. Unlike the WCAG 2.x formula, APCA is **directional** (foreground and background order matters) and **context-sensitive** (accounts for font size, weight, and polarity — dark-on-light vs. light-on-dark).
 
-Scores are expressed as `Lc` (Lightness Contrast Value) on a scale of 0–106:
+Scores are commonly expressed as `Lc` (Lightness Contrast). The thresholds below are **non-normative design guidance**, not WCAG 2.2 success criteria:
 
 | APCA Lc Value | Minimum Appropriate Use |
 |---------------|------------------------|
@@ -863,11 +969,11 @@ Scores are expressed as `Lc` (Lightness Contrast Value) on a scale of 0–106:
 | **Lc 30** | Incidental text, placeholder, or supplementary text |
 | **Lc 15** | Near-invisibility for many users — avoid |
 
-**Why it matters now:** WCAG 2.x math has known flaws — orange-on-white "passes" 4.5:1 but is perceptually difficult; certain dark-mode combinations "fail" but are comfortable. While WCAG 2.2 is the legal standard, using APCA as a design quality check is recommended. Evaluate with the Accessible Perceptual Contrast Calculator at myndex.com/APCA/.
+**How to use it now:** retain WCAG 2.x contrast testing wherever required, and optionally use APCA as a second design-quality signal. Do not substitute an APCA score for a required WCAG 2.x pass/fail result.
 
 ---
 
-### 7.3 Keyboard & Focus Management
+#### 6.1.3 Keyboard & Focus Management
 
 **WCAG Success Criteria:**
 
@@ -888,7 +994,7 @@ Scores are expressed as `Lc` (Lightness Contrast Value) on a scale of 0–106:
 **Focus management patterns:**
 - **DOM order = visual order.** Never use CSS (flexbox `order`, grid placement, `position: absolute`) to create visual order that conflicts with source order — screen readers and keyboard users navigate DOM order.
 - **Modal focus trap:** When a modal opens, move focus to first focusable element inside it (`autofocus` or `dialog.showModal()`). Trap Tab/Shift+Tab within the modal. When closed, return focus to the trigger element.
-- **Dynamic content:** When content is dynamically injected (e.g., search results), move focus to the results container or first result so keyboard/screen reader users know the update happened.
+- **Dynamic content:** Announce meaningful updates with an appropriate live region. Move focus only when the user's task or context changes and doing so is expected; automatic focus movement after every update can be disruptive.
 - **Never use `outline: none` globally on `:focus`.** Instead, use `:focus-visible` to show high-contrast outlines only for keyboard users while keeping the UI clean for mouse users:
 
 ```css
@@ -904,7 +1010,7 @@ Scores are expressed as `Lc` (Lightness Contrast Value) on a scale of 0–106:
 
 ---
 
-### 7.4 Skip Links & Bypass Blocks
+#### 6.1.4 Skip Links & Bypass Blocks
 
 WCAG SC 2.4.1 (Level A) requires a mechanism for bypassing repeated navigation blocks. Skip links are the primary technique.
 
@@ -954,7 +1060,7 @@ The `tabindex="-1"` on `<main>` ensures the element receives focus when the skip
 
 ---
 
-### 7.5 Motion Preferences (`prefers-reduced-motion`)
+#### 6.1.5 Motion Preferences (`prefers-reduced-motion`)
 
 The `prefers-reduced-motion` CSS media feature detects whether the user has enabled "Reduce Motion" at the operating system level. This is critical for users with vestibular disorders, photosensitive epilepsy, and other motion sensitivities.
 
@@ -984,7 +1090,7 @@ The `prefers-reduced-motion` CSS media feature detects whether the user has enab
 
 ---
 
-### 7.6 Live Regions & Dynamic Announcements
+#### 6.1.6 Live Regions & Dynamic Announcements
 
 Modern single-page apps frequently update content after page load. Screen reader users need to be informed about important updates.
 
@@ -1015,7 +1121,7 @@ Modern single-page apps frequently update content after page load. Screen reader
 
 ---
 
-### 7.7 Target Size (WCAG 2.2 SC 2.5.8)
+#### 6.1.7 Target Size (WCAG 2.2 SC 2.5.8)
 
 **AA requirement (new in WCAG 2.2):** Touch targets must be at least **24×24 CSS pixels**, unless:
 - An exception applies (spacing, inline text, essential, unavoidable)
@@ -1039,11 +1145,604 @@ Modern single-page apps frequently update content after page load. Screen reader
 }
 ```
 
+### 6.2 The `<dialog>` Element — Native Modal & Non-Modal Dialogs
+The `<dialog>` element is a native HTML primitive for modal and non-modal dialogs. `showModal()` supplies top-layer placement and modal interaction behavior, but authors still need an accessible name, sensible focus placement, close controls, validation, and testing. It is broadly supported in current evergreen browsers; apply your project's actual browser floor.
+
+#### 6.2.1 Modal Dialog (`.showModal()`)
+
+```html
+<!-- The dialog element — hidden by default -->
+<dialog id="confirm-dialog" aria-labelledby="dlg-title" aria-describedby="dlg-desc">
+  <h2 id="dlg-title">Confirm Deletion</h2>
+  <p id="dlg-desc">This action cannot be undone. Are you sure you want to delete this item?</p>
+
+  <!-- form method="dialog" auto-closes the dialog on submit -->
+  <form method="dialog">
+    <button type="submit" value="cancel">Cancel</button>
+    <button type="submit" value="confirm" autofocus>Delete</button>
+    <!-- autofocus: first focused element when dialog opens -->
+  </form>
+</dialog>
+
+<!-- Trigger button -->
+<button type="button" id="open-dialog">Delete Item</button>
+
+<script>
+  const dialog = document.getElementById('confirm-dialog');
+  const openBtn = document.getElementById('open-dialog');
+
+  openBtn.addEventListener('click', () => {
+    dialog.showModal();
+    // showModal():
+    //  - Adds ::backdrop pseudo-element (dimmed overlay)
+    //  - Traps focus inside the dialog (Tab cycles within)
+    //  - Makes rest of page inert (AT cannot navigate outside)
+    //  - Adds role="dialog" and aria-modal="true" implicitly
+    //  - ESC key closes the dialog by default
+  });
+
+  dialog.addEventListener('close', () => {
+    // dialog.returnValue contains the value of the submit button used
+    if (dialog.returnValue === 'confirm') {
+      performDeletion();
+    }
+    // Focus automatically returns to the element that opened the dialog
+  });
+
+  // Optional: close on backdrop click
+  dialog.addEventListener('click', (e) => {
+    const rect = dialog.getBoundingClientRect();
+    if (e.clientX < rect.left || e.clientX > rect.right ||
+        e.clientY < rect.top || e.clientY > rect.bottom) {
+      dialog.close('cancel');
+    }
+  });
+</script>
+```
+
+#### 6.2.2 Non-Modal Dialog (`.show()`)
+
+```javascript
+dialog.show();
+// show():
+//  - Opens dialog but does NOT trap focus
+//  - Does NOT add ::backdrop
+//  - Rest of page remains interactive
+//  - User CAN Tab out of the dialog
+//  - Use for: tooltips, toolbars, inspection panels
+```
+
+#### 6.2.3 Styling the Dialog
+
+```css
+/* Base dialog styles */
+dialog {
+  border: none;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: min(90vw, 500px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+
+/* The backdrop overlay (only with showModal) */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Opening/closing animation (Chrome 120+, Safari 17.5+) */
+dialog {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease,
+              display 0.3s ease allow-discrete,
+              overlay 0.3s ease allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+```
+
+#### 6.2.4 `<dialog>` vs. Custom Modal — Why Native Wins
+
+| Feature | `<dialog>` (native) | Custom `<div role="dialog">` |
+|---------|---------------------|------------------------------|
+| Focus trapping | Automatic with `showModal()` | Must implement manually (many libraries get it wrong) |
+| `inert` on background | Automatic — AT cannot navigate behind modal | Must add `inert` attribute to all siblings manually |
+| ESC to close | Built-in browser behavior | Must implement `keydown` listener |
+| Accessible role | Implicit `role="dialog"` | Must add `role="dialog"` manually |
+| `::backdrop` | Automatic with `showModal()` | Must create backdrop element manually |
+| Focus return on close | Automatic | Must track and restore manually |
+| Screen reader announcement | Announced automatically as dialog | Depends on correct ARIA implementation |
+
+**Prefer `<dialog>` for ordinary modal dialogs** because it supplies top-layer, modality, focus, and backdrop behavior. A custom ARIA dialog can still be appropriate when product constraints require behavior the native element cannot provide, but it must reproduce the complete keyboard, focus, and accessibility contract.
+
+#### 6.2.5 Dialog Light Dismiss — `closedby` (2025–2026)
+
+Native control over how users dismiss a `<dialog>` without custom backdrop-click JS. Complements Invoker Commands (`command` / `commandfor`).
+
+| `closedby` value | ESC / platform close | Outside click | Typical use |
+|------------------|----------------------|---------------|-------------|
+| `none` | No | No | Destructive confirms — must use buttons |
+| `closerequest` | Yes | No | Forms / multi-step dialogs |
+| `any` | Yes | Yes | Info panels — popover-like light dismiss |
+
+```html
+<button type="button" commandfor="confirm" command="show-modal">Delete</button>
+
+<dialog id="confirm" closedby="none" aria-labelledby="c-title">
+  <h2 id="c-title">Delete item?</h2>
+  <form method="dialog">
+    <button value="cancel">Cancel</button>
+    <button value="confirm">Delete</button>
+  </form>
+</dialog>
+
+<dialog id="help" closedby="any">
+  <p>Tip: Use filters to narrow the table.</p>
+  <button type="button" commandfor="help" command="close">Close</button>
+</dialog>
+```
+
+> Prefer `closedby` over hand-rolled `click` hit-tests on the dialog box model. Progressive-enhance: if unsupported, keep an explicit close control.
+
+#### 6.2.6 Invoker Commands — Declarative Dialog/Popover Triggers
+
+Wire buttons to dialogs and popovers **without** `addEventListener` boilerplate. **✅ Baseline newly available 2025-12-12** (C 135 · F 144 · S 26.2 — full matrix in `04` §44). Progressive-enhance older UAs.
+
+```html
+<button type="button" commandfor="settings" command="show-modal">Settings</button>
+<dialog id="settings" closedby="closerequest">…</dialog>
+
+<button type="button" commandfor="share" command="toggle-popover">Share</button>
+<div id="share" popover>…</div>
+```
+
+| `command` | Effect |
+|-----------|--------|
+| `show-modal` | Open dialog as modal |
+| `close` / `request-close` | Close dialog |
+| `show-popover` / `hide-popover` / `toggle-popover` | Popover control |
+| `--custom-*` | Fires `command` event for app-defined actions |
+
+#### 6.2.7 Close Watcher API
+
+Unifies platform **close requests** (desktop `Esc`, Android back gesture, etc.) for stacked modals/drawers.
+
+```javascript
+if (typeof CloseWatcher === 'function') {
+  const watcher = new CloseWatcher();
+  watcher.addEventListener('close', () => {
+    dialog.close();
+    watcher.destroy();
+  });
+} else {
+  // Fallback: keydown Escape
+}
+```
+
+Create one watcher **per UI layer** so the topmost surface handles the first close request.
+
+#### 6.2.8 Document Picture-in-Picture API
+
+Open a floating always-on-top window containing **arbitrary HTML** (not only `<video>`). Use for custom player chrome, persistent chat, or monitoring widgets. Feature-detect `documentPictureInPicture` and always keep an in-page fallback (`popover` / `dialog`).
+
+```javascript
+const pipWindow = await documentPictureInPicture.requestWindow({
+  width: 360,
+  height: 240,
+});
+pipWindow.document.body.append(panel);
+```
+
+#### 6.2.9 Declarative Shadow DOM
+
+SSR-friendly Web Components without client-side `attachShadow()` hydration just to show markup:
+
+```html
+<my-widget>
+  <template shadowrootmode="open">
+    <style>:host { display: block; }</style>
+    <slot></slot>
+  </template>
+  <p>Server-rendered light DOM content</p>
+</my-widget>
+```
+
+#### 6.2.10 Compression Streams API
+
+Native `gzip` / `deflate` over WHATWG Streams — **Baseline Widely Available (late 2025 track)**. Compress large JSON/binary payloads before upload or decompress downloads without third-party libs.
+
+```javascript
+const stream = new Blob([json]).stream().pipeThrough(new CompressionStream('gzip'));
+const body = await new Response(stream).arrayBuffer();
+```
+
+#### 6.2.11 `hidden="until-found"` & Find-in-Page Details
+
+**Baseline Newly available 2025 (Interop 2025):** content stays hidden until browser find-in-page or a text-fragment / fragment navigation matches it — then the UA reveals it. Closed `<details>` may also **auto-expand** when a match is inside.
+
+```html
+<section id="advanced" hidden="until-found">
+  <h2>Advanced options</h2>
+  <p>These fields appear when the user searches for them.</p>
+</section>
+
+<details>
+  <summary>Shipping policy</summary>
+  <p>…text findable via Ctrl/Cmd+F…</p>
+</details>
+```
+
+Style the content box with `::details-content`; style the disclosure marker with `summary::marker`.
+
+#### 6.2.12 DOM & Scroll Platform Helpers (2025–2026)
+
+```javascript
+// Move node without resetting media/focus/animation state
+parent.moveBefore(node, referenceChild);
+
+// Scroll only the nearest scrollport (avoid nested scroll chaining surprises)
+el.scrollIntoView({ container: 'nearest', block: 'nearest' });
+
+// Fire once when scrolling finishes — prefer over scroll + setTimeout debounce
+scroller.addEventListener('scrollend', () => syncChrome());
+
+// Gesture gate before clipboard / autoplay-style APIs
+if (navigator.userActivation?.isActive) {
+  await navigator.clipboard.writeText(url);
+}
+```
+
+Also track: **Event Timing API** (INP), **Trusted Types** (DOM XSS sinks), **ReportingObserver** (CSP/deprecations), **WebTransport**, **Navigation API**, module `{ type: 'module' }` workers including SharedWorker. Full support matrix: `04-modern-features-2026.md` §44.
+
+#### 6.2.13 HTML Sanitization APIs (safe parsing/insertion; limited availability)
+
+```javascript
+// Limited availability (Firefox 148+ first in Web Features snapshot) — feature-detect
+if (typeof Sanitizer === 'function' && Element.prototype.setHTML) {
+  el.setHTML(untrustedHTML, {
+    sanitizer: new Sanitizer({ elements: ['p', 'strong', 'a', 'em', 'ul', 'ol', 'li'] }),
+  });
+} else {
+  // Fallback: maintained sanitizer library or text-only rendering path
+}
+
+// ⚠️ Baseline 2025-09-15 but NEVER pass user HTML:
+// Document.parseHTMLUnsafe(), element.setHTMLUnsafe()
+```
+
+#### 6.2.14 `dialog.requestClose()` & `focusgroup`
+
+```javascript
+// Baseline newly available 2025-05-27 — fires cancelable `cancel` before close
+dialog.requestClose();
+```
+
+```html
+<!-- Chrome 150+ (recent stable delta) — declarative roving focus; PE keyboard handlers elsewhere -->
+<div focusgroup="toolbar wrap" role="toolbar" aria-label="Formatting">
+  <button type="button">Bold</button>
+  <button type="button">Italic</button>
+  <button type="button">Underline</button>
+</div>
+```
+
+#### 6.2.15 URLPattern, Navigation, Trusted Types (quick refs)
+
+```javascript
+const pattern = new URLPattern({ pathname: '/docs/:slug' });
+// Navigation API — Baseline newly available 2026-01-13
+navigation.addEventListener('navigate', (e) => {
+  if (e.canIntercept) e.intercept({ handler: () => render(e.destination.url) });
+});
+// Trusted Types — Baseline newly available 2026-02-24
+if (window.trustedTypes) {
+  const policy = trustedTypes.createPolicy('app', { createHTML: (s) => sanitize(s) });
+  el.innerHTML = policy.createHTML(untrusted);
+}
+```
+
+### 6.3 The Popover API — Native Overlays Without JS
+The Popover API provides a **declarative, JavaScript-free mechanism** for creating overlay UI — tooltips, dropdown menus, teaching tips, notification toasts, and action sheets. **Baseline Newly Available: January 2025** (Chrome 114+, Firefox 125+, Safari 17+, Edge 114+) — handles top-layer rendering, light-dismiss, and focus management without z-index wars.
+
+#### 6.3.1 Basic Popover (Declarative — Zero JS)
+
+```html
+<!-- The trigger button: popovertarget links to the popover's id -->
+<button popovertarget="my-popover" type="button">
+  Show Info
+</button>
+
+<!-- The popover content: hidden by default -->
+<div id="my-popover" popover>
+  <p>This overlay appears on top of all other content.</p>
+  <p>Click outside or press ESC to dismiss.</p>
+</div>
+
+<!--
+  Default popover behavior (popover="auto"):
+  - Appears on TOP layer (above all z-index — no stacking context issues)
+  - Light dismissal: click outside or press ESC closes it
+  - Only ONE auto popover can be open at a time (others close automatically)
+  - No backdrop, no focus trapping (unlike <dialog>)
+-->
+```
+
+#### 6.3.2 Popover Types
+
+| Attribute | Behavior |
+|-----------|----------|
+| `popover` or `popover="auto"` | Light dismissal (ESC / click outside); only one `auto` popover open at a time |
+| `popover="manual"` | Must be dismissed explicitly (via JS or button); multiple can coexist |
+| `popover="hint"` | Ephemeral tooltips/hints; does **not** auto-dismiss other `auto` popovers (Chrome 133+ expanding) |
+
+#### 6.3.3 Interest Invokers (`interestfor`) for Hints
+
+Declarative “show interest” targeting (hover / keyboard focus / long-press style patterns depending on UA) for `popover="hint"` tooltips — pairs with Anchor Positioning for placement.
+
+```html
+<button type="button"
+        interestfor="save-tip"
+        aria-describedby="save-tip">
+  Save
+</button>
+<div id="save-tip" popover="hint" role="tooltip">
+  Save draft (Ctrl+S)
+</div>
+```
+
+Prefer `interestfor` + `popover="hint"` over title-only tooltips when you need styled, accessible hint content. Still provide an accessible name/description path (`aria-describedby` or visible text).
+
+#### 6.3.4 Programmatic Control
+
+```javascript
+const pop = document.getElementById('my-popover');
+
+pop.showPopover();    // Open
+pop.hidePopover();    // Close
+pop.togglePopover();  // Toggle
+
+// Listen for open/close events
+pop.addEventListener('toggle', (e) => {
+  console.log(e.newState); // 'open' or 'closed'
+  console.log(e.oldState);
+});
+
+// beforetoggle: can be used to prevent opening
+pop.addEventListener('beforetoggle', (e) => {
+  if (someCondition) e.preventDefault(); // block the toggle
+});
+```
+
+#### 6.3.5 Popover Actions (Show / Hide / Toggle)
+
+```html
+<!-- Toggle button (default) -->
+<button popovertarget="menu" type="button">Toggle Menu</button>
+
+<!-- Explicit show-only button -->
+<button popovertarget="menu" popovertargetaction="show" type="button">
+  Open Menu
+</button>
+
+<!-- Explicit hide-only button (can be inside the popover) -->
+<div id="menu" popover>
+  <p>Menu content here</p>
+  <button popovertarget="menu" popovertargetaction="hide" type="button">
+    Close
+  </button>
+</div>
+```
+
+#### 6.3.6 Accessibility with Popovers
+
+**Critical:** The Popover API provides the top-layer rendering and light dismiss, but it does **not** automatically provide ARIA semantics. You must add accessibility manually:
+
+```html
+<!-- ✅ Popover as a menu — add proper ARIA -->
+<button popovertarget="action-menu"
+        aria-expanded="false"
+        aria-haspopup="menu"
+        type="button"
+        id="menu-btn">
+  Actions
+</button>
+<div id="action-menu" popover role="menu" aria-label="Actions">
+  <button role="menuitem" tabindex="-1">Edit</button>
+  <button role="menuitem" tabindex="-1">Duplicate</button>
+  <button role="menuitem" tabindex="-1">Delete</button>
+</div>
+
+<script>
+  // Update aria-expanded when popover toggles
+  const menu = document.getElementById('action-menu');
+  const btn = document.getElementById('menu-btn');
+  menu.addEventListener('toggle', (e) => {
+    btn.setAttribute('aria-expanded', e.newState === 'open');
+    if (e.newState === 'open') {
+      // Focus first menuitem
+      menu.querySelector('[role="menuitem"]').focus();
+    }
+  });
+</script>
+
+<!-- ✅ Popover as a tooltip (non-interactive) -->
+<button aria-describedby="tip" type="button">
+  Hover for info
+</button>
+<div id="tip" popover="hint" role="tooltip">
+  This feature requires a Pro subscription.
+</div>
+```
+
+#### 6.3.7 `<dialog>` vs. Popover — When to Use Which
+
+| Scenario | Use |
+|----------|-----|
+| Confirmation prompt requiring user decision | `<dialog>` with `showModal()` |
+| Alert / critical error requiring acknowledgment | `<dialog>` with `showModal()` |
+| Dropdown menu / action sheet | Popover API |
+| Tooltip / hint text | Popover API (`popover="hint"`) |
+| Non-blocking notification toast | Popover API (`popover="manual"`) |
+| Date picker (complex embedded widget) | `<dialog>` (non-modal) or Popover depending on complexity |
+| Cookie consent banner | Popover API (`popover="manual"`) — stays until explicitly dismissed |
+
+### 6.4 `<details>` & `<summary>` — Native Disclosure Widgets & Exclusive Accordions
+#### 6.4.1 Basic Disclosure Widget
+
+The `<details>` and `<summary>` elements create a native disclosure (expand/collapse) widget with zero JavaScript. Screen readers announce it as an interactive control, and keyboard users can toggle with Enter/Space.
+
+```html
+<!-- ✅ Native disclosure widget -->
+<details>
+  <summary>What is your refund policy?</summary>
+  <p>We offer a 30-day money-back guarantee on all purchases.
+     Contact support@example.com with your order number.</p>
+</details>
+
+<!-- ✅ Open by default -->
+<details open>
+  <summary>System Requirements</summary>
+  <ul>
+    <li>macOS 12+ or Windows 10+</li>
+    <li>4 GB RAM minimum</li>
+    <li>500 MB disk space</li>
+  </ul>
+</details>
+```
+
+#### 6.4.2 Exclusive Accordion (HTML `name` Attribute — 2024+)
+
+The `name` attribute on `<details>` elements creates **exclusive accordion behavior** — when one `<details>` with a given `name` opens, all others with the same `name` automatically close. **No JavaScript required.**
+
+**Browser support:** Chrome 120+, Safari 17.2+, Firefox 130+, Edge 120+.
+
+```html
+<!-- ✅ Exclusive accordion — only one panel open at a time -->
+<details name="faq">
+  <summary>How do I create an account?</summary>
+  <p>Click "Sign Up" in the top-right corner and follow the registration steps.</p>
+</details>
+
+<details name="faq">
+  <summary>Can I change my username?</summary>
+  <p>Yes, go to Settings → Profile → Edit Username. Changes take effect immediately.</p>
+</details>
+
+<details name="faq" open>
+  <summary>How do I cancel my subscription?</summary>
+  <p>Navigate to Settings → Billing → Cancel Subscription.
+     Your access continues until the end of the current billing period.</p>
+</details>
+
+<!-- All three share name="faq" — opening one closes the others -->
+```
+
+#### 6.4.3 Styling `<details>` & `<summary>`
+
+```css
+/* Custom disclosure icon */
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  list-style: none; /* Remove default triangle marker */
+}
+summary::-webkit-details-marker { display: none; } /* Safari */
+
+/* Custom marker with CSS */
+summary::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.2s ease;
+}
+details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+/* Animate content reveal (limited — height animation is complex) */
+details {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+/* Content area padding */
+details > :not(summary) {
+  padding: 0 1rem 1rem;
+}
+
+/* Focus styles for keyboard navigation */
+summary:focus-visible {
+  outline: 3px solid #4f8ef7;
+  outline-offset: 2px;
+}
+```
+
+#### 6.4.4 `<details>` for FAQ Structured Data
+
+`<details>` elements remain an excellent accessible disclosure pattern for FAQ content. `FAQPage` markup can still represent the content semantically, but **Google stopped showing FAQ rich results in June 2026**, so do not present the markup as a current rich-result guarantee:
+
+```html
+<section aria-labelledby="faq-heading">
+  <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+  <details name="faq">
+    <summary>What formats do you accept?</summary>
+    <p>We accept AVIF, WebP, PNG, and JPEG image formats.</p>
+  </details>
+
+  <details name="faq">
+    <summary>Do you offer a free trial?</summary>
+    <p>Yes, all plans include a 14-day free trial with full feature access.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What formats do you accept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We accept AVIF, WebP, PNG, and JPEG image formats."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer a free trial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all plans include a 14-day free trial with full feature access."
+      }
+    }
+  ]
+}
+</script>
+```
+
 ---
 
-## 8. SEO & `<head>` Complete Reference
+## 7. SEO, Search Features, Crawl Control, and Content Quality
 
-### 8.1 Essential Meta Tags
+### 7.1 SEO & `<head>` Complete Reference
+#### 7.1.1 Essential Meta Tags
 
 The `<head>` must be optimized for search crawlers, social sharing, and mobile rendering. Order matters: `<meta charset>` must appear within the first 1024 bytes of the document.
 
@@ -1086,7 +1785,7 @@ The `<head>` must be optimized for search crawlers, social sharing, and mobile r
 
 ---
 
-### 8.2 Open Graph Protocol
+#### 7.1.2 Open Graph Protocol
 
 Open Graph (OGP) is the dominant cross-platform metadata standard for social previews on Facebook, LinkedIn, WhatsApp, Slack, iMessage, and more.
 
@@ -1115,7 +1814,7 @@ Open Graph (OGP) is the dominant cross-platform metadata standard for social pre
 
 ---
 
-### 8.3 Twitter / X Cards
+#### 7.1.3 Twitter / X Cards
 
 ```html
 <meta name="twitter:card" content="summary_large_image">
@@ -1132,7 +1831,7 @@ Note: Twitter falls back to Open Graph tags if Twitter-specific tags are absent.
 
 ---
 
-### 8.4 Canonicalization & Robots Directives
+#### 7.1.4 Canonicalization & Robots Directives
 
 **Canonical URL** tells search engines which URL is the "representative" among duplicates (e.g., HTTP vs HTTPS, www vs non-www, trailing slash, URL parameters):
 
@@ -1161,7 +1860,7 @@ Note: Twitter falls back to Open Graph tags if Twitter-specific tags are absent.
 
 ---
 
-### 8.5 Hreflang for Internationalization
+#### 7.1.5 Hreflang for Internationalization
 
 `hreflang` helps search engines understand localized variations and serve the correct version to users based on language/region.
 
@@ -1182,7 +1881,7 @@ Note: Twitter falls back to Open Graph tags if Twitter-specific tags are absent.
 
 ---
 
-### 8.6 Favicons & PWA Manifest
+#### 7.1.6 Favicons & PWA Manifest
 
 ```html
 <!-- Favicon: modern approach -->
@@ -1200,24 +1899,277 @@ Note: Twitter falls back to Open Graph tags if Twitter-specific tags are absent.
 - `https://example.com/robots.txt`
 - `https://example.com/sitemap.xml`
 
+### 7.2 E-E-A-T — Content Quality Signals for SEO
+E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is Google's quality framework used by human quality raters and algorithmic signals to evaluate content credibility. As of 2025, E-E-A-T is **not** a direct ranking factor — it's a framework that influences how Google's algorithms assess content quality. However, aligning with E-E-A-T principles correlates strongly with higher rankings.
+
+#### 7.2.1 The Four Pillars
+
+| Pillar | Definition | How to Demonstrate |
+|--------|-----------|-------------------|
+| **Experience** (added 2022) | First-hand, real-world experience with the topic | Include personal case studies, original photography, video demonstrations, real results/data, "I tested this" narratives |
+| **Expertise** | Knowledge and skill in the subject area | Author bios with credentials, certifications, professional profiles (LinkedIn), detailed technical explanations |
+| **Authoritativeness** | Recognition as a go-to source in the field | Backlinks from authoritative sites, industry mentions, media coverage, organizational credentials, awards |
+| **Trustworthiness** | Accuracy, transparency, and reliability | HTTPS, clear contact info, privacy policy, editorial guidelines, fact-checking, citations, disclosure of affiliations |
+
+#### 7.2.2 YMYL (Your Money or Your Life)
+
+E-E-A-T is particularly critical for **YMYL** (Your Money or Your Life) topics — content that could impact a person's health, financial stability, safety, or well-being. Examples:
+- Medical/health information
+- Financial advice (investing, taxes, loans)
+- Legal information
+- News and current events
+- Shopping/e-commerce (transactions)
+- Government/civic information
+
+YMYL pages are held to the **highest E-E-A-T standards**. Low E-E-A-T on a YMYL page can result in severe ranking penalties.
+
+#### 7.2.3 Technical Implementation for E-E-A-T
+
+```html
+<!-- ✅ Author information in HTML (structured for both users and crawlers) -->
+<article>
+  <header>
+    <h1>Complete Guide to Core Web Vitals in 2026</h1>
+    <div class="byline">
+      <img src="/authors/jane-smith.jpg" alt="Jane Smith" width="48" height="48">
+      <div>
+        <a href="/authors/jane-smith/" rel="author">Jane Smith</a>
+        <p>Senior Web Performance Engineer · 12 years experience ·
+           <a href="https://www.linkedin.com/in/janesmith" rel="noopener">LinkedIn</a></p>
+      </div>
+      <time datetime="2026-01-15">January 15, 2026</time>
+      <span>Last updated: <time datetime="2026-02-28">February 28, 2026</time></span>
+    </div>
+  </header>
+
+  <!-- Article content with citations -->
+  <p>According to the
+    <a href="https://web.dev/articles/vitals" rel="noopener">web.dev documentation</a>,
+    LCP measures...</p>
+
+  <!-- Reviewer / fact-checker (enhanced E-E-A-T signal) -->
+  <footer>
+    <p>Reviewed by <a href="/authors/dr-web/">Dr. Web Expert</a>,
+       PhD in Computer Science, Google Developer Expert.</p>
+    <p>Editorial policy: <a href="/editorial-policy/">Our editorial standards</a></p>
+  </footer>
+</article>
+```
+
+#### 7.2.4 JSON-LD for E-E-A-T (Author & Organization Schema)
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Complete Guide to Core Web Vitals in 2026",
+  "datePublished": "2026-01-15",
+  "dateModified": "2026-02-28",
+  "author": {
+    "@type": "Person",
+    "name": "Jane Smith",
+    "url": "https://example.com/authors/jane-smith/",
+    "jobTitle": "Senior Web Performance Engineer",
+    "sameAs": [
+      "https://www.linkedin.com/in/janesmith",
+      "https://twitter.com/janesmith",
+      "https://github.com/janesmith"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "WebTeam",
+      "url": "https://example.com/"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "WebTeam",
+    "url": "https://example.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/logo.svg"
+    }
+  },
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Dr. Web Expert",
+    "credential": "PhD in Computer Science"
+  }
+}
+</script>
+```
+
+### 7.3 AI Overviews, AI Mode, and Search Features — Impact on SEO Strategy
+Google's AI-generated search features (formerly Search Generative Experience / AI Mode) directly answer user queries at the top of search results using automatically generated summaries, fundamentally changing SEO dynamics as of 2025–2026.
+
+#### 7.3.1 How AI-generated search features Change SEO
+
+| Traditional Search | AI-generated search features Era |
+|-------------------|------------------|
+| Users click blue links to find answers | Search generates a direct answer; may not click through at all |
+| Position 1 gets ~30% of clicks | Search Overview occupies top real estate; organic results pushed below |
+| Keyword matching drives visibility | Semantic understanding and content quality drive citation |
+| Volume of content matters | Depth, authority, and uniqueness matter more |
+
+#### 7.3.2 Optimizing for AI-generated search features
+
+**Content structure strategies:**
+1. **Direct Q&A format** — use clear headings that match user queries, with concise answers immediately following
+2. **Structured data** — JSON-LD helps search systems understand and parse content as machine-readable trust signals
+3. **First-hand experience** — search systems prefer original research, case studies, and unique data over rehashed content
+4. **Concise, scannable formatting** — bulleted lists, tables, definition lists, and numbered steps are more likely to be cited
+5. **Accurate structured data** — use currently supported types that match visible content; structured data can aid machine understanding but does not guarantee inclusion in AI-generated search features
+
+**Technical optimizations:**
+
+```html
+<!-- ✅ Content structured for search citation -->
+<article>
+  <h2>What is Interaction to Next Paint (INP)?</h2>
+  <!-- Direct answer in first paragraph — search engines prefer frontloaded answers -->
+  <p><strong>INP (Interaction to Next Paint)</strong> measures the worst-case
+     latency of all user interactions on a page. A good INP score is
+     <strong>200 milliseconds or less</strong>. It replaced FID as a
+     Core Web Vital in March 2024.</p>
+
+  <!-- Followed by deeper detail for users who want more -->
+  <h3>How INP Is Calculated</h3>
+  <p>INP reports the 95th percentile interaction duration across all
+     clicks, taps, and keyboard inputs during a page visit...</p>
+</article>
+```
+
+#### 7.3.3 Content Freshness
+
+Content freshness is now a significant ranking signal, especially for:
+- Technology topics (frameworks, APIs, browser support)
+- News and current events
+- Regulatory/legal information
+- Product reviews and comparisons
+
+**Best practices:**
+- Display clear `datePublished` and `dateModified` metadata (both visible and in JSON-LD)
+- Regularly audit and update existing content with current information
+- Remove or redirect genuinely outdated content that could mislead readers
+- Never fake `dateModified` without making real content changes — Google can detect this
+
+### 7.4 XML Sitemap Best Practices & IndexNow Protocol
+#### 7.4.1 XML Sitemap Requirements
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>    <!-- Advisory; Google largely ignores -->
+    <priority>1.0</priority>           <!-- Advisory; Google largely ignores -->
+  </url>
+  <url>
+    <loc>https://example.com/products/</loc>
+    <lastmod>2026-02-28</lastmod>
+  </url>
+</urlset>
+```
+
+**Rules:**
+- Include **only canonical, indexable URLs** (return 200, not blocked by robots.txt, not `noindex`)
+- Maximum **50,000 URLs** per sitemap file, maximum **50 MB** uncompressed
+- Use a **sitemap index file** for larger sites (references multiple sub-sitemaps)
+- `<lastmod>` must be accurate — update ONLY when content meaningfully changes
+- Declare sitemap in `robots.txt`: `Sitemap: https://example.com/sitemap.xml`
+- Submit to Google Search Console and Bing Webmaster Tools
+- `<changefreq>` and `<priority>` are effectively ignored by Google — include them only for other search engines
+
+#### 7.4.2 Sitemap Index File (Large Sites)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://example.com/sitemap-pages.xml</loc>
+    <lastmod>2026-03-01</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://example.com/sitemap-products.xml</loc>
+    <lastmod>2026-02-28</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://example.com/sitemap-blog.xml</loc>
+    <lastmod>2026-02-25</lastmod>
+  </sitemap>
+</sitemapindex>
+```
+
+#### 7.4.3 `robots.txt` Best Practices
+
+```
+# /robots.txt
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /tmp/
+Disallow: /search?          # Internal search results pages
+Disallow: /*?sort=           # Parameterized duplicate pages
+Disallow: /*?filter=         # Parameterized duplicate pages
+
+# Allow critical resources for rendering
+Allow: /styles/
+Allow: /js/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://example.com/sitemap.xml
+
+# Crawl-delay (respected by Bing, Yandex; ignored by Google)
+User-agent: Bingbot
+Crawl-delay: 5
+```
+
+**Notes:**
+- `robots.txt` blocks crawling, NOT indexing. A page can still appear in search results if linked from elsewhere. Use `<meta name="robots" content="noindex">` to prevent indexing.
+- Never block CSS/JS files in `robots.txt` — Google needs them to render and understand page layout.
+
+#### 7.4.4 IndexNow Protocol
+
+IndexNow is an open-source protocol that allows instant notification to search engines when content changes — a "push" model vs. the traditional "pull" crawling model.
+
+| Feature | IndexNow | Traditional Crawling |
+|---------|----------|---------------------|
+| Discovery speed | Near-instant (seconds to minutes) | Hours to weeks |
+| Server load | Reduced (fewer unnecessary crawls) | Higher (crawlers revisit on schedule) |
+| Supported engines | Bing, Yandex, Seznam, Naver | All (including Google) |
+| **Google participation** | **No — Google does not support IndexNow** | Yes |
+
+**Best practice 2026:** Use **both** XML sitemaps (for Google and universal coverage) **and** IndexNow (for instant indexing on Bing/Yandex). They are complementary, not alternatives.
+
+**Implementation:**
+
+```bash
+# Submit a URL change via IndexNow API
+curl "https://api.indexnow.org/indexnow?url=https://example.com/blog/new-post/&key=YOUR_API_KEY"
+```
+
 ---
 
-## 9. JSON-LD Structured Data
+## 8. Structured Data and JSON-LD
 
-### 9.1 Why JSON-LD
+### 8.1 JSON-LD Structured Data
+#### 8.1.1 Why JSON-LD
 
 Google supports three formats for structured data: JSON-LD (preferred), Microdata, and RDFa. **JSON-LD is Google's recommended format** because:
 - It lives in a `<script>` block, separate from the visual HTML — easier to maintain
 - Does not require modifying the DOM structure
 - Can be injected server-side without touching templates
 
-JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in search (star ratings, FAQ accordions, recipe cards, event information, breadcrumb trails, product prices). Rich results consistently yield **25–82% higher click-through rates** than plain blue links.
+JSON-LD commonly uses the **Schema.org vocabulary** and can make pages eligible for supported search features such as product, article, breadcrumb, event, recipe, and video enhancements. Eligibility never guarantees display, and unsupported Schema.org types may still help data interoperability without producing a Google rich result. Avoid universal click-through-rate claims unless they come from controlled data for the specific site and feature.
 
 **Validate all structured data** using: [Rich Results Test](https://search.google.com/test/rich-results) and [Schema.org Validator](https://validator.schema.org/).
 
 ---
 
-### 9.2 Organization
+#### 8.1.2 Organization
 
 ```html
 <script type="application/ld+json">
@@ -1250,7 +2202,7 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 
 ---
 
-### 9.3 Article / NewsArticle
+#### 8.1.3 Article / NewsArticle
 
 ```html
 <script type="application/ld+json">
@@ -1285,7 +2237,7 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 
 ---
 
-### 9.4 BreadcrumbList
+#### 8.1.4 BreadcrumbList
 
 ```html
 <script type="application/ld+json">
@@ -1318,7 +2270,7 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 
 ---
 
-### 9.5 FAQPage
+#### 8.1.5 FAQPage — semantic use; Google rich result retired in 2026
 
 ```html
 <script type="application/ld+json">
@@ -1349,7 +2301,7 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 
 ---
 
-### 9.6 Product with AggregateRating
+#### 8.1.6 Product with AggregateRating
 
 ```html
 <script type="application/ld+json">
@@ -1389,7 +2341,7 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 
 ---
 
-### 9.7 LocalBusiness
+#### 8.1.7 LocalBusiness
 
 ```html
 <script type="application/ld+json">
@@ -1427,7 +2379,7 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 
 ---
 
-### 9.8 WebPage
+#### 8.1.8 WebPage
 
 ```html
 <script type="application/ld+json">
@@ -1445,11 +2397,144 @@ JSON-LD uses the **Schema.org vocabulary** and enables **Rich Results** in searc
 </script>
 ```
 
+### 8.2 Additional Structured Data Types
+#### 8.2.1 HowTo Schema — Schema.org vocabulary; verify current search support
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Optimize Images for Core Web Vitals",
+  "description": "Step-by-step guide to converting images to AVIF/WebP and implementing responsive loading.",
+  "totalTime": "PT15M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "0"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Audit Current Images",
+      "text": "Run Lighthouse and identify images that are not in modern formats or are oversized.",
+      "url": "https://example.com/guide/#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Convert to AVIF and WebP",
+      "text": "Use Squoosh or Sharp to convert all images to AVIF (primary) and WebP (fallback).",
+      "url": "https://example.com/guide/#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Implement <picture> Fallbacks",
+      "text": "Wrap each image in a <picture> element with <source> tags for AVIF and WebP, with the original format as the <img> fallback.",
+      "url": "https://example.com/guide/#step3"
+    }
+  ]
+}
+</script>
+```
+
+#### 8.2.2 Event Schema
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "WebPerf Summit 2026",
+  "description": "Annual conference on web performance optimization.",
+  "startDate": "2026-06-15T09:00:00+05:30",
+  "endDate": "2026-06-17T18:00:00+05:30",
+  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": [
+    {
+      "@type": "Place",
+      "name": "GMDC Convention Centre",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "SG Highway",
+        "addressLocality": "Ahmedabad",
+        "addressRegion": "Gujarat",
+        "postalCode": "380015",
+        "addressCountry": "IN"
+      }
+    },
+    {
+      "@type": "VirtualLocation",
+      "url": "https://example.com/events/webperf-2026/livestream"
+    }
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "WebTeam",
+    "url": "https://example.com/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR",
+    "url": "https://example.com/events/webperf-2026/register",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01"
+  },
+  "image": "https://example.com/events/webperf-2026-banner.jpg"
+}
+</script>
+```
+
+#### 8.2.3 VideoObject Schema
+
+For pages with embedded videos — enables video rich results and video carousels in Google search:
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "How to Pass Core Web Vitals — Complete Guide",
+  "description": "Step-by-step tutorial on optimizing LCP, INP, and CLS for Google search rankings.",
+  "thumbnailUrl": "https://example.com/videos/cwv-guide-thumbnail.jpg",
+  "uploadDate": "2026-02-01",
+  "duration": "PT12M30S",
+  "contentUrl": "https://example.com/videos/cwv-guide.mp4",
+  "embedUrl": "https://www.youtube.com/embed/abc123"
+}
+</script>
+```
+
+#### 8.2.4 SiteNavigationElement Schema
+
+Helps search engines understand your site's primary navigation structure:
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": "Main Navigation",
+  "url": [
+    "https://example.com/",
+    "https://example.com/products/",
+    "https://example.com/blog/",
+    "https://example.com/about/",
+    "https://example.com/contact/"
+  ]
+}
+</script>
+```
+
 ---
 
-## 10. CSS — Obsolete Patterns & Modern Replacements
+## 9. CSS Modernization and Accessible Styling
 
-### 10.1 Layout Evolution (Float → Flexbox → Grid)
+### 9.1 Layout Evolution (Float → Flexbox → Grid)
 
 CSS floats (and the associated clearfix hacks) were the dominant layout mechanism from ~2003–2015. They are replaced by purpose-built layout modules. **Float is not "deprecated" — it remains valid for floating text around images — but it must never be used for page layout.**
 
@@ -1516,7 +2601,7 @@ CSS floats (and the associated clearfix hacks) were the dominant layout mechanis
 
 ---
 
-### 10.2 Vendor Prefixes
+### 9.2 Vendor Prefixes
 
 Vendor prefixes (`-webkit-`, `-moz-`, `-ms-`, `-o-`) were used during the experimental phase of CSS features. Most modern browsers no longer require them for standard properties, but **some legacy prefixes remain relevant** while others are long obsolete.
 
@@ -1546,7 +2631,7 @@ Vendor prefixes (`-webkit-`, `-moz-`, `-ms-`, `-o-`) were used during the experi
 
 ---
 
-### 10.3 CSS-in-JS Runtime vs. Zero-Runtime
+### 9.3 CSS-in-JS Runtime vs. Zero-Runtime
 
 **Runtime CSS-in-JS** (styled-components, Emotion in standard mode):
 - Injects styles into DOM at runtime using JavaScript
@@ -1566,7 +2651,7 @@ Vendor prefixes (`-webkit-`, `-moz-`, `-ms-`, `-o-`) were used during the experi
 
 ---
 
-### 10.4 Modern CSS Selectors & Features
+### 9.4 Modern CSS Selectors & Features
 
 ```css
 /* :is() — matches elements against a selector list (reduces repetition) */
@@ -1646,7 +2731,7 @@ body {
 
 ---
 
-### 10.5 CSS Accessibility Best Practices
+### 9.5 CSS Accessibility Best Practices
 
 ```css
 /* Focus indicators — visible for keyboard users, hidden for mouse */
@@ -1700,7 +2785,7 @@ h1   { font-size: 2rem; }
 
 ---
 
-### 10.6 Media Queries — Modern Discrete Features
+### 9.6 Media Queries — Modern Discrete Features
 
 ```css
 /* Color scheme */
@@ -1737,7 +2822,7 @@ h1   { font-size: 2rem; }
 
 ---
 
-### 10.7 CSS Stability Levels
+### 9.7 CSS Stability Levels
 
 Understanding W3C status helps gauge how confidently features can be used:
 
@@ -1752,9 +2837,9 @@ Understanding W3C status helps gauge how confidently features can be used:
 
 ---
 
-## 11. JavaScript — Deprecated Patterns & Modern Replacements
+## 10. JavaScript Modernization and Main-Thread Health
 
-### 11.1 Deprecated Global Functions & APIs
+### 10.1 Deprecated Global Functions & APIs
 
 | Deprecated | Modern Replacement | Reason |
 |-----------|-------------------|--------|
@@ -1773,7 +2858,7 @@ Understanding W3C status helps gauge how confidently features can be used:
 
 ---
 
-### 11.2 Asynchronous Patterns
+### 10.2 Asynchronous Patterns
 
 **Evolution:** Callbacks → Promises → async/await
 
@@ -1835,7 +2920,7 @@ try {
 
 ---
 
-### 11.3 Memory Management — WeakRef & FinalizationRegistry
+### 10.3 Memory Management — WeakRef & FinalizationRegistry
 
 Classic closures and event listeners can prevent garbage collection. ES2021 introduced `WeakRef` and `FinalizationRegistry` for memory-conscious referencing.
 
@@ -1870,9 +2955,9 @@ target = null; // When GC collects original target, registry callback fires
 
 ---
 
-### 11.4 The Temporal API
+### 10.4 The Temporal API
 
-The `Date` object is notorious for its design flaws: it uses 0-indexed months, mutates in place, has no timezone support, and its parsing behavior is inconsistent across browsers. The **Temporal API** (TC39 Stage 3, shipping in browsers) provides a complete, immutable replacement.
+The legacy `Date` API has well-known ergonomic limitations: numeric constructors use zero-indexed months, instances are mutable, and timezone-aware calendar arithmetic is difficult. **Temporal reached TC39 Stage 4 on 21 May 2026** and is expected to enter the next applicable ECMAScript edition. Browser availability remains uneven, so feature-detect `globalThis.Temporal` and use a maintained polyfill when your supported environments do not provide it.
 
 ```javascript
 // ❌ OLD: JavaScript Date — infamous problems
@@ -1907,7 +2992,7 @@ const tomorrow = today.add({ days: 1 }); // today is unchanged
 
 ---
 
-### 11.5 Keyboard & DOM Events
+### 10.5 Keyboard & DOM Events
 
 ```javascript
 // ❌ DEPRECATED: keyCode and which
@@ -1961,7 +3046,7 @@ controller.abort();
 
 ---
 
-### 11.6 Code Splitting & Dynamic Import
+### 10.6 Code Splitting & Dynamic Import
 
 ```javascript
 // Static import (always loaded, at module parse time)
@@ -1995,7 +3080,7 @@ if ('showPicker' in HTMLInputElement.prototype) {
 
 ---
 
-### 11.7 Web Workers & Main Thread Relief
+### 10.7 Web Workers & Main Thread Relief
 
 Web Workers run JavaScript in a background thread, completely separate from the main thread, enabling heavy computation without blocking the UI.
 
@@ -2033,7 +3118,7 @@ worker.postMessage({ buffer }, [buffer]); // Transfer ownership, not copy
 
 ---
 
-### 11.8 Scheduler API & INP Optimization
+### 10.8 Scheduler API & INP Optimization
 
 Long tasks (>50ms) block the main thread and cause high INP. Break them up:
 
@@ -2073,23 +3158,25 @@ requestAnimationFrame(animateFrame);
 
 ---
 
-## 12. Media Optimization — Images
+## 11. Images, Responsive Media, Video, and Codecs
 
-### 12.1 Format Hierarchy 2026
+### 11.1 Media Optimization — Images
+#### 11.1.1 Format Hierarchy 2026
 
 Image format selection is one of the highest-impact performance decisions. The hierarchy is driven by compression efficiency (smaller bytes = faster load = better LCP), breadth of browser support, and HDR/wide-gamut capabilities.
 
 | Format | Compression Type | Typical Size vs. JPEG | Browser Support | Best For | Encoder |
 |--------|-----------------|----------------------|----------------|---------|---------|
 | **AVIF** | AV1 (lossy + lossless) | **40–60% smaller** than JPEG for equivalent quality | Chrome 85+, Firefox 93+, Safari 16+, Edge 121+ | Hero images, product photos, portraits — any high-quality image | Squoosh, ImageMagick 7.1+, libavif, sharp (Node), Cloudinary |
-| **WebP** | Hybrid (lossy + lossless) | **25–40% smaller** than JPEG | All modern browsers; IE11 excluded | All images where AVIF isn't supported; good universal fallback | cwebp CLI, Squoosh, ImageMagick, Cloudinary |
-| **JPEG XL** | Advanced lossless/lossy | **Up to 60% smaller** vs. JPEG; better than AVIF in some cases | Chrome paused support in 2022 (re-evaluating); Firefox 90+ (flag) | Future-proof; not yet production-ready for broad support | libjxl, Squoosh |
+| **WebP** | Hybrid (lossy + lossless) | **25–40% smaller** than JPEG | Broad current-browser support; absent in IE11 | All images where AVIF isn't supported; good universal fallback | cwebp CLI, Squoosh, ImageMagick, Cloudinary |
+| **JPEG XL** | Advanced lossless/lossy | Can substantially outperform legacy JPEG for some workloads | Limited and changing browser availability; do not use as the only source format | Experimental/progressive enhancement where your delivery stack and audience support it | libjxl and compatible encoders |
 | **SVG** | Vector (XML) | N/A — vector, infinitely scalable | Universal | Logos, icons, illustrations, diagrams, charts — anything that needs to scale |  |
 | **PNG** | Lossless | Larger than JPEG/AVIF | Universal | Transparency, UI screenshots, pixel-accurate graphics |  |
 | **JPEG/JPG** | Lossy DCT | Baseline | Universal | **Fallback only** — always serve AVIF/WebP first |  |
 | **GIF** | Lossless (but palette-limited) | Much larger than WebM video for animation | Universal | **Deprecated for animations** — replace with `<video autoplay muted loop>` |  |
 
 **Decision flowchart:**
+
 ```
 Does the image have animation? → YES → Replace with <video> (see §12.5)
                                → NO  → Does it need transparency and is complex/photographic?
@@ -2106,7 +3193,7 @@ Does the image have animation? → YES → Replace with <video> (see §12.5)
 
 ---
 
-### 12.2 The `<picture>` Element — Format Fallbacks & Art Direction
+#### 11.1.2 The `<picture>` Element — Format Fallbacks & Art Direction
 
 The `<picture>` element is the native HTML mechanism for:
 1. **Format fallbacks** — offer AVIF first, WebP second, JPEG as universal fallback
@@ -2158,22 +3245,26 @@ The `<picture>` element is the native HTML mechanism for:
 
 ---
 
-### 12.3 `srcset` & `sizes` Explained
+#### 11.1.3 `srcset` & `sizes` Explained
 
 **`srcset`** — tells the browser about the image candidates and their widths (in pixels):
+
 ```html
 srcset="image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w"
 ```
+
 - `400w` = this source is 400 CSS pixels wide when displayed at 1x
 - `1x`, `2x`, `3x` (pixel density descriptors) — use for fixed-size images like logos/icons; use `w` descriptors for responsive images
 
 **`sizes`** — tells the browser **how wide the image will be displayed** at different viewport widths (so it can choose the correct `srcset` candidate before downloading):
+
 ```html
 sizes="(max-width: 480px) 100vw,
        (max-width: 768px) 80vw,
        (min-width: 1200px) 600px,
        50vw"
 ```
+
 - Conditions are evaluated left-to-right; first matching condition wins
 - The last value is the default (no media condition)
 - Units allowed: `vw`, `px`, `em`, `calc()`; percentage (`%`) is **not** allowed
@@ -2201,9 +3292,9 @@ sizes="(max-width: 480px) 100vw,
 
 ---
 
-### 12.4 Critical Image Attributes
+#### 11.1.4 Critical Image Attributes
 
-Every `<img>` element must have ALL of the following:
+Use the following as a **strong image-authoring baseline**. `src` and `alt` are fundamental; intrinsic `width`/`height` are strongly recommended for layout stability; loading, decoding, and priority hints depend on context:
 
 | Attribute | Required? | Value | Purpose |
 |-----------|-----------|-------|---------|
@@ -2212,7 +3303,7 @@ Every `<img>` element must have ALL of the following:
 | `width` | Always (for web images) | Integer CSS pixels | Prevents CLS; browser reserves space before image loads |
 | `height` | Always (for web images) | Integer CSS pixels | Used with `width` to calculate `aspect-ratio` intrinsically |
 | `loading` | On all below-fold images | `lazy` / `eager` (default) | LCP: `eager`; all below-fold: `lazy` |
-| `decoding` | Always | `async` (recommended) / `sync` / `auto` | `async` decodes image off main thread, preventing jank |
+| `decoding` | Optional hint | `async` / `sync` / `auto` | `async` asks the browser to avoid delaying other presentation work for decoding; exact threading and scheduling are implementation details |
 | `fetchpriority` | On LCP/hero image only | `high` / `low` / `auto` | Signals priority to browser's preload scanner |
 
 **`alt` attribute rules:**
@@ -2259,6 +3350,7 @@ Every `<img>` element must have ALL of the following:
 ```
 
 **Responsive images with intrinsic aspect ratios (CSS):**
+
 ```css
 /* Modern approach: let browser use native aspect-ratio from width/height attrs */
 img {
@@ -2276,7 +3368,7 @@ img {
 
 ---
 
-### 12.5 GIF Replacement with Video
+#### 11.1.5 GIF Replacement with Video
 
 Animated GIFs are massive, non-accessible, and visually poor:
 - A 5-second animation: GIF ≈ 1.5MB vs. WebM ≈ 150–250KB (80–90% smaller)
@@ -2315,6 +3407,7 @@ Animated GIFs are massive, non-accessible, and visually poor:
 - `aria-hidden="true"` — if purely decorative
 
 **`prefers-reduced-motion` with video:**
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   video[autoplay] {
@@ -2322,6 +3415,7 @@ Animated GIFs are massive, non-accessible, and visually poor:
   }
 }
 ```
+
 ```javascript
 // Pause autoplay videos for users who prefer reduced motion
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -2335,15 +3429,12 @@ reduceMotion.addEventListener('change', (e) => {
 });
 ```
 
----
-
-## 13. Video Codecs & Containers
-
-### 13.1 Codec Comparison Table
+### 11.2 Video Codecs & Containers
+#### 11.2.1 Codec Comparison Table
 
 | Codec | Container | vs. H.264 | Browser Support | Use Case |
 |-------|-----------|-----------|----------------|---------|
-| **H.264 (AVC)** | MP4 | Baseline | Universal (all browsers, all devices) | **Always include as final fallback** — guaranteed compatibility |
+| **H.264 (AVC)** | MP4 | Baseline | Very broad browser/device support, subject to platform codec availability | Common final fallback; still test target platforms |
 | **H.265 (HEVC)** | MP4 | ~40–50% smaller | Safari 11+, Edge partial, Chrome limited | 4K/HDR Apple ecosystem content; NOT royalty-free |
 | **VP9** | WebM | ~30–50% smaller | Chrome, Firefox, Edge, limited Safari | YouTube standard; good open-source option; no royalties |
 | **AV1** | WebM or MP4 | ~50% smaller | Chrome 85+, Firefox 93+, Edge 121+; hardware decode growing | Best compression; royalty-free; future-proof; **slow to encode** |
@@ -2374,7 +3465,7 @@ reduceMotion.addEventListener('change', (e) => {
 </video>
 ```
 
-### 13.2 Video Performance Best Practices
+#### 11.2.2 Video Performance Best Practices
 
 | Attribute | Value | Effect |
 |-----------|-------|--------|
@@ -2387,7 +3478,7 @@ reduceMotion.addEventListener('change', (e) => {
 | `playsinline` | Boolean | Required for iOS Safari to allow inline (non-fullscreen) playback |
 | `disablepictureinpicture` | Boolean | Hides PiP button (use only when legally or UX-required) |
 
-### 13.3 Accessibility for Videos
+#### 11.2.3 Accessibility for Videos
 
 - **Captions/Subtitles:** Required (WCAG SC 1.2.2) for all prerecorded video with audio — use `<track kind="captions">` or third-party caption solutions
 - **Audio descriptions:** Required (WCAG SC 1.2.5) if video conveys information not in the audio track
@@ -2426,6 +3517,7 @@ reduceMotion.addEventListener('change', (e) => {
 ```
 
 **WebVTT (`.vtt`) caption file format:**
+
 ```
 WEBVTT
 
@@ -2438,11 +3530,12 @@ Today we'll explore the three key features of our dashboard.
 
 ---
 
-## 14. Resource Hints & Critical Path
+## 12. Critical Rendering Path, Resource Hints, Scripts, and Fonts
 
-### 14.1 The Critical Rendering Path
+### 12.1 The Critical Rendering Path
 
 The browser follows this sequence before pixels are displayed:
+
 ```
 Fetch HTML → Parse HTML → Discover Resources → Fetch CSS/JS
 → Parse CSS (build CSSOM) → Execute blocking JS
@@ -2463,7 +3556,7 @@ Any **render-blocking resource** delays this pipeline. Every millisecond of dela
 
 ---
 
-### 14.2 Resource Hints Reference Table
+### 12.2 Resource Hints Reference Table
 
 Resource hints allow the browser to make early connections or downloads for resources it would otherwise discover late.
 
@@ -2515,7 +3608,7 @@ Resource hints allow the browser to make early connections or downloads for reso
   <link rel="prefetch" href="/products" as="document">
 </head>
 
-<!-- Speculation Rules API (Chrome 108+) for declarative prerendering -->
+<!-- Speculation Rules API — declarative prefetch/prerender (MPA “instant nav”) -->
 <script type="speculationrules">
 {
   "prerender": [
@@ -2531,7 +3624,8 @@ Resource hints allow the browser to make early connections or downloads for reso
       "where": {
         "and": [
           { "href_matches": "/*" },
-          { "not": { "href_matches": "/admin/*" } }
+          { "not": { "href_matches": "/admin/*" } },
+          { "not": { "href_matches": "/logout" } }
         ]
       },
       "eagerness": "conservative"
@@ -2541,9 +3635,16 @@ Resource hints allow the browser to make early connections or downloads for reso
 </script>
 ```
 
+**Speculation Rules tips (2025–2026):**
+- Prefer `prefetch` broadly; reserve `prerender` for high-confidence next steps (e.g. multi-step checkout).
+- Never speculate navigations that mutate state (logout, one-click purchase).
+- `eagerness`: `conservative` | `moderate` | `eager` | `immediate` — start conservative on mobile/`Save-Data`.
+- Pair with **View Transitions** (cross-document) for SPA-like MPA feel.
+- CMS note: WordPress 6.8+ and similar stacks may emit rules automatically — audit for unsafe URLs.
+
 ---
 
-### 14.3 Script Loading Strategies
+### 12.3 Script Loading Strategies
 
 ```html
 <!-- ❌ WORST: Synchronous script in <head> — parser-blocking + render-blocking -->
@@ -2595,7 +3696,7 @@ Resource hints allow the browser to make early connections or downloads for reso
 
 ---
 
-### 14.4 Critical CSS & Font Optimization
+### 12.4 Critical CSS & Font Optimization
 
 **Font performance:**
 
@@ -2643,7 +3744,7 @@ Resource hints allow the browser to make early connections or downloads for reso
 
 ---
 
-### 14.5 Priority Hints — `fetchpriority`
+### 12.5 Priority Hints — `fetchpriority`
 
 The `fetchpriority` attribute gives the browser explicit signals about resource importance, overriding its heuristic-based priority queuing.
 
@@ -2674,11 +3775,12 @@ fetch('/api/recommendations', { priority: 'low' });
 
 ---
 
-## 15. Observer APIs
+## 13. Observer APIs and Emerging Web Platform Features
 
+### 13.1 Observer APIs
 The Observer APIs replace inefficient legacy patterns (polling, scroll/resize event listeners) with efficient, callback-driven, browser-native mechanisms that fire asynchronously off the main thread (where possible).
 
-### 15.1 IntersectionObserver
+#### 13.1.1 IntersectionObserver
 
 **Replaces:** `scroll` event listeners with `getBoundingClientRect()` polling (catastrophically expensive — called 60 times/second, forces layout/reflow on every call).
 
@@ -2761,7 +3863,7 @@ document.querySelectorAll('[data-lazy-component]').forEach(el => {
 
 ---
 
-### 15.2 ResizeObserver
+#### 13.1.2 ResizeObserver
 
 **Replaces:** `window.resize` event listeners (which fire for every viewport resize, not per-element, and require manual element-size calculation).
 
@@ -2816,7 +3918,7 @@ canvasObserver.observe(canvas, { box: 'device-pixel-content-box' });
 
 ---
 
-### 15.3 MutationObserver
+#### 13.1.3 MutationObserver
 
 **Replaces:** Deprecated `DOMSubtreeModified`, `DOMNodeInserted`, `DOMNodeRemoved` events (synchronous — caused severe performance bottlenecks); `setInterval` polling for DOM changes.
 
@@ -2861,7 +3963,7 @@ const pending = mo.takeRecords(); // Flush any queued-but-undelivered mutations
 
 ---
 
-### 15.4 PerformanceObserver
+#### 13.1.4 PerformanceObserver
 
 **Purpose:** Measure real-user performance metrics programmatically — enables Real User Monitoring (RUM). Lab tools (Lighthouse) measure simulated environments; `PerformanceObserver` captures what real users experience.
 
@@ -2956,11 +4058,308 @@ new PerformanceObserver(list => {
 }).observe({ entryTypes: ['mark', 'measure'] });
 ```
 
+### 13.2 Emerging Web Platform APIs (2025–2026)
+#### 13.2.1 View Transitions API
+
+The View Transitions API provides native, hardware-accelerated animated transitions between UI states (within a page) or between pages (cross-document). It replaces the need for complex JS animation libraries for page transitions.
+
+**Same-document transitions (SPA):** Baseline Newly Available 2025 (Chrome 111+, Safari 18+, Firefox 144+).
+
+```javascript
+// Same-document view transition (SPA-style)
+document.querySelector('#nav-link').addEventListener('click', async () => {
+  // Check for browser support
+  if (!document.startViewTransition) {
+    // Fallback: just update the DOM directly
+    updateContent();
+    return;
+  }
+
+  // Start the transition — browser snapshots old state → new state
+  const transition = document.startViewTransition(() => {
+    updateContent(); // Your function to swap DOM content
+  });
+
+  // Optionally wait for the transition to finish
+  await transition.finished;
+});
+```
+
+**CSS controls for view transitions:**
+
+```css
+/* Default: the entire page cross-fades (old → new) */
+::view-transition-old(root) {
+  animation: 300ms ease-out fade-out;
+}
+::view-transition-new(root) {
+  animation: 300ms ease-in fade-in;
+}
+
+/* Named view transition: a specific element animates independently */
+.hero-image {
+  view-transition-name: hero;
+}
+
+::view-transition-old(hero) {
+  animation: 300ms ease-out slide-out-left;
+}
+::view-transition-new(hero) {
+  animation: 300ms ease-in slide-in-right;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+```
+
+**Cross-document transitions (MPA — multi-page apps):**
+
+```css
+/* Opt in to cross-document view transitions (Chrome 126+) */
+@view-transition {
+  navigation: auto;
+}
+```
+
+Both the source and destination pages must include this CSS rule. The browser automatically handles the snapshot and animation when navigating between pages.
+
 ---
 
-## 16. Core Web Vitals — Optimization Strategies
+#### 13.2.2 CSS Scroll-Driven Animations
 
-### 16.1 LCP — Largest Contentful Paint
+Scroll-driven animations synchronize animation progress with scroll position — replacing heavy JS scroll listeners with pure CSS. **Baseline: Chrome 115+, Edge 115+, Safari 26+ (partial Firefox support behind flag).**
+
+```css
+/* ✅ Reading progress indicator driven by scroll */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #4f8ef7;
+  transform-origin: left;
+  transform: scaleX(0);
+
+  /* Bind to page scroll progress */
+  animation: grow-progress linear;
+  animation-timeline: scroll(root);  /* root = page scroll */
+}
+
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ✅ Reveal elements as they enter viewport */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+
+  animation: reveal linear both;
+  animation-timeline: view();       /* element's visibility in viewport */
+  animation-range: entry 0% entry 100%;  /* animate during entry phase */
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Parallax effect — purely CSS */
+.parallax-bg {
+  animation: parallax linear;
+  animation-timeline: scroll(root);
+}
+
+@keyframes parallax {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100px); }
+}
+
+/* ✅ Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .parallax-bg,
+  .reading-progress {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+```
+
+**Key CSS functions:**
+- `scroll()` — binds to a scrollable element's scroll progress (0% at top, 100% at bottom)
+- `view()` — binds to an element's visibility within a scrollport (replaces IntersectionObserver for scroll-linked animations)
+- `animation-range` — controls which portion of the timeline the animation occupies (e.g., only during entry, exit, or a specific portion)
+
+---
+
+#### 13.2.3 CSS Anchor Positioning
+
+CSS Anchor Positioning (Chrome 125+, Edge 125+) allows elements to be positioned relative to another element ("anchor") — perfect for tooltips, dropdowns, and context menus that need to follow their trigger element.
+
+```css
+/* Define an anchor */
+.trigger-button {
+  anchor-name: --my-anchor;
+}
+
+/* Position relative to the anchor */
+.tooltip {
+  position: fixed;
+  position-anchor: --my-anchor;
+
+  /* Place above the anchor, centered horizontally */
+  bottom: anchor(top);
+  left: anchor(center);
+  translate: -50% -8px;
+
+  /* Auto-fallback if tooltip goes off-screen */
+  position-try-fallbacks: flip-block, flip-inline;
+}
+```
+
+---
+
+#### 13.2.4 The `<search>` Element (HTML)
+
+The `<search>` element (Baseline 2023: Chrome 118+, Firefox 118+, Safari 17+) provides a **semantic wrapper for search functionality**. It carries the implicit ARIA role of `search`, replacing the need for `<form role="search">`.
+
+```html
+<!-- ✅ Modern: using <search> -->
+<search aria-label="Site search">
+  <form action="/search" method="get">
+    <label for="q">Search</label>
+    <input type="search" id="q" name="q"
+           placeholder="Search articles..."
+           autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+</search>
+
+<!-- ❌ Legacy pattern (still valid, but less semantic) -->
+<form role="search" action="/search" method="get" aria-label="Site search">
+  <!-- ... -->
+</form>
+```
+
+---
+
+#### 13.2.5 The `inert` Attribute
+
+The `inert` attribute (broadly interoperable in current evergreen browsers) makes an entire DOM subtree **non-interactive and invisible to assistive technologies**. It replaces complex manual implementations of "disable everything behind a modal."
+
+```html
+<!-- ✅ When a modal is open, make everything behind it inert -->
+<div id="page-content" inert>
+  <header>...</header>
+  <main>...</main>
+  <footer>...</footer>
+</div>
+
+<dialog id="modal" open>
+  <!-- Dialog content -->
+</dialog>
+
+<!-- Note: <dialog>.showModal() does this automatically.
+     Use inert manually only for custom modal implementations. -->
+```
+
+```javascript
+// Toggle inert programmatically
+const content = document.getElementById('page-content');
+
+function openCustomModal() {
+  content.inert = true;   // Entire page behind modal becomes inert
+  modal.hidden = false;
+  modal.querySelector('[autofocus]').focus();
+}
+
+function closeCustomModal() {
+  content.inert = false;  // Restore interaction
+  modal.hidden = true;
+  triggerButton.focus();   // Return focus
+}
+```
+
+**`inert` effects:**
+- Element and all descendants are removed from the tab order
+- Element and all descendants are hidden from the accessibility tree
+- Click/touch events are ignored
+- Text selection is prevented
+- Visually indicated (browsers apply a slight dimming by default)
+
+---
+
+#### 13.2.6 The `autocomplete` Attribute — Complete Token Reference
+
+The `autocomplete` attribute is critical for both accessibility (WCAG SC 1.3.5 — Identify Input Purpose) and user experience. Browsers use these tokens to auto-fill form fields and to match password manager entries.
+
+| Token | Purpose | Input Type |
+|-------|---------|-----------|
+| `name` | Full name | `text` |
+| `given-name` | First name | `text` |
+| `family-name` | Last name | `text` |
+| `additional-name` | Middle name | `text` |
+| `honorific-prefix` | Mr., Ms., Dr. | `text` |
+| `nickname` | Display name / username | `text` |
+| `username` | Login username / email | `text`, `email` |
+| `new-password` | New password (registration, reset) | `password` |
+| `current-password` | Existing password (login) | `password` |
+| `one-time-code` | SMS/TOTP verification code | `text` |
+| `email` | Email address | `email` |
+| `tel` | Phone number (full, with country code) | `tel` |
+| `tel-country-code` | Country code only | `text` |
+| `tel-national` | National phone number (without country code) | `tel` |
+| `street-address` | Full street address (multi-line) | `textarea` |
+| `address-line1` | Address line 1 | `text` |
+| `address-line2` | Address line 2 | `text` |
+| `address-level1` | State / Province / Region | `text` |
+| `address-level2` | City / Town | `text` |
+| `postal-code` | ZIP / Postal code | `text` |
+| `country` | Country code (ISO 3166) | `text` |
+| `country-name` | Country name (human-readable) | `text` |
+| `cc-name` | Cardholder name | `text` |
+| `cc-number` | Credit card number | `text` |
+| `cc-exp` | Card expiration (MM/YY or MM/YYYY) | `text` |
+| `cc-exp-month` | Expiration month | `text` |
+| `cc-exp-year` | Expiration year | `text` |
+| `cc-csc` | Card security code (CVV/CVC) | `text` |
+| `cc-type` | Card type (Visa, MasterCard, etc.) | `text` |
+| `bday` | Birthday (full date) | `date` |
+| `bday-day` | Birthday day | `text` |
+| `bday-month` | Birthday month | `text` |
+| `bday-year` | Birthday year | `text` |
+| `sex` | Gender | `text` |
+| `organization` | Company / organization name | `text` |
+| `organization-title` | Job title | `text` |
+| `language` | Preferred language | `text` |
+| `url` | Personal website / profile URL | `url` |
+| `photo` | Profile photo URL | `url` |
+| `webauthn` | WebAuthn credential (passkey login) | — |
+
+**Section prefixes:** Prepend `shipping` or `billing` to differentiate address types:
+
+```html
+<input type="text" autocomplete="shipping street-address">
+<input type="text" autocomplete="billing postal-code">
+```
+
+---
+
+## 14. Core Web Vitals Optimization
+
+### 14.1 LCP — Largest Contentful Paint
 
 **What it measures:** The render time of the **largest visible content element** in the viewport — typically the hero image, an above-fold `<h1>`, or a large block of text. Google wants this ≤ 2.5s for a "Good" rating.
 
@@ -3032,7 +4431,7 @@ Cache-Control: no-cache  (for HTML — always revalidate)
 
 ---
 
-### 16.2 INP — Interaction to Next Paint
+### 14.2 INP — Interaction to Next Paint
 
 **What it measures:** The **95th percentile** interaction latency across ALL interactions during a page visit — clicks, taps, keyboard input. Specifically: time from user input → next visual frame. Target: ≤ 200ms.
 
@@ -3121,14 +4520,16 @@ function updateUI(data) {
 
 ---
 
-### 16.3 CLS — Cumulative Layout Shift
+### 14.3 CLS — Cumulative Layout Shift
 
 **What it measures:** The **sum of layout shift scores** for all unexpected layout shifts that occur across the entire page lifespan. A layout shift occurs when a visible element changes position between frames without user input. Target: ≤ 0.1.
 
 **Layout shift score formula:**
+
 ```
 shift score = impact fraction × distance fraction
 ```
+
 - **Impact fraction** — fraction of the viewport affected by the unstable element's movement
 - **Distance fraction** — largest distance any unstable element moved / viewport dimension
 
@@ -3203,11 +4604,11 @@ img {
 
 ---
 
-## 17. Network, Delivery & Caching Layer
+## 15. Network Delivery, Compression, Caching, CDN, and Offline
 
 Performance is not only about bytes of HTML/CSS/JS — it also encompasses how efficiently those bytes travel from server to browser. The network layer is the foundation on which all other optimizations rest.
 
-### 17.1 HTTP Protocol Evolution
+### 15.1 HTTP Protocol Evolution
 
 | Protocol | Key Features | Status |
 |----------|-------------|--------|
@@ -3222,15 +4623,16 @@ Performance is not only about bytes of HTML/CSS/JS — it also encompasses how e
 
 ---
 
-### 17.2 Compression
+### 15.2 Compression
 
 | Algorithm | Compression | Speed | Browser Support | Recommendation |
 |-----------|------------|-------|----------------|----------------|
-| **Brotli** (br) | **Best** — 15–25% better than gzip | Slower to encode; fast to decode | All modern browsers | Enable for all text assets (HTML, CSS, JS, JSON, SVG, fonts) |
+| **Brotli** (br) | Often 15–25% smaller than gzip for comparable text assets | Slower to encode; fast to decode | Broad current-browser support over HTTPS | Enable for all text assets (HTML, CSS, JS, JSON, SVG, fonts) |
 | **gzip** | Good | Fast | Universal | Use as fallback when Brotli not negotiated |
 | **zstd** | Very good | Very fast | Chrome 123+ (growing) | Emerging; not yet universal |
 
 **Server configuration (Nginx example):**
+
 ```nginx
 # Enable Brotli (requires ngx_brotli module)
 brotli on;
@@ -3248,7 +4650,7 @@ gzip_types text/html text/css application/javascript
 
 ---
 
-### 17.3 Caching Strategy
+### 15.3 Caching Strategy
 
 Effective caching eliminates network round-trips — the fastest requests are those never made.
 
@@ -3289,7 +4691,7 @@ Cache-Control: public, max-age=31536000, immutable
 
 ---
 
-### 17.4 Content Delivery Networks (CDN)
+### 15.4 Content Delivery Networks (CDN)
 
 CDN edge nodes are geographically distributed servers that cache and serve content from locations near the user, dramatically reducing TTFB (Time to First Byte).
 
@@ -3307,7 +4709,7 @@ CDN edge nodes are geographically distributed servers that cache and serve conte
 
 ---
 
-### 17.5 Service Workers & Offline Strategy
+### 15.5 Service Workers & Offline Strategy
 
 Service workers are JavaScript that run as a background proxy between the browser and the network, enabling:
 - Offline support (serve from cache when network unavailable)
@@ -3384,9 +4786,9 @@ if ('serviceWorker' in navigator) {
 
 ---
 
-## 18. Testing, Auditing & CI/CD Integration
+## 16. Testing, Auditing, and CI/CD
 
-### 18.1 Automated Testing Tools
+### 16.1 Automated Testing Tools
 
 Performance, accessibility, and SEO must be tested — not assumed. The following tools are essential:
 
@@ -3414,7 +4816,7 @@ Performance, accessibility, and SEO must be tested — not assumed. The followin
 
 ---
 
-### 18.2 Manual Accessibility Testing
+### 16.2 Manual Accessibility Testing
 
 Automated tools catch approximately **30–40% of WCAG violations**. Manual testing is required for the rest:
 
@@ -3432,7 +4834,7 @@ Automated tools catch approximately **30–40% of WCAG violations**. Manual test
 
 ---
 
-### 18.3 Lighthouse CI Integration
+### 16.3 Lighthouse CI Integration
 
 ```yaml
 # .github/workflows/lighthouse-ci.yml
@@ -3483,7 +4885,7 @@ jobs:
 
 ---
 
-## 19. Complete Modern HTML Reference Template
+## 17. Complete Modern HTML Reference Template
 
 This is a best-practice HTML template embodying every standard discussed in this document. It is annotated for self-explanatory reference.
 
@@ -3809,7 +5211,7 @@ This is a best-practice HTML template embodying every standard discussed in this
 
   <!--====== SITE HEADER ======-->
   <!--
-    ✅ <header> as direct child of <body>: implicit ARIA role = "banner".
+    ✅ A page-level <header> that is not scoped by sectioning content exposes the implicit "banner" landmark.
     One <header role="banner"> per page.
     Contains: logo, site name, primary navigation, site-wide search.
     Set a sticky/fixed header? Ensure focused elements are never fully obscured
@@ -3854,9 +5256,9 @@ This is a best-practice HTML template embodying every standard discussed in this
       </svg>
     </button>
 
-    <div id="mobile-menu" hidden role="dialog" aria-label="Mobile navigation">
+    <nav id="mobile-menu" hidden aria-label="Mobile navigation">
       <!-- Mobile navigation links -->
-    </div>
+    </nav>
 
   </header>
 
@@ -3878,7 +5280,7 @@ This is a best-practice HTML template embodying every standard discussed in this
     <section aria-labelledby="hero-heading" class="hero">
       <div class="container">
         <!--
-          ✅ <h1>: one per page; the primary topic of the document.
+          ✅ <h1>: use a clear page-level heading; one primary <h1> is a strong convention, though multiple <h1> elements are not inherently non-conforming.
           Should contain the primary keyword naturally.
           id must match the aria-labelledby on parent <section>.
         -->
@@ -3891,7 +5293,7 @@ This is a best-practice HTML template embodying every standard discussed in this
         ✅ LCP hero image:
         - loading="eager": above-fold; never lazy-load the LCP element
         - fetchpriority="high": signals browser preload scanner
-        - decoding="async": decode off main thread (no visual delay)
+        - decoding="async": request non-blocking presentation scheduling; exact decode threading is browser-defined
         - Explicit width + height: browser reserves space before image loads (prevents CLS)
         - Matched <link rel="preload"> in <head> for earliest possible load
       -->
@@ -4140,7 +5542,7 @@ This is a best-practice HTML template embodying every standard discussed in this
 
   <!--====== SITE FOOTER ======-->
   <!--
-    ✅ <footer> as direct child of <body>: implicit ARIA role = "contentinfo".
+    ✅ A page-level <footer> that is not scoped by sectioning content exposes the implicit "contentinfo" landmark.
     One footer per page at the body level.
     Contains: copyright, legal links, secondary navigation, social links.
   -->
@@ -4173,13 +5575,14 @@ This is a best-practice HTML template embodying every standard discussed in this
 
 ---
 
-## 20. Master Pre-Launch Checklist
+## 18. Master Pre-Launch Checklist
 
+### 18.1 Master Pre-Launch Checklist
 Use this checklist before every production deployment. Each item is drawn from the specific knowledge in this document — not duplicate, but a practical application summary.
 
 ---
 
-### ✅ 20.1 HTML Structure & Semantics
+#### 18.1.1 HTML Structure & Semantics
 
 - [ ] `<!DOCTYPE html>` is the very first line — no whitespace before it
 - [ ] `<html lang="...">` has the correct BCP 47 language tag (e.g., `en`, `en-US`, `hi`, `gu`, `fr`)
@@ -4210,7 +5613,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.2 Images & Media
+#### 18.1.2 Images & Media
 
 - [ ] Every `<img>` has an `alt` attribute — descriptive for informative images, empty (`alt=""`) for decorative
 - [ ] Every `<img>` has explicit `width` and `height` attributes (integers, in CSS pixels)
@@ -4229,7 +5632,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.3 Accessibility (WCAG 2.2 AA)
+#### 18.1.3 Accessibility (WCAG 2.2 AA)
 
 - [ ] Skip link is the **first focusable element** in `<body>`, visible on focus, linked to `<main>`
 - [ ] All interactive elements (links, buttons, inputs, selects, custom controls) reachable by keyboard Tab
@@ -4260,13 +5663,13 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.4 SEO & Structured Data
+#### 18.1.4 SEO & Structured Data
 
 - [ ] `<link rel="canonical">` on every indexable page (absolute URL)
 - [ ] `<meta name="robots">` — check no page is accidentally `noindex`-ed
 - [ ] Open Graph: `og:title`, `og:description`, `og:url`, `og:image` (1200×630px), `og:image:alt`, `og:type`, `og:site_name` on all shareable pages
 - [ ] Twitter card: `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`
-- [ ] JSON-LD structured data appropriate for page content type (WebPage, Article, Product, FAQPage, BreadcrumbList, LocalBusiness as applicable)
+- [ ] JSON-LD accurately matches visible content and uses currently supported search-feature types where relevant; `FAQPage` may remain semantic markup but no longer produces Google FAQ rich results
 - [ ] JSON-LD validated via Google's Rich Results Test (no critical errors)
 - [ ] BreadcrumbList schema on all non-home pages
 - [ ] `robots.txt` present at root domain
@@ -4276,7 +5679,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.5 Performance (Core Web Vitals)
+#### 18.1.5 Performance (Core Web Vitals)
 
 - [ ] **LCP ≤ 2.5s** — verified with PageSpeed Insights field data (75th percentile)
 - [ ] **INP ≤ 200ms** — verified with PageSpeed Insights field data (75th percentile)  
@@ -4291,7 +5694,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 - [ ] Unused preloads eliminated (check DevTools Network tab for "Preload used" warnings)
 - [ ] All images served in compressed AVIF/WebP with JPEG fallback
 - [ ] All `<img>` elements have explicit `width` + `height` attributes (prevents CLS)
-- [ ] CSS animations use only `transform` and `opacity` (never `top`, `left`, `width`, `height`, `margin` in animations)
+- [ ] High-frequency animations prefer compositor-friendly properties such as `transform` and `opacity`; any layout/paint-heavy animation is measured on target devices
 - [ ] `content-visibility: auto` applied to long off-screen sections (with `contain-intrinsic-size`)
 - [ ] Event handlers are lean — heavy work deferred with `scheduler.yield()` or moved to Web Workers
 - [ ] Main-thread tasks > 50ms identified and broken up (check Lighthouse "Avoid long main-thread tasks")
@@ -4299,12 +5702,12 @@ Use this checklist before every production deployment. Each item is drawn from t
 - [ ] HTTP/2 or HTTP/3 enabled on the server
 - [ ] Brotli compression enabled; gzip as fallback
 - [ ] Versioned static assets (JS, CSS, images) have `Cache-Control: max-age=31536000, immutable`
-- [ ] HTML pages have `Cache-Control: no-cache` (always revalidate)
+- [ ] HTML caching policy matches deployment needs: revalidate frequently changing entry documents, and use deliberate freshness/versioning for cacheable static pages
 - [ ] CDN deployed for static assets and (ideally) HTML
 
 ---
 
-### ✅ 20.6 CSS Quality
+#### 18.1.6 CSS Quality
 
 - [ ] No float-based column layouts (use CSS Grid or Flexbox)
 - [ ] No `@import` in production CSS (use bundler/build tools instead)
@@ -4320,7 +5723,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.7 JavaScript Quality
+#### 18.1.7 JavaScript Quality
 
 - [ ] No `document.write()` — replaced with DOM API methods
 - [ ] No `escape()` / `unescape()` — replaced with `encodeURIComponent()` / `decodeURIComponent()`
@@ -4338,7 +5741,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.8 Security Headers (Beyond Scope but Strongly Related)
+#### 18.1.8 Security Headers (Beyond Scope but Strongly Related)
 
 - [ ] `Content-Security-Policy` (CSP) header configured — prevents XSS
 - [ ] `Strict-Transport-Security` (HSTS) header configured — forces HTTPS
@@ -4350,7 +5753,7 @@ Use this checklist before every production deployment. Each item is drawn from t
 
 ---
 
-### ✅ 20.9 Final Validation & Testing Tools
+#### 18.1.9 Final Validation & Testing Tools
 
 Run all of these before marking any page as production-ready:
 
@@ -4367,1337 +5770,90 @@ Run all of these before marking any page as production-ready:
 | **Keyboard navigation** | Manual — unplug mouse | All interactive elements reachable and operable |
 | **Screen reader** | NVDA + Firefox (Windows); VoiceOver + Safari (macOS/iOS) | Document structure, form labels, dynamic content |
 
----
-
-## Document Metadata
-
-| Field | Value |
-|-------|-------|
-| **Last Updated** | March 2026 |
-| **Based on** | WHATWG HTML Living Standard, W3C WCAG 2.2, WAI-ARIA 1.2, MDN Web Docs, web.dev, schema.org, RFC 9110–9114 (HTTP), TC39 Temporal Proposal, APCA/BWMA, Google CWV documentation, W3C CSS Grid Level 2, W3C CSS Cascade Level 5 |
-| **Scope** | HTML5 (WHATWG Living Standard), CSS3+, ES2022+, WCAG 2.2 AA, Core Web Vitals (LCP/INP/CLS), Schema.org, HTTP/3 (QUIC) |
-| **Review schedule** | Revisit when WCAG 3.0 reaches Candidate Recommendation status (~2028+); revisit for JPEG XL browser support status; revisit for Temporal API Baseline status |
-
----
-
-# Addendum — Additional Topics (2026)
-
-The following sections cover additional topics verified through current (2025–2026) standards documentation.
-
----
-
-## 21. Additional WCAG 2.2 Success Criteria (Missing from Original Reports)
-
-The original sections covered SC 2.4.11, 2.4.12, 2.5.8, 3.2.6, 3.3.7, and 3.3.8. The following WCAG 2.2 criteria were omitted:
-
-### 21.1 SC 2.5.7 — Dragging Movements (Level AA)
-
-**Requirement:** All functionality that uses dragging movements (drag-and-drop) must be operable via a single-pointer alternative (click/tap, or keyboard) — unless dragging is essential.
-
-**Why it matters:** Users with motor impairments, tremors, or who use head pointers / eye-tracking cannot perform drag operations. Touch screen users with limited dexterity also struggle with drag gestures.
-
-**Compliant implementation:**
-
-```html
-<!-- ✅ Sortable list with both drag AND button-based reordering -->
-<ul role="listbox" aria-label="Priority tasks (reorderable)">
-  <li role="option" draggable="true" aria-grabbed="false">
-    <span>Task A</span>
-    <button type="button" aria-label="Move Task A up"
-            onclick="moveUp(this)">↑</button>
-    <button type="button" aria-label="Move Task A down"
-            onclick="moveDown(this)">↓</button>
-  </li>
-  <li role="option" draggable="true" aria-grabbed="false">
-    <span>Task B</span>
-    <button type="button" aria-label="Move Task B up">↑</button>
-    <button type="button" aria-label="Move Task B down">↓</button>
-  </li>
-</ul>
-
-<!-- ✅ File upload: drag-and-drop zone WITH a standard file input -->
-<div class="dropzone" role="region" aria-label="Drop files here to upload">
-  <p>Drag files here, or:</p>
-  <label for="file-upload" class="btn">Choose files</label>
-  <input type="file" id="file-upload" multiple accept=".pdf,.jpg,.png">
-</div>
-```
-
-**Key rule:** If a user can drag-and-drop to accomplish something, they must *also* be able to accomplish the same thing with click/tap actions or keyboard.
-
----
-
-### 21.2 SC 2.4.13 — Focus Appearance (Level AAA)
-
-**Requirement:** When a UI component receives keyboard focus, the focus indicator must:
-- Have an area at least as large as a **2 CSS pixel thick perimeter** of the unfocused component
-- Have a contrast ratio of **3:1** between the focused and unfocused states
-- Have a contrast ratio of **3:1** against adjacent non-focus-indicator colors
-
-**Practical implementation:**
-
-```css
-/* ✅ WCAG 2.2 SC 2.4.13 compliant focus indicator */
-:focus-visible {
-  outline: 3px solid #1a73e8;     /* 3px > 2px minimum perimeter */
-  outline-offset: 3px;            /* Offset prevents overlap with element border */
-  border-radius: 3px;             /* Match component's border-radius */
-  /* Ensure #1a73e8 has ≥ 3:1 contrast against adjacent background colors */
-}
-
-/* ✅ For dark backgrounds */
-.dark-section :focus-visible {
-  outline-color: #8ab4f8;         /* Lighter blue for dark backgrounds */
-}
-
-/* ✅ High-contrast focus for links within text */
-a:focus-visible {
-  outline: 3px solid #1a73e8;
-  outline-offset: 2px;
-  background-color: #e8f0fe;      /* Additional visual cue */
-  border-radius: 2px;
-}
-```
-
-**Note:** SC 2.4.13 is AAA-level, so it's aspirational not mandatory, but best-practice designs should follow it. The related SC 2.4.11 (Focus Not Obscured, Level AA) **is** mandatory — focused elements must not be entirely covered by sticky headers, cookie banners, or other positioned content.
-
----
-
-### 21.3 SC 3.3.9 — Accessible Authentication (Enhanced) (Level AAA)
-
-**Requirement (beyond AA SC 3.3.8):** Authentication must not require **any** cognitive function test — no object recognition, no personal content recognition, no puzzles. Only exceptions: objects provided by the site (not the user's personal items) and passkeys/WebAuthn.
-
-**Practical guidance:**
-- Passwords with password managers are compliant (paste is allowed, autocomplete works)
-- Passkeys / WebAuthn biometric login is ideal — fully compliant
-- CAPTCHA alternatives: invisible reCAPTCHA, hCaptcha accessibility mode, Turnstile
-- SMS OTP with `autocomplete="one-time-code"` is compliant (user doesn't need to memorize)
-
-```html
-<!-- ✅ Login form optimized for accessible authentication -->
-<form action="/auth/login" method="post" aria-label="Sign in">
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email"
-         autocomplete="username"
-         required aria-required="true">
-
-  <label for="password">Password</label>
-  <input type="password" id="password" name="password"
-         autocomplete="current-password"
-         required aria-required="true">
-
-  <!-- Allow paste for password managers -->
-  <!-- NEVER add onpaste="return false" -->
-
-  <button type="submit">Sign in</button>
-
-  <!-- Passkey alternative (WebAuthn) -->
-  <button type="button" onclick="startPasskeyAuth()">
-    Sign in with Passkey
-  </button>
-</form>
-
-<!-- ✅ OTP field with autocomplete for SMS codes -->
-<label for="otp">Verification code (sent to your phone)</label>
-<input type="text" id="otp" name="otp"
-       autocomplete="one-time-code"
-       inputmode="numeric"
-       pattern="[0-9]{6}"
-       maxlength="6"
-       aria-describedby="otp-hint">
-<span id="otp-hint">Enter the 6-digit code from your SMS.</span>
-```
-
----
-
-### 21.4 WCAG 2.2 SC 4.1.1 Parsing — Removed
-
-**Important change:** WCAG 2.2 **removed** Success Criterion 4.1.1 (Parsing) entirely. This is because:
-- Modern browsers are now highly resilient to parsing errors — they follow the HTML5 parsing algorithm, which defines error recovery behavior for all malformed markup
-- The criterion was effectively obsolete — browsers handle duplicate IDs, unclosed tags, and nesting errors consistently
-- However: clean, valid HTML is still strongly recommended for maintainability, AT compatibility, and professional quality
-- Use the W3C Nu HTML Checker (validator.nu) as a quality tool, not a compliance requirement
-
----
-
-## 22. The `<dialog>` Element — Native Modal & Non-Modal Dialogs
-
-The `<dialog>` element is a **native HTML element** for building modal and non-modal dialogs with built-in accessibility features. It eliminates the need for custom modal JavaScript in most cases. **Baseline: all modern browsers (Chrome 37+, Firefox 98+, Safari 15.4+, Edge 79+).**
-
-### 22.1 Modal Dialog (`.showModal()`)
-
-```html
-<!-- The dialog element — hidden by default -->
-<dialog id="confirm-dialog" aria-labelledby="dlg-title" aria-describedby="dlg-desc">
-  <h2 id="dlg-title">Confirm Deletion</h2>
-  <p id="dlg-desc">This action cannot be undone. Are you sure you want to delete this item?</p>
-
-  <!-- form method="dialog" auto-closes the dialog on submit -->
-  <form method="dialog">
-    <button type="submit" value="cancel">Cancel</button>
-    <button type="submit" value="confirm" autofocus>Delete</button>
-    <!-- autofocus: first focused element when dialog opens -->
-  </form>
-</dialog>
-
-<!-- Trigger button -->
-<button type="button" id="open-dialog">Delete Item</button>
-
-<script>
-  const dialog = document.getElementById('confirm-dialog');
-  const openBtn = document.getElementById('open-dialog');
-
-  openBtn.addEventListener('click', () => {
-    dialog.showModal();
-    // showModal():
-    //  - Adds ::backdrop pseudo-element (dimmed overlay)
-    //  - Traps focus inside the dialog (Tab cycles within)
-    //  - Makes rest of page inert (AT cannot navigate outside)
-    //  - Adds role="dialog" and aria-modal="true" implicitly
-    //  - ESC key closes the dialog by default
-  });
-
-  dialog.addEventListener('close', () => {
-    // dialog.returnValue contains the value of the submit button used
-    if (dialog.returnValue === 'confirm') {
-      performDeletion();
-    }
-    // Focus automatically returns to the element that opened the dialog
-  });
-
-  // Optional: close on backdrop click
-  dialog.addEventListener('click', (e) => {
-    const rect = dialog.getBoundingClientRect();
-    if (e.clientX < rect.left || e.clientX > rect.right ||
-        e.clientY < rect.top || e.clientY > rect.bottom) {
-      dialog.close('cancel');
-    }
-  });
-</script>
-```
-
-### 22.2 Non-Modal Dialog (`.show()`)
-
-```javascript
-dialog.show();
-// show():
-//  - Opens dialog but does NOT trap focus
-//  - Does NOT add ::backdrop
-//  - Rest of page remains interactive
-//  - User CAN Tab out of the dialog
-//  - Use for: tooltips, toolbars, inspection panels
-```
-
-### 22.3 Styling the Dialog
-
-```css
-/* Base dialog styles */
-dialog {
-  border: none;
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: min(90vw, 500px);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-}
-
-/* The backdrop overlay (only with showModal) */
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-/* Opening/closing animation (Chrome 120+, Safari 17.5+) */
-dialog {
-  opacity: 0;
-  transform: translateY(-20px) scale(0.95);
-  transition: opacity 0.3s ease, transform 0.3s ease,
-              display 0.3s ease allow-discrete,
-              overlay 0.3s ease allow-discrete;
-}
-
-dialog[open] {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-@starting-style {
-  dialog[open] {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.95);
-  }
-}
-```
-
-### 22.4 `<dialog>` vs. Custom Modal — Why Native Wins
-
-| Feature | `<dialog>` (native) | Custom `<div role="dialog">` |
-|---------|---------------------|------------------------------|
-| Focus trapping | Automatic with `showModal()` | Must implement manually (many libraries get it wrong) |
-| `inert` on background | Automatic — AT cannot navigate behind modal | Must add `inert` attribute to all siblings manually |
-| ESC to close | Built-in browser behavior | Must implement `keydown` listener |
-| Accessible role | Implicit `role="dialog"` | Must add `role="dialog"` manually |
-| `::backdrop` | Automatic with `showModal()` | Must create backdrop element manually |
-| Focus return on close | Automatic | Must track and restore manually |
-| Screen reader announcement | Announced automatically as dialog | Depends on correct ARIA implementation |
-
-**Always prefer `<dialog>` for modals.** Use custom ARIA dialogs only when you need behavior the native element cannot provide (extremely rare in 2026).
-
----
-
-## 23. The Popover API — Native Overlays Without JS
-
-The Popover API provides a **declarative, JavaScript-free mechanism** for creating overlay UI — tooltips, dropdown menus, teaching tips, notification toasts, and action sheets. **Baseline Widely Available: April 2025 (Chrome 114+, Firefox 125+, Safari 17+, Edge 114+).**
-
-### 23.1 Basic Popover (Declarative — Zero JS)
-
-```html
-<!-- The trigger button: popovertarget links to the popover's id -->
-<button popovertarget="my-popover" type="button">
-  Show Info
-</button>
-
-<!-- The popover content: hidden by default -->
-<div id="my-popover" popover>
-  <p>This overlay appears on top of all other content.</p>
-  <p>Click outside or press ESC to dismiss.</p>
-</div>
-
-<!--
-  Default popover behavior (popover="auto"):
-  - Appears on TOP layer (above all z-index — no stacking context issues)
-  - Light dismissal: click outside or press ESC closes it
-  - Only ONE auto popover can be open at a time (others close automatically)
-  - No backdrop, no focus trapping (unlike <dialog>)
--->
-```
-
-### 23.2 Popover Types
-
-| Attribute | Behavior |
-|-----------|----------|
-| `popover` or `popover="auto"` | Light dismissal (ESC / click outside); only one `auto` popover open at a time |
-| `popover="manual"` | Must be dismissed explicitly (via JS or button); multiple can coexist |
-| `popover="hint"` | (Chrome 133+) Designed for hover-triggered hints/tooltips; even lighter weight |
-
-### 23.3 Programmatic Control
-
-```javascript
-const pop = document.getElementById('my-popover');
-
-pop.showPopover();    // Open
-pop.hidePopover();    // Close
-pop.togglePopover();  // Toggle
-
-// Listen for open/close events
-pop.addEventListener('toggle', (e) => {
-  console.log(e.newState); // 'open' or 'closed'
-  console.log(e.oldState);
-});
-
-// beforetoggle: can be used to prevent opening
-pop.addEventListener('beforetoggle', (e) => {
-  if (someCondition) e.preventDefault(); // block the toggle
-});
-```
-
-### 23.4 Popover Actions (Show / Hide / Toggle)
-
-```html
-<!-- Toggle button (default) -->
-<button popovertarget="menu" type="button">Toggle Menu</button>
-
-<!-- Explicit show-only button -->
-<button popovertarget="menu" popovertargetaction="show" type="button">
-  Open Menu
-</button>
-
-<!-- Explicit hide-only button (can be inside the popover) -->
-<div id="menu" popover>
-  <p>Menu content here</p>
-  <button popovertarget="menu" popovertargetaction="hide" type="button">
-    Close
-  </button>
-</div>
-```
-
-### 23.5 Accessibility with Popovers
-
-**Critical:** The Popover API provides the top-layer rendering and light dismiss, but it does **not** automatically provide ARIA semantics. You must add accessibility manually:
-
-```html
-<!-- ✅ Popover as a menu — add proper ARIA -->
-<button popovertarget="action-menu"
-        aria-expanded="false"
-        aria-haspopup="menu"
-        type="button"
-        id="menu-btn">
-  Actions
-</button>
-<div id="action-menu" popover role="menu" aria-label="Actions">
-  <button role="menuitem" tabindex="-1">Edit</button>
-  <button role="menuitem" tabindex="-1">Duplicate</button>
-  <button role="menuitem" tabindex="-1">Delete</button>
-</div>
-
-<script>
-  // Update aria-expanded when popover toggles
-  const menu = document.getElementById('action-menu');
-  const btn = document.getElementById('menu-btn');
-  menu.addEventListener('toggle', (e) => {
-    btn.setAttribute('aria-expanded', e.newState === 'open');
-    if (e.newState === 'open') {
-      // Focus first menuitem
-      menu.querySelector('[role="menuitem"]').focus();
-    }
-  });
-</script>
-
-<!-- ✅ Popover as a tooltip (non-interactive) -->
-<button aria-describedby="tip" type="button">
-  Hover for info
-</button>
-<div id="tip" popover="hint" role="tooltip">
-  This feature requires a Pro subscription.
-</div>
-```
-
-### 23.6 `<dialog>` vs. Popover — When to Use Which
-
-| Scenario | Use |
-|----------|-----|
-| Confirmation prompt requiring user decision | `<dialog>` with `showModal()` |
-| Alert / critical error requiring acknowledgment | `<dialog>` with `showModal()` |
-| Dropdown menu / action sheet | Popover API |
-| Tooltip / hint text | Popover API (`popover="hint"`) |
-| Non-blocking notification toast | Popover API (`popover="manual"`) |
-| Date picker (complex embedded widget) | `<dialog>` (non-modal) or Popover depending on complexity |
-| Cookie consent banner | Popover API (`popover="manual"`) — stays until explicitly dismissed |
-
----
-
-## 24. `<details>` & `<summary>` — Native Disclosure Widgets & Exclusive Accordions
-
-### 24.1 Basic Disclosure Widget
-
-The `<details>` and `<summary>` elements create a native disclosure (expand/collapse) widget with zero JavaScript. Screen readers announce it as an interactive control, and keyboard users can toggle with Enter/Space.
-
-```html
-<!-- ✅ Native disclosure widget -->
-<details>
-  <summary>What is your refund policy?</summary>
-  <p>We offer a 30-day money-back guarantee on all purchases.
-     Contact support@example.com with your order number.</p>
-</details>
-
-<!-- ✅ Open by default -->
-<details open>
-  <summary>System Requirements</summary>
-  <ul>
-    <li>macOS 12+ or Windows 10+</li>
-    <li>4 GB RAM minimum</li>
-    <li>500 MB disk space</li>
-  </ul>
-</details>
-```
-
-### 24.2 Exclusive Accordion (HTML `name` Attribute — 2024+)
-
-The `name` attribute on `<details>` elements creates **exclusive accordion behavior** — when one `<details>` with a given `name` opens, all others with the same `name` automatically close. **No JavaScript required.**
-
-**Browser support:** Chrome 120+, Safari 17.2+, Firefox 130+, Edge 120+.
-
-```html
-<!-- ✅ Exclusive accordion — only one panel open at a time -->
-<details name="faq">
-  <summary>How do I create an account?</summary>
-  <p>Click "Sign Up" in the top-right corner and follow the registration steps.</p>
-</details>
-
-<details name="faq">
-  <summary>Can I change my username?</summary>
-  <p>Yes, go to Settings → Profile → Edit Username. Changes take effect immediately.</p>
-</details>
-
-<details name="faq" open>
-  <summary>How do I cancel my subscription?</summary>
-  <p>Navigate to Settings → Billing → Cancel Subscription.
-     Your access continues until the end of the current billing period.</p>
-</details>
-
-<!-- All three share name="faq" — opening one closes the others -->
-```
-
-### 24.3 Styling `<details>` & `<summary>`
-
-```css
-/* Custom disclosure icon */
-summary {
-  cursor: pointer;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  list-style: none; /* Remove default triangle marker */
-}
-summary::-webkit-details-marker { display: none; } /* Safari */
-
-/* Custom marker with CSS */
-summary::before {
-  content: '▶';
-  display: inline-block;
-  margin-right: 0.5rem;
-  transition: transform 0.2s ease;
-}
-details[open] > summary::before {
-  transform: rotate(90deg);
-}
-
-/* Animate content reveal (limited — height animation is complex) */
-details {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-}
-
-/* Content area padding */
-details > :not(summary) {
-  padding: 0 1rem 1rem;
-}
-
-/* Focus styles for keyboard navigation */
-summary:focus-visible {
-  outline: 3px solid #4f8ef7;
-  outline-offset: 2px;
-}
-```
-
-### 24.4 `<details>` for FAQ Structured Data
-
-When combined with JSON-LD FAQPage schema, `<details>` elements make excellent FAQ sections that qualify for Google's rich results:
-
-```html
-<section aria-labelledby="faq-heading">
-  <h2 id="faq-heading">Frequently Asked Questions</h2>
-
-  <details name="faq">
-    <summary>What formats do you accept?</summary>
-    <p>We accept AVIF, WebP, PNG, and JPEG image formats.</p>
-  </details>
-
-  <details name="faq">
-    <summary>Do you offer a free trial?</summary>
-    <p>Yes, all plans include a 14-day free trial with full feature access.</p>
-  </details>
-</section>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What formats do you accept?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We accept AVIF, WebP, PNG, and JPEG image formats."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer a free trial?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, all plans include a 14-day free trial with full feature access."
-      }
-    }
-  ]
-}
-</script>
-```
-
----
-
-## 25. E-E-A-T — Content Quality Signals for SEO
-
-E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is Google's quality framework used by human quality raters and algorithmic signals to evaluate content credibility. As of 2025, E-E-A-T is **not** a direct ranking factor — it's a framework that influences how Google's algorithms assess content quality. However, aligning with E-E-A-T principles correlates strongly with higher rankings.
-
-### 25.1 The Four Pillars
-
-| Pillar | Definition | How to Demonstrate |
-|--------|-----------|-------------------|
-| **Experience** (added 2022) | First-hand, real-world experience with the topic | Include personal case studies, original photography, video demonstrations, real results/data, "I tested this" narratives |
-| **Expertise** | Knowledge and skill in the subject area | Author bios with credentials, certifications, professional profiles (LinkedIn), detailed technical explanations |
-| **Authoritativeness** | Recognition as a go-to source in the field | Backlinks from authoritative sites, industry mentions, media coverage, organizational credentials, awards |
-| **Trustworthiness** | Accuracy, transparency, and reliability | HTTPS, clear contact info, privacy policy, editorial guidelines, fact-checking, citations, disclosure of affiliations |
-
-### 25.2 YMYL (Your Money or Your Life)
-
-E-E-A-T is particularly critical for **YMYL** (Your Money or Your Life) topics — content that could impact a person's health, financial stability, safety, or well-being. Examples:
-- Medical/health information
-- Financial advice (investing, taxes, loans)
-- Legal information
-- News and current events
-- Shopping/e-commerce (transactions)
-- Government/civic information
-
-YMYL pages are held to the **highest E-E-A-T standards**. Low E-E-A-T on a YMYL page can result in severe ranking penalties.
-
-### 25.3 Technical Implementation for E-E-A-T
-
-```html
-<!-- ✅ Author information in HTML (structured for both users and crawlers) -->
-<article>
-  <header>
-    <h1>Complete Guide to Core Web Vitals in 2026</h1>
-    <div class="byline">
-      <img src="/authors/jane-smith.jpg" alt="Jane Smith" width="48" height="48">
-      <div>
-        <a href="/authors/jane-smith/" rel="author">Jane Smith</a>
-        <p>Senior Web Performance Engineer · 12 years experience ·
-           <a href="https://www.linkedin.com/in/janesmith" rel="noopener">LinkedIn</a></p>
-      </div>
-      <time datetime="2026-01-15">January 15, 2026</time>
-      <span>Last updated: <time datetime="2026-02-28">February 28, 2026</time></span>
-    </div>
-  </header>
-
-  <!-- Article content with citations -->
-  <p>According to the
-    <a href="https://web.dev/articles/vitals" rel="noopener">web.dev documentation</a>,
-    LCP measures...</p>
-
-  <!-- Reviewer / fact-checker (enhanced E-E-A-T signal) -->
-  <footer>
-    <p>Reviewed by <a href="/authors/dr-web/">Dr. Web Expert</a>,
-       PhD in Computer Science, Google Developer Expert.</p>
-    <p>Editorial policy: <a href="/editorial-policy/">Our editorial standards</a></p>
-  </footer>
-</article>
-```
-
-### 25.4 JSON-LD for E-E-A-T (Author & Organization Schema)
-
-```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Complete Guide to Core Web Vitals in 2026",
-  "datePublished": "2026-01-15",
-  "dateModified": "2026-02-28",
-  "author": {
-    "@type": "Person",
-    "name": "Jane Smith",
-    "url": "https://example.com/authors/jane-smith/",
-    "jobTitle": "Senior Web Performance Engineer",
-    "sameAs": [
-      "https://www.linkedin.com/in/janesmith",
-      "https://twitter.com/janesmith",
-      "https://github.com/janesmith"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "WebTeam",
-      "url": "https://example.com/"
-    }
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "WebTeam",
-    "url": "https://example.com/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://example.com/logo.svg"
-    }
-  },
-  "reviewedBy": {
-    "@type": "Person",
-    "name": "Dr. Web Expert",
-    "credential": "PhD in Computer Science"
-  }
-}
-</script>
-```
-
----
-
-## 26. Search Overviews & SGE — Impact on SEO Strategy
-
-Google's Search Overviews (formerly Search Generative Experience / SGE) directly answer user queries at the top of search results using automatically generated summaries, fundamentally changing SEO dynamics as of 2025–2026.
-
-### 26.1 How Search Overviews Change SEO
-
-| Traditional Search | Search Overviews Era |
-|-------------------|------------------|
-| Users click blue links to find answers | Search generates a direct answer; may not click through at all |
-| Position 1 gets ~30% of clicks | Search Overview occupies top real estate; organic results pushed below |
-| Keyword matching drives visibility | Semantic understanding and content quality drive citation |
-| Volume of content matters | Depth, authority, and uniqueness matter more |
-
-### 26.2 Optimizing for Search Overviews
-
-**Content structure strategies:**
-1. **Direct Q&A format** — use clear headings that match user queries, with concise answers immediately following
-2. **Structured data** — JSON-LD helps search systems understand and parse content as machine-readable trust signals
-3. **First-hand experience** — search systems prefer original research, case studies, and unique data over rehashed content
-4. **Concise, scannable formatting** — bulleted lists, tables, definition lists, and numbered steps are more likely to be cited
-5. **Schema markup** — FAQPage, HowTo, and Article schemas increase chances of being pulled into search summaries
-
-**Technical optimizations:**
-
-```html
-<!-- ✅ Content structured for search citation -->
-<article>
-  <h2>What is Interaction to Next Paint (INP)?</h2>
-  <!-- Direct answer in first paragraph — search engines prefer frontloaded answers -->
-  <p><strong>INP (Interaction to Next Paint)</strong> measures the worst-case
-     latency of all user interactions on a page. A good INP score is
-     <strong>200 milliseconds or less</strong>. It replaced FID as a
-     Core Web Vital in March 2024.</p>
-
-  <!-- Followed by deeper detail for users who want more -->
-  <h3>How INP Is Calculated</h3>
-  <p>INP reports the 95th percentile interaction duration across all
-     clicks, taps, and keyboard inputs during a page visit...</p>
-</article>
-```
-
-### 26.3 Content Freshness
-
-Content freshness is now a significant ranking signal, especially for:
-- Technology topics (frameworks, APIs, browser support)
-- News and current events
-- Regulatory/legal information
-- Product reviews and comparisons
-
-**Best practices:**
-- Display clear `datePublished` and `dateModified` metadata (both visible and in JSON-LD)
-- Regularly audit and update existing content with current information
-- Remove or redirect genuinely outdated content that could mislead readers
-- Never fake `dateModified` without making real content changes — Google can detect this
-
----
-
-## 27. XML Sitemap Best Practices & IndexNow Protocol
-
-### 27.1 XML Sitemap Requirements
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://example.com/</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>weekly</changefreq>    <!-- Advisory; Google largely ignores -->
-    <priority>1.0</priority>           <!-- Advisory; Google largely ignores -->
-  </url>
-  <url>
-    <loc>https://example.com/products/</loc>
-    <lastmod>2026-02-28</lastmod>
-  </url>
-</urlset>
-```
-
-**Rules:**
-- Include **only canonical, indexable URLs** (return 200, not blocked by robots.txt, not `noindex`)
-- Maximum **50,000 URLs** per sitemap file, maximum **50 MB** uncompressed
-- Use a **sitemap index file** for larger sites (references multiple sub-sitemaps)
-- `<lastmod>` must be accurate — update ONLY when content meaningfully changes
-- Declare sitemap in `robots.txt`: `Sitemap: https://example.com/sitemap.xml`
-- Submit to Google Search Console and Bing Webmaster Tools
-- `<changefreq>` and `<priority>` are effectively ignored by Google — include them only for other search engines
-
-### 27.2 Sitemap Index File (Large Sites)
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://example.com/sitemap-pages.xml</loc>
-    <lastmod>2026-03-01</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://example.com/sitemap-products.xml</loc>
-    <lastmod>2026-02-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://example.com/sitemap-blog.xml</loc>
-    <lastmod>2026-02-25</lastmod>
-  </sitemap>
-</sitemapindex>
-```
-
-### 27.3 `robots.txt` Best Practices
-
-```
-# /robots.txt
-User-agent: *
-Disallow: /admin/
-Disallow: /api/
-Disallow: /tmp/
-Disallow: /search?          # Internal search results pages
-Disallow: /*?sort=           # Parameterized duplicate pages
-Disallow: /*?filter=         # Parameterized duplicate pages
-
-# Allow critical resources for rendering
-Allow: /styles/
-Allow: /js/
-Allow: /images/
-
-# Sitemap location
-Sitemap: https://example.com/sitemap.xml
-
-# Crawl-delay (respected by Bing, Yandex; ignored by Google)
-User-agent: Bingbot
-Crawl-delay: 5
-```
-
-**Notes:**
-- `robots.txt` blocks crawling, NOT indexing. A page can still appear in search results if linked from elsewhere. Use `<meta name="robots" content="noindex">` to prevent indexing.
-- Never block CSS/JS files in `robots.txt` — Google needs them to render and understand page layout.
-
-### 27.4 IndexNow Protocol
-
-IndexNow is an open-source protocol that allows instant notification to search engines when content changes — a "push" model vs. the traditional "pull" crawling model.
-
-| Feature | IndexNow | Traditional Crawling |
-|---------|----------|---------------------|
-| Discovery speed | Near-instant (seconds to minutes) | Hours to weeks |
-| Server load | Reduced (fewer unnecessary crawls) | Higher (crawlers revisit on schedule) |
-| Supported engines | Bing, Yandex, Seznam, Naver | All (including Google) |
-| **Google participation** | **No — Google does not support IndexNow** | Yes |
-
-**Best practice 2026:** Use **both** XML sitemaps (for Google and universal coverage) **and** IndexNow (for instant indexing on Bing/Yandex). They are complementary, not alternatives.
-
-**Implementation:**
-```bash
-# Submit a URL change via IndexNow API
-curl "https://api.indexnow.org/indexnow?url=https://example.com/blog/new-post/&key=YOUR_API_KEY"
-```
-
----
-
-## 28. European Accessibility Act (EAA) — 2025 Enforcement
-
-The **European Accessibility Act (EAA)**, which took effect on **June 28, 2025**, is the most significant accessibility regulation since the ADA. It mandates accessibility for products and services sold in the EU, including:
-
-| Scope | Requirements |
-|-------|-------------|
-| **E-commerce websites and apps** | Must be accessible to people with disabilities |
-| **Banking and financial services** | Online platforms must meet accessibility standards |
-| **E-books and digital reading** | Must offer accessible formats |
-| **Transport services** | Booking and ticketing websites must be accessible |
-| **Telecommunications** | Digital communication tools must be accessible |
-| **Consumer hardware** | Computers, smartphones, self-service terminals |
-
-### 28.1 Technical Standard
-
-The EAA references **EN 301 549** as the harmonized standard, which in turn maps to WCAG 2.1 AA (and is expected to update to WCAG 2.2 AA). **Practically, building to WCAG 2.2 AA ensures EAA compliance for web content.**
-
-### 28.2 Key Differences from ADA
-
-| Aspect | ADA (USA) | EAA (EU) |
-|--------|-----------|----------|
-| Scope | Websites of "places of public accommodation" | Products and services sold in the EU market (broader scope) |
-| Standard referenced | None explicitly (courts apply WCAG 2.0/2.1 AA) | EN 301 549 → WCAG 2.1/2.2 AA explicitly |
-| Enforcement | Private lawsuits (reactive) | Proactive market surveillance by EU member state authorities |
-| Penalties | Compensatory/punitive damages from courts | Fines, product bans, market withdrawal — set by member states |
-| Microenterprises | Not exempted | Exempted if < 10 employees AND < €2M annual turnover |
-
-### 28.3 Practical Compliance Checklist
-
-- [ ] WCAG 2.2 AA conformance on all public-facing web pages
-- [ ] Accessibility statement published (required by EAA and EN 301 549)
-- [ ] Feedback mechanism for users to report accessibility barriers
-- [ ] Regular accessibility audits (automated + manual with assistive technologies)
-- [ ] Staff training on accessibility requirements
-- [ ] Accessibility integrated into design and development processes (not retrofitted)
-
----
-
-## 29. Emerging Web Platform APIs (2025–2026)
-
-### 29.1 View Transitions API
-
-The View Transitions API provides native, hardware-accelerated animated transitions between UI states (within a page) or between pages (cross-document). It replaces the need for complex JS animation libraries for page transitions.
-
-**Same-document transitions (SPA):** Baseline Newly Available 2025 (Chrome 111+, Safari 18+, Firefox 144+).
-
-```javascript
-// Same-document view transition (SPA-style)
-document.querySelector('#nav-link').addEventListener('click', async () => {
-  // Check for browser support
-  if (!document.startViewTransition) {
-    // Fallback: just update the DOM directly
-    updateContent();
-    return;
-  }
-
-  // Start the transition — browser snapshots old state → new state
-  const transition = document.startViewTransition(() => {
-    updateContent(); // Your function to swap DOM content
-  });
-
-  // Optionally wait for the transition to finish
-  await transition.finished;
-});
-```
-
-**CSS controls for view transitions:**
-
-```css
-/* Default: the entire page cross-fades (old → new) */
-::view-transition-old(root) {
-  animation: 300ms ease-out fade-out;
-}
-::view-transition-new(root) {
-  animation: 300ms ease-in fade-in;
-}
-
-/* Named view transition: a specific element animates independently */
-.hero-image {
-  view-transition-name: hero;
-}
-
-::view-transition-old(hero) {
-  animation: 300ms ease-out slide-out-left;
-}
-::view-transition-new(hero) {
-  animation: 300ms ease-in slide-in-right;
-}
-
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-}
-```
-
-**Cross-document transitions (MPA — multi-page apps):**
-
-```css
-/* Opt in to cross-document view transitions (Chrome 126+) */
-@view-transition {
-  navigation: auto;
-}
-```
-
-Both the source and destination pages must include this CSS rule. The browser automatically handles the snapshot and animation when navigating between pages.
-
----
-
-### 29.2 CSS Scroll-Driven Animations
-
-Scroll-driven animations synchronize animation progress with scroll position — replacing heavy JS scroll listeners with pure CSS. **Baseline: Chrome 115+, Edge 115+, Safari 26+ (partial Firefox support behind flag).**
-
-```css
-/* ✅ Reading progress indicator driven by scroll */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: #4f8ef7;
-  transform-origin: left;
-  transform: scaleX(0);
-
-  /* Bind to page scroll progress */
-  animation: grow-progress linear;
-  animation-timeline: scroll(root);  /* root = page scroll */
-}
-
-@keyframes grow-progress {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-/* ✅ Reveal elements as they enter viewport */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-
-  animation: reveal linear both;
-  animation-timeline: view();       /* element's visibility in viewport */
-  animation-range: entry 0% entry 100%;  /* animate during entry phase */
-}
-
-@keyframes reveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ✅ Parallax effect — purely CSS */
-.parallax-bg {
-  animation: parallax linear;
-  animation-timeline: scroll(root);
-}
-
-@keyframes parallax {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-100px); }
-}
-
-/* ✅ Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal-on-scroll,
-  .parallax-bg,
-  .reading-progress {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-```
-
-**Key CSS functions:**
-- `scroll()` — binds to a scrollable element's scroll progress (0% at top, 100% at bottom)
-- `view()` — binds to an element's visibility within a scrollport (replaces IntersectionObserver for scroll-linked animations)
-- `animation-range` — controls which portion of the timeline the animation occupies (e.g., only during entry, exit, or a specific portion)
-
----
-
-### 29.3 CSS Anchor Positioning
-
-CSS Anchor Positioning (Chrome 125+, Edge 125+) allows elements to be positioned relative to another element ("anchor") — perfect for tooltips, dropdowns, and context menus that need to follow their trigger element.
-
-```css
-/* Define an anchor */
-.trigger-button {
-  anchor-name: --my-anchor;
-}
-
-/* Position relative to the anchor */
-.tooltip {
-  position: fixed;
-  position-anchor: --my-anchor;
-
-  /* Place above the anchor, centered horizontally */
-  bottom: anchor(top);
-  left: anchor(center);
-  translate: -50% -8px;
-
-  /* Auto-fallback if tooltip goes off-screen */
-  position-try-fallbacks: flip-block, flip-inline;
-}
-```
-
----
-
-### 29.4 The `<search>` Element (HTML)
-
-The `<search>` element (Baseline 2023: Chrome 118+, Firefox 118+, Safari 17+) provides a **semantic wrapper for search functionality**. It carries the implicit ARIA role of `search`, replacing the need for `<form role="search">`.
-
-```html
-<!-- ✅ Modern: using <search> -->
-<search aria-label="Site search">
-  <form action="/search" method="get">
-    <label for="q">Search</label>
-    <input type="search" id="q" name="q"
-           placeholder="Search articles..."
-           autocomplete="off">
-    <button type="submit">Search</button>
-  </form>
-</search>
-
-<!-- ❌ Legacy pattern (still valid, but less semantic) -->
-<form role="search" action="/search" method="get" aria-label="Site search">
-  <!-- ... -->
-</form>
-```
-
----
-
-### 29.5 The `inert` Attribute
-
-The `inert` attribute (Baseline 2023: all modern browsers) makes an entire DOM subtree **non-interactive and invisible to assistive technologies**. It replaces complex manual implementations of "disable everything behind a modal."
-
-```html
-<!-- ✅ When a modal is open, make everything behind it inert -->
-<div id="page-content" inert>
-  <header>...</header>
-  <main>...</main>
-  <footer>...</footer>
-</div>
-
-<dialog id="modal" open>
-  <!-- Dialog content -->
-</dialog>
-
-<!-- Note: <dialog>.showModal() does this automatically.
-     Use inert manually only for custom modal implementations. -->
-```
-
-```javascript
-// Toggle inert programmatically
-const content = document.getElementById('page-content');
-
-function openCustomModal() {
-  content.inert = true;   // Entire page behind modal becomes inert
-  modal.hidden = false;
-  modal.querySelector('[autofocus]').focus();
-}
-
-function closeCustomModal() {
-  content.inert = false;  // Restore interaction
-  modal.hidden = true;
-  triggerButton.focus();   // Return focus
-}
-```
-
-**`inert` effects:**
-- Element and all descendants are removed from the tab order
-- Element and all descendants are hidden from the accessibility tree
-- Click/touch events are ignored
-- Text selection is prevented
-- Visually indicated (browsers apply a slight dimming by default)
-
----
-
-### 29.6 The `autocomplete` Attribute — Complete Token Reference
-
-The `autocomplete` attribute is critical for both accessibility (WCAG SC 1.3.5 — Identify Input Purpose) and user experience. Browsers use these tokens to auto-fill form fields and to match password manager entries.
-
-| Token | Purpose | Input Type |
-|-------|---------|-----------|
-| `name` | Full name | `text` |
-| `given-name` | First name | `text` |
-| `family-name` | Last name | `text` |
-| `additional-name` | Middle name | `text` |
-| `honorific-prefix` | Mr., Ms., Dr. | `text` |
-| `nickname` | Display name / username | `text` |
-| `username` | Login username / email | `text`, `email` |
-| `new-password` | New password (registration, reset) | `password` |
-| `current-password` | Existing password (login) | `password` |
-| `one-time-code` | SMS/TOTP verification code | `text` |
-| `email` | Email address | `email` |
-| `tel` | Phone number (full, with country code) | `tel` |
-| `tel-country-code` | Country code only | `text` |
-| `tel-national` | National phone number (without country code) | `tel` |
-| `street-address` | Full street address (multi-line) | `textarea` |
-| `address-line1` | Address line 1 | `text` |
-| `address-line2` | Address line 2 | `text` |
-| `address-level1` | State / Province / Region | `text` |
-| `address-level2` | City / Town | `text` |
-| `postal-code` | ZIP / Postal code | `text` |
-| `country` | Country code (ISO 3166) | `text` |
-| `country-name` | Country name (human-readable) | `text` |
-| `cc-name` | Cardholder name | `text` |
-| `cc-number` | Credit card number | `text` |
-| `cc-exp` | Card expiration (MM/YY or MM/YYYY) | `text` |
-| `cc-exp-month` | Expiration month | `text` |
-| `cc-exp-year` | Expiration year | `text` |
-| `cc-csc` | Card security code (CVV/CVC) | `text` |
-| `cc-type` | Card type (Visa, MasterCard, etc.) | `text` |
-| `bday` | Birthday (full date) | `date` |
-| `bday-day` | Birthday day | `text` |
-| `bday-month` | Birthday month | `text` |
-| `bday-year` | Birthday year | `text` |
-| `sex` | Gender | `text` |
-| `organization` | Company / organization name | `text` |
-| `organization-title` | Job title | `text` |
-| `language` | Preferred language | `text` |
-| `url` | Personal website / profile URL | `url` |
-| `photo` | Profile photo URL | `url` |
-| `webauthn` | WebAuthn credential (passkey login) | — |
-
-**Section prefixes:** Prepend `shipping` or `billing` to differentiate address types:
-```html
-<input type="text" autocomplete="shipping street-address">
-<input type="text" autocomplete="billing postal-code">
-```
-
----
-
-## 30. Additional Structured Data Types (Missing from Original Reports)
-
-### 30.1 HowTo Schema
-
-```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How to Optimize Images for Core Web Vitals",
-  "description": "Step-by-step guide to converting images to AVIF/WebP and implementing responsive loading.",
-  "totalTime": "PT15M",
-  "estimatedCost": {
-    "@type": "MonetaryAmount",
-    "currency": "USD",
-    "value": "0"
-  },
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Audit Current Images",
-      "text": "Run Lighthouse and identify images that are not in modern formats or are oversized.",
-      "url": "https://example.com/guide/#step1"
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Convert to AVIF and WebP",
-      "text": "Use Squoosh or Sharp to convert all images to AVIF (primary) and WebP (fallback).",
-      "url": "https://example.com/guide/#step2"
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Implement <picture> Fallbacks",
-      "text": "Wrap each image in a <picture> element with <source> tags for AVIF and WebP, with the original format as the <img> fallback.",
-      "url": "https://example.com/guide/#step3"
-    }
-  ]
-}
-</script>
-```
-
-### 30.2 Event Schema
-
-```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "WebPerf Summit 2026",
-  "description": "Annual conference on web performance optimization.",
-  "startDate": "2026-06-15T09:00:00+05:30",
-  "endDate": "2026-06-17T18:00:00+05:30",
-  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "location": [
-    {
-      "@type": "Place",
-      "name": "GMDC Convention Centre",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "SG Highway",
-        "addressLocality": "Ahmedabad",
-        "addressRegion": "Gujarat",
-        "postalCode": "380015",
-        "addressCountry": "IN"
-      }
-    },
-    {
-      "@type": "VirtualLocation",
-      "url": "https://example.com/events/webperf-2026/livestream"
-    }
-  ],
-  "organizer": {
-    "@type": "Organization",
-    "name": "WebTeam",
-    "url": "https://example.com/"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "INR",
-    "url": "https://example.com/events/webperf-2026/register",
-    "availability": "https://schema.org/InStock",
-    "validFrom": "2026-01-01"
-  },
-  "image": "https://example.com/events/webperf-2026-banner.jpg"
-}
-</script>
-```
-
-### 30.3 VideoObject Schema
-
-For pages with embedded videos — enables video rich results and video carousels in Google search:
-
-```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "How to Pass Core Web Vitals — Complete Guide",
-  "description": "Step-by-step tutorial on optimizing LCP, INP, and CLS for Google search rankings.",
-  "thumbnailUrl": "https://example.com/videos/cwv-guide-thumbnail.jpg",
-  "uploadDate": "2026-02-01",
-  "duration": "PT12M30S",
-  "contentUrl": "https://example.com/videos/cwv-guide.mp4",
-  "embedUrl": "https://www.youtube.com/embed/abc123"
-}
-</script>
-```
-
-### 30.4 SiteNavigationElement Schema
-
-Helps search engines understand your site's primary navigation structure:
-
-```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SiteNavigationElement",
-  "name": "Main Navigation",
-  "url": [
-    "https://example.com/",
-    "https://example.com/products/",
-    "https://example.com/blog/",
-    "https://example.com/about/",
-    "https://example.com/contact/"
-  ]
-}
-</script>
-```
-
----
-
-## 31. Updated Master Pre-Launch Checklist — Addendum Items
-
+### 18.2 Additional Pre-Launch Checks
 Add these items to existing checklist sections:
 
-### ✅ 31.1 HTML Structure (Additional Items)
+#### 18.2.1 HTML Structure (Additional Items)
 
-- [ ] `<dialog>` used for all modal dialogs (not custom `<div>` modals) — ensure `showModal()` for modal behavior
+- [ ] Native `<dialog>` preferred for ordinary modal dialogs; custom dialogs reproduce focus, keyboard, labelling, modality, and focus-return behavior
 - [ ] `<details name="...">` used for exclusive accordions where appropriate (FAQ, settings panels)
-- [ ] `<search>` element wraps all search forms (or fallback `<form role="search">`)
+- [ ] Search interfaces expose a search landmark, using `<search>` where supported by the project baseline or a labelled `<form role="search">` fallback
 - [ ] `inert` attribute used on page content behind custom overlays (not needed if using `<dialog>.showModal()`)
 - [ ] Popover API used for tooltips, dropdown menus, and non-modal overlays (replaces custom JS z-index management)
 
-### ✅ 31.2 Accessibility (Additional Items)
+#### 18.2.2 Accessibility (Additional Items)
 
 - [ ] Drag-and-drop functionality has a single-pointer (click/tap) or keyboard alternative (WCAG 2.5.7)
 - [ ] Focus indicators have ≥ 2 CSS pixel perimeter area and ≥ 3:1 contrast (WCAG SC 2.4.13, AAA target)
 - [ ] Authentication flows do not require cognitive function tests; passkeys/WebAuthn offered as alternative (WCAG SC 3.3.8/3.3.9)
 - [ ] `autocomplete` attributes on ALL personal-data form fields match correct WHATWG tokens
-- [ ] Popover elements have appropriate ARIA roles (`role="menu"`, `role="tooltip"`, etc.) and trigger buttons have `aria-expanded`
-- [ ] EAA compliance verified (if serving EU customers): accessibility statement published, feedback mechanism available
+- [ ] Popover content uses semantics appropriate to its actual widget type; add ARIA only when native semantics are insufficient, and expose expanded/controlled state where the interaction pattern requires it
+- [ ] EAA applicability assessed for the covered product/service and organization; where in scope, applicable accessibility, documentation, support, and feedback obligations are verified
 
-### ✅ 31.3 SEO (Additional Items)
+#### 18.2.3 SEO (Additional Items)
 
 - [ ] Author information visible on content pages (byline, credentials, links to author profile)
 - [ ] E-E-A-T signals present: author schema (JSON-LD `Person`), `reviewedBy`, editorial policy link
-- [ ] Content structured for Search Overviews: direct answers in first paragraph, clear heading hierarchy matching user queries
+- [ ] Content structured for AI-generated search features: direct answers in first paragraph, clear heading hierarchy matching user queries
 - [ ] `sitemap.xml` submitted in Google Search Console; only canonical indexable URLs included
 - [ ] `robots.txt` reviewed — CSS/JS not blocked; internal search/filter URLs blocked to prevent crawl waste
 - [ ] IndexNow implemented for Bing/Yandex instant indexing (alongside XML sitemap)
 - [ ] Content freshness: `datePublished` and `dateModified` accurate in both visible HTML and JSON-LD
 
-### ✅ 31.4 Performance (Additional Items)
+#### 18.2.4 Performance (Additional Items)
 
-- [ ] View Transitions API used for SPA page transitions (with `prefers-reduced-motion` fallback)
-- [ ] CSS scroll-driven animations used instead of JS scroll listeners for parallax / reveal effects
+- [ ] View Transitions API considered for page/state transitions where it improves orientation, with a reduced-motion path and a no-transition fallback
+- [ ] Scroll-linked effects avoid per-frame layout-heavy JavaScript; use CSS scroll-driven animations when supported and appropriate, with a non-animated fallback
 - [ ] `content-visibility: auto` with `contain-intrinsic-size` on long off-screen sections
 - [ ] CSS Anchor Positioning used for tooltips/dropdowns instead of JS position calculation libraries (where browser support allows)
+- [ ] Native `<dialog>` with appropriate `closedby` (prefer over custom modals)
+- [ ] Invoker Commands (`command`/`commandfor`) or `popovertarget` used where supported, with progressive enhancement
+- [ ] Tooltips prefer `popover="hint"` (+ `interestfor` when available) over title-only tips
+- [ ] Exclusive FAQ/settings groups use `<details name="…">` where appropriate
+- [ ] Close Watcher (or Escape fallback) for stacked overlays / mobile back
+- [ ] Speculation Rules audited — no logout/mutation URLs; eagerness appropriate for device
+- [ ] Compression Streams considered for large client payloads instead of third-party gzip libs
+- [ ] Declarative Shadow DOM used for SSR custom elements when shipping Web Components
+- [ ] `hidden="until-found"` considered for progressive disclosure that must remain findable
+- [ ] Prefer `scrollend` over scroll+timeout debounce; `moveBefore` when relocating live media/focus
+- [ ] Temporal considered for non-trivial date/time work; feature-detect it and use a maintained polyfill or a verified supporting runtime where required
+- [ ] Prefer the standardized safe HTML parsing/insertion APIs when supported, or a vetted sanitizer fallback; never pass untrusted HTML directly to `innerHTML`
+- [ ] Prefer `dialog.requestClose()` when close must be cancelable
+- [ ] Check **04 §44** before requiring limited-availability APIs (custom select, Temporal Safari, etc.)
 
 ---
 
-## Document Metadata (Updated)
+## Document Metadata
 
 | Field | Value |
-|-------|-------|
-| **Last Updated** | March 2026 |
-| **Based on** | WHATWG HTML Living Standard, W3C WCAG 2.2, WAI-ARIA 1.2, MDN Web Docs, web.dev, schema.org, RFC 9110–9114, TC39 Temporal Proposal, APCA/BWMA, Google CWV documentation, W3C CSS Scroll-Driven Animations, View Transitions API, Popover API, EAA (Directive 2019/882), EN 301 549 v3.2.1 |
-| **Research sources** | W3C WCAG 2.2 Recommendation, Chrome Platform Status, web.dev, MDN, Google Search Central, Schema.org, EU EAA documentation |
-| **Scope** | HTML5, CSS3+, ES2022+, WCAG 2.2 AA, Core Web Vitals, Schema.org, HTTP/3, View Transitions API, Popover API, Scroll-Driven Animations, CSS Anchor Positioning, E-E-A-T |
-| **Sections** | 31 total sections |
-| **Review schedule** | Revisit for WCAG 3.0 (est. 2028+); JPEG XL browser support; Temporal API baseline; CSS Anchor Positioning cross-browser support; EAA enforcement outcomes |
+|---|---|
+| **Title** | Modern Web Standards — Master Reference |
+| **Revision** | 2026.07.10 — reorganized, deduplicated, and accuracy-corrected |
+| **Scope** | HTML, CSS, JavaScript, accessibility, SEO, structured data, media, performance, delivery, testing, and modern platform APIs |
+| **Conformance baseline** | Use the WCAG version required by law/contract; target WCAG 2.2 AA for new engineering where practical |
+| **Support policy** | Baseline and browser-version statements are time-sensitive; feature-detect limited APIs and provide fallbacks |
+| **Source lineage** | WHATWG HTML, WCAG 2.2, WAI-ARIA 1.2/APG, MDN, web.dev, Schema.org, RFC 9110–9114, TC39, Core Web Vitals, CSS Grid/Cascade, Scroll-Driven Animations, View Transitions, Popover/Dialog/Invoker work, EAA, and EN 301 549 |
+| **Review schedule** | Review quarterly and after material WCAG, EN 301 549/EAA, Baseline, search-feature, Temporal, customizable-select, media-codec, or browser-support changes |
+| **Relationship** | Complements `04-modern-features-2026-updated.md`, which focuses on newer native platform capabilities and support status |
+
+### Status vocabulary
+
+- **Stable standard:** standardized and broadly implementable, subject to the project's browser support floor.
+- **Baseline Newly available / Widely available:** use the Web Platform Baseline definition rather than interpreting “modern browser” informally.
+- **Limited availability:** implemented in some stable engines but not interoperable across the full Baseline core set.
+- **Experimental / proposal:** do not make critical functionality depend on it without a proven fallback.
+
+### Primary sources
+
+- [WHATWG HTML Living Standard](https://html.spec.whatwg.org/)
+- [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+- [W3C WCAG 3 introduction and draft status](https://www.w3.org/WAI/standards-guidelines/wcag/wcag3-intro/)
+- [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
+- [European Accessibility Act](https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en)
+- [EN 301 549 v3.2.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf)
+- [Google Search structured-data gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
+- [Google Search AI features guidance](https://developers.google.com/search/docs/appearance/ai-features)
+- [Schema.org](https://schema.org/)
+- [Web Platform Baseline](https://web.dev/baseline)
+- [TC39 ECMAScript proposals](https://github.com/tc39/proposals)
+- [Temporal proposal](https://tc39.es/proposal-temporal/)

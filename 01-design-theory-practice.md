@@ -1,176 +1,211 @@
-# The Definitive Guide to Design Theory & Color Theory for Web Design
+# Design Theory & Practice for Web Interfaces
 
-## A Master Synthesis — Admin Templates, Frontend Sites, Spacing, Typography, Color Systems, Accessibility & Beyond
+> **Edition:** July 2026  
+> **Scope:** Evidence-aware visual design, color, typography, spacing, responsive layout, product/admin interfaces, marketing sites, accessibility, tokens, testing, and governance.  
+> **Companion:** `02-design-styles-systems.md` contains the non-duplicated catalogue of named styles, historical movements, major design systems, and implementation methodologies.
 
-> **Edition:** 2025–2026 | **Scope:** Comprehensive, industry-tested reference curated from extensive industry research..
+This is a living reference. It distinguishes standards from research findings, heuristics, and trends; avoids unsupported universal claims; and requires context-specific validation.
 
----
+## Table of Contents
 
-## 📋 TABLE OF CONTENTS
-
-1. [Executive Summary](#1-executive-summary)
-2. [Foundational Design Theory & Principles](#2-foundational-design-theory--principles)
-   - 2.1 Visual Hierarchy & Attention Management
-   - 2.2 Balance & Layout Stability
-   - 2.3 Contrast as a Design Tool
-   - 2.4 Alignment & Grid-Based Structure
-   - 2.5 Proximity & Gestalt Grouping
-   - 2.6 Repetition, Rhythm & Consistency
-   - 2.7 Whitespace (Negative Space)
-   - 2.8 Emphasis & Focal Points
-   - 2.9 The Golden Ratio & Rule of Thirds
-   - 2.10 UX Laws: Hick's Law, Fitt's Law, Occam's Razor
-3. [Gestalt Principles in Web Design](#3-gestalt-principles-in-web-design)
-4. [Eye-Tracking Patterns: F-Pattern & Z-Pattern](#4-eye-tracking-patterns-f-pattern--z-pattern)
-5. [Color Theory — Complete Reference](#5-color-theory--complete-reference)
-   - 5.1 Color Fundamentals: The Color Wheel, Hue, Saturation, Brightness
-   - 5.2 Color Models for the Web: RGB, HSL, HSB, LAB/LCH, OKLCH
-   - 5.3 Color Harmony Systems
-   - 5.4 Color Psychology & Emotional Associations
-   - 5.5 Cultural Context & Color Meaning
-   - 5.6 The 60-30-10 Rule
-   - 5.7 Building a Semantic UI Color System
-   - 5.8 Complete Light & Dark Palette with Contrast Ratios
-   - 5.9 Generating Palettes: A Repeatable Token-Based Method
-   - 5.10 Dark Mode Design Best Practices
-   - 5.11 2025–2026 Color Trends
-6. [Typography — Systems, Scales & Performance](#6-typography--systems-scales--performance)
-   - 6.1 Why Typography Is 95% of Web Design
-   - 6.2 Typeface Classification & Selection
-   - 6.3 Modular Type Scales
-   - 6.4 Line Height (Leading)
-   - 6.5 Letter Spacing (Tracking) & Kerning
-   - 6.6 Line Length (Measure)
-   - 6.7 Font Weight Strategy
-   - 6.8 Font Pairing Principles
-   - 6.9 Tabular/Monospaced Numerals for Data
-   - 6.10 Font Loading & Performance
-   - 6.11 Fluid Typography with clamp()
-   - 6.12 Admin vs. Frontend Typography Comparison
-7. [Spacing, Grid Systems & Responsive Layout](#7-spacing-grid-systems--responsive-layout)
-   - 7.1 The 8pt Grid System
-   - 7.2 Spacing Scale & Token System
-   - 7.3 Macro vs. Micro Whitespace
-   - 7.4 The Internal ≤ External Rule
-   - 7.5 Grid Systems: 12-Column & CSS Grid
-   - 7.6 Breakpoints & Container Widths
-   - 7.7 Content Width & Reading Measure
-   - 7.8 CSS Grid vs. Flexbox vs. Container Queries
-   - 7.9 Responsive Design: Mobile-First Approach
-   - 7.10 Admin vs. Frontend Spacing Comparison
-8. [Admin Template & Dashboard Design](#8-admin-template--dashboard-design)
-   - 8.1 Admin vs. Frontend: The Fundamental Divergence
-   - 8.2 Admin Layout Structure (App Shell Pattern)
-   - 8.3 Sidebar Navigation Design
-   - 8.4 Data Tables: The Core Admin Surface
-   - 8.5 KPI Cards & Dashboard Widgets
-   - 8.6 Form Design in Admin
-   - 8.7 Data Visualization & Chart Design
-   - 8.8 Color Use in Admin Templates
-   - 8.9 Typography for Admin
-   - 8.10 Spacing & Density in Admin
-   - 8.11 Progressive Disclosure
-9. [Frontend / Marketing Site Design](#9-frontend--marketing-site-design)
-   - 9.1 Hero Section Design
-   - 9.2 Landing Page Flow & Narrative Arc
-   - 9.3 CTA Design
-   - 9.4 Social Proof Patterns
-   - 9.5 Cards & Content Grouping
-   - 9.6 Navigation Design
-   - 9.7 Motion & Microinteractions
-   - 9.8 Component-First Design Thinking
-10. [Accessibility — WCAG Compliance & Inclusive Design](#10-accessibility--wcag-compliance--inclusive-design)
-    - 10.1 WCAG 2.2 Contrast Requirements
-    - 10.2 "Not Color Alone" Principle
-    - 10.3 Focus States & Keyboard Navigation
-    - 10.4 Text Spacing Resilience (SC 1.4.12)
-    - 10.5 Color Blindness Considerations
-    - 10.6 Motion Sensitivity & prefers-reduced-motion
-    - 10.7 Screen Readers & Semantic HTML
-    - 10.8 ARIA Patterns for Complex Widgets
-11. [Design Tokens & Implementation](#11-design-tokens--implementation)
-    - 11.1 Token Architecture: Primitives → Semantics → Components
-    - 11.2 CSS Custom Properties & Theme Switching
-    - 11.3 Tailwind CSS Token Integration
-    - 11.4 Bootstrap 5.3 Color Modes
-    - 11.5 SCSS Patterns for Scalable Systems
-    - 11.6 Design Token JSON Structure
-12. [Testing, Validation & Quality Assurance](#12-testing-validation--quality-assurance)
-    - 12.1 Automated Accessibility Testing
-    - 12.2 Component-Level Testing (Storybook)
-    - 12.3 Visual Regression Testing
-    - 12.4 Manual Accessibility Checks
-    - 12.5 Visual Design Testing
-13. [Design Systems & Tools Ecosystem](#13-design-systems--tools-ecosystem)
-14. [Future Paradigms: 2025–2026 Trends](#14-future-paradigms-20252026-trends)
-    - 14.1 Bento Grids
-    - 14.2 Glassmorphism & Neumorphism
-    - 14.3 Kinetic Typography
-    - 14.4 Spatial UI & AR/VR
-    - 14.5 Adaptive Personalization & Contextual Design
-15. [Complete Design Workflow](#15-complete-design-workflow)
-16. [Master Comparison: Admin Template vs. Frontend Site](#16-master-comparison-admin-template-vs-frontend-site)
-17. [Complete Design Checklist](#17-complete-design-checklist)
-18. [Quick Reference Charts](#18-quick-reference-charts)
-19. [Recommended Tools & Resources](#19-recommended-tools--resources)
-20. [Sources & Further Reading](#20-sources--further-reading)
+- [1. Executive Summary](#1-executive-summary)
+- [2. Foundational Design Theory, Gestalt & Attention](#2-foundational-design-theory-gestalt-attention)
+  - [2.1 Visual Hierarchy & Attention Management](#21-visual-hierarchy-attention-management)
+  - [2.2 Balance & Layout Stability](#22-balance-layout-stability)
+  - [2.3 Contrast as a Design Tool](#23-contrast-as-a-design-tool)
+  - [2.4 Alignment & Grid-Based Structure](#24-alignment-grid-based-structure)
+  - [2.5 Gestalt Grouping: Proximity, Similarity, Continuity and More](#25-gestalt-grouping-proximity-similarity-continuity-and-more)
+  - [2.6 Repetition, Rhythm & Consistency](#26-repetition-rhythm-consistency)
+  - [2.7 Whitespace (Negative Space)](#27-whitespace-negative-space)
+  - [2.8 Emphasis & Focal Points](#28-emphasis-focal-points)
+  - [2.9 Proportion Heuristics: Golden Ratio & Rule of Thirds](#29-proportion-heuristics-golden-ratio-rule-of-thirds)
+  - [2.10 Decision and Interaction Heuristics](#210-decision-and-interaction-heuristics)
+  - [2.11 Scanning and Reading Patterns](#211-scanning-and-reading-patterns)
+- [3. Color Theory & Semantic Color Systems](#3-color-theory-semantic-color-systems)
+  - [3.1 Color Fundamentals: Hue, Chroma/Saturation, Lightness and Value](#31-color-fundamentals-hue-chromasaturation-lightness-and-value)
+  - [3.2 Color Models for the Web: RGB, HSL, HSB, LAB/LCH, OKLCH](#32-color-models-for-the-web-rgb-hsl-hsb-lablch-oklch)
+  - [3.3 Color Harmony Systems](#33-color-harmony-systems)
+  - [3.4 Color Psychology & Emotional Associations](#34-color-psychology-emotional-associations)
+  - [3.5 Cultural Context & Color Meaning](#35-cultural-context-color-meaning)
+  - [3.6 The 60-30-10 Rule](#36-the-60-30-10-rule)
+  - [3.7 Building a Semantic UI Color System](#37-building-a-semantic-ui-color-system)
+  - [3.8 Complete Light & Dark Palette with Measured Contrast Ratios](#38-complete-light-dark-palette-with-measured-contrast-ratios)
+  - [3.9 Generating Palettes: A Repeatable Token-Based Method](#39-generating-palettes-a-repeatable-token-based-method)
+  - [3.10 Dark Mode Design Best Practices](#310-dark-mode-design-best-practices)
+  - [3.10.1 Gamut, Forced Colors and Real-World Validation](#3101-gamut-forced-colors-and-real-world-validation)
+  - [3.11 Current Directional Trends (Non-Normative)](#311-current-directional-trends-non-normative)
+- [4. Typography Systems, Readability & Font Performance](#4-typography-systems-readability-font-performance)
+  - [4.1 Typography as a Primary Interface Material](#41-typography-as-a-primary-interface-material)
+  - [4.2 Typeface Classification & Selection](#42-typeface-classification-selection)
+  - [4.3 Modular Type Scales](#43-modular-type-scales)
+  - [4.4 Line Height (Leading)](#44-line-height-leading)
+  - [4.5 Letter Spacing (Tracking) & Kerning](#45-letter-spacing-tracking-kerning)
+  - [4.6 Line Length (Measure)](#46-line-length-measure)
+  - [4.7 Font Weight Strategy](#47-font-weight-strategy)
+  - [4.8 Font Pairing Principles](#48-font-pairing-principles)
+  - [4.9 Tabular/Monospaced Numerals for Data](#49-tabularmonospaced-numerals-for-data)
+  - [4.10 Font Loading & Performance](#410-font-loading-performance)
+  - [4.11 Fluid Typography with clamp()](#411-fluid-typography-with-clamp)
+  - [4.12 Contextual Typography Decisions](#412-contextual-typography-decisions)
+  - [4.13 Font Metrics, Internationalization and Resilience](#413-font-metrics-internationalization-and-resilience)
+- [5. Spacing, Grids, Responsive Layout & Reflow](#5-spacing-grids-responsive-layout-reflow)
+  - [5.1 Spacing Grids: 4-Unit and 8-Unit Systems](#51-spacing-grids-4-unit-and-8-unit-systems)
+  - [5.2 Spacing Scale & Token System](#52-spacing-scale-token-system)
+  - [5.3 Macro vs. Micro Whitespace](#53-macro-vs-micro-whitespace)
+  - [5.4 The Internal ≤ External Rule](#54-the-internal-external-rule)
+  - [5.5 Grid Systems: 12-Column & CSS Grid](#55-grid-systems-12-column-css-grid)
+  - [5.6 Breakpoints & Container Widths](#56-breakpoints-container-widths)
+  - [5.7 Content Width & Reading Measure](#57-content-width-reading-measure)
+  - [5.8 CSS Grid vs. Flexbox vs. Container Queries](#58-css-grid-vs-flexbox-vs-container-queries)
+  - [5.9 Responsive Design: Constraint-First and Mobile-First](#59-responsive-design-constraint-first-and-mobile-first)
+  - [5.10 Density Modes and Semantic Spacing](#510-density-modes-and-semantic-spacing)
+  - [5.11 Container-Driven Components](#511-container-driven-components)
+  - [5.12 Reflow, Zoom, Safe Areas and Dynamic Viewports](#512-reflow-zoom-safe-areas-and-dynamic-viewports)
+- [6. Product, Admin & Dashboard Design](#6-product-admin-dashboard-design)
+  - [6.1 Product and Admin Design Philosophy](#61-product-and-admin-design-philosophy)
+  - [6.2 Admin Layout Structure (App Shell Pattern)](#62-admin-layout-structure-app-shell-pattern)
+  - [6.3 Sidebar Navigation Design](#63-sidebar-navigation-design)
+  - [6.4 Data Tables: The Core Admin Surface](#64-data-tables-the-core-admin-surface)
+  - [6.5 KPI Cards & Dashboard Widgets](#65-kpi-cards-dashboard-widgets)
+  - [6.6 Form Design in Admin](#66-form-design-in-admin)
+  - [6.7 Data Visualization & Chart Design](#67-data-visualization-chart-design)
+  - [6.8 Color Use in Admin Templates](#68-color-use-in-admin-templates)
+  - [6.9 Admin-Specific Typography Details](#69-admin-specific-typography-details)
+  - [6.10 Admin Density Controls](#610-admin-density-controls)
+  - [6.11 Progressive Disclosure](#611-progressive-disclosure)
+  - [6.12 Responsive and Accessible Data Tables](#612-responsive-and-accessible-data-tables)
+  - [6.13 Command, Undo and Destructive-Action Design](#613-command-undo-and-destructive-action-design)
+- [7. Public-Facing & Marketing-Site Design](#7-public-facing-marketing-site-design)
+  - [7.1 Hero Section Design](#71-hero-section-design)
+  - [7.2 Landing Page Flow & Narrative Arc](#72-landing-page-flow-narrative-arc)
+  - [7.3 CTA Design](#73-cta-design)
+  - [7.4 Social Proof Patterns](#74-social-proof-patterns)
+  - [7.5 Cards & Content Grouping](#75-cards-content-grouping)
+  - [7.6 Navigation Design](#76-navigation-design)
+  - [7.7 Motion & Microinteractions](#77-motion-microinteractions)
+  - [7.8 Component-First Design Thinking](#78-component-first-design-thinking)
+  - [7.9 Content Design and Evidence Hierarchy](#79-content-design-and-evidence-hierarchy)
+  - [7.10 Ethical Conversion Design](#710-ethical-conversion-design)
+- [8. Accessibility & Inclusive Design](#8-accessibility-inclusive-design)
+  - [8.1 WCAG 2.2 Visual Requirements](#81-wcag-22-visual-requirements)
+  - [8.2 Contrast and State Design](#82-contrast-and-state-design)
+  - [8.3 Do Not Encode Meaning with Color Alone](#83-do-not-encode-meaning-with-color-alone)
+  - [8.4 Focus, Keyboard and Source Order](#84-focus-keyboard-and-source-order)
+  - [8.5 Text Spacing, Zoom and Reflow](#85-text-spacing-zoom-and-reflow)
+  - [8.6 Motion, Transparency and Sensory Preferences](#86-motion-transparency-and-sensory-preferences)
+  - [8.7 Semantic HTML, Names and Instructions](#87-semantic-html-names-and-instructions)
+  - [8.8 ARIA and Complex Widgets](#88-aria-and-complex-widgets)
+  - [8.9 Neuro-Inclusive and Cognitive Design](#89-neuro-inclusive-and-cognitive-design)
+  - [8.10 Legal and Organizational Scope](#810-legal-and-organizational-scope)
+- [9. Design Tokens & Implementation Contracts](#9-design-tokens-implementation-contracts)
+  - [9.1 Token Architecture](#91-token-architecture)
+  - [9.2 Naming Principles](#92-naming-principles)
+  - [9.3 DTCG 2025.10 Format](#93-dtcg-202510-format)
+  - [9.4 CSS Custom Properties](#94-css-custom-properties)
+  - [9.5 Theme and Mode Strategy](#95-theme-and-mode-strategy)
+  - [9.6 Tailwind CSS Integration](#96-tailwind-css-integration)
+  - [9.7 Bootstrap Integration](#97-bootstrap-integration)
+  - [9.8 Sass/SCSS and Build-Time Adapters](#98-sassscss-and-build-time-adapters)
+  - [9.9 Component Contracts](#99-component-contracts)
+  - [9.10 Governance and Versioning](#910-governance-and-versioning)
+- [10. Testing, Validation & Quality Assurance](#10-testing-validation-quality-assurance)
+  - [10.1 Quality Model](#101-quality-model)
+  - [10.2 Automated Accessibility Testing](#102-automated-accessibility-testing)
+  - [10.3 Component-State Coverage](#103-component-state-coverage)
+  - [10.4 Interaction and Keyboard Tests](#104-interaction-and-keyboard-tests)
+  - [10.5 Visual Regression](#105-visual-regression)
+  - [10.6 Manual Accessibility Protocol](#106-manual-accessibility-protocol)
+  - [10.7 Usability and Content Validation](#107-usability-and-content-validation)
+  - [10.8 Performance and Field Quality](#108-performance-and-field-quality)
+  - [10.9 Cross-Browser and Device Matrix](#109-cross-browser-and-device-matrix)
+  - [10.10 Release Gates](#1010-release-gates)
+- [11. Complete Design Workflow & Governance](#11-complete-design-workflow-governance)
+  - [11.1 Evidence and Decision Records](#111-evidence-and-decision-records)
+  - [11.2 Design-System Governance](#112-design-system-governance)
+- [12. Release Evidence Checklist](#12-release-evidence-checklist)
+  - [12.1 Foundation and Content](#121-foundation-and-content)
+  - [12.2 Visual System](#122-visual-system)
+  - [12.3 Responsive and Internationalized Layout](#123-responsive-and-internationalized-layout)
+  - [12.4 Accessibility](#124-accessibility)
+  - [12.5 Performance and Resilience](#125-performance-and-resilience)
+  - [12.6 Quality, Governance, and Release](#126-quality-governance-and-release)
+- [13. Tools & Research Methods](#13-tools-research-methods)
+  - [13.1 Design and System Authoring](#131-design-and-system-authoring)
+  - [13.2 Color, Typography, and Layout](#132-color-typography-and-layout)
+  - [13.3 Accessibility and Interaction Testing](#133-accessibility-and-interaction-testing)
+  - [13.4 Performance and Visual Quality](#134-performance-and-visual-quality)
+  - [13.5 Research and Validation](#135-research-and-validation)
+- [14. Research Basis & Further Reading](#14-research-basis-further-reading)
+  - [14.1 Normative Standards and Specifications](#141-normative-standards-and-specifications)
+  - [14.2 Browser and Performance References](#142-browser-and-performance-references)
+  - [14.3 Usability and Perception Research](#143-usability-and-perception-research)
+  - [14.4 Current Implementation Documentation](#144-current-implementation-documentation)
+  - [14.5 Companion Reference](#145-companion-reference)
 
 ---
 
 ## 1. Executive Summary
 
-Modern web UI quality is not about any single "look" — it is about a **repeatable, testable system**: visual hierarchy + layout rules + typography scale + color semantics + accessibility constraints + validation. When these pieces are made explicit and systematic, teams can ship both admin dashboards (high density, task-heavy) and user-facing sites (brand narrative, emotional conversion) with fewer regressions and more consistent usability.
+Modern web-interface quality does not come from a single aesthetic. It comes from a **repeatable, testable decision system** that coordinates hierarchy, content, typography, color, layout, interaction, accessibility, performance, and validation.
 
-Across all authoritative sources, the most reliable outcomes come from:
+This guide treats design rules according to their evidence level:
 
-1. **Deliberate visual hierarchy** and Gestalt-informed grouping
-2. **Spacing and grids** that create predictable scan paths
-3. **Typography** tuned for readability, hierarchy, and performance
-4. **Color systems** that are semantic, themeable, and contrast-valid
-5. **Accessibility** baked in from the start, not bolted on later
+- **Normative requirement** — defined by a standard, law, contract, or platform rule.
+- **Evidence-informed practice** — supported by research, established usability findings, or repeated product evidence.
+- **Heuristic** — a useful starting point that must be validated in context.
+- **Aesthetic convention** — a stylistic choice, not a usability law.
 
-For **admin templates**, the dominant risk is "crowding" — too much information without structure — and "silent complexity" where tables, filters, and forms lack keyboard/screen-reader robustness. The solution lies in density controls, data table ergonomics, progressive disclosure, and ARIA patterns.
+That distinction matters. A 4.5:1 text-contrast requirement is not the same kind of rule as an 8-unit spacing scale. The former is a WCAG conformance threshold; the latter is a practical convention that may be adapted when typography, platform density, localization, or component geometry requires it.
 
-For **frontend user-facing sites**, the dominant risk is "aesthetic-first breakage" — insufficient contrast, over-reliance on color to communicate, and large text surfaces that become hard to read because of line length, font loading shifts, or weak structure. The guardrails are WCAG contrast requirements, controlled line length, and semantic HTML structure.
+For task-heavy product and admin interfaces, the dominant risks are crowding, hidden complexity, weak state communication, inaccessible data structures, and inefficient repeated workflows. For public-facing and marketing interfaces, the dominant risks are aesthetic-first breakage, unclear value hierarchy, unsupported persuasion claims, unstable responsive composition, and visual effects that reduce readability or performance.
 
-This master document provides: recommended spacing and type scales, complete light/dark semantic palettes with measured contrast ratios, implementation patterns using design tokens and CSS variables (including Tailwind and Bootstrap examples), detailed admin and frontend design patterns, accessibility requirements, testing methodologies, and a practical step-by-step workflow.
+This document therefore provides one integrated practice reference for:
 
----
+1. foundational visual and interaction principles;
+2. color, typography, spacing, and responsive layout systems;
+3. product/admin and marketing-site design;
+4. accessibility and inclusive-design requirements;
+5. design tokens and implementation contracts;
+6. testing, governance, and delivery workflow.
 
-## 2. Foundational Design Theory & Principles
+Named visual styles, historical movements, platform design languages, and major design systems are intentionally catalogued in the companion file **`02-design-styles-systems.md`** so they are not duplicated here.
+
+## 2. Foundational Design Theory, Gestalt & Attention
 
 Design theory is the systematic framework that transforms aesthetic instinct into deliberate, purposeful decisions. Every pixel, every pause, every contrast ratio tells the user what to think, feel, and do next. These principles form the bedrock of every design decision — whether for a dense admin dashboard or a high-conversion landing page.
 
+---
+
 ### 2.1 Visual Hierarchy & Attention Management
 
-Visual hierarchy is the strategic arrangement of interface elements to communicate relative importance and guide the user through content in a sequence that fulfills specific functional objectives. It is the invisible scaffolding that prevents cognitive overload by directing ocular focus toward primary information before secondary or tertiary details are processed.
+Visual hierarchy is the arrangement of interface elements to communicate relative importance and guide attention through content and actions. It helps people decide what to inspect first, what belongs together, and what can be deferred.
 
-**The mechanisms of visual hierarchy are rooted in human evolutionary biology.** The brain is hard-wired to prioritize elements based on scale, contrast, and positioning. Size and scale function as the "loudest voice" on a page — larger elements naturally command attention first, creating an immediate importance ranking.
+Visual hierarchy works through perceptual attention cues such as size, contrast, position, grouping, and motion. These cues influence what people notice first, but their effect depends on content, culture, reading direction, device, and task; they are not universal biological laws.
 
 **How to create effective hierarchy:**
 
-- **Size/Scale:** Larger = more important. A 3× difference in size creates unmistakable dominance. Use your type scale systematically — never pick sizes ad hoc
-- **Color & Contrast:** Brighter or higher-contrast elements draw attention first. Full-opacity color for primary elements, muted for secondary
-- **Weight:** Bold text reads before regular text. Italic creates emphasis without size change
-- **Position:** Top-left in LTR languages receives the most attention. Place your most important content there
+- **Size/Scale:** Larger elements often attract attention sooner. Use a defined scale and validate that the hierarchy remains clear at different viewport sizes and zoom levels.
+- **Color & Contrast:** Higher contrast can increase salience. Reserve the strongest contrast for content or controls that genuinely deserve priority.
+- **Weight:** Heavier weight can establish emphasis; italic is better reserved for linguistic or editorial emphasis than used as a generic hierarchy device.
+- **Position:** Starting-edge and upper-page areas often receive early attention in left-to-right layouts, but reading direction, task, and established conventions matter.
 - **Spacing:** More space around an element increases its perceived prominence and importance
-- **Movement:** Animated elements always win attention over static ones — use this power sparingly
+- **Movement:** Motion is highly salient and can distract from tasks; use it only to explain change, provide feedback, or support narrative.
 
-**The 60-30-10 Rule for Size:** A practical distribution where 60% of content exists at base size, 30% at a larger scale for emphasis, and 10% at the largest scale for critical elements.
+**Optional hierarchy heuristic:** A 60–30–10 distribution can be adapted to visual emphasis—most content at a base level, a smaller portion emphasized, and a small focal layer—but this is a composition heuristic, not a measured standard.
 
 **Practical rule for both admin and frontend:** Each view should have:
 1. A single primary focal point (headline, key metric, hero CTA)
 2. A clear "next" action or section
 3. Supporting content that is visually quieter
 
-| Hierarchical Element | Psychological Mechanism | Implementation Standard |
+| Hierarchical Element | Perceptual Effect | Implementation Starting Point |
 |:---|:---|:---|
 | **Size and Scale** | Larger objects signal dominance and priority | Use a consistent typographic scale (e.g., Major Third 1.25) |
 | **Color and Contrast** | High contrast isolates elements from background noise | Maintain 4.5:1 ratio for standard text (WCAG AA) |
-| **Position and Flow** | Follows natural scanning patterns (F and Z patterns) | Place primary CTAs in the path of least resistance |
+| **Position and Flow** | Placement affects discovery and reading order | Keep priority content near likely task paths and verify with usability testing |
 | **Weight** | Bold text and heavier fonts establish importance | Use 2–3 weights maximum in a systematic way |
-| **Spacing** | More space = more prominence | Apply the 8pt grid to maintain consistent spacing |
-| **Movement** | Motion captures primal attention | Reserve for critical UI states; respect prefers-reduced-motion |
+| **Spacing** | Space establishes grouping and emphasis | Use a documented 4/8-unit token scale or another consistent scale |
+| **Movement** | Motion can explain change but also interrupt attention | Reserve for meaningful feedback; respect reduced-motion preferences |
 
 **Hierarchy levels for implementation:**
 
@@ -200,7 +235,9 @@ LEVEL 4 — Background
 └── Decorative elements
 ```
 
-> **Key insight from comprehensive analysis:** All authoritative sources agree that hierarchy must be *validated in context*, not assumed. UX studies show that subtle visual changes can alter user behavior — use usability testing and A/B methods to verify that your intended hierarchy matches actual user scan patterns.
+> **Validation principle:** hierarchy must be evaluated in context. Use task-based usability testing, first-click testing, and—in high-traffic products—controlled experiments to verify that users notice and understand the intended priority.
+
+---
 
 ---
 
@@ -214,6 +251,8 @@ Balance is not symmetry — it is the sense that the page "settles." It provides
 - **Asymmetrical balance:** More dynamic, modern, editorial. Used for marketing landing pages and creative frontends to create visual tension and guide focus toward specific elements. Achieved via larger whitespace regions and deliberate content proportions (hero vs. supporting sections)
 
 When balance is missing, users perceive the UI as "noisy" even if individual components look polished.
+
+---
 
 ---
 
@@ -236,6 +275,8 @@ Contrast is the visual difference between elements — in size, color, weight, s
 
 ---
 
+---
+
 ### 2.4 Alignment & Grid-Based Structure
 
 Every element should have a visual connection to something else on the page. Alignment creates order, reduces visual noise, and communicates professionalism. Consistent alignment creates rhythm and reduces cognitive load — especially critical for admin UIs where users must compare rows and columns quickly.
@@ -248,15 +289,30 @@ Every element should have a visual connection to something else on the page. Ali
 
 ---
 
-### 2.5 Proximity & Gestalt Grouping
+---
 
-Proximity is one of the most reliable "low-effort, high-return" design moves. Elements that are related should be placed near each other; unrelated items should be separated by more space. The brain automatically groups nearby objects, creating implicit structure without needing borders or backgrounds.
+### 2.5 Gestalt Grouping: Proximity, Similarity, Continuity and More
 
-**Practical examples:**
-- Labels sit directly above their input fields (not equidistant between two fields)
-- Table controls (search, filters, bulk actions) sit directly above the table they control, separated from page-level navigation by larger spacing
-- In pricing pages, each plan's price, features, and CTA are grouped inside a card with strong visual boundaries
-- Form fields within a logical group (e.g., "Address") have smaller gaps between them than between separate groups
+Gestalt principles describe recurring ways people organize visual information into groups and figures. They are useful design lenses, not deterministic laws: context, learned conventions, culture, reading direction, and assistive technology can change how a layout is understood.
+
+| Principle | Design implication | Practical application |
+|:---|:---|:---|
+| **Proximity** | Nearby items are likely to be interpreted as related | Keep labels close to their fields; separate unrelated form groups with a larger gap |
+| **Similarity** | Shared appearance suggests shared role | Give primary actions one consistent treatment; do not style static text like a link |
+| **Common region** | A visible boundary can create a group | Use cards, fieldsets, panels, or table sections when spacing alone is insufficient |
+| **Connectedness** | Explicit connections imply stronger relationships | Use lines or connectors in timelines, process diagrams, and node graphs |
+| **Continuity** | The eye tends to follow aligned paths | Align headings, values, controls, and columns to stable edges |
+| **Closure** | People can perceive a complete form from incomplete cues | Use carefully in icons and logos; never rely on ambiguity for critical controls |
+| **Figure/ground** | Foreground must remain distinguishable from its background | Ensure overlays, dialogs, menus, and text remain legible against every underlying state |
+| **Common fate** | Elements changing together are perceived as related | Coordinate motion only when it explains a shared state change |
+| **Prägnanz** | People often prefer the simplest coherent interpretation | Reduce unnecessary competing shapes and styles, while preserving required cues |
+
+**Spacing hierarchy:** a small gap communicates a strong relationship, a medium gap separates items within one section, and a large gap separates sections. Define these relationships with tokens rather than one-off values.
+
+**Forms and data tools:**
+- Place a label closer to its own control than to the previous control.
+- Keep table search, filters, bulk actions, and result counts within the table's visual region.
+- Use `<fieldset>` and `<legend>` for semantic grouping when a border or heading alone would not communicate the relationship to assistive technology.
 
 ---
 
@@ -267,18 +323,20 @@ Repeating visual elements throughout a design — fonts, colors, shapes, spacing
 **What to repeat consistently:**
 - Button styles (same padding, border-radius, font)
 - Card padding and internal spacing
-- Spacing increments (always 8px, 16px, 24px — never arbitrary values)
-- Color usage patterns (primary always means the same thing)
-- Icon style (outline OR filled, not mixed)
+- Spacing values drawn from the documented scale, with intentional exceptions
+- Semantic color roles that keep the same meaning across components and modes
+- A coherent icon system; intentional filled/outline state variants are documented
 - Border radius values
 
 This is especially important in admin templates where many similar screens (lists, forms, dashboards) must feel coherent. Users who spend hours daily in your admin interface build muscle memory — inconsistency taxes that muscle memory and reduces efficiency.
 
 ---
 
+---
+
 ### 2.7 Whitespace (Negative Space)
 
-Whitespace is not "empty" — it is "active space" that reduces cognitive load, improves comprehension, and communicates quality. studies show whitespace increases comprehension by up to 20%, reduces cognitive load, and makes designs feel higher-quality and more luxurious.
+Whitespace is not "empty" — it is "active space" that reduces cognitive load, improves comprehension, and communicates quality. Whitespace can improve grouping, scanability, and perceived quality when it supports the content hierarchy; the appropriate amount is task- and context-dependent.
 
 **Two categories of whitespace:**
 
@@ -290,7 +348,9 @@ Whitespace is not "empty" — it is "active space" that reduces cognitive load, 
 **Application by context:**
 - **Admin templates:** Compressed whitespace but still consistent. Use more micro whitespace inside tables/cells than macro whitespace between major sections. A thoughtful admin sidebar might use 4px–8px increments to maximize visible navigation items without compromising scannability
 - **Marketing/Frontend sites:** Generous macro whitespace (big margins, large section gaps, spacious hero padding). A marketing page might use 80px of margin to create a sense of luxury and breathing room
-- **Universal rule:** Padding ≥ 24px inside cards; margins ≥ 40px between major sections. Never fill every corner to "use space efficiently" — cramped layouts signal overwhelm and poor hierarchy
+- **Contextual rule:** Use a consistent token scale and make the gap between unrelated groups visibly larger than the gap between related items. Dense admin screens may use smaller values than marketing pages; there is no universal card or section spacing minimum.
+
+---
 
 ---
 
@@ -306,9 +366,11 @@ Emphasis is about creating a single clear focal point on each view. Without a fo
 
 ---
 
-### 2.9 The Golden Ratio & Rule of Thirds
+---
 
-**The Golden Ratio (1:1.618)** appears throughout nature and is inherently pleasing to the human eye. In web design, it guides:
+### 2.9 Proportion Heuristics: Golden Ratio & Rule of Thirds
+
+**The Golden Ratio (approximately 1:1.618)** is an optional proportioning heuristic used in art and design. It can help generate coherent ratios, but it is not inherently or universally more pleasing than other well-structured proportions. In web design, it may guide:
 - Layout proportions (e.g., a 960px page width split into 593px content + 367px sidebar)
 - Font size scales (each step roughly 1.618× the previous, though most practical scales use smaller ratios)
 - Spatial relationships between elements
@@ -317,70 +379,49 @@ Emphasis is about creating a single clear focal point on each view. Without a fo
 
 ---
 
-### 2.10 UX Laws: Hick's Law, Fitt's Law & Occam's Razor
+---
+
+### 2.10 Decision and Interaction Heuristics
 
 These cognitive principles from UX studies directly shape design decisions:
 
 | Law | Principle | Application |
 |:---|:---|:---|
 | **Hick's Law** | Decision time increases with the number and complexity of choices | Reduce choices: filter options on product-heavy sites, limit navigation items, use progressive disclosure in admin UI |
-| **Fitt's Law** | Time to reach a target is a function of distance and size; closer/larger targets are faster | Make frequent targets larger and closer to likely cursor positions. Enlarge CTAs, put primary actions in easily reachable zones |
-| **Occam's Razor** | The simplest solution is usually the best | Remove unnecessary elements. Strip homepages to essentials. Redesigns that simplify have yielded up to 300% improvement in conversions |
+| **Fitts's Law** | Time to reach a target is a function of distance and size; closer/larger targets are faster | Make frequent targets larger and closer to likely cursor positions. Enlarge CTAs, put primary actions in easily reachable zones |
+| **Occam's Razor** | Prefer the least complex solution that fully satisfies the requirements | Remove nonessential controls and decoration, but do not remove information or affordances users need |
 
 ---
 
-## 3. Gestalt Principles in Web Design
+---
 
-Gestalt psychology (German: "form" or "shape") describes how the human brain automatically organizes visual information into meaningful patterns. Designers who understand these principles design *with* the brain — not against it.
+### 2.11 Scanning and Reading Patterns
 
-| Principle | What It Means | Web Design Application |
+Eye-tracking research does not support one universal path for every page. Nielsen Norman Group describes several recurring text-scanning behaviors, including the **F-pattern**, **layer-cake pattern**, **spotted pattern**, and **commitment pattern**. The pattern that appears depends on the user's goal, page structure, content quality, familiarity, and motivation.
+
+| Pattern | Typical behavior | Design response |
 |:---|:---|:---|
-| **Proximity** | Objects close together are perceived as a group | Group form labels with inputs; cluster related navigation items; cards group their content visually |
-| **Similarity** | Elements that look alike are perceived as related | All primary buttons share one style; all links share one color; consistent icon style across a product |
-| **Continuity** | The eye follows smooth paths, lines, and curves | Breadcrumbs, progress bars, step indicators, carousels, scrolling content feeds |
-| **Closure** | The mind completes incomplete shapes | Logo design, hamburger menus (three lines = "menu"), skeleton loading screens that suggest full content |
-| **Figure/Ground** | We perceive foreground vs. background | Modal overlays with dimmed backgrounds; tooltips floating above content; sticky headers above scrolling page content |
-| **Common Fate** | Elements moving in the same direction are perceived as a group | Parallax scrolling; coordinated animations; items that animate together signal they belong together |
-| **Prägnanz (Simplicity)** | The mind prefers the simplest interpretation | Use the simplest possible shape/layout that communicates the message. Complexity always has a cognitive cost |
+| **F-pattern** | Broad scan near the top, shorter scans lower down, then a vertical scan along the starting edge | Front-load headings and key words; improve subheadings and paragraph openings rather than deliberately designing an F-shaped page |
+| **Layer-cake** | Users scan headings and subheadings, then selectively read sections | Use descriptive headings, clear hierarchy, and meaningful section labels |
+| **Spotted** | Users search for visually distinctive words, numbers, links, or shapes | Make key facts easy to locate without turning every phrase into a visual accent |
+| **Commitment** | Users read most or all content carefully | Support sustained reading with clear language, comfortable measure, and stable typography |
 
----
+The often-cited **Z-pattern** is better understood as a composition heuristic for simple, sparse layouts—not as a universal eye-tracking law. It can help distribute a logo, navigation, focal content, and action across a simple frame, but the actual path must be validated with task testing.
 
-## 4. Eye-Tracking Patterns: F-Pattern & Z-Pattern
+**Reading-direction rule:** do not assume “top-left first” for every language. Source order, alignment, and emphasis must adapt to the writing system and localization.
 
-Eye-tracking studies has identified two dominant scanning patterns that vary based on page type:
-
-**F-Pattern (Text-Heavy Pages)**
-Users scan text-heavy pages in an F-shape:
-1. First, a horizontal movement across the top of the content area (the top bar of the F)
-2. Next, a shorter horizontal movement partway down the page (the lower bar of the F)
-3. Finally, a vertical scan down the left side, searching for keywords or indicators
-
-**Best for:** Content-heavy interfaces, search result pages, admin lists, news sites, documentation. Place critical information in the top-left zone and along the left edge.
-
-**Z-Pattern (Visual/Simple Pages)**
-Users scan simple, image-heavy layouts in a Z-shape:
-1. Top-left (logo, brand) → Top-right (navigation, secondary CTA)
-2. Diagonal to center (value proposition, hero content)
-3. Bottom-left to Bottom-right (CTA, footer navigation)
-
-**Best for:** Marketing landing pages, product pages, sign-up pages, any page with a single primary objective. Place your primary CTA at the terminal point of the Z (bottom-right).
-
-> **Industry consensus:** Design your most critical elements along these natural scanning paths. Understanding which pattern applies to your page type is essential for effective element placement.
-
----
-
-## 5. Color Theory — Complete Reference
+## 3. Color Theory & Semantic Color Systems
 
 Color in web design is a high-bandwidth communication channel that conveys brand personality, emotional tone, and functional status long before the user reads a single word. It has two overlapping jobs: (1) **aesthetics and brand meaning**, and (2) **functional signaling** (states, emphasis, affordances) that must remain visible and accessible across multiple modes and under different forms of color perception.
 
-### 5.1 Color Fundamentals: The Color Wheel, Hue, Saturation, Brightness
+### 3.1 Color Fundamentals: Hue, Chroma/Saturation, Lightness and Value
 
-Sir Isaac Newton's 1666 prism experiment revealed that white light contains all colors, giving birth to the color wheel — still the most powerful tool in a designer's arsenal for creating harmony, contrast, and emotion.
+Newton’s prism experiments helped establish the visible spectrum and inspired later circular color arrangements. Modern UI color work, however, must distinguish between artistic color wheels, additive screen color, perceptual color spaces, and accessibility contrast.
 
 The color wheel organizes colors into three categories:
-- **Primary colors:** Red, Yellow, Blue (traditional) or Red, Green, Blue (digital/additive)
-- **Secondary colors:** Orange, Green, Violet (created by mixing primaries)
-- **Tertiary colors:** Created by mixing primary and secondary colors (e.g., red-orange, blue-green)
+- **RYB:** A traditional artist-oriented mixing model; useful historically but not a precise model of display color.
+- **RGB:** The additive model used by displays. Equal channel values create neutrals; full red, green, and blue combine toward white.
+- **Color-space note:** “Primary,” “secondary,” and “tertiary” relationships vary by model, so name the model when teaching or generating palettes.
 
 **Core color properties:**
 
@@ -393,21 +434,21 @@ The color wheel organizes colors into three categories:
 | **Shade** | Hue + black (darker versions) | Active states, pressed states, dark mode accents |
 | **Tone** | Hue + gray (muted versions) | Sophisticated, less aggressive color choices for professional UIs |
 
-### 5.2 Color Models for the Web: RGB, HSL, HSB, LAB/LCH, OKLCH
+### 3.2 Color Models for the Web: RGB, HSL, HSB, LAB/LCH, OKLCH
 
 Understanding different color models helps you choose the right one for different tasks:
 
 | Model | Description | Best For |
 |:---|:---|:---|
 | **RGB** | Additive model (Red, Green, Blue). Native to screens. Hex (#2563EB), rgb(37,99,235) | Technical color definitions, CSS values, exact specification |
-| **HSL** | Hue, Saturation, Lightness — more intuitive than RGB | Palette generation: change hue/saturation without affecting perceived lightness. Easy to create tint/shade scales |
+| **HSL** | Hue, Saturation, Lightness — intuitive for manual adjustment but not perceptually uniform | Simple authoring and legacy workflows; equal HSL lightness values can appear very different across hues |
 | **HSB/HSV** | Hue, Saturation, Brightness — used in design tools (Figma, Sketch) | Design-tool color picking, adjusting colors visually |
 | **LAB / LCH** | Perceptually uniform models | Accessible color generation, smooth gradients, programmatic palette creation |
 | **OKLCH** | Updated perceptually uniform model, increasingly available in CSS | Modern CSS color manipulation, creating consistent contrast steps and smooth neutral ramps |
 
-**Practical recommendation:** For day-to-day UI work, HSL is often the easiest for generating palettes (increase lightness for tints, decrease for shades). For programmatic palette generation and theme systems, consider OKLCH for its perceptual uniformity.
+**Practical recommendation:** HSL remains convenient for manual authoring, but it does not preserve perceived lightness across hues. For programmatic palette generation, interpolation, and theme systems, OKLCH is usually a better starting space; always gamut-map and verify final sRGB/P3 output and contrast.
 
-### 5.3 Color Harmony Systems
+### 3.3 Color Harmony Systems
 
 Color harmony is achieved by selecting colors whose relationships follow predictable, perceptually pleasing patterns on the color wheel. In web UI (especially admin), harmony rules are best treated as "seed ideas," then reshaped into a **semantic palette** mapped to functional roles.
 
@@ -420,11 +461,11 @@ Color harmony is achieved by selecting colors whose relationships follow predict
 | **Triadic** | Three colors evenly spaced (120° apart) | 3 | Vibrant and balanced. Let one color dominate heavily. Extremely difficult to balance — use sparingly |
 | **Tetradic / Square** | Four colors forming a rectangle on the wheel | 4 | Very rich but complex to manage. Keep saturation/value consistent. Better for illustration than minimal UI |
 
-> **Industry consensus:** Start with 2–3 colors to keep hierarchy clear (NN/g guidance). The most successful web UIs use a monochromatic or analogous base with a single complementary accent for interactive elements.
+> **Practical guidance:** Start with a small functional palette, then expand only when additional semantic or brand roles require it. Harmony models are starting points, not usability guarantees.
 
-### 5.4 Color Psychology & Emotional Associations
+### 3.4 Color Psychology & Emotional Associations
 
-Colors carry cultural, emotional, and psychological weight that shapes user perception before they read a single word. However, it is important to note that **context and culture matter greatly** — there is little robust, universal evidence that any single color has the same effect on everyone.
+Colors can influence attention and learned associations, but their meaning is contextual rather than universal. However, it is important to note that **context and culture matter greatly** — there is little robust, universal evidence that any single color has the same effect on everyone.
 
 | Color | Emotional Associations | Strategic Web Applications |
 |:---|:---|:---|
@@ -439,13 +480,13 @@ Colors carry cultural, emotional, and psychological weight that shapes user perc
 | **White** | Purity, cleanliness, simplicity, space | Backgrounds, breathing room, minimalist design, medical |
 | **Gray** | Sophistication, order, balance, neutrality | Backgrounds, secondary text, layout borders, disabled states |
 
-### 5.5 Cultural Context & Color Meaning
+### 3.5 Cultural Context & Color Meaning
 
 > ⚠️ **Critical consideration:** Color meanings vary dramatically across cultures. White signifies purity in Western cultures but mourning in parts of Asia. Red means luck and prosperity in China but danger in Western UX. Green can represent nature globally but also represents Islam in Middle Eastern contexts. **Always validate color choices against your primary user's cultural background before finalizing a palette.**
 
-### 5.6 The 60-30-10 Rule
+### 3.6 The 60-30-10 Rule
 
-The single most reliable formula for balanced color distribution in any design system:
+A widely used composition heuristic for distributing color is:
 
 - **60% — Dominant/Neutral color:** Backgrounds, large surfaces, body areas. Creates the overall tone and feel
 - **30% — Secondary color:** Sidebars, cards, secondary text, supporting surfaces. Provides visual interest
@@ -453,7 +494,7 @@ The single most reliable formula for balanced color distribution in any design s
 
 In admin templates and frontend UIs, this ratio prevents visual fatigue while maintaining brand presence and functional clarity.
 
-### 5.7 Building a Semantic UI Color System
+### 3.7 Building a Semantic UI Color System
 
 A modern UI color system separates raw colors from their functional meaning. all authoritative sources converge on a layered token architecture:
 
@@ -502,9 +543,9 @@ COMPONENT-LEVEL TOKENS
 └── input.border-focus       → var(--color-primary)
 ```
 
-### 5.8 Complete Light & Dark Palette with Measured Contrast Ratios
+### 3.8 Complete Light & Dark Palette with Measured Contrast Ratios
 
-The following palettes are based on across all authoritative sources, designed for typical web UI needs (both admin and frontend). Contrast ratios are computed using the WCAG contrast formula.
+The following palettes are worked examples for typical UI roles. They are not universal brand palettes. Contrast ratios were recalculated using the WCAG 2 relative-luminance formula; every real component must still be tested in its actual state and background.
 
 #### Light Palette
 
@@ -555,9 +596,9 @@ WCAG-informed targets: **≥ 4.5:1 for normal text (AA)**; **≥ 3:1 for large t
 | Danger button text on danger | 4.83:1 | 6.77:1 | ✅ |
 | Info button text on info | 5.36:1 | 10.36:1 | ✅ |
 | Focus ring vs background (non-text) | 4.47:1 | 9.39:1 | ✅ |
-| Input border vs surface (non-text) | 4.76:1 | 3.73:1 | ✅ |
+| Input border vs surface (non-text) | 4.55:1 | 3.73:1 | ✅ |
 
-### 5.9 Generating Palettes: A Repeatable Token-Based Method
+### 3.9 Generating Palettes: A Repeatable Token-Based Method
 
 A repeatable palette method that scales across products:
 
@@ -565,39 +606,51 @@ A repeatable palette method that scales across products:
 2. **Define semantic roles** — Map primary/success/warning/danger/info to specific steps in your primitive ramps. Each role gets a base shade, a text-on shade, a light background shade, and a dark variant
 3. **Define theme modes** — Light and dark themes change which primitive steps are used for each role, not the roles themselves. This means adding new themes (high-contrast, brand variant) is a configuration change, not a redesign
 
-### 5.10 Dark Mode Design Best Practices
+### 3.10 Dark Mode Design Best Practices
 
-Dark mode is no longer optional — it is an expected feature in 2025–2026. However, dark mode is NOT simply inverting colors.
+Dark mode is common and may be valuable when the product, platform, or audience expects it, but it is not mandatory for every interface. It must be designed as a separate appearance rather than produced by simple inversion.
 
 **Critical dark mode rules (established through industry best practices):**
 - **Dark ≠ Black:** Use dark grays (#0B1220, #111827, #1A1D24) instead of pure black (#000000) to maintain a sense of depth and avoid "OLED halo" effects
-- **Desaturate accent colors:** Reduce saturation of accent colors by 10–15% in dark mode. High-saturation colors "vibrate" against dark backgrounds and cause eye strain
+- **Re-tune accent colors:** Evaluate chroma and lightness on dark surfaces. Some accents need reduced chroma; others need higher lightness. Do not apply a fixed percentage mechanically.
 - **Shadows lose impact:** In dark mode, shadows are less visible. Use subtle borders and background-color elevation instead of shadow elevation
-- **Text opacity:** Use 85–95% opacity white for body text, not pure white (#FFFFFF). Pure white on dark backgrounds creates excessive contrast that strains eyes during extended use
+- **Text colors:** Prefer explicit, tested text tokens rather than arbitrary white opacity. Very high contrast can feel harsh for some users, but lowering contrast must never compromise readability.
 - **Layer with backgrounds:** Create depth through progressively lighter dark backgrounds (e.g., bg → surface → elevated surface: #0B1220 → #111827 → #1F2937)
 - **Test independently:** Dark mode is a separate design that must be tested independently for contrast, readability, and visual hierarchy
 
-### 5.11 2025–2026 Color Trends
 
-Current trends identified across the industry sources:
+### 3.10.1 Gamut, Forced Colors and Real-World Validation
+
+A color token is not complete until its rendering context is known.
+
+- **sRGB remains the safest baseline.** Display-P3 can provide richer colors on capable displays, but include an sRGB fallback and avoid relying on out-of-gamut differences to communicate meaning.
+- **Perceptual uniformity is approximate.** OKLCH improves palette authoring, but equal lightness does not automatically guarantee WCAG contrast or identical perceived prominence.
+- **Forced-colors mode can replace authored colors.** Test semantic states with `forced-colors: active`; do not disable system adaptation unless a specific component truly requires it.
+- **Transparency changes the effective color.** Test text, icons, focus indicators, and borders against every background they can overlap.
+- **Charts need redundant encoding.** Combine color with labels, direct annotation, symbols, line styles, or patterns.
+
+
+### 3.11 Current Directional Trends (Non-Normative)
+
+These are observed directions rather than standards or guaranteed forecasts:
 - **Natural, muted tones** and soft pastels replacing bright neons
 - **Smooth, subtle gradients** for modern depth perception
-- **Dark mode** as a mandatory feature, not an afterthought
+- **Dark and alternative appearance modes** where user context and platform expectations justify them
 - **Warm vs. cool colors** strategically deployed for emotional engagement
 - **OKLCH and LCH** color spaces gaining adoption in CSS for perceptually uniform palette generation
 - **Reduced color** — fewer colors used more intentionally, with meaning attached to each
 
 ---
 
-## 6. Typography — Systems, Scales & Performance
+## 4. Typography Systems, Readability & Font Performance
 
-### 6.1 Why Typography Is 95% of Web Design
+### 4.1 Typography as a Primary Interface Material
 
-Typography is the "invisible art" that dictates the efficiency with which a user consumes information. Over 95% of web content is written text. The goal of good typography is **invisibility** — type should guide without being noticed, communicate without demanding attention. Every typographic choice from scale to kerning shapes reading experience, brand perception, and cognitive load.
+Typography is one of the primary materials of interface design because labels, instructions, navigation, data, and long-form content are largely textual. The goal of good typography is **invisibility** — type should guide without being noticed, communicate without demanding attention. Every typographic choice from scale to kerning shapes reading experience, brand perception, and cognitive load.
 
 A robust typographic system must produce hierarchy, remain readable under user overrides (WCAG SC 1.4.12), and behave well under font loading and performance constraints.
 
-### 6.2 Typeface Classification & Selection
+### 4.2 Typeface Classification & Selection
 
 | Category | Characteristics | Best For | Example Fonts |
 |:---|:---|:---|:---|
@@ -612,15 +665,15 @@ A robust typographic system must produce hierarchy, remain readable under user o
 - **Open apertures:** Letters like 'a', 'e', 'c' should have open counters for screen legibility
 - **Distinguishable characters:** The letters 'i', 'l', '1' and 'O', '0' must be clearly distinct
 - **Character set support:** Ensure the font covers all languages and character sets you need
-- **Variable font availability:** Variable fonts provide infinitely precise weight control with smaller file sizes
+- **Variable font availability:** Variable fonts can reduce request count and support continuous axes, but they are not automatically smaller than a carefully subset static-font set
 
-### 6.3 Modular Type Scales
+### 4.3 Modular Type Scales
 
-A **type scale** is a progression of font sizes based on a mathematical ratio. This creates consistent, predictable hierarchy and rhythm. The key is not the exact numbers, but that each step has a defined role.
+A **type scale** is a documented progression of text sizes. A mathematical ratio can provide a starting point, but optical adjustment is often necessary because display size, x-height, language, density, and component constraints do not scale uniformly.
 
 **Common scale ratios and their character:**
 
-| Scale Ratio | Value | Character | Ideal Context |
+| Scale Ratio | Value | Character | Possible Context |
 |:---|:---:|:---|:---|
 | **Minor Second** | 1.067 | Extremely subtle hierarchy | Dense data-heavy admin UIs |
 | **Major Second** | 1.125 | Subtle, gentle progression | Admin tools, tight interfaces |
@@ -630,7 +683,7 @@ A **type scale** is a progression of font sizes based on a mathematical ratio. T
 | **Augmented Fourth** | 1.414 | Dynamic, high-impact | Marketing, landing pages, hero-first design |
 | **Golden Ratio** | 1.618 | Dramatic, but can skip too much | Display-heavy designs, very few heading levels |
 
-**Practical "admin-friendly" type scale (root 16px, Major Third 1.25):**
+**Worked type-scale example (root 16px, approximately Major Third):**
 
 | Role | rem | px | Typical Use | Line Height |
 |:---|---:|---:|:---|:---:|
@@ -661,13 +714,13 @@ A **type scale** is a progression of font sizes based on a mathematical ratio. T
 }
 ```
 
-### 6.4 Line Height (Leading)
+### 4.4 Line Height (Leading)
 
-Line height is the vertical space between lines of text. It is directly connected to type size — different sizes need different line heights.
+Line height is the vertical distance between baselines. Larger display text often works with tighter leading, while long-form text usually needs more. These ranges are starting points, not WCAG requirements.
 
 | Text Type | Line Height | Rationale |
 |:---|:---:|:---|
-| **Body text** | 1.5–1.7 | Allows the eye to track smoothly from one line to the next without skipping. 1.5 is the minimum; 1.6 is optimal for most UI |
+| **Body text** | Commonly 1.45–1.7 | Tune for typeface, measure, language, and density; WCAG does not prescribe a default line-height value |
 | **Large body / Lead text** | 1.4–1.6 | Slightly tighter as size increases |
 | **Headings (H3–H1)** | 1.1–1.3 | Larger glyphs require less vertical separation. Tight line height keeps multi-line headings cohesive |
 | **Display text (Hero)** | 1.0–1.1 | Very tight for dramatic visual impact |
@@ -685,7 +738,7 @@ Line height is the vertical space between lines of text. It is directly connecte
 }
 ```
 
-### 6.5 Letter Spacing (Tracking) & Kerning
+### 4.5 Letter Spacing (Tracking) & Kerning
 
 **Letter spacing (tracking):** Uniform spacing between ALL characters in a text block.
 - **Tighten slightly for large headings:** −0.02em to −0.04em (large text has natural optical spacing that reads as too loose)
@@ -694,17 +747,17 @@ Line height is the vertical space between lines of text. It is directly connecte
 
 **Kerning:** Spacing between two SPECIFIC characters. Most modern fonts handle this automatically via OpenType kerning pairs. Watch for awkward gaps in display type — especially in AV, Ty, WA, and To combinations at large sizes.
 
-### 6.6 Line Length (Measure)
+### 4.6 Line Length (Measure)
 
-Optimal line length for body text is **45–75 characters per line**, with **65 characters (65ch)** being the widely accepted ideal. This is one of the most impactful and easiest readability improvements you can make.
+A useful starting range for sustained body reading is roughly **45–75 characters per line**. Around **60–70 characters** often works well, but typeface, language, font size, and reading context should determine the final measure. This is one of the most impactful and easiest readability improvements you can make.
 
 - **Too long (>75ch):** Reader loses their place when returning to the next line ("regression"). Common on wide-screen layouts without max-width constraints
 - **Too short (<45ch):** Fatiguing eye jumps and disrupted reading rhythm. Breaks flow
 - **Implementation:** Use `max-width: 65ch` on content containers and center them. Allow background sections (heroes, full-width imagery) to remain fluid
 
-### 6.7 Font Weight Strategy
+### 4.7 Font Weight Strategy
 
-Use 2–3 weights maximum from any typeface. A common system:
+Use as few weights as the hierarchy needs. Two or three are often enough, but complex editorial or data products may need more when roles remain consistent:
 
 | Weight | Value | Role |
 |:---|:---:|:---|
@@ -714,13 +767,13 @@ Use 2–3 weights maximum from any typeface. A common system:
 | **Semibold** | 600 | Sub-headings, table headers, important labels |
 | **Bold** | 700 | Headings, strong emphasis, primary actions |
 
-Variable fonts give you infinitely precise weight control with a single file, letting you fine-tune hierarchy without loading multiple font files.
+Variable fonts can expose continuous weight and other axes in one font resource, but file size depends on the font and subset; compare the real transfer size with static alternatives.
 
-### 6.8 Font Pairing Principles
+### 4.8 Font Pairing Principles
 
 Combine a distinctive display/heading font with a neutral, readable body font. Create contrast in **category** (serif + sans-serif) but harmony in **mood**.
 
-**Safe, proven pairing patterns:**
+**Common pairing patterns:**
 - **Sans-serif body + sans-serif heading** (same family or different weights) — Clean, modern, utilitarian. Best for admin UIs
 - **Sans-serif body + serif heading** — Editorial, sophisticated, distinctive. Best for marketing/content sites
 - **Sans-serif body + display heading** — Bold personality. Best for brand-forward landing pages
@@ -731,7 +784,7 @@ Combine a distinctive display/heading font with a neutral, readable body font. C
 - Avoid pairing fonts with similar personalities — the contrast IS the point
 - Ensure both fonts have matching x-heights for visual harmony in mixed content
 
-### 6.9 Tabular/Monospaced Numerals for Data
+### 4.9 Tabular/Monospaced Numerals for Data
 
 For administrative interfaces and data-heavy tables, **tabular numerals** are a functional necessity. In proportional fonts, the digit "1" is narrower than "9", causing columns of numbers to misalign and making visual comparison difficult.
 
@@ -745,7 +798,7 @@ Tabular numerals ensure every digit occupies the same horizontal space, allowing
 }
 ```
 
-### 6.10 Font Loading & Performance
+### 4.10 Font Loading & Performance
 
 **System UI fonts** reduce loading cost and provide excellent platform-native legibility:
 ```css
@@ -759,7 +812,7 @@ Tabular numerals ensure every digit occupies the same horizontal space, allowing
 - **Render behavior:** Use `font-display: swap` to avoid invisible text (FOIT). Accept a brief flash of unstyled text (FOUT) as the better tradeoff
 - **Layout stability:** Use `size-adjust` or font metric matching to reduce Cumulative Layout Shift (CLS) when the web font loads and swaps
 - **Subsetting:** Remove unused character ranges to reduce file size dramatically
-- **Preloading:** Use `<link rel="preload">` for critical fonts used above the fold
+- **Preloading:** Preload only fonts that are genuinely critical to the initial render; excessive font preloads compete with images, CSS, and other high-priority resources
 
 ```css
 /* Resilient font stack with safe loading */
@@ -777,7 +830,7 @@ html {
 }
 ```
 
-### 6.11 Fluid Typography with clamp()
+### 4.11 Fluid Typography with clamp()
 
 Modern CSS `clamp()` creates typography that scales smoothly between viewport sizes without media query breakpoints:
 
@@ -797,37 +850,46 @@ h1 {
 }
 ```
 
-### 6.12 Admin vs. Frontend Typography
+### 4.12 Contextual Typography Decisions
 
-> For a comprehensive side-by-side comparison of all design dimensions (typography, spacing, color, layout, and more), see **Section 16: Master Comparison**.
-
-The key typography divergence: admin templates use **14–15px body text** with a **Minor Third (1.2)** scale for dense, efficient reading, while frontend sites use **16–18px body** with a **Major Third (1.25) or Perfect Fourth (1.333)** scale for dramatic, expressive headings. Admin UIs favor a single sans-serif family with weight variation; frontend sites often pair a serif heading font with a sans-serif body for editorial contrast.
+Administrative and marketing typography require different density and hierarchy ranges; the context-specific guidance is kept in their respective chapters.
 
 ---
 
-## 7. Spacing, Grid Systems & Responsive Layout
+### 4.13 Font Metrics, Internationalization and Resilience
+
+A typography system must survive more than the default English mockup.
+
+- Test long translations, right-to-left scripts, CJK text, Devanagari and any scripts in the product scope.
+- Avoid fixed-height text containers; allow wrapping and vertical growth.
+- Use `size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override` only after measuring fallback and web-font metrics.
+- Preserve user zoom and text resizing; do not use viewport units alone for body text.
+- Use `font-synthesis: none` only when the required real styles are loaded, otherwise users may lose meaningful bold or italic distinctions.
+- Check numerals, currency symbols, diacritics, punctuation, and mixed-script fallback before approving a font family.
+- For data, use `font-variant-numeric` features intentionally: `tabular-nums` for aligned columns, `slashed-zero` where identifiers need disambiguation, and proportional figures for prose.
+
+## 5. Spacing, Grids, Responsive Layout & Reflow
 
 A robust layout system solves a recurring problem: **how to scale complexity without losing clarity**. Spacing is the grammar of design — it tells the eye which elements belong together, establishes rhythm, creates breathing room, and communicates hierarchy before any content is read.
 
-### 7.1 The 8pt Grid System
+### 5.1 Spacing Grids: 4-Unit and 8-Unit Systems
 
-The 8pt grid system has emerged as the global standard for UI layout because of its inherent scalability and logic. By using multiples of 8 (4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 128) for all padding, margins, and component dimensions, you create a consistent visual rhythm.
+A 4- or 8-unit spacing grid is a common design-system convention because it limits arbitrary values and creates repeatable rhythm. The purpose is consistency—not literal adherence to every multiple for every property. Typography, one-pixel borders, optical alignment, and platform-native control sizes may require exceptions.
 
 **Why 8 specifically?**
-- Most modern display resolutions are divisible by 8, enabling perfect pixel rendering on all screen densities (1x, 1.5x, 2x, 3x Retina)
-- Provides enough granularity without excessive values to choose from
-- Aligns with major design systems: Material Design, Ant Design, Tailwind CSS, Carbon
-- Maps cleanly to most type scales
+- Provides a manageable vocabulary of spacing decisions
+- Maps cleanly to many component and layout systems
+- Supports density variants by shifting semantic tokens to smaller or larger primitive steps
 
 **Two implementation approaches:**
 - **Hard Grid:** Snap all content to a document-wide 8px grid (more rigid, more precise)
 - **Soft Grid (recommended for web):** Focus on 8px increments between individual elements. More accurately reflects CSS box model behavior with Flexbox and Grid
 
-**For tighter admin UIs:** Use a 4pt base with the same multiples (4, 8, 12, 16, 20, 24...) as a half-step system.
+**For tighter admin UIs:** A 4-unit base can provide half-steps while preserving a coherent scale. Do not reduce interactive target size merely to satisfy density.
 
-### 7.2 Spacing Scale & Token System
+### 5.2 Spacing Scale & Token System
 
-A complete, code-friendly spacing scale that supports both comfortable frontend spacing and denser admin layouts:
+A worked, code-friendly spacing scale that supports comfortable marketing layouts and denser application interfaces:
 
 | Token | px | rem | Typical Use |
 |:---|---:|---:|:---|
@@ -865,7 +927,7 @@ A complete, code-friendly spacing scale that supports both comfortable frontend 
 .label { margin-bottom: var(--space-2); }          /* 8px */
 ```
 
-### 7.3 Macro vs. Micro Whitespace
+### 5.3 Macro vs. Micro Whitespace
 
 | Type | Scale | Examples |
 |:---|:---|:---|
@@ -876,16 +938,16 @@ A complete, code-friendly spacing scale that supports both comfortable frontend 
 
 **Marketing/Frontend:** Generous macro whitespace. Use 8px base with larger steps (32, 48, 64, 96px) to create "breathing room."
 
-### 7.4 The Internal ≤ External Rule
+### 5.4 The Internal ≤ External Rule
 
-A critical spatial principle: **the space inside a component (padding) should never be greater than the space between components (margin/gap)**. This is a direct application of Gestalt proximity — it ensures related items stay grouped together while distinct sections are clearly separated.
+A useful proximity heuristic is: **space between unrelated groups should usually be greater than space inside a related group**. This is not an absolute mathematical rule; card padding can legitimately exceed a compact grid gap. This is a direct application of Gestalt proximity — it ensures related items stay grouped together while distinct sections are clearly separated.
 
 **Example:**
-- Card internal padding: 24px
-- Gap between cards: 24px or greater (never less than internal padding)
-- If you have labels and inputs inside the card with 8px gap, the card-to-card gap must be > 8px
+- Related controls might use an 8px gap while separate groups use 24px.
+- A card may use 24px internal padding and a 16px grid gap when density requires it; grouping must remain perceptually clear.
+- Validate the relationship with real content rather than enforcing a universal padding-to-gap equation.
 
-### 7.5 Grid Systems: 12-Column & CSS Grid
+### 5.5 Grid Systems: 12-Column & CSS Grid
 
 **12-Column Grid (Template-Driven):**
 The classic approach for responsive layouts. 12 columns allow easy division into halves (6+6), thirds (4+4+4), quarters (3+3+3+3), and asymmetric splits (8+4, 9+3).
@@ -915,9 +977,9 @@ For card layouts, dashboard panels, and responsive compositions:
 }
 ```
 
-### 7.6 Breakpoints & Container Widths
+### 5.6 Breakpoints & Container Widths
 
-A pragmatic starting point based on widely adopted standards:
+The following values are example starting points, not device categories or universal standards. Choose breakpoints where content, navigation, or component behavior actually needs to change:
 
 | Tier | Min Width | Container Max | Columns | Typical Devices |
 |:---|---:|---:|:---:|:---|
@@ -936,9 +998,9 @@ A pragmatic starting point based on widely adopted standards:
 └─ Wide (>1440px): Max-width container; spacious layout with persistent sidebar
 ```
 
-### 7.7 Content Width & Reading Measure
+### 5.7 Content Width & Reading Measure
 
-For content-heavy frontend pages, controlling line length is a critical usability win. Research consistently cites **50–75 characters per line** as optimal for body text.
+For content-heavy frontend pages, controlling line length is a critical usability win. A frequently useful range for sustained body reading is **about 45–75 characters per line**, but language, typeface, font size, and task can move the appropriate measure.
 
 ```css
 /* Cap article content at comfortable reading width */
@@ -958,7 +1020,7 @@ For content-heavy frontend pages, controlling line length is a critical usabilit
 }
 ```
 
-### 7.8 CSS Grid vs. Flexbox vs. Container Queries
+### 5.8 CSS Grid vs. Flexbox vs. Container Queries
 
 | Technology | Axes | Best For | Key Pattern |
 |:---|:---:|:---|:---|
@@ -966,9 +1028,9 @@ For content-heavy frontend pages, controlling line length is a critical usabilit
 | **Flexbox** | 1D (row OR column) | Navigation bars, button groups, card headers, form rows, single-axis alignment | `display: flex; align-items: center; gap: 16px` |
 | **Container Queries** | Component-driven | Components that respond to their container size, not viewport. Admin templates with resizable sidebars | `@container card (min-width: 400px) { ... }` |
 
-### 7.9 Responsive Design: Mobile-First Approach
+### 5.9 Responsive Design: Constraint-First and Mobile-First
 
-Design mobile-first: start with the tightest constraints and progressively enhance as viewport width increases.
+Mobile-first is a strong default for many products: start with the tightest constraints and progressively enhance. It is not the only valid workflow; complex desktop applications may require a shared constraint model designed from both narrow and wide states.
 
 ```css
 /* Base: mobile (no query needed) */
@@ -997,25 +1059,57 @@ Design mobile-first: start with the tightest constraints and progressively enhan
 }
 ```
 
-### 7.10 Admin vs. Frontend Spacing
+### 5.10 Density Modes and Semantic Spacing
 
-> For a comprehensive side-by-side comparison of all design dimensions, see **Section 16: Master Comparison**.
-
-The essential spacing divergence: admin templates use a **4px base** (or 8px) with compressed section gaps (24–48px) and tight card padding (16–20px) to maximize information density. Frontend sites use an **8px base** with generous section gaps (64–128px) and spacious card padding (24–32px) to create breathing room. Admin UIs may offer optional density toggles (Comfortable / Compact / Dense) by shifting token values.
+Do not create separate arbitrary spacing scales for every screen. Keep one primitive scale and map semantic tokens such as `--space-control-gap`, `--space-card-padding`, and `--space-section` to different steps for comfortable, compact, and dense modes.
 
 ---
 
-## 8. Admin Template & Dashboard Design
+### 5.11 Container-Driven Components
+
+Viewport media queries remain useful for page-level composition, but reusable components should often respond to their own available space.
+
+```css
+.card-region {
+  container: card / inline-size;
+}
+
+.card {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@container card (min-width: 32rem) {
+  .card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+}
+```
+
+Use container queries when the same component can appear in a sidebar, modal, dashboard grid, or full-width page. Keep a non-container fallback for older targets when required by the support policy.
+
+### 5.12 Reflow, Zoom, Safe Areas and Dynamic Viewports
+
+Responsive design is not only breakpoint selection.
+
+- At 320 CSS pixels or 400% zoom, content should reflow without two-dimensional scrolling except where the content genuinely requires it, such as a large data table or map.
+- Prefer `min-block-size: 100dvh` for viewport-filling regions, with appropriate fallbacks; avoid assuming classic `100vh` equals the visible mobile viewport.
+- Use `env(safe-area-inset-*)` when full-bleed interfaces can overlap display cutouts or system UI.
+- Let text and controls grow. Fixed heights commonly fail when users zoom, increase text size, or load longer translations.
+- For wide data tables, preserve semantics and provide scrolling, column prioritization, or alternate summaries rather than hiding important columns without explanation.
+
+## 6. Product, Admin & Dashboard Design
 
 Admin interfaces are dense, data-rich environments where **efficiency, clarity, and learnability** take precedence over visual flair. Every design decision must reduce cognitive load and accelerate the path from question to insight. Users of admin templates are typically repeat users who spend hours daily in the interface — optimizing for expert use patterns (shortcuts, density, quick scanning) is at least as important as first-use learnability.
 
-### 8.1 The Admin Design Philosophy
+### 6.1 Product and Admin Design Philosophy
 
-Admin templates differ from frontend/marketing sites across every design dimension — layout, typography, spacing, color, navigation, and interaction patterns. For a detailed dimension-by-dimension comparison, see **Section 16: Master Comparison**.
+Product and admin interfaces usually prioritize repeatable task completion, information retrieval, and state management.
 
 The core distinction: admin UIs serve **expert, repeat users** performing **task-oriented workflows** (CRUD, filtering, monitoring). Every design decision prioritizes **efficiency and data clarity** over emotional expression. The layout follows an **app shell pattern** (sidebar + topbar + content area) rather than scrolling page sections.
 
-### 8.2 Admin Layout Structure (App Shell Pattern)
+### 6.2 Admin Layout Structure (App Shell Pattern)
 
 The standard admin layout follows the "app shell" pattern:
 
@@ -1047,34 +1141,34 @@ The standard admin layout follows the "app shell" pattern:
 └─────────┴────────────────────────────────────────────┘
 ```
 
-### 8.3 Sidebar Navigation Design
+### 6.3 Sidebar Navigation Design
 
 **Specifications:**
 - **Width:** 220–280px expanded, 64px collapsed (icon-only rail)
 - **Content:** Icons + text labels (not icons alone — icons without labels are ambiguous)
 - **Grouping:** Organize items into labeled sections (e.g., "Overview", "Management", "System")
 - **Active state:** Left border accent (3–4px) + background fill + text color change
-- **Nesting:** Never exceed 2 levels without accordion groups. Deep nesting overwhelms
-- **Collapse behavior:** On smaller viewports (< 1024px), collapse to icon-only rail. On mobile (< 768px), convert to drawer/overlay
+- **Nesting:** Prefer shallow information architecture. When deeper hierarchy is necessary, use clear group labels, disclosure, breadcrumbs, search, or alternate views and test findability.
+- **Responsive behavior:** Choose collapse points from available content width. A full sidebar may become a labeled compact rail, drawer, or alternate navigation; icon-only navigation requires especially strong testing and accessible names.
 - **Section labels:** 10–12px, uppercase, expanded letter-spacing (0.1–0.2em), muted color
 
-### 8.4 Data Tables: The Core Admin Surface
+### 6.4 Data Tables: The Core Admin Surface
 
 Data tables are the most critical component in admin UIs. Getting them right determines overall usability.
 
 **Essential specifications:**
-- **Row height:** Minimum 44px for touch targets. 36px for dense/desktop-only views
+- **Row height:** Size rows for legibility and interaction. WCAG 2.2 Target Size (Minimum) uses a 24×24 CSS-pixel floor with exceptions; 44×44 remains a strong touch-oriented target. Dense desktop rows may be shorter only when controls still meet the applicable target/spacing rules.
 - **Text alignment:** Left-align text; right-align numbers. Center icons/status badges
 - **Number formatting:** Use monospace/tabular numerals for numeric columns
-- **Striping:** Zebra striping (alternating row backgrounds) OR hover highlighting — not both simultaneously
+- **Striping:** Zebra striping and hover highlighting can coexist when the difference remains clear and does not create visual noise; choose based on table length, density, and user testing.
 - **Fixed header:** On scroll, the table header should remain visible
 - **Sorting:** Sort arrows on all sortable columns, clear visual indicator of current sort column and direction
-- **Pagination vs. infinite scroll:** Use pagination for data users need to reference by position ("page 3"); use infinite scroll for browsing/discovery flows
+- **Pagination vs. incremental loading:** Use pagination when users need stable position, sharing, comparison, or bulk operations. Infinite or virtualized scrolling can suit discovery, but must preserve keyboard access, focus, history, and a reachable footer.
 - **Search and filters:** Place directly above the table, visually connected via proximity
 - **Bulk actions:** Checkbox column + action bar that appears when rows are selected
 - **Empty states:** When table has no data, show a helpful message with guidance — never show a blank table
 
-### 8.5 KPI Cards & Dashboard Widgets
+### 6.5 KPI Cards & Dashboard Widgets
 
 KPI cards follow a consistent internal structure:
 
@@ -1091,38 +1185,38 @@ KPI cards follow a consistent internal structure:
 - Label → Value → Delta vertical hierarchy
 - Colored bottom borders or left strips to categorize card types
 - Consistent padding (20–24px)
-- Never mix horizontal and vertical KPI card orientations in the same grid
-- Delta values: green/up for positive, red/down for negative
+- Keep KPI card composition consistent within a comparison group; deliberate variation may be used when it communicates different information rather than decoration.
+- Delta values: communicate meaning with text or symbols as well as color; direction alone is not equivalent to good or bad.
 - Use sparklines or micro-charts inside cards for trend context
 
-### 8.6 Form Design in Admin
+### 6.6 Form Design in Admin
 
 **Best practices established through industry best practices:**
-- **Label placement:** Stack labels ABOVE inputs (never inline for dense forms). This is the most scannable pattern
+- **Label placement:** Stacked labels are a robust default, especially for narrow screens and variable-length translations. Inline labels can work in compact expert tools when alignment, zoom, errors, and localization remain usable.
 - **Label-to-input gap:** 8px (consistent)
 - **Field grouping:** Group related fields in fieldsets with 24px inter-group spacing
 - **Error handling:** Error messages appear immediately below the relevant field, in red/danger color, with an icon. Required fields marked clearly with asterisk
 - **Buttons:** Primary action (Save/Submit) on the right or left based on convention, visually dominant. Secondary (Cancel) visually subordinate
-- **Inline validation:** Validate on blur (when user leaves a field), not on every keystroke
-- **Disabled states:** Gray out with reduced opacity (0.5–0.6) but still aim for 3:1 contrast to avoid confusion about whether disabled or broken
+- **Validation timing:** Validate at a moment that helps the user without interrupting entry. Blur can work for many fields; immediate validation is appropriate only when the feedback is stable and non-disruptive. Always validate again on submission.
+- **Unavailable actions:** Prefer explaining why an action is unavailable. Native disabled controls are exempt from some WCAG contrast criteria, but low opacity can still harm comprehension; do not use a fixed opacity as the only pattern.
 
-### 8.7 Data Visualization & Chart Design
+### 6.7 Data Visualization & Chart Design
 
 **Guidelines for admin charts:**
-- **Choose the right chart type:** Bar for comparison, line for trends over time, donut/pie for composition (limit to 5–6 segments), number cards for single KPIs
-- **Color usage:** Use semantic colors consistently (green = positive trend, red = negative). Limit to 5–6 colors per chart
+- **Choose the chart by task:** Bar charts support comparison, line charts support change over ordered intervals, and part-to-whole charts require very few clearly differentiated categories. A table or direct label may be better than a chart.
+- **Color usage:** Use a constrained, contrast-tested palette and redundant encoding. “Positive” and “negative” depend on context—a decrease in churn is positive, for example—so pair color with direction, labels, or symbols.
 - **Legends:** Place directly above or beside the chart, use color dots + text labels
 - **Axes and labels:** Always label axes. Use readable, abbreviated formats for large numbers (e.g., $84K, 1.2M)
 - **Interactivity:** Hover tooltips for exact values. Click-to-filter for drill-down flows
 - **Simple is better:** Keep charts simple. A clear bar chart communicates better than a complex 3D visualization
 
-### 8.8 Color Use in Admin Templates
+### 6.8 Color Use in Admin Templates
 
 **Admin-specific color system:**
 - **Sidebar/topbar:** Dark, desaturated primary (navy #1a2744, slate #1d3557, charcoal #2d3748)
 - **Content area:** White (#FFFFFF) or near-white (#F0F2F5, #F8FAFC) background
 - **Single brand accent:** One primary color for main actions and active states
-- **Semantic status colors:** Green (success), red (error/danger), amber/yellow (warning), blue (info). Never use more than 5 semantic colors
+- **Semantic status colors:** Common conventions use green for success, red for error/danger, amber for warning, and blue/cyan for information. Do not depend on hue alone, and introduce only the roles the product genuinely needs.
 - **Text hierarchy:** Primary text (#1a2030), secondary (#5a6478), muted (#8898aa)
 - **Borders:** Light (#E0E4EA) for subtle dividers, slightly darker for input borders
 
@@ -1153,18 +1247,18 @@ KPI cards follow a consistent internal structure:
 }
 ```
 
-### 8.9 Admin-Specific Typography Details
+### 6.9 Admin-Specific Typography Details
 
-Beyond the general admin typography guidelines covered in Sections 6.12 and 16, these admin-specific specifications apply:
+Beyond the general admin typography guidelines covered in Sections 4 and 8, these admin-specific specifications apply:
 
 - **Table data cells:** 13px, monospace for numbers, tabular figures enabled via `font-variant-numeric: tabular-nums`
 - **Sidebar navigation labels:** 12px, 400 weight, muted color
 - **Section group labels:** 10–11px, uppercase, 0.1–0.2em letter-spacing, muted color
 - **Breadcrumbs and metadata:** 12–13px, regular weight, secondary color
 
-### 8.10 Admin Density Controls
+### 6.10 Admin Density Controls
 
-Beyond the general admin spacing guidelines covered in Sections 7.10 and 16, admin templates benefit from **user-configurable density modes**:
+Beyond the general admin spacing guidelines covered in Sections 5 and 8, admin templates benefit from **user-configurable density modes**:
 
 - **Comfortable:** Default spacing (card padding 20px, table rows 44px, form gaps 16px)
 - **Compact:** One step tighter (card padding 16px, table rows 36px, form gaps 12px)
@@ -1172,36 +1266,58 @@ Beyond the general admin spacing guidelines covered in Sections 7.10 and 16, adm
 
 Implement by shifting token values down one step in the spacing scale per mode. Sidebar item height should remain at 36–40px across all modes to maintain clickability.
 
-### 8.11 Progressive Disclosure
+### 6.11 Progressive Disclosure
 
 In complex admin UIs, show only what's needed and reveal additional detail on demand:
 - **Expandable table rows:** Click to reveal detail panels
 - **Accordion sections:** Collapse infrequently-used settings
 - **Filters on demand:** "Show filters" toggle rather than always-visible filter bar
-- **Contextual actions:** Show CRUD actions on row hover or selection, not as persistent buttons
+- **Contextual actions:** Reduce persistent clutter where appropriate, but never make essential actions hover-only. Ensure keyboard, touch, and screen-reader users can discover and operate the same actions.
 - **Modal/drawer detail views:** Click a row to open a side panel or modal with full record detail
 
 ---
 
-## 9. Frontend / Marketing Site Design
+### 6.12 Responsive and Accessible Data Tables
 
-Frontend (marketing/public-facing) design has a fundamentally different objective than admin UI. Here, the mission is **persuasion, emotion, and brand storytelling** — not efficiency. Boldness, personality, and delight are features, not bugs.
+A table should remain a table when relationships between rows and columns matter.
 
-### 9.1 Hero Section Design
+- Keep real `<table>`, `<th>`, and `<td>` semantics for tabular data.
+- Provide a caption or nearby programmatic name that explains the table's purpose.
+- Use `scope` for straightforward headers; use explicit `headers`/`id` relationships only for genuinely complex header structures.
+- Make sortable headers buttons inside header cells, and expose the current direction with `aria-sort`.
+- When horizontal scrolling is necessary, keep the scroll region keyboard accessible and visually indicate that more columns exist.
+- Do not transform every row into unrelated cards without preserving header context.
+- Virtualization must preserve accessible names, row/column context, focus, and announcement of updated result counts.
 
-The hero section is the most important 5 seconds of your entire site. It must communicate value, establish brand personality, and provide a clear path forward.
+### 6.13 Command, Undo and Destructive-Action Design
+
+Frequent expert workflows benefit from shortcuts and reversible actions.
+
+- Advertise keyboard shortcuts without making them the only way to act.
+- Prefer undo or soft deletion when the domain permits it.
+- Use confirmation dialogs for high-impact, hard-to-reverse actions—not for every minor operation.
+- State exactly what will happen: identify the record, scope, side effects, and whether recovery is possible.
+- Keep primary and destructive actions visually distinct; do not rely on red alone.
+
+## 7. Public-Facing & Marketing-Site Design
+
+Marketing and public-facing design often prioritizes explanation, persuasion, brand expression, and conversion while still requiring clarity, efficiency, accessibility, and performance. Expressiveness is useful only when it supports the content and user goal.
+
+### 7.1 Hero Section Design
+
+A hero or opening region should quickly establish the page purpose, value proposition, and next useful path. Not every page needs a large hero; task pages and returning-user experiences often benefit from a compact introduction.
 
 **Rules:**
-- **Headline:** Maximum 8–12 words. Clear, benefit-driven. Largest text on the page
-- **Sub-headline:** 1–2 sentences expanding on the headline's promise
-- **Single CTA:** One clear, high-contrast call-to-action button. Action-oriented verb ("Start Free Trial", "Get Started", not "Submit" or "Learn More")
-- **Visual focal point:** Product image, illustration, or background gradient to anchor the composition
+- **Headline:** Make it specific, comprehensible, and consistent with the page content. Word count is a constraint to test, not a universal limit.
+- **Supporting copy:** Add only the context needed to understand the offer, audience, or next step.
+- **Primary action:** Establish one visually dominant next action. Secondary links are valid when users genuinely need alternate paths.
+- **Visual focal point:** Use a product image, demonstration, illustration, or other evidence when it improves understanding; decoration is optional.
 - **Whitespace:** Your most powerful tool here — resist the urge to fill it
-- **Height:** ~80–100vh or at minimum "above the fold" on common viewports
+- **Height:** Let content and context determine height. Avoid forcing every hero to 100vh; test small screens, dynamic browser chrome, zoom, and translated copy.
 
-### 9.2 Landing Page Flow & Narrative Arc
+### 7.2 Landing Page Flow & Narrative Arc
 
-A conversion-optimized landing page follows a narrative arc that mirrors the user's trust journey:
+A common landing-page narrative follows the user’s questions, but the order should be adapted to awareness level, traffic source, risk, and purchase complexity:
 
 ```
 1. HERO          → "What is this?" (headline, CTA, hero image)
@@ -1213,31 +1329,31 @@ A conversion-optimized landing page follows a narrative arc that mirrors the use
 7. FINAL CTA     → "I'm convinced" (repeat CTA, urgency)
 ```
 
-Each section answers the next natural question in a skeptic's mind. Sections should alternate visual weight (dark/light backgrounds) to create rhythm and prevent monotony.
+Each section should answer a real user question. Alternating backgrounds is one possible rhythm device, not a requirement; hierarchy and continuity matter more than visual alternation.
 
-### 9.3 CTA Design
+### 7.3 CTA Design
 
 **Primary CTA:**
 - High-contrast filled button
 - Prominent size (minimum 44px height, 48px preferred)
 - Action-oriented verb ("Start Free Trial", "Download Now", "Get Access")
-- One primary CTA per viewport/view
+- One visually dominant primary action per decision point; additional actions should have clearly lower emphasis
 - Visual dominance — largest, boldest button on the page
 
 **Secondary CTA:**
 - Ghost/outline style or text link
 - Visually subordinate to primary
-- Never two filled CTAs of equal visual weight side by side
+- Avoid presenting competing primary actions with equal prominence unless the choice is genuinely equal and clearly explained.
 
-### 9.4 Social Proof Patterns
+### 7.4 Social Proof Patterns
 
-- **Testimonial cards:** Avatar + name + role + quote (max 2–3 lines). Real photos, not stock
-- **Star ratings:** Place above the fold or near CTAs
-- **Logo carousels:** Recognizable brand logos for credibility. "Trusted by" framing
+- **Testimonials:** Identify the source and context, obtain permission, and avoid fabricated or misleading endorsements. Length should preserve the evidence rather than satisfy an arbitrary line limit.
+- **Ratings:** Show only when they are genuine, attributable, representative, and relevant to the decision.
+- **Customer logos:** Use only with authorization and enough context to avoid implying a relationship or endorsement that does not exist.
 - **Specific metrics:** "$2.4M revenue in 90 days" beats "significant revenue growth." Specificity = credibility
 - **Case study numbers:** Concrete, specific results with named companies
 
-### 9.5 Cards & Content Grouping
+### 7.5 Cards & Content Grouping
 
 Cards are the universal content container for both admin and frontend:
 
@@ -1248,24 +1364,24 @@ Cards are the universal content container for both admin and frontend:
 - Hover state: slight elevation increase, shadow deepening
 - Border radius: 8–12px for modern, rounded feel
 
-### 9.6 Navigation Design
+### 7.6 Navigation Design
 
-**Desktop:** Horizontal top navigation with logo left-aligned. Use dropdowns for sub-pages, not mega-menus (unless the site has deep information architecture). Keep to 5–7 main items.
+**Desktop:** A horizontal top navigation is common, but layout and item count should follow the information architecture. Dropdowns and mega-menus are both valid when their structure, keyboard behavior, and content volume justify them.
 
-**Mobile:** Hamburger icon → full-screen or slide-over drawer. Critical CTA should remain visible even when nav is closed.
+**Mobile:** A menu button may open a drawer, disclosure, or full-screen panel. Label the control clearly, manage focus, and keep essential tasks reachable without obscuring content.
 
-### 9.7 Motion & Microinteractions
+### 7.7 Motion & Microinteractions
 
 Motion is a powerful tool when used with restraint. It signals state changes, guides attention, and creates delight.
 
 **Timing guidelines:**
 - **Hover states:** 150–250ms ease transitions
 - **Button press:** scale(0.97) on active for tactile feedback
-- **Scroll animations:** fade-up on enter, 400–600ms duration, stagger 100ms between siblings
-- **Loading states:** Skeleton screens (preferred) over spinners
+- **Scroll animation:** Use only when it explains progression or supports narrative. Avoid hiding essential content until animation runs.
+- **Loading states:** Use skeletons for predictable content layouts and progress indicators or status text for indeterminate operations; avoid decorative loading animation that hides real delay
 - **Entrance animations:** Under 300ms
 - **Exit animations:** Under 200ms
-- **Total page load animation budget:** 1–2 seconds maximum
+- **Animation budget:** Evaluate cumulative motion, interruption, CPU/GPU cost, and task delay rather than applying one universal duration budget.
 
 **Animation tokens:**
 ```css
@@ -1279,20 +1395,22 @@ Motion is a powerful tool when used with restraint. It signals state changes, gu
 }
 ```
 
-**Critical:** Always respect `prefers-reduced-motion`. Disable or minimize all non-essential animations:
+**Critical:** Respect `prefers-reduced-motion` and provide a low-motion treatment for non-essential movement:
 ```css
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  [data-motion="decorative"],
+  .scroll-reveal,
+  .parallax {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }
 ```
 
-### 9.8 Component-First Design Thinking
+### 7.8 Component-First Design Thinking
 
-Modern frontend design is component-based. Every UI element — buttons, inputs, cards, modals, badges, tooltips — should be designed as a reusable, variant-aware system component before any page is designed.
+Modern frontend work benefits from reusable, variant-aware components, but page and content needs should inform the component model. Avoid designing an abstract component library without representative page scenarios.
 
 **Define your button in 5 states** (default, hover, active, disabled, loading) **and 3 sizes** (sm, md, lg) before building a single page. This atomic approach ensures consistency at scale and eliminates "design drift" that happens when components are invented per-page.
 
@@ -1304,7 +1422,12 @@ Modern frontend design is component-based. Every UI element — buttons, inputs,
   font-size: var(--text-sm);
   font-weight: 600;
   border-radius: var(--radius-md);
-  transition: all var(--duration-fast) var(--ease-out);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
   cursor: pointer;
   border: none;
 }
@@ -1347,321 +1470,654 @@ Modern frontend design is component-based. Every UI element — buttons, inputs,
 
 ---
 
-## 10. Accessibility — WCAG Compliance & Inclusive Design
+### 7.9 Content Design and Evidence Hierarchy
 
-Accessible design is not a limitation — it is a mark of craft. WCAG 2.1 and 2.2 provide the internationally recognized standards for visual accessibility. Meeting these standards broadens your audience and often improves clarity and usability for ALL users, not just those with disabilities.
+A polished layout cannot compensate for vague or unsupported content.
 
-### 10.1 WCAG 2.2 Contrast Requirements
+- Put the claim, supporting evidence, and action in a logical order.
+- Use concrete language and disclose important limitations, prices, commitments, and eligibility conditions before the user acts.
+- Match the page message to the acquisition source; an ad, search result, email, and direct visit may create different expectations.
+- Treat testimonials, ratings, customer counts, and performance claims as evidence that requires provenance and maintenance.
+- Give privacy, cancellation, returns, and contact information appropriate visibility instead of hiding trust-critical details in decorative footers.
 
-| Element Type | Minimum Ratio | Level | Best Practice |
-|:---|:---:|:---:|:---|
-| Normal text (< 18pt / 24px) | 4.5:1 | AA | Aim for 7:1 on white backgrounds |
-| Large text (≥ 18pt or ≥ 14pt bold) | 3:1 | AA | 4.5:1 for better readability |
-| UI components (buttons, inputs, checkboxes) | 3:1 | AA | Ensure focus rings visible at 3:1 against both background and element |
-| Placeholder text | 4.5:1 | AA | Many designs fail this silently — use proper labels instead |
-| Disabled elements | Exempt | — | Still aim for 3:1 to avoid confusion |
-| Focus indicators | 3:1 | AA 2.2 | WCAG 2.2 requires minimum 2px outline with 3:1 contrast; prefer 3px with brand color |
-| Non-text contrast (icons, charts) | 3:1 | AA | All meaningful graphical elements |
-| AAA text | 7:1 | AAA | Target for medical/government/high-accessibility interfaces |
+### 7.10 Ethical Conversion Design
 
-### 10.2 "Not Color Alone" Principle
+Conversion optimization must not depend on deception.
 
-Never use color as the ONLY differentiator for conveying information. This affects approximately 8% of males and 0.5% of females globally who have some form of color vision deficiency.
+- Do not preselect optional purchases or consent.
+- Do not create false scarcity, fake countdowns, hidden recurring charges, or confusing cancellation paths.
+- Keep accept and decline choices understandable and proportionate.
+- Confirm high-impact commitments with a clear summary.
+- Measure downstream outcomes—returns, support contacts, cancellation, and trust—not only immediate clicks.
 
-**Examples of correct implementation:**
-- ✅ Red status badge WITH "Error" text label AND ✗ icon
-- ✅ Green success state WITH checkmark icon
-- ✅ Form error border WITH inline error message text
-- ❌ Red vs. green icons with no other visual distinction
-- ❌ Color-only chart legends without patterns or labels
+## 8. Accessibility & Inclusive Design
 
-**Quick test:** Convert your design to grayscale. If it still communicates all meaning, your hierarchy is not relying solely on color.
+Accessible design is a product-quality requirement, not a visual afterthought. The normative baseline in this guide is **WCAG 2.2**. Legal obligations vary by jurisdiction, organization, sector, contract, and product scope; WCAG conformance is not automatically identical to legal compliance.
 
-### 10.3 Focus States & Keyboard Navigation
+### 8.1 WCAG 2.2 Visual Requirements
 
-Every interactive element must have a visible focus indicator for keyboard users:
+| Topic | WCAG 2.2 requirement | Level | Design consequence |
+|:---|:---|:---:|:---|
+| Normal text contrast | At least 4.5:1 | AA | Test text in every state and on every actual background |
+| Large text contrast | At least 3:1 | AA | “Large” means at least 18pt regular or 14pt bold under WCAG's definition |
+| Non-text contrast | At least 3:1 for required visual information in controls and graphics | AA | Boundaries, icons, chart marks, and states may need contrast; exceptions apply |
+| Focus visible | A visible focus indicator is required for keyboard-operable UI | AA | Do not remove focus without an effective replacement |
+| Focus appearance | Minimum area and 3:1 change-of-contrast requirements | AAA | A strong design target, but not an AA criterion |
+| Focus not obscured | Focused components must not be entirely hidden by author-created content | AA | Sticky headers, cookie banners, and overlays must not cover the focused item |
+| Target size (minimum) | At least 24×24 CSS px, subject to listed exceptions | AA | Use larger targets where practical; spacing can satisfy some small-target cases |
+| Target size (enhanced) | At least 44×44 CSS px | AAA | Strong touch-oriented target, not the WCAG 2.2 AA minimum |
+| Reflow | Content reflows at 320 CSS px equivalent, with exceptions | AA | Avoid fixed layouts and unnecessary two-dimensional scrolling |
+| Text spacing | No loss when users apply specified line, paragraph, letter, and word spacing | AA | Avoid fixed heights and clipped text |
+| Use of color | Color is not the only visual means of conveying information | A | Add text, symbols, patterns, shape, or position |
+| Animation from interaction | Motion animation triggered by interaction can be disabled unless essential | AAA | Reduced-motion support is a strong inclusive-design practice |
+| Pause, stop, hide | Moving, blinking, scrolling, or auto-updating content has controls under defined conditions | A | Do not treat all autoplay as harmless decoration |
+
+**Important distinction:** WCAG techniques are informative examples, not the only valid implementations. Conformance is evaluated against the success criteria.
+
+### 8.2 Contrast and State Design
+
+Contrast must be checked at the component-state level, not only in the palette.
+
+Test at least:
+- default, hover, focus, active, selected, visited, invalid, disabled, and loading states;
+- text over images, gradients, video, glass/translucent surfaces, and elevated layers;
+- light, dark, high-contrast, and forced-colors modes;
+- icons, chart marks, input boundaries, focus indicators, and status badges.
+
+Placeholder text is still text and normally needs text contrast, but it must not replace a persistent label. Disabled controls are exempt from some contrast requirements; nevertheless, users still need to understand that the control exists and why it is unavailable.
+
+### 8.3 Do Not Encode Meaning with Color Alone
+
+Use redundant encoding:
+
+- Error: icon or prefix + clear message + field association.
+- Success: text confirmation + optional symbol, not green alone.
+- Charts: direct labels, patterns, line styles, point shapes, or a data table.
+- Required fields: explicit text or a programmatically explained marker.
+- Navigation state: `aria-current`, text/shape/weight changes, and color where useful.
+- Positive/negative trends: describe the meaning; “up” is not always positive.
+
+A grayscale preview is a useful diagnostic, but it does not replace testing for specific forms of color-vision deficiency or real assistive technology.
+
+### 8.4 Focus, Keyboard and Source Order
 
 ```css
-/* Visible, brand-aligned focus ring */
 :focus-visible {
-  outline: 3px solid var(--color-focus-ring);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
-/* Remove the default outline only when replacing with custom */
-:focus:not(:focus-visible) {
-  outline: none;
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
 }
 ```
 
-**Requirements:**
-- Focus must be visible against all backgrounds (light AND dark)
-- Tab order must follow logical reading order
-- All interactive elements (buttons, links, inputs, checkboxes) must be reachable via keyboard
-- Skip-to-content link as the first focusable element
-- Modal dialogs must trap focus within them when open
+- Keep DOM/source order consistent with the logical reading and interaction order.
+- Avoid positive `tabindex` values.
+- Ensure every function is operable from a keyboard where the task can be performed with a keyboard.
+- Keep focus visible when content scrolls beneath sticky or fixed regions.
+- When opening a modal dialog, move focus appropriately, constrain interaction to the modal, support Escape where appropriate, and restore focus to a logical place when it closes.
+- Prefer native `<dialog>`, `<button>`, `<details>`, `<select>`, and form controls before recreating their behavior.
+- A focus ring must remain distinguishable from an existing border; a color change alone can be too subtle.
 
-### 10.4 Text Spacing Resilience (WCAG SC 1.4.12)
+### 8.5 Text Spacing, Zoom and Reflow
 
-Designs must remain usable when users override text spacing for readability. This Success Criterion requires that no loss of content or functionality occurs when these overrides are applied:
+WCAG 2.2 SC 1.4.12 requires no loss of content or functionality when users apply:
 
-- **Line height:** 1.5× the font size
-- **Paragraph spacing:** 2× the font size
-- **Letter spacing:** 0.12× the font size
-- **Word spacing:** 0.16× the font size
+- line height of at least 1.5 times the font size;
+- paragraph spacing of at least 2 times the font size;
+- letter spacing of at least 0.12 times the font size;
+- word spacing of at least 0.16 times the font size.
 
-**Practical testing:** Use a browser extension to apply these overrides and verify your layout doesn't break — text shouldn't clip, overflow hidden containers, or become unreadable.
+These values describe a **resilience test**, not mandatory default typography. Test 200% browser zoom, 400% zoom/reflow where applicable, text-only zoom on supporting platforms, and operating-system text scaling.
 
-### 10.5 Color Blindness Considerations
+Common failures:
+- fixed-height buttons or inputs that clip text;
+- cards whose text overflows hidden;
+- icon-only layouts that lose labels;
+- sticky regions that leave too little viewport space;
+- horizontal navigation that cannot wrap or scroll;
+- absolute positioning that disconnects visual and source order.
 
-- **Deuteranopia (red-green, most common):** Red and green appear similar. Never use red vs. green as the only distinction
-- **Protanopia (red weakness):** Red appears darker/brownish
-- **Tritanopia (blue-yellow):** Blue and yellow distinction reduced
-
-**Solutions:** Pair red/green status indicators with icons (✓/✗), text labels, or patterns. Test with simulators: Stark (Figma plugin), Sim Daltonism (macOS), Chrome DevTools color vision simulation.
-
-### 10.6 Motion Sensitivity & prefers-reduced-motion
-
-Any autoplay animation, parallax, or scroll-triggered effect should be disabled or substantially reduced when `prefers-reduced-motion: reduce` is active:
-- Replace animations with instant state changes
-- Disable auto-playing carousels and video backgrounds
-- Remove parallax scrolling effects
-- Never have looping animations that cannot be paused
-
-### 10.7 Screen Readers & Semantic HTML
-
-- Use semantic HTML elements: `<button>`, `<nav>`, `<main>`, `<header>`, `<aside>`, `<article>`, `<section>`
-- All images need meaningful `alt` text (or `alt=""` for decorative images)
-- Icon-only buttons need `aria-label`
-- Use heading hierarchy correctly (h1 → h2 → h3, never skip levels)
-- Tables need `<caption>`, `<thead>`, `<th scope="col">` for screen reader context
-- Test with NVDA (Windows), VoiceOver (Mac/iOS), or TalkBack (Android)
-
-### 10.8 ARIA Patterns for Complex Widgets
-
-For complex interactive widgets (tabs, accordions, modals, comboboxes), follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/):
-- **Tabs:** `role="tablist"`, `role="tab"`, `role="tabpanel"`, arrow key navigation
-- **Modals:** `role="dialog"`, `aria-modal="true"`, focus trap, Escape to close
-- **Accordions:** `aria-expanded`, `aria-controls`
-- **Live regions:** `aria-live="polite"` for status updates, `aria-live="assertive"` for errors
-
----
-
-## 11. Design Tokens & Implementation
-
-### 11.1 Token Architecture: Primitives → Semantics → Components
-
-Design tokens are the atoms of your design system — named, reusable values that store design decisions. They replace magic numbers and hex codes with meaningful, maintainable references.
-
-```
-Layer 1: PRIMITIVES (platform-agnostic raw values)
-  ├── colors.blue.500: "#2563EB"
-  ├── spacing.6: "24px"
-  └── radius.md: "8px"
-
-Layer 2: SEMANTIC (intent-based aliases)
-  ├── color.action: "{colors.blue.500}"
-  ├── space.card-padding: "{spacing.6}"
-  └── radius.interactive: "{radius.md}"
-
-Layer 3: COMPONENT (specific use in component)
-  ├── button.primary.bg: "{color.action}"
-  ├── card.padding: "{space.card-padding}"
-  └── button.radius: "{radius.interactive}"
-```
-
-### 11.2 CSS Custom Properties & Theme Switching
+### 8.6 Motion, Transparency and Sensory Preferences
 
 ```css
-/* Light theme (default) */
-:root {
-  --color-bg: #ffffff;
-  --color-surface: #f8fafc;
-  --color-text: #0f172a;
-  --color-text-muted: #334155;
-  --color-primary: #2563eb;
-  --color-on-primary: #ffffff;
+@media (prefers-reduced-motion: reduce) {
+  [data-motion="decorative"],
+  .parallax,
+  .scroll-reveal {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
-/* Dark theme */
-[data-theme="dark"] {
-  --color-bg: #0b1220;
-  --color-surface: #111827;
-  --color-text: #f9fafb;
-  --color-text-muted: #cbd5e1;
-  --color-primary: #60a5fa;
-  --color-on-primary: #0b1220;
+@media (prefers-reduced-transparency: reduce) {
+  .glass-surface {
+    backdrop-filter: none;
+    background: var(--color-surface);
+  }
 }
 ```
 
-### 11.3 Design Token JSON Structure
+`prefers-reduced-motion` is broadly useful. As of July 2026, `prefers-reduced-transparency` still has limited browser availability, so provide a solid fallback without depending on the query.
 
-For cross-platform token management (Figma → code):
+Reduce or remove:
+- large parallax movement;
+- zooming and spatial transitions;
+- looping ambient animation;
+- autoplay carousels;
+- rapid flashing;
+- motion that tracks the pointer continuously.
+
+Preserve essential feedback in a less motion-intensive form—for example, an immediate state change or short opacity transition.
+
+### 8.7 Semantic HTML, Names and Instructions
+
+- Use headings to represent document structure, not visual size.
+- Use landmarks (`header`, `nav`, `main`, `aside`, `footer`) according to their semantics.
+- Give every form control a persistent accessible name, usually with `<label>`.
+- Use `fieldset` and `legend` for related options.
+- Give informative images meaningful alternative text; use `alt=""` for decorative images.
+- Give icon-only controls an accessible name.
+- Use real buttons for actions and real links for navigation.
+- Associate errors and help text with their controls.
+- Use table headers, captions, and scopes for tabular data.
+- Keep instructions available to users who cannot perceive color, position, shape, sound, or motion.
+
+### 8.8 ARIA and Complex Widgets
+
+ARIA supplements native HTML; it does not add behavior.
+
+- **Tabs:** implement tab/tabpanel relationships, selected state, focus management, and the documented keyboard model.
+- **Disclosure/accordion:** a button controls a region and exposes `aria-expanded`; native `<details>` may be sufficient.
+- **Dialog:** accessible name, modal semantics when modal, focus management, and a clear close path.
+- **Combobox/listbox:** use the WAI-ARIA Authoring Practices pattern only when a native control cannot meet the requirement.
+- **Live updates:** use `role="status"` or a suitable live region for important asynchronous updates; avoid announcing every minor DOM change.
+- **Custom grids:** require advanced keyboard and screen-reader behavior; do not apply `role="grid"` to a static table merely for styling.
+
+“No ARIA is better than bad ARIA” remains a practical rule: broken names, states, or keyboard behavior can make an otherwise usable control inaccessible.
+
+### 8.9 Neuro-Inclusive and Cognitive Design
+
+Support varied attention, memory, language, and sensory-processing needs through:
+
+- predictable navigation and consistent control placement;
+- plain language and concise instructions;
+- visible progress and save state;
+- error prevention, recovery, and undo;
+- reduced distraction or focus modes;
+- user control over motion, sound, density, and notifications;
+- avoiding unnecessary time limits;
+- authentication flows that do not depend solely on memory puzzles or transcription.
+
+Do not claim that one layout “works for ADHD,” autism, dyslexia, or another condition as a universal rule. Test with diverse participants and provide adjustable options.
+
+### 8.10 Legal and Organizational Scope
+
+WCAG is a technical standard; laws and procurement rules determine where and how it is required. The European Accessibility Act applies to specified products and consumer services from 28 June 2025, with scope, exemptions, national implementation, and transitional provisions that require legal review. Public-sector rules, the ADA, Section 508, EN 301 549, and other regimes have different scopes.
+
+For high-risk or regulated products:
+1. identify applicable laws and contracts;
+2. define the conformance target;
+3. document exceptions and known limitations;
+4. include disabled users in research;
+5. maintain an accessibility statement and issue process;
+6. retest after component, content, and platform changes.
+
+## 9. Design Tokens & Implementation Contracts
+
+Design tokens turn design decisions into named, reusable data. They are most effective when they separate raw values from meaning and component use, and when governance prevents components from bypassing the token system.
+
+### 9.1 Token Architecture
+
+```text
+Primitive tokens
+├── color.blue.600
+├── space.6
+├── radius.medium
+└── duration.fast
+
+Semantic tokens
+├── color.action.primary
+├── color.text.muted
+├── space.container.padding
+└── duration.feedback
+
+Component tokens
+├── button.primary.background
+├── input.border.focus
+├── table.row.block-size
+└── card.padding
+```
+
+**Responsibilities:**
+- **Primitive:** raw scales with no usage promise.
+- **Semantic:** stable intent that can map to different primitives by theme, mode, brand, or platform.
+- **Component:** local decisions used when a component needs a controlled exception or a public customization contract.
+
+Do not expose every internal component value as a public token. Too many tokens make the system harder to change, not easier.
+
+### 9.2 Naming Principles
+
+A useful name describes intent rather than appearance.
+
+```text
+Prefer: color.text.danger
+Avoid:  color.red.600 in component code
+
+Prefer: space.control.inline
+Avoid:  margin-left-12
+
+Prefer: motion.duration.feedback
+Avoid:  animation-200
+```
+
+Names should remain meaningful when:
+- light mode becomes dark mode;
+- a brand changes its primary hue;
+- a component moves from web to native;
+- density changes;
+- localization changes text length.
+
+### 9.3 DTCG 2025.10 Format
+
+The Design Tokens Community Group published its first stable Community Group Report, **2025.10**, on 28 October 2025. It is stable for production exchange workflows but is not a W3C Standards Track Recommendation.
 
 ```json
 {
   "color": {
-    "primary": {
-      "50": { "value": "#eff6ff", "type": "color" },
-      "100": { "value": "#dbeafe", "type": "color" },
-      "500": { "value": "#2563eb", "type": "color" },
-      "600": { "value": "#1d4ed8", "type": "color" },
-      "900": { "value": "#1e3a5f", "type": "color" }
+    "blue": {
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.145, 0.388, 0.922],
+          "alpha": 1
+        }
+      }
     },
-    "semantic": {
-      "success": { "value": "{color.green.600}", "type": "color" },
-      "warning": { "value": "{color.amber.400}", "type": "color" },
-      "danger": { "value": "{color.red.600}", "type": "color" },
-      "info": { "value": "{color.cyan.700}", "type": "color" }
+    "action": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.blue.600}"
+      }
     }
   },
-  "spacing": {
-    "1": { "value": "4px", "type": "spacing" },
-    "2": { "value": "8px", "type": "spacing" },
-    "4": { "value": "16px", "type": "spacing" },
-    "6": { "value": "24px", "type": "spacing" },
-    "8": { "value": "32px", "type": "spacing" }
-  },
-  "typography": {
-    "body": {
-      "fontFamily": { "value": "Inter, system-ui, sans-serif" },
-      "fontSize": { "value": "16px" },
-      "lineHeight": { "value": "1.5" },
-      "fontWeight": { "value": "400" }
+  "space": {
+    "6": {
+      "$type": "dimension",
+      "$value": { "value": 1.5, "unit": "rem" }
     }
   }
 }
 ```
 
-### 11.4 SCSS Patterns for Scalable Systems
+Use the resolver/module features only when the toolchain supports them. Validate token files in CI and pin tool versions because ecosystem implementations may support different parts of the report.
 
-```scss
-// Responsive mixin
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == 'sm' { @media (min-width: 576px) { @content; } }
-  @if $breakpoint == 'md' { @media (min-width: 768px) { @content; } }
-  @if $breakpoint == 'lg' { @media (min-width: 1024px) { @content; } }
-  @if $breakpoint == 'xl' { @media (min-width: 1200px) { @content; } }
-}
+### 9.4 CSS Custom Properties
 
-// Usage
-.card {
-  padding: var(--space-4);
-  @include respond-to('md') { padding: var(--space-6); }
-  @include respond-to('lg') { padding: var(--space-8); }
+```css
+@layer tokens {
+  :root {
+    --color-bg: #fff;
+    --color-surface: #f8fafc;
+    --color-text: #0f172a;
+    --color-text-muted: #334155;
+    --color-action: #2563eb;
+    --color-on-action: #fff;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+  }
+
+  [data-theme="dark"] {
+    --color-bg: #0b1220;
+    --color-surface: #111827;
+    --color-text: #f9fafb;
+    --color-text-muted: #cbd5e1;
+    --color-action: #60a5fa;
+    --color-on-action: #0b1220;
+  }
 }
 ```
 
----
+Prefer semantic variables in components:
 
-## 12. Testing, Validation & Quality Assurance
+```css
+.card {
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: var(--space-card-padding, var(--space-6));
+  border-radius: var(--radius-card, var(--radius-md));
+}
+```
 
-### 12.1 Automated Accessibility Testing
+### 9.5 Theme and Mode Strategy
 
-| Tool | What It Tests | Integration |
-|:---|:---|:---|
-| **axe-core** | WCAG violations in DOM | CLI, Cypress, Playwright, Jest |
-| **Lighthouse** | Accessibility score + performance | Chrome DevTools, CI/CD |
-| **Pa11y** | WCAG 2.1 AA/AAA compliance | CLI, CI/CD pipeline |
-| **HTML_CodeSniffer** | WCAG violations | Bookmarklet, CI |
+A mode changes context; a theme changes identity. Keep those dimensions separate where the product needs both.
 
-### 12.2 Component-Level Testing (Storybook)
+```html
+<html data-color-scheme="dark" data-brand="acme" data-density="compact">
+```
 
-Use Storybook to document and test components in isolation:
-- Each component has stories showing all states (default, hover, active, disabled, loading, error)
-- Visual regression testing with Chromatic or Percy
-- Accessibility addon for per-story WCAG checks
-- Responsive viewport testing
+```css
+[data-density="compact"] {
+  --space-card-padding: var(--space-4);
+  --table-row-size: 2.25rem;
+}
 
-### 12.3 Visual Regression Testing
+[data-density="comfortable"] {
+  --space-card-padding: var(--space-6);
+  --table-row-size: 2.75rem;
+}
+```
 
-Catch unintended visual changes before they reach production:
-- **BackstopJS:** Open-source visual regression testing
-- **Percy / Chromatic:** Cloud-based visual review with approval workflow
-- **Playwright screenshots:** Capture and compare across browsers
+Support a three-way color choice when useful:
+- light;
+- dark;
+- system preference.
 
-### 12.4 Manual Accessibility Checks
+Store an explicit user choice and avoid overwriting it when the operating-system preference changes.
 
-Automated tools catch only ~30–50% of accessibility issues. Manual testing is essential:
-- **Keyboard-only navigation:** Tab through the entire page. Can you reach and operate everything?
-- **Screen reader testing:** Read through with NVDA/VoiceOver. Does the content make sense without visual context?
-- **Zoom test:** Zoom to 200%. Does layout remain usable? Is any content clipped?
-- **Text spacing override:** Apply WCAG SC 1.4.12 overrides. Does anything break?
-- **High contrast mode:** Enable Windows High Contrast Mode. Are all interactive elements still visible?
+### 9.6 Tailwind CSS Integration
 
-### 12.5 Visual Design Testing
+Current Tailwind uses CSS-first theme variables through `@theme`. Use them when a token should generate utilities; use ordinary custom properties for tokens that should not.
 
-Beyond code-level testing, validate your visual design:
-- **Cross-browser rendering:** Test in Chrome, Firefox, Safari, Edge at minimum
-- **Device testing:** Real devices for iOS Safari, Android Chrome at minimum
-- **Color contrast verification:** Use WebAIM Contrast Checker or browser DevTools
-- **Grayscale test:** Does the design communicate without color?
-- **Squint test:** Squint at the page — does the hierarchy still work? The most important elements should remain the most prominent
----
+```css
+@import "tailwindcss";
 
-## 13. Design Systems & Tools Ecosystem
+@theme {
+  --color-brand-600: oklch(55% 0.19 255);
+  --font-display: "Brand Sans", system-ui, sans-serif;
+  --breakpoint-3xl: 120rem;
+}
 
-A design system is the single source of truth for a product's UI — containing design tokens, components, patterns, guidelines, and documentation. It bridges the gap between design (Figma) and development (code).
+:root {
+  --color-text-danger: #b91c1c;
+}
+```
 
-**Key components of a mature design system:**
+This creates utilities such as `bg-brand-600` and `font-display`, while `--color-text-danger` remains a normal runtime variable. Keep the DTCG source independent from Tailwind and generate the adapter so framework naming does not become the source of truth.
 
-| Component | Purpose | Examples |
-|:---|:---|:---|
-| **Design Tokens** | Named values for color, spacing, typography, shadows, radius | JSON/YAML configs, CSS custom properties |
-| **Component Library** | Reusable UI components with variants and states | Buttons, inputs, cards, modals, tables, badges |
-| **Pattern Library** | Common UI patterns and layouts | Login forms, search bars, navigation patterns, data display |
-| **Documentation** | Usage guidelines, dos/don'ts, accessibility notes | Storybook, Docusaurus, custom docs sites |
-| **Icon System** | Consistent icon set with sizing and color tokens | Phosphor, Lucide, Heroicons, custom SVG sprites |
+### 9.7 Bootstrap Integration
 
-**Reference design systems to study:**
-- **Material Design 3** (Google) — Comprehensive, token-driven, excellent accessibility guidelines
-- **Ant Design** (Ant Design Team) — Admin-focused with excellent data-heavy component patterns
-- **Carbon** (IBM) — Enterprise-grade, strong accessibility focus
-- **Primer** (GitHub) — Developer-friendly, well-documented
-- **Spectrum** (Adobe) — Cross-platform design tokens
-- **Atlassian Design System** — Strong admin and productivity UI patterns
-- **Polaris** (Shopify) — Excellent for e-commerce admin templates
-- **Lightning** (Salesforce) — Enterprise CRM patterns
+Bootstrap 5.3 exposes many `--bs-*` CSS variables and supports color modes through `data-bs-theme`.
 
----
+```css
+[data-bs-theme="brand-dark"] {
+  --bs-body-bg: var(--color-bg);
+  --bs-body-color: var(--color-text);
+  --bs-primary: var(--color-action);
+  --bs-border-color: var(--color-border);
+  --bs-focus-ring-color: color-mix(
+    in srgb,
+    var(--color-focus) 35%,
+    transparent
+  );
+}
+```
 
-## 14. Future Paradigms: 2025–2026 Trends
+Some Bootstrap decisions still originate in Sass variables or maps. Create a documented adapter layer instead of scattering Bootstrap overrides through component files.
 
-### 14.1 Bento Grids
+### 9.8 Sass/SCSS and Build-Time Adapters
 
-Grid-based layouts inspired by Japanese bento boxes — asymmetric card compositions with varying sizes that create visual interest while maintaining underlying grid alignment. Popular for portfolios, feature showcases, and dashboard layouts.
+Sass remains useful for generating repetitive static output, but semantic CSS custom properties are better for runtime theme switching.
 
-### 14.2 Glassmorphism & Neumorphism
+```scss
+$space: (
+  1: 0.25rem,
+  2: 0.5rem,
+  4: 1rem,
+  6: 1.5rem
+);
 
-- **Glassmorphism:** Frosted-glass translucent panels with background blur (`backdrop-filter: blur()`). Creates depth and layering. Use sparingly — overuse reduces readability and performance
-- **Neumorphism:** Soft, extruded UI elements using dual shadows (one light, one dark). Aesthetically striking but problematic for accessibility — contrast between elements and surface is often insufficient. Use for decorative elements only, never for primary interactions
+@each $step, $value in $space {
+  .gap-#{$step} {
+    gap: $value;
+  }
+}
+```
 
-### 14.3 Kinetic Typography
+Do not maintain unrelated values independently in JSON, Sass, CSS, Figma, and native code. Generate platform outputs from one reviewed token source wherever the toolchain permits.
 
-Large, animated text used in hero sections and landing pages. Variable fonts enable weight/width transitions, scroll-triggered text reveals, and character-by-character animations. Must always respect `prefers-reduced-motion`.
+### 9.9 Component Contracts
 
-### 14.4 Spatial UI & AR/VR
+A component contract should document:
+- semantic purpose;
+- supported variants and states;
+- public tokens or slots;
+- accessible name and keyboard behavior;
+- responsive behavior;
+- localization constraints;
+- motion behavior and reduced-motion alternative;
+- color-mode and forced-colors behavior;
+- deprecation and migration policy.
 
-As spatial computing grows, design principles are evolving:
-- Z-depth and layering become physical
-- Touch targets become spatial interaction zones
-- Typography must work at varying distances
-- Color and contrast requirements change in 3D environments
+Example:
 
-### 14.5 Adaptive Personalization & Contextual Design
+```css
+.button {
+  --button-bg: var(--color-action);
+  --button-fg: var(--color-on-action);
+  --button-radius: var(--radius-md);
 
-Emerging paradigm where interfaces dynamically adapt to user behavior:
-- **Contextual density:** Admin dashboards that automatically adjust information density based on user expertise level
-- **Personalized color themes** generated from user preferences
-- **Dynamically generated layouts** that optimize for individual user workflows
-- **Predictive UI patterns** that anticipate user needs and pre-load relevant views
+  min-block-size: 2.75rem;
+  padding-inline: var(--space-4);
+  border-radius: var(--button-radius);
+  background: var(--button-bg);
+  color: var(--button-fg);
+}
+```
 
----
+### 9.10 Governance and Versioning
 
-## 15. Complete Design Workflow
+- Assign token owners and reviewers.
+- Record why a token exists and where it may be used.
+- Detect unused and hard-coded values.
+- Treat renaming or semantic changes as migrations.
+- Publish changelogs and codemods where practical.
+- Test visual output and accessibility before release.
+- Keep aliases shallow enough to debug.
+- Do not use tokens to hide inconsistent product decisions; resolve the decision first.
 
-A practical step-by-step process established through industry best practices:
+## 10. Testing, Validation & Quality Assurance
+
+Testing must verify both implementation and design intent. Automated checks are valuable, but they cannot determine whether content is understandable, focus moves logically, an interaction model is appropriate, or a visual hierarchy matches the task.
+
+### 10.1 Quality Model
+
+Use multiple layers:
+
+1. **Static validation:** HTML, CSS, linting, type checks, token validation.
+2. **Component tests:** states, interactions, keyboard behavior, themes, localization.
+3. **Automated accessibility checks:** axe-based rules and other machine-testable failures.
+4. **Visual regression:** unexpected rendering changes across components and pages.
+5. **End-to-end tests:** complete user workflows in representative browsers.
+6. **Manual accessibility testing:** keyboard, screen readers, zoom, reflow, forced colors.
+7. **Usability testing:** whether real users understand and complete tasks.
+8. **Field monitoring:** Core Web Vitals, errors, abandonment, support signals.
+
+### 10.2 Automated Accessibility Testing
+
+Useful tools include:
+- **axe-core** directly or through Playwright/Cypress integrations;
+- **Storybook accessibility testing** for rendered component stories;
+- **Lighthouse** for a broad automated audit and performance diagnostics;
+- **Pa11y** or equivalent CI runners;
+- HTML validators and framework-specific lint rules.
+
+Playwright’s current guidance uses axe integrations for accessibility rules. Its old `page.accessibility` API was removed; do not build new test infrastructure around it.
+
+```ts
+import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/test';
+
+test('account form has no detectable WCAG A/AA violations', async ({ page }) => {
+  await page.goto('/account');
+
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+    .analyze();
+
+  expect(results.violations).toEqual([]);
+});
+```
+
+An automated pass does not prove conformance. It only shows that the selected rules did not detect a failure in that rendered state.
+
+### 10.3 Component-State Coverage
+
+Every reusable component should be exercised in the states it actually supports:
+
+- default;
+- hover where a hover-capable pointer exists;
+- focus visible;
+- active/pressed;
+- selected/current/expanded;
+- disabled or unavailable;
+- loading/busy;
+- invalid/error;
+- empty;
+- long content and localization;
+- light, dark, forced-colors, and high-contrast variants;
+- reduced motion;
+- narrow and wide containers.
+
+Storybook or another component workbench is useful when stories represent real contracts rather than decorative examples.
+
+### 10.4 Interaction and Keyboard Tests
+
+Automate important behavior:
+
+- Tab reaches controls in logical order.
+- Enter and Space work according to the native or ARIA pattern.
+- Escape closes dismissible overlays where appropriate.
+- Focus moves into and out of dialogs correctly.
+- Arrow-key models work for tabs, menus, listboxes, and grids only when those roles are used.
+- Validation errors receive an understandable announcement.
+- Dynamic updates expose status without excessive live-region noise.
+- Hidden or inert content is not reachable.
+
+ARIA snapshots can help detect changes in accessible roles, names, and states, but they do not replace screen-reader testing.
+
+### 10.5 Visual Regression
+
+Capture representative states, not only the default component.
+
+Test:
+- responsive widths and container sizes;
+- multiple browsers where rendering differs materially;
+- font-loading completion;
+- light/dark/high-contrast themes;
+- long translations and bidirectional text;
+- focus, validation, loading, and empty states;
+- reduced-motion snapshots at a stable animation state.
+
+Treat expected rendering updates as reviewed design changes. Avoid approving large snapshot batches without inspecting why they changed.
+
+### 10.6 Manual Accessibility Protocol
+
+At minimum:
+
+**Keyboard**
+- Complete core workflows without a pointer.
+- Verify visible focus, logical order, no trap, and reachable dismiss controls.
+
+**Screen reader**
+- Test with at least one desktop and one mobile combination appropriate to the audience.
+- Verify headings, landmarks, names, descriptions, errors, state changes, and table context.
+
+**Zoom and reflow**
+- Test 200% zoom and WCAG reflow conditions.
+- Apply text-spacing overrides.
+- Check small viewport height as well as width.
+
+**Visual modes**
+- Forced colors or a platform high-contrast mode.
+- Light and dark appearance.
+- Color-vision simulation as a diagnostic.
+- Grayscale as a color-dependence check.
+
+**Motion**
+- Reduced-motion preference.
+- Pause/stop controls for persistent motion.
+- Keyboard and touch behavior when animation is removed.
+
+### 10.7 Usability and Content Validation
+
+Use representative tasks and participants. Measure:
+- task completion;
+- time and error recovery;
+- first-click success where relevant;
+- comprehension of labels and instructions;
+- findability of actions and information;
+- confidence before destructive or financial actions;
+- perceived workload;
+- qualitative reasons for failure.
+
+A/B testing can measure behavior at scale, but it cannot explain every cause and must not be used to justify deceptive patterns.
+
+### 10.8 Performance and Field Quality
+
+Use field data where possible. Current Core Web Vitals “good” thresholds are:
+- **LCP:** ≤ 2.5 seconds;
+- **INP:** ≤ 200 milliseconds;
+- **CLS:** ≤ 0.1;
+
+evaluated at the 75th percentile, separately for mobile and desktop datasets where available.
+
+Also monitor:
+- JavaScript errors;
+- failed requests;
+- long tasks;
+- route and interaction latency;
+- font and image failures;
+- memory growth in long-lived applications;
+- accessibility defects reported by users;
+- regressions by release.
+
+Lab tools help diagnose; field data reveals what real users experienced.
+
+### 10.9 Cross-Browser and Device Matrix
+
+Derive the matrix from analytics, contracts, and risk.
+
+Include:
+- evergreen Chromium, Firefox, and Safari where supported;
+- iOS Safari and Android Chrome on real devices for touch-critical products;
+- Windows forced-colors behavior;
+- keyboard-only desktop use;
+- low-power or memory-constrained devices if the audience includes them;
+- slow and unreliable network profiles;
+- installed/PWA mode where offered.
+
+Do not claim universal browser support based on one engine.
+
+### 10.10 Release Gates
+
+A release is blocked when:
+- a core task cannot be completed with the required input methods;
+- a new WCAG A/AA failure is confirmed within the conformance scope;
+- text or controls become unreadable in a supported theme;
+- focus is lost or obscured;
+- critical content clips at supported zoom/localization settings;
+- visual regression is unexplained;
+- performance budgets or field thresholds materially regress without an approved exception;
+- analytics, consent, or conversion changes introduce deceptive behavior.
+
+Record exceptions with owner, impact, mitigation, and expiry date.
+
+## 11. Complete Design Workflow & Governance
+
+A practical end-to-end workflow. Adapt the sequence to project risk, team size, and delivery model:
 
 ```
 PHASE 1: RESEARCH & DEFINE
@@ -1669,10 +2125,10 @@ PHASE 1: RESEARCH & DEFINE
 ├── 1.2 Analyze competitive landscape
 ├── 1.3 Establish brand attributes (if applicable)
 ├── 1.4 Define content hierarchy and information architecture
-└── 1.5 Identify accessibility requirements (WCAG AA minimum)
+└── 1.5 Identify applicable accessibility standards, laws, contracts, target conformance, and user needs
 
 PHASE 2: DESIGN SYSTEM FOUNDATION
-├── 2.1 Define spacing scale (8pt grid tokens)
+├── 2.1 Define a documented 4/8-unit spacing scale and exceptions policy
 ├── 2.2 Define typography scale (modular ratio, font selection)
 ├── 2.3 Define color palette (primitives → semantic → component)
 ├── 2.4 Define elevation/shadow scale
@@ -1688,16 +2144,16 @@ PHASE 3: COMPONENT DESIGN
 └── 3.5 Build component library (Storybook or equivalent)
 
 PHASE 4: LAYOUT & PAGES
-├── 4.1 Design grid system and responsive breakpoints
+├── 4.1 Design content-driven layout constraints, containers, and responsive transitions
 ├── 4.2 Create page layouts using components
 ├── 4.3 Design key page templates (admin: dashboard, list, form, detail; frontend: home, product, landing)
-├── 4.4 Validate hierarchy and eye-tracking flow
+├── 4.4 Validate hierarchy and actual scan/task behavior through testing
 └── 4.5 Design responsive behavior for each breakpoint
 
 PHASE 5: VALIDATION & TESTING
 ├── 5.1 Accessibility audit (contrast, keyboard, screen reader)
 ├── 5.2 Cross-browser and cross-device testing
-├── 5.3 Performance testing (font loading, CLS, LCP)
+├── 5.3 Performance testing and field-monitoring plan (LCP, INP, CLS, errors)
 ├── 5.4 Visual regression baseline
 ├── 5.5 Usability testing with real users
 └── 5.6 Iterate based on feedback
@@ -1706,219 +2162,187 @@ PHASE 6: DOCUMENTATION & HANDOFF
 ├── 6.1 Document design decisions and rationale
 ├── 6.2 Create developer handoff materials
 ├── 6.3 Maintain living style guide
-└── 6.4 Establish update and governance process
+├── 6.4 Establish ownership, contribution, release, and deprecation processes
+└── 6.5 Record decisions, evidence, exceptions, and review dates
 ```
 
 ---
 
-## 16. Master Comparison: Admin Template vs. Frontend Site
+### 11.1 Evidence and Decision Records
 
-A comprehensive side-by-side reference for all major design dimensions:
+For important design decisions, record:
 
-| Dimension | Admin Template | Frontend / Marketing |
-|:---|:---|:---|
-| **Mission** | Task completion, data monitoring, efficiency | Persuasion, brand storytelling, conversion |
-| **User type** | Expert, repeat, daily use | First-time/infrequent visitor |
-| **Density** | High (tables, forms, multi-panel) | Low-medium (curated content) |
-| **Layout** | App shell (sidebar + topbar + content) | Scrolling page sections |
-| **Grid** | Fixed sidebar + fluid content; 12-col grid inside content | Full-width sections; 12-col fluid grid |
-| **Body font size** | 14–15px | 16–18px |
-| **Heading size range** | 18–28px | 32–64px+ |
-| **Type scale ratio** | Minor Third (1.2) / Major Second (1.125) | Major Third (1.25) / Perfect Fourth (1.333) |
-| **Line height** | 1.4–1.5 (body) | 1.5–1.7 (body) |
-| **Font pairing** | Same family, different weights | Serif heading + sans-serif body |
-| **Numerals** | Tabular/monospace | Proportional |
-| **Base spacing** | 4px or 8px (tight) | 8px (generous) |
-| **Card padding** | 16–20px | 24–32px |
-| **Section spacing** | 24–48px | 64–128px |
-| **Primary color use** | Single accent for actions + semantic status | Brand palette + emotional coloring |
-| **Background** | Light gray (#F0F2F5) app bg + white cards | White or brand-colored sections |
-| **Navigation** | Persistent sidebar | Top nav + hamburger mobile |
-| **Key component** | Data table | Hero section |
-| **Animation** | Minimal, functional (loading, transitions) | Expressive (scroll reveals, hovers) |
-| **Whitespace** | Compressed but systematic | Generous, luxurious |
-| **Touch targets** | 36–44px (desktop-first) | 44–48px (mobile-first) |
-| **Dark mode** | Optional but increasingly expected | Common, often user-toggleable |
-| **Progressive disclosure** | Essential (filters, expandable rows) | Less critical (linear narrative) |
-| **Performance priority** | Fast interactions, minimal re-renders | Fast initial load (LCP, FID) |
-
----
-
-## 17. Complete Design Checklist
-
-Use this checklist before launching any design project or reviewing existing work:
-
-### Color
-- [ ] 60-30-10 rule applied (dominant, secondary, accent)
-- [ ] Color harmony system chosen (monochromatic, analogous, complementary, etc.)
-- [ ] All text passes WCAG 4.5:1 contrast ratio (AA minimum)
-- [ ] Large text passes 3:1 contrast ratio
-- [ ] Semantic status colors consistent (success, warning, danger, info)
-- [ ] Design works in grayscale (not relying solely on color)
-- [ ] Color blind safe (tested with simulators)
-- [ ] Dark mode palette defined and tested independently
-- [ ] Accent colors desaturated 10–15% in dark mode
-
-### Typography
-- [ ] Maximum 2 typefaces selected
-- [ ] Modular type scale defined (ratio chosen, sizes documented)
-- [ ] Line heights set for each text level (body 1.5+, headings 1.1–1.3)
-- [ ] Line length controlled (max-width: 65ch on content areas)
-- [ ] Letter spacing adjusted (tighter for headings, expanded for uppercase/small)
-- [ ] Responsive typography uses clamp()
-- [ ] Font loading strategy implemented (font-display: swap, preload)
-- [ ] Tabular numerals enabled for data tables
-- [ ] Font weight strategy documented (2–3 weights)
-
-### Spacing & Layout
-- [ ] 8pt grid system applied consistently
-- [ ] Spacing scale documented and tokenized
-- [ ] Internal ≤ external spacing rule followed
-- [ ] Proximity reflects relationships (Gestalt)
-- [ ] White space used deliberately, not filled
-- [ ] 12-column grid or CSS Grid for responsive layouts
-- [ ] Breakpoints defined and tested
-
-### Visual Hierarchy
-- [ ] One dominant element per view/section
-- [ ] Eye-tracking path designed (F or Z pattern)
-- [ ] Button hierarchy clear (primary > secondary > tertiary)
-- [ ] All button states defined (default, hover, active, disabled, loading)
-- [ ] Focus states visible and accessible
-
-### Responsive
-- [ ] Mobile-first CSS approach
-- [ ] All 4 breakpoints tested (mobile, tablet, laptop, desktop)
-- [ ] Typography scales fluidly
-- [ ] Touch targets ≥ 44px on mobile
-- [ ] Navigation works at all sizes (sidebar collapse, hamburger menu)
-
-### Accessibility
-- [ ] All images have alt text
-- [ ] Focus states visible on every interactive element
-- [ ] Color not the only information indicator
-- [ ] Motion respects prefers-reduced-motion
-- [ ] Semantic HTML used throughout
-- [ ] Keyboard navigation works completely
-- [ ] Screen reader tested (NVDA/VoiceOver)
-- [ ] Text spacing resilience tested (WCAG SC 1.4.12)
-- [ ] Skip-to-content link present
-- [ ] ARIA patterns for complex widgets (tabs, modals, etc.)
-
-### Performance
-- [ ] Fonts optimized (woff2, subset, preload)
-- [ ] Images optimized (WebP/AVIF, lazy loading)
-- [ ] No CLS from font loading
-- [ ] Page loads in < 3s on 3G connection
-
----
-
-## 18. Quick Reference Charts
-
-### Spacing Quick Reference
-
-| Context | Spacing Value | Token |
-|:---|:---|:---|
-| Icon to label gap | 4–8px | space-1 to space-2 |
-| Label to input | 8px | space-2 |
-| Between form fields | 16px | space-4 |
-| Between form groups | 24px | space-6 |
-| Card internal padding | 24px | space-6 |
-| Between cards | 16–24px | space-4 to space-6 |
-| Section separator | 48–96px | space-12 to space-24 |
-| Hero padding | 64–128px | space-16 to space-32 |
-
-### Typography Quick Reference
-
-| Element | Size | Weight | Line Height | Letter Spacing |
-|:---|:---|:---|:---|:---|
-| Display / Hero | 48–64px | 700–900 | 1.0–1.1 | −0.03em |
-| H1 | 36–42px | 700 | 1.1–1.2 | −0.02em |
-| H2 | 28–32px | 600–700 | 1.2–1.3 | −0.01em |
-| H3 | 22–24px | 600 | 1.3 | 0 |
-| Body | 16px | 400 | 1.5–1.6 | 0 |
-| Body (admin) | 14px | 400 | 1.4–1.5 | 0 |
-| Small / Caption | 12–13px | 400 | 1.4 | +0.05em |
-| Label (uppercase) | 10–12px | 500–600 | 1.2 | +0.1em to +0.2em |
-
-### Color Contrast Quick Reference
-
-| Scenario | Required Ratio |
+| Field | Purpose |
 |:---|:---|
-| Normal body text | ≥ 4.5:1 (AA) |
-| Large text (≥18pt or ≥14pt bold) | ≥ 3:1 (AA) |
-| UI components and focus indicators | ≥ 3:1 (AA) |
-| Enhanced accessibility (AAA) | ≥ 7:1 |
-| Disabled elements | Exempt (aim 3:1) |
+| Problem and users | Prevents a solution from becoming detached from its original need |
+| Constraints | Documents platform, legal, accessibility, content, and performance limits |
+| Options considered | Shows that the chosen pattern was not arbitrary |
+| Evidence | Research, analytics, usability findings, standards, or domain expertise |
+| Decision | The selected approach and its intended outcome |
+| Risks and exceptions | Known limitations and mitigations |
+| Owner and review date | Ensures the decision can be revisited when conditions change |
 
----
+### 11.2 Design-System Governance
 
-## 19. Recommended Tools & Resources
+A mature system needs:
+- contribution criteria;
+- component and token ownership;
+- accessibility review;
+- design and code review;
+- semantic versioning or an equivalent release policy;
+- migration guidance and deprecation windows;
+- usage analytics or inventory scans;
+- a process for product exceptions;
+- regular review with real product teams and users.
 
-### Design Tools
-- **Figma** — Industry standard for UI design, prototyping, design tokens
-- **Storybook** — Component documentation and testing
-- **Chromatic** — Visual regression testing for Storybook
+Governance should enable justified variation, not force every interface into one visual template.
 
-### Color Tools
-- **WebAIM Contrast Checker** — WCAG contrast ratio verification
-- **Coolors.co** — Palette generation
-- **Realtime Colors** — Live preview of palettes on realistic UI
-- **OKLCH Color Picker** — Perceptually uniform color selection
-- **Adobe Color** — Color harmony exploration
-- **Stark** (Figma plugin) — Accessibility checking in design tools
+## 12. Release Evidence Checklist
 
-### Typography Tools
-- **Google Fonts** — Free, web-optimized typefaces
-- **Type Scale** (type-scale.com) — Modular scale calculator
-- **Font Squirrel Webfont Generator** — Subsetting and format conversion
-- **Wakamai Fondue** — Font feature inspector
+Use this as a **release evidence record**, not as a substitute for the detailed guidance in earlier chapters. A checked item should point to an artifact, test result, issue, decision record, or responsible owner.
 
-### Accessibility Tools
-- **axe DevTools** (browser extension) — Automated accessibility testing
-- **WAVE** — Web accessibility evaluation tool
-- **Lighthouse** — Chrome DevTools performance and accessibility auditing
-- **Sim Daltonism** (macOS) — Color blindness simulation
-- **NVDA** (Windows) / **VoiceOver** (Mac) — Screen reader testing
+### 12.1 Foundation and Content
 
-### Spacing & Layout Tools
-- **Every Layout** (every-layout.dev) — CSS layout patterns
-- **CSS Grid Generator** (cssgrid-generator.netlify.app) — Visual grid builder
-- **Utopia** (utopia.fyi) — Fluid type and space calculators
+- [ ] Primary users, critical tasks, content owners, and failure consequences are documented.
+- [ ] Information architecture and page hierarchy have been tested with representative content.
+- [ ] Empty, loading, partial, error, permission-denied, offline, and destructive-action states exist where relevant.
+- [ ] Long labels, translated text, large numbers, missing images, and untrusted user content have been stress-tested.
+- [ ] Persuasive claims, testimonials, metrics, and comparison statements have evidence and approval.
 
----
+### 12.2 Visual System
 
-## 20. Sources & Further Reading
+- [ ] Primitive, semantic, and component tokens have named owners and source-of-truth locations.
+- [ ] Typography, spacing, color, radius, border, elevation, and motion decisions are tokenized where reuse is expected.
+- [ ] Every interactive component has documented default, hover, focus, active, selected, disabled, loading, error, and read-only behavior as applicable.
+- [ ] Light, dark, forced-color, high-contrast, print, and reduced-motion/transparency behavior has been evaluated where supported.
+- [ ] Charts and status indicators remain understandable without hue alone.
 
-This master document covers design theory, color theory, typography, spacing, admin templates, and frontend design. The following are key sources and references:
+### 12.3 Responsive and Internationalized Layout
 
-### Academic & Research
-- Nielsen Norman Group (NN/g) — Usability research, F-pattern and Z-pattern studies
-- Gestalt Psychology — Wertheimer, Koffka, Köhler (foundational principles)
-- WCAG 2.1 & 2.2 — W3C Web Content Accessibility Guidelines
-- WAI-ARIA Authoring Practices — W3C ARIA design patterns
+- [ ] Layouts work at 320 CSS px width or the product's documented minimum supported viewport.
+- [ ] Content reflows at 400% zoom without loss of information or two-dimensional scrolling except where an exception is legitimate.
+- [ ] Components respond to their available container, not only to named device widths.
+- [ ] Touch, mouse, keyboard, pen, and coarse-pointer behavior is appropriate to the supported platforms.
+- [ ] Bidirectional text, longer translations, locale-sensitive dates/numbers, and font fallback have been tested when the product is internationalized.
 
-### Design Systems
-- Google Material Design 3 — material.io
-- Apple Human Interface Guidelines — developer.apple.com/design
-- Ant Design — ant.design
-- IBM Carbon Design System — carbondesignsystem.com
-- Atlassian Design System — atlassian.design
-- Shopify Polaris — polaris.shopify.com
+### 12.4 Accessibility
 
-### Typography & Color
+- [ ] Target WCAG version and conformance level are recorded; legal or contractual obligations are separately identified.
+- [ ] Automated checks run in CI and their limitations are understood.
+- [ ] Complete keyboard operation, logical focus order, visible focus, skip/bypass mechanisms, and modal focus behavior have been manually verified.
+- [ ] Screen-reader testing covers representative flows and dynamic announcements.
+- [ ] Text alternatives, labels, names, roles, states, errors, instructions, and table relationships are programmatically available.
+- [ ] Contrast, non-text contrast, text-spacing overrides, resize/reflow, target size, and motion requirements have been tested.
+- [ ] No critical workflow depends on drag, hover, color, gesture, memory, or a cognitive-function test without an accessible alternative where required.
+
+### 12.5 Performance and Resilience
+
+- [ ] LCP, INP, and CLS are measured in representative lab tests and monitored with field data when traffic permits.
+- [ ] Critical fonts and images have explicit loading, sizing, fallback, and failure strategies.
+- [ ] Decorative blur, transparency, animation, video, and 3D effects degrade gracefully on constrained devices.
+- [ ] The interface exposes meaningful loading, stale-data, retry, offline, and synchronization states.
+- [ ] Third-party scripts and embeds have owners, budgets, consent behavior, and removal criteria.
+
+### 12.6 Quality, Governance, and Release
+
+- [ ] Component stories or equivalent fixtures cover supported variants, content extremes, and themes.
+- [ ] Interaction, accessibility, visual-regression, and browser tests cover critical paths.
+- [ ] Remaining defects and exceptions are documented with severity, owner, mitigation, and review date.
+- [ ] Design and code documentation match the released implementation.
+- [ ] Analytics and user-feedback plans measure the intended outcome without dark patterns or unnecessary data collection.
+- [ ] Deprecation, migration, rollback, and post-release monitoring plans exist for material system changes.
+
+## 13. Tools & Research Methods
+
+Choose tools according to the question being tested; no single tool proves usability, accessibility, visual quality, or performance.
+
+### 13.1 Design and System Authoring
+
+| Tool or category | Appropriate use |
+|:---|:---|
+| **Figma and comparable design tools** | Interface composition, variables/tokens, prototypes, libraries, and collaboration |
+| **Tokens Studio / Style Dictionary or equivalent pipelines** | Token transformation and delivery across code platforms; validate output against the DTCG format you actually support |
+| **Storybook** | Component documentation, isolated states, interaction tests, accessibility checks, and visual-review workflows |
+| **Penpot or other open tools** | Open-source or self-hosted collaborative design workflows |
+
+### 13.2 Color, Typography, and Layout
+
+| Tool | Appropriate use |
+|:---|:---|
+| **WebAIM Contrast Checker / browser DevTools** | WCAG 2.x contrast calculation; still test real states and backgrounds |
+| **Stark and comparable plugins** | Early accessibility review inside design tooling |
+| **OKLCH tools** | Perceptual palette exploration; gamut mapping and contrast still require validation |
+| **Utopia** | Generating fluid type and spacing scales as starting points |
+| **Wakamai Fondue** | Inspecting font axes, OpenType features, metadata, and character coverage |
+| **Every Layout** | Studying resilient intrinsic-layout patterns rather than copying device-specific compositions |
+
+### 13.3 Accessibility and Interaction Testing
+
+| Tool | Appropriate use |
+|:---|:---|
+| **axe-core / axe DevTools** | Automated detection of a subset of accessibility failures |
+| **Accessibility Insights** | Guided automated and manual assessment workflows |
+| **NVDA, JAWS, VoiceOver, TalkBack** | Testing screen-reader behavior on supported platform combinations |
+| **Chrome/Edge/Firefox/Safari DevTools** | Accessibility tree, contrast, rendering, network, performance, and device emulation |
+| **Playwright** | Browser automation, keyboard flows, screenshots, accessibility-tree snapshots, and axe integration |
+| **WAVE / HTML_CodeSniffer / Pa11y** | Supplementary page-level checks; results still require human interpretation |
+
+### 13.4 Performance and Visual Quality
+
+| Tool | Appropriate use |
+|:---|:---|
+| **Lighthouse** | Repeatable lab diagnostics, not a substitute for field data |
+| **PageSpeed Insights / Chrome UX Report** | Origin or URL-level field data when sufficient traffic exists |
+| **WebPageTest** | Detailed loading waterfalls, filmstrips, device/network profiles, and repeat-view tests |
+| **Chromatic, Percy, BackstopJS, Playwright screenshots** | Visual-regression review with an explicit approval process |
+| **Real-device testing** | Input, viewport, font, color, browser-chrome, and performance behavior that emulation can miss |
+
+### 13.5 Research and Validation
+
+Use interviews, contextual inquiry, usability testing, card sorting, tree testing, first-click testing, analytics, support data, controlled experiments, and accessibility testing with disabled participants as appropriate. Select methods from the uncertainty and risk—not from tool popularity.
+
+## 14. Research Basis & Further Reading
+
+The guide was reconciled against primary standards, official platform documentation, established research, and current design-system documentation. Publication dates matter: historical studies remain useful when their scope is stated, but should not be presented as timeless universal laws.
+
+### 14.1 Normative Standards and Specifications
+
+- [W3C — Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/)
+- [W3C WAI — Understanding WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/)
+- [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
+- [European Union — Directive (EU) 2019/882, European Accessibility Act](https://eur-lex.europa.eu/eli/dir/2019/882/oj)
+- [Design Tokens Community Group — Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/)
+- [WHATWG HTML Living Standard](https://html.spec.whatwg.org/)
+- [CSS specifications and drafts](https://www.w3.org/Style/CSS/specs.en.html)
+
+### 14.2 Browser and Performance References
+
+- [MDN Web Docs](https://developer.mozilla.org/)
+- [web.dev — Core Web Vitals](https://web.dev/articles/vitals)
+- [Chrome UX Report](https://developer.chrome.com/docs/crux)
+- [Can I Use](https://caniuse.com/) for browser-support exploration, followed by target-browser testing
+
+### 14.3 Usability and Perception Research
+
+- Nielsen Norman Group research on [F-shaped scanning](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) and [text-scanning patterns](https://www.nngroup.com/articles/text-scanning-patterns-eyetracking/)
+- Stanford Web Credibility Research, including the 2002 report *How Do People Evaluate a Web Site's Credibility?*
+- Lindgaard et al. (2006), *Attention web designers: You have 50 milliseconds to make a good first impression!*—evidence about rapid visual-appeal judgments, not proof that all trust or usability judgments are settled in 50 ms
+- Don Norman, *The Design of Everyday Things* and *Emotional Design*
 - Robert Bringhurst, *The Elements of Typographic Style*
 - Ellen Lupton, *Thinking with Type*
 - Josef Albers, *Interaction of Color*
-- Johannes Itten, *The Art of Color*
-- Refactoring UI — refactoringui.com
 
-### CSS & Implementation
-- MDN Web Docs — developer.mozilla.org
-- CSS-Tricks — css-tricks.com
-- Every Layout — every-layout.dev
-- Utopia Fluid Type — utopia.fyi
+### 14.4 Current Implementation Documentation
+
+- [Tailwind CSS — Theme variables](https://tailwindcss.com/docs/theme)
+- [Bootstrap 5.3 — Color modes](https://getbootstrap.com/docs/5.3/customize/color-modes/)
+- [Storybook — Accessibility testing](https://storybook.js.org/docs/writing-tests/accessibility-testing)
+- [Playwright — Accessibility testing guidance](https://playwright.dev/docs/accessibility-testing)
+
+### 14.5 Companion Reference
+
+For the histories, classifications, strengths, risks, and application guidance of named styles and design systems, see **`02-design-styles-systems.md`**. Keeping that catalogue separate prevents this practice guide from repeating the same movements and product systems.
 
 ---
 
-> **Document version:** 1.0 | **Synthesized:** February 2026 | **Total coverage:** ~1,925 lines, 20 sections, 100+ subsections
+> **Revision:** 2026.2 — reorganized, deduplicated, and research-corrected.

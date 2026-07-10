@@ -10,12 +10,12 @@ This repository contains **four master documents** that together form a complete
 
 ### 📊 Quick Comparison
 
-| File | Size | Focus | Audience |
-|------|------|-------|----------|
-| **01** | 98 KB | Design theory, color, typography, spacing | Designers + Developers |
-| **02** | 107 KB | Design styles, systems, methodologies, psychology | Senior Designers, Architects |
-| **03** | 231 KB | Standards compliance, WCAG, SEO, performance | Technical Leads, Accessibility Specialists |
-| **04** | 85 KB | Cutting-edge HTML/CSS/JS features (2025–2026) | Developers, AI Education |
+| File | Focus | Audience |
+|------|-------|----------|
+| **01** | Design theory, color, typography, spacing | Designers + Developers |
+| **02** | Design styles, systems, methodologies, psychology | Senior Designers, Architects |
+| **03** | Standards compliance, WCAG, SEO, performance | Technical Leads, Accessibility Specialists |
+| **04** | Modern HTML/CSS/JS recipes **+** full 147-feature 2025→Jul 2026 platform catalogue (§44) | Developers, AI Education |
 
 ---
 
@@ -115,11 +115,11 @@ This document was created to **educate AI assistants** about modern browser capa
 - 🎭 **Advanced Selectors** — `:has()`, `:is()`, `:where()`, `:focus-visible`
 - 🌈 **Color Spaces** — OKLCH, `color-mix()`, `light-dark()`, Relative Color Syntax
 - 📝 **Typography** — `text-box-trim`, `corner-shape`, fluid sizing
-- ⚡ **Modern JavaScript** — Temporal API, Set methods, Iterator helpers, Pattern Matching
+- ⚡ **Modern JavaScript** — Temporal API, Set methods, Iterator helpers, ES2025/2026
 - 🎮 **WebGPU** — Next-gen graphics API (successor to WebGL)
 - 📁 **File System Access API** — Native file read/write operations
-- 🧩 **ES2025/2026 Features** — Record & Tuple, Pipeline Operator, `using` keyword, Import Attributes
-- 📊 **Browser Support Matrix** — Complete compatibility tables for all features
+- 📊 **§44 Vanilla Platform Catalogue** — **147 features** (Web Features 3.32.0, 1 Jan 2025 → 10 Jul 2026) with C/F/S versions, Baseline dates, 19 recent deltas, beta watchlist
+- 🧭 Adoption tiers, Sanitizer, focusgroup, invokers, Navigation, Trusted Types, etc.
 
 **Best For:**
 - **AI Education** — Paste relevant sections into AI prompts to get modern solutions
@@ -205,14 +205,12 @@ avoiding jQuery, Bootstrap, or other legacy dependencies.
 
 ## 📋 File Details
 
-| File | Lines | Sections | Last Updated |
-|------|-------|----------|--------------|
-| `01-design-theory-practice.md` | ~1,925 | 12 major sections | March 2026 |
-| `02-design-styles-systems.md` | ~1,974 | 9 parts, 40+ subsections | March 2026 |
-| `03-standards-compliance.md` | ~5,704 | 20 major sections | March 2026 |
-| `04-modern-features-2026.md` | ~2,340 | 36 sections | March 2026 |
-
-**Total Repository:** ~11,943 lines, ~100+ sections
+| File | Role | Last Updated |
+|------|------|--------------|
+| `01-design-theory-practice.md` | Design theory & practice | March 2026 |
+| `02-design-styles-systems.md` | Styles & systems | March 2026 |
+| `03-standards-compliance.md` | WCAG, SEO, performance standards | July 2026 |
+| `04-modern-features-2026.md` | Modern feature recipes **+** full §44 platform catalogue | July 10 2026 |
 
 ---
 
@@ -237,10 +235,14 @@ avoiding jQuery, Bootstrap, or other legacy dependencies.
 4. **01** → Section 10 (Accessibility Fundamentals)
 
 ### **Getting AI to Build Modern UI?**
-1. **04** → Copy relevant feature sections
+1. **04** → Copy relevant recipe sections
 2. Paste into AI prompt as context
 3. Request native 2025–2026 solutions
-4. Verify against **03** for compliance
+4. Verify support in **04 §44** (147-feature catalogue) and compliance in **03**
+
+### **“Is this API Baseline yet?”**
+1. **04** → **§44** Vanilla Web Platform Catalogue (C/F/S versions + Baseline dates)
+2. **04** → earlier sections for code patterns if Baseline / progressive-enhance
 
 ---
 
@@ -248,9 +250,14 @@ avoiding jQuery, Bootstrap, or other legacy dependencies.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2026.7.10c | July 10 2026 | Merged full Web Features catalogue into **04 §44** (no 5th file); **03** gains Sanitizer, focusgroup, requestClose, URLPattern/Navigation/Trusted Types; Invokers Baseline 2025-12-12 |
+| 2026.7.10b | July 10 2026 | (superseded) temporary 05 file approach — content now lives only in 01–04 |
+| 2026.7.10 | July 10 2026 | Baseline digests catalogue: §43 gap fill |
+| 2026.7.1 | July 2026 | Vanilla renaissance pass 2: Temporal, WeakMap upsert, Declarative Shadow DOM, Speculation Rules, Doc PiP, Close Watcher, Compression Streams, CSS random/toggles, §42 |
+| 2026.7 | July 2026 | Aligned 03/04 with vanilla catalogue: Invokers, `closedby`, carousels, ES2026 data APIs, Grid Lanes, Baseline matrix |
 | 2026.1 | March 2026 | Initial consolidation, renamed files, added README |
 | 2025.4 | January 2026 | Added ES2026 features, WebGPU, File System API |
-| 2025.3 | November 2025 | Added Pattern Matching, Record & Tuple |
+| 2025.3 | November 2025 | Added experimental proposals notes |
 | 2025.2 | September 2025 | Added Browser Support Matrix |
 | 2025.1 | June 2025 | Initial compilation |
 
@@ -282,8 +289,8 @@ This repository is provided as-is for educational and professional reference pur
 
 ---
 
-**Last Updated:** March 2026  
-**Total Content:** ~521 KB, ~11,943 lines  
+**Last Updated:** July 2026  
+**Total Content:** ~530+ KB (living library)  
 **Estimated Reading Time:** 40–60 hours (full library)
 
 ---
