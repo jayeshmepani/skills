@@ -1,8 +1,7 @@
 # Modern Web Standards — Master Reference (2026)
 
-> **Revision date:** 10 July 2026  
-> **Purpose:** A comprehensive, self-contained, production-oriented reference for standards compliance, semantic HTML, accessibility, SEO, performance, media, delivery, and testing.  
-> **Editorial policy:** Every unique topic from the source document has been retained; repeated material has been consolidated; outdated or overconfident claims have been corrected; unstable features are explicitly labelled.
+> **Edition:** July 2026  
+> **Scope:** Standards compliance, semantic HTML, accessibility, SEO, performance, media, delivery, and testing. Unstable features are explicitly labelled.
 
 > [!IMPORTANT]
 > Browser support, search-result features, legislation, and draft specifications change. Treat dated support tables as snapshots, use feature detection, and verify legal requirements for the relevant jurisdiction and contract.
@@ -1298,7 +1297,7 @@ Native control over how users dismiss a `<dialog>` without custom backdrop-click
 
 #### 6.2.6 Invoker Commands — Declarative Dialog/Popover Triggers
 
-Wire buttons to dialogs and popovers **without** `addEventListener` boilerplate. **✅ Baseline newly available 2025-12-12** (C 135 · F 144 · S 26.2 — full matrix in `04` §44). Progressive-enhance older UAs.
+Wire buttons to dialogs and popovers **without** `addEventListener` boilerplate. **✅ Baseline newly available 2025-12-12** (C 135 · F 144 · S 26.2 — full matrix in `04-modern-features-2026.md` §16). Progressive-enhance older UAs.
 
 ```html
 <button type="button" commandfor="settings" command="show-modal">Settings</button>
@@ -1404,7 +1403,7 @@ if (navigator.userActivation?.isActive) {
 }
 ```
 
-Also track: **Event Timing API** (INP), **Trusted Types** (DOM XSS sinks), **ReportingObserver** (CSP/deprecations), **WebTransport**, **Navigation API**, module `{ type: 'module' }` workers including SharedWorker. Full support matrix: `04-modern-features-2026.md` §44.
+Also track: **Event Timing API** (INP), **Trusted Types** (DOM XSS sinks), **ReportingObserver** (CSP/deprecations), **WebTransport**, **Navigation API**, module `{ type: 'module' }` workers including SharedWorker. Full support matrix: `04-modern-features-2026.md` §16.
 
 #### 6.2.13 HTML Sanitization APIs (safe parsing/insertion; limited availability)
 
@@ -5819,41 +5818,4 @@ Add these items to existing checklist sections:
 - [ ] Temporal considered for non-trivial date/time work; feature-detect it and use a maintained polyfill or a verified supporting runtime where required
 - [ ] Prefer the standardized safe HTML parsing/insertion APIs when supported, or a vetted sanitizer fallback; never pass untrusted HTML directly to `innerHTML`
 - [ ] Prefer `dialog.requestClose()` when close must be cancelable
-- [ ] Check **04 §44** before requiring limited-availability APIs (custom select, Temporal Safari, etc.)
-
----
-
-## Document Metadata
-
-| Field | Value |
-|---|---|
-| **Title** | Modern Web Standards — Master Reference |
-| **Revision** | 2026.07.10 — reorganized, deduplicated, and accuracy-corrected |
-| **Scope** | HTML, CSS, JavaScript, accessibility, SEO, structured data, media, performance, delivery, testing, and modern platform APIs |
-| **Conformance baseline** | Use the WCAG version required by law/contract; target WCAG 2.2 AA for new engineering where practical |
-| **Support policy** | Baseline and browser-version statements are time-sensitive; feature-detect limited APIs and provide fallbacks |
-| **Source lineage** | WHATWG HTML, WCAG 2.2, WAI-ARIA 1.2/APG, MDN, web.dev, Schema.org, RFC 9110–9114, TC39, Core Web Vitals, CSS Grid/Cascade, Scroll-Driven Animations, View Transitions, Popover/Dialog/Invoker work, EAA, and EN 301 549 |
-| **Review schedule** | Review quarterly and after material WCAG, EN 301 549/EAA, Baseline, search-feature, Temporal, customizable-select, media-codec, or browser-support changes |
-| **Relationship** | Complements `04-modern-features-2026-updated.md`, which focuses on newer native platform capabilities and support status |
-
-### Status vocabulary
-
-- **Stable standard:** standardized and broadly implementable, subject to the project's browser support floor.
-- **Baseline Newly available / Widely available:** use the Web Platform Baseline definition rather than interpreting “modern browser” informally.
-- **Limited availability:** implemented in some stable engines but not interoperable across the full Baseline core set.
-- **Experimental / proposal:** do not make critical functionality depend on it without a proven fallback.
-
-### Primary sources
-
-- [WHATWG HTML Living Standard](https://html.spec.whatwg.org/)
-- [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/)
-- [W3C WCAG 3 introduction and draft status](https://www.w3.org/WAI/standards-guidelines/wcag/wcag3-intro/)
-- [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
-- [European Accessibility Act](https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en)
-- [EN 301 549 v3.2.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf)
-- [Google Search structured-data gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
-- [Google Search AI features guidance](https://developers.google.com/search/docs/appearance/ai-features)
-- [Schema.org](https://schema.org/)
-- [Web Platform Baseline](https://web.dev/baseline)
-- [TC39 ECMAScript proposals](https://github.com/tc39/proposals)
-- [Temporal proposal](https://tc39.es/proposal-temporal/)
+- [ ] Check **`04-modern-features-2026.md` §16** before requiring limited-availability APIs (custom select, Temporal Safari, etc.)

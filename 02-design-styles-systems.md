@@ -1,8 +1,7 @@
 # Web Design Styles, Systems, Psychology & Implementation
 
 > **Edition:** July 2026  
-> **Scope:** Historical movements, digital visual styles, platform design languages, named design systems, CSS/component methodologies, psychology, accessibility evaluation, emerging interface directions, and style-selection frameworks.  
-> **Companion:** `01-design-theory-practice.md` contains detailed color, typography, spacing, responsive layout, product/admin, marketing, WCAG implementation, tokens, testing, and workflow guidance.
+> **Scope:** Historical movements, digital visual styles, platform design languages, named design systems, CSS/component methodologies, psychology, accessibility evaluation, emerging interface directions, and style-selection frameworks.
 
 This catalogue distinguishes formal movements and official systems from community-coined trend labels. It preserves useful concepts without repeating the same explanations in summary matrices.
 
@@ -2015,7 +2014,7 @@ A distinctive style is not a license to obscure consent, price, risk, or control
 
 Accessibility is a property of the implemented experience, not of a style name. Swiss design can be inaccessible when type is tiny; neobrutalism can fail when thick decorative borders hide focus; glass surfaces can be usable when contrast is controlled; a minimalist interface can become difficult when essential labels are removed.
 
-For normative WCAG thresholds, testing procedures, ARIA, typography, color, and focus guidance, use **`01-design-theory-practice.md`**. This chapter provides the non-duplicated evaluation model for aesthetic choices.
+For normative WCAG thresholds, testing procedures, ARIA, typography, color, and focus guidance, see **`01-design-theory-practice.md`**. This chapter covers evaluation of aesthetic choices against those requirements.
 
 ## 6.1 Style Evaluation Dimensions
 
@@ -2412,8 +2411,3 @@ Use each style entry as a structured design hypothesis, not a recipe that predic
 - performance;
 - actual behavior and perception.
 
-The companion **`01-design-theory-practice.md`** contains the implementation-level theory, color, typography, layout, accessibility, tokens, testing, and governance material intentionally not repeated here.
-
----
-
-> **Revision:** 2026.2 — reorganized, deduplicated, reclassified, and research-corrected.

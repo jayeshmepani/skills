@@ -1,304 +1,182 @@
-# 🎨 Web Design & Development Master Library (2025–2026)
+# Web Design & Development Reference Library (2025–2026)
 
-> **A comprehensive, authoritative reference library** for modern web design theory, visual styles, technical standards, and cutting-edge browser features.
+A four-document reference library for modern web design theory, visual styles, technical standards, and native browser capabilities.
 
 ---
 
-## 📚 Repository Overview
+## Library overview
 
-This repository contains **four master documents** that together form a complete reference library for web designers, developers, and architects. Each document serves a distinct purpose and audience, covering everything from foundational design theory to bleeding-edge browser capabilities.
-
-### 📊 Quick Comparison
-
-| File | Focus | Audience |
+| File | Focus | Best for |
 |------|-------|----------|
-| **01** | Design theory, color, typography, spacing | Designers + Developers |
-| **02** | Design styles, systems, methodologies, psychology | Senior Designers, Architects |
-| **03** | Standards compliance, WCAG, SEO, performance | Technical Leads, Accessibility Specialists |
-| **04** | Modern HTML/CSS/JS recipes **+** full 147-feature 2025→Jul 2026 platform catalogue (§44) | Developers, AI Education |
+| [`01-design-theory-practice.md`](01-design-theory-practice.md) | Color, typography, spacing, layout, product/admin and marketing UI, accessibility, tokens, testing | Designers and developers building interfaces |
+| [`02-design-styles-systems.md`](02-design-styles-systems.md) | Visual styles, design systems, methodologies, psychology, style selection | Style decisions and design-system architecture |
+| [`03-standards-compliance.md`](03-standards-compliance.md) | WCAG, ARIA, SEO, structured data, performance, delivery, pre-launch checks | Compliance, accessibility, SEO, and performance work |
+| [`04-modern-features-2026.md`](04-modern-features-2026.md) | Modern HTML/CSS/JS patterns plus a 147-feature platform catalogue (§16) | Native implementation and Baseline/support lookups |
+
+**Edition:** July 2026 · **Catalogue snapshot:** 10 July 2026 (Web Features 3.32.0)
 
 ---
 
-## 📖 Document Guide
+## Documents
 
-### 1️⃣ **01-design-theory-practice.md** — Design Theory & Practice
+### 01 — Design Theory & Practice
 
-**Subtitle:** *The Complete Guide to Color, Typography, Spacing & Admin/Frontend Design*
+**Title:** Design Theory & Practice for Web Interfaces
 
-**What It Covers:**
-- 🎨 **Visual Hierarchy** — Attention management, balance, contrast, alignment, Gestalt principles
-- 🧠 **Eye-Tracking Patterns** — F-pattern, Z-pattern, scanning behavior
-- 🌈 **Color Theory** — Color wheel, models (RGB/HSL/OKLCH), harmony, psychology, 60-30-10 rule
-- 🎭 **Light & Dark Mode** — Complete palettes with contrast ratios, dark mode best practices
-- 🔤 **Typography** — Modular scales, line-height, font pairing, fluid typography with `clamp()`
-- 📐 **Spacing & Grid** — 8pt grid system, CSS Grid, breakpoints, responsive design
-- 🖥️ **Admin vs. Frontend** — Fundamental differences, layout patterns, component design
-- ♿ **Accessibility** — WCAG 2.2 compliance, focus states, ARIA patterns
-- 🧪 **Testing & QA** — Automated testing, component-level validation
+| Section | Topics |
+|---------|--------|
+| 1 | Executive summary |
+| 2 | Gestalt, hierarchy, balance, contrast, scanning patterns |
+| 3 | Color theory, harmony, semantic palettes, light/dark |
+| 4 | Typography systems, scales, fluid type, font performance |
+| 5 | Spacing grids, CSS Grid/Flexbox, breakpoints, reflow |
+| 6 | Product, admin, and dashboard design |
+| 7 | Public-facing and marketing-site design |
+| 8 | Accessibility and inclusive design |
+| 9 | Design tokens and implementation contracts |
+| 10–12 | Testing, workflow/governance, release checklist |
+| 13–14 | Tools, research methods, further reading |
 
-**Best For:**
-- Learning design fundamentals from scratch
-- Building admin templates or dashboards
-- Creating marketing/landing pages
-- Understanding color theory and typography systems
+### 02 — Design Styles & Systems
 
-**Start Here If:** You're a designer or developer who wants to understand *why* designs work, not just *how* to build them.
+**Title:** Web Design Styles, Systems, Psychology & Implementation
 
----
+| Part | Topics |
+|------|--------|
+| I | Classification, evidence labels, selection framework, history |
+| II | 30+ visual/interaction styles (skeuomorphism through anti-design) |
+| III | Platform design systems (Material 3, HIG, Fluent 2, Carbon, Polaris, …) |
+| IV | Atomic Design, CSS architecture, tokens, Storybook |
+| V | Psychology, perception, trust |
+| VI | Evaluating accessibility across styles |
+| VII | Emerging directions (adaptive UI, agents, spatial, sustainability) |
+| VIII | Decision frameworks and implementation playbook |
 
-### 2️⃣ **02-design-styles-systems.md** — Design Styles & Systems
+### 03 — Standards & Compliance
 
-**Subtitle:** *Complete Reference to Visual Styles, Design Systems & Methodologies*
+**Title:** Modern Web Standards — Master Reference (2026)
 
-**What It Covers:**
-- 📜 **Historical Timeline** — Bauhaus (1919) → Modern Adaptive UI (2025–2026)
-- 🎨 **20+ Design Styles** — Deep dives into each:
-  - Skeuomorphism, Flat Design, Material Design
-  - Glassmorphism, Neumorphism, Claymorphism
-  - Brutalism, Neobrutalism
-  - Aurora UI, Bento Box Layouts
-  - And 10+ more...
-- 🏗️ **Design Systems** — Material, Fluent, Carbon, Human Interface, Ant Design, etc.
-- 🔧 **Methodologies** — Atomic Design, BEM, ITCSS, Design Tokens
-- 🧠 **Psychology of Design** — Hick's Law, Fitt's Law, aesthetic-usability effect
-- ♿ **Accessibility & Inclusive Design**
-- 🚀 **Emerging Trends** — AI-driven UI, generative interfaces, adaptive design
-- 📊 **Decision Frameworks** — How to choose styles/systems for your project
+| Section | Topics |
+|---------|--------|
+| 1–2 | Philosophy; WCAG 2.2, EAA, legal context |
+| 3–4 | Obsolete HTML; semantic HTML, forms, tables |
+| 5–6 | ARIA roles/states/patterns; implementation patterns |
+| 7–8 | SEO, crawl control, AI search features; JSON-LD |
+| 9–10 | Modern CSS/JS practices and main-thread health |
+| 11–12 | Media and codecs; critical rendering path, resource hints |
+| 13–15 | Observer APIs and platform features; Core Web Vitals; delivery/CDN/offline |
+| 16–18 | Testing/CI; full HTML template; pre-launch checklist |
 
-**Best For:**
-- Senior designers making style decisions
-- Design system architects
-- Understanding the "why" behind design trends
-- Comparing different design systems before adoption
+### 04 — Modern Features (2025–2026)
 
-**Start Here If:** You need to choose a design style or system for a project, or want to understand the history and psychology behind modern design trends.
+**Title:** The Complete Modern HTML/CSS/JavaScript Master Guide
 
----
+| Section | Topics |
+|---------|--------|
+| 1 | Native-first philosophy and adoption model |
+| 2–4 | CSS architecture, units/layout/masonry, math/conditionals |
+| 5–7 | Color/materials, typography, forms and native controls |
+| 8–10 | Animation/scroll/view transitions; a11y/focus; dialog, popover, invokers |
+| 11–13 | Modern JavaScript; Web Components, WebGPU, File System, platform APIs; performance |
+| 14–15 | Experimental notes; Baseline matrices and adoption guidance |
+| **16** | **Authoritative web platform catalogue** (1 Jan 2025 → 10 Jul 2026): **147** normalized features, C/F/S versions, Baseline dates, recent deltas, beta watchlist |
 
-### 3️⃣ **03-standards-compliance.md** — Standards & Compliance
-
-**Subtitle:** *Master Reference for WCAG, ARIA, SEO, Performance & Web Standards*
-
-**What It Covers:**
-- ♿ **WCAG 2.2 Compliance** — Principles, levels, success criteria, contrast formulas
-- 🎯 **Core Web Vitals** — LCP, INP, CLS optimization strategies
-- 🏛️ **ARIA Complete Reference** — Roles, states, properties, patterns with code examples
-- 🔍 **SEO & Meta Tags** — Open Graph, Twitter Cards, canonicalization, structured data
-- 📦 **JSON-LD Structured Data** — Organization, Article, Product, LocalBusiness schemas
-- 🚫 **Deprecated Patterns** — Obsolete HTML elements/attributes, what to avoid
-- 🎨 **CSS Modern Replacements** — Float → Flexbox → Grid evolution
-- ⚡ **Performance Optimization** — Resource hints, critical CSS, image optimization
-- 👁️ **Observer APIs** — IntersectionObserver, ResizeObserver, MutationObserver
-- ✅ **Pre-Launch Checklists** — Complete testing and auditing guides
-
-**Best For:**
-- Technical leads ensuring compliance
-- Accessibility specialists
-- Performance engineers
-- SEO specialists
-
-**Start Here If:** You need to ensure your website meets WCAG standards, ranks well in search engines, or loads blazing fast.
+Prefer stable/Baseline features for hard dependencies. Feature-detect limited APIs and progressive-enhance.
 
 ---
 
-### 4️⃣ **04-modern-features-2026.md** — Modern Features (2025–2026)
-
-**Subtitle:** *Cutting-Edge HTML, CSS & JavaScript Features Most AIs Don't Know About*
-
-**⚠️ Important Purpose:**
-This document was created to **educate AI assistants** about modern browser capabilities that are not yet in their training data. When you ask an AI to build a website, it typically suggests outdated patterns (floats, jQuery, Bootstrap 4, etc.). This file serves as a **prompt education context** to get modern, native solutions.
-
-**What It Covers:**
-- 🎨 **Modern CSS Architecture** — `@layer`, `@scope`, container queries, cascade layers
-- 📐 **CSS Mathematics** — Trigonometry (`sin`, `cos`, `tan`), `clamp()`, `round()`, `mod()`
-- 🎬 **Scroll-Driven Animations** — `animation-timeline: scroll()`, `view()` timelines
-- 🎭 **Advanced Selectors** — `:has()`, `:is()`, `:where()`, `:focus-visible`
-- 🌈 **Color Spaces** — OKLCH, `color-mix()`, `light-dark()`, Relative Color Syntax
-- 📝 **Typography** — `text-box-trim`, `corner-shape`, fluid sizing
-- ⚡ **Modern JavaScript** — Temporal API, Set methods, Iterator helpers, ES2025/2026
-- 🎮 **WebGPU** — Next-gen graphics API (successor to WebGL)
-- 📁 **File System Access API** — Native file read/write operations
-- 📊 **§44 Vanilla Platform Catalogue** — **147 features** (Web Features 3.32.0, 1 Jan 2025 → 10 Jul 2026) with C/F/S versions, Baseline dates, 19 recent deltas, beta watchlist
-- 🧭 Adoption tiers, Sanitizer, focusgroup, invokers, Navigation, Trusted Types, etc.
-
-**Best For:**
-- **AI Education** — Paste relevant sections into AI prompts to get modern solutions
-- Developers wanting to use cutting-edge features
-- Building framework-free, native web apps
-- Replacing jQuery, Bootstrap, and other legacy dependencies
-
-**How to Use with AI:**
-```
-I'm building a [component/feature]. Before suggesting solutions, 
-review this context about modern browser capabilities:
-
-[Paste relevant section from 04-modern-features-2026.md]
-
-Now suggest a solution using native 2025–2026 browser features, 
-avoiding jQuery, Bootstrap, or other legacy dependencies.
-```
-
-**Start Here If:** You're frustrated with AI suggesting outdated solutions, or you want to build modern, dependency-free web apps.
-
----
-
-## 🔄 How The Documents Work Together
+## How the documents work together
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Project Requirements                      │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-         ┌────────────────────────────────────────┐
-         │  02-design-styles-systems.md           │
-         │  → Choose visual style & design system │
-         └────────────────────────────────────────┘
-                              │
-                              ▼
-         ┌────────────────────────────────────────┐
-         │  01-design-theory-practice.md          │
-         │  → Apply color, type, spacing rules    │
-         └────────────────────────────────────────┘
-                              │
-                              ▼
-         ┌────────────────────────────────────────┐
-         │  03-standards-compliance.md            │
-         │  → Ensure WCAG, SEO, performance       │
-         └────────────────────────────────────────┘
-                              │
-                              ▼
-         ┌────────────────────────────────────────┐
-         │  04-modern-features-2026.md            │
-         │  → Implement with cutting-edge features│
-         └────────────────────────────────────────┘
-                              │
-                              ▼
-                    🎉 Modern, Compliant Website
+Requirements
+    │
+    ▼
+02  Choose visual style & design system
+    │
+    ▼
+01  Apply color, type, spacing, layout, product patterns
+    │
+    ▼
+03  Meet WCAG, SEO, performance, and delivery standards
+    │
+    ▼
+04  Implement with modern native features; verify support in §16
 ```
 
----
-
-## 🚀 Quick Start Guide
-
-### **For Designers:**
-1. Start with **01-design-theory-practice.md** for fundamentals
-2. Reference **02-design-styles-systems.md** for style decisions
-3. Use **03-standards-compliance.md** for accessibility requirements
-
-### **For Developers:**
-1. Start with **04-modern-features-2026.md** for modern implementation patterns
-2. Reference **03-standards-compliance.md** for standards compliance
-3. Use **01-design-theory-practice.md** for design collaboration
-
-### **For AI Prompts:**
-1. Copy relevant sections from **04-modern-features-2026.md**
-2. Paste into your AI chat as context
-3. Request solutions using modern native features
-
-### **For Design System Architects:**
-1. Read **02-design-styles-systems.md** for comprehensive overview
-2. Reference **01-design-theory-practice.md** for token architecture
-3. Use **03-standards-compliance.md** for compliance requirements
+Use them as a searchable reference, not as a cover-to-cover curriculum.
 
 ---
 
-## 📋 File Details
+## Quick start
 
-| File | Role | Last Updated |
+**Designers**
+
+1. `01` — fundamentals  
+2. `02` — style and system choices  
+3. `03` — accessibility requirements  
+
+**Developers**
+
+1. `04` — modern patterns and support catalogue (§16)  
+2. `03` — compliance and performance  
+3. `01` — design collaboration details  
+
+**Design-system architects**
+
+1. `02` — systems, methodologies, decision frameworks  
+2. `01` — tokens and implementation contracts  
+3. `03` — compliance baseline  
+
+---
+
+## Common use cases
+
+| Goal | Start here |
+|------|------------|
+| Admin dashboard | `01` §6 · `01` §3 · `03` §9 · `04` §2 (`@layer`, tokens) |
+| Marketing site | `01` §7 · `01` §2.11 · `03` §7 · `04` §8 (scroll/view transitions) |
+| Accessibility compliance | `03` §2 · `03` §5–6 · `01` §8 |
+| “Is this API Baseline yet?” | `04` §16 (versions + Baseline dates) · earlier `04` sections for recipes |
+| Native, dependency-light UI | `04` §§2–12 · verify limited APIs in `04` §16 · compliance in `03` |
+
+---
+
+## File details
+
+Sizes measured on disk (bytes ÷ 1024, rounded).
+
+| File | Size | Last updated |
 |------|------|--------------|
-| `01-design-theory-practice.md` | Design theory & practice | March 2026 |
-| `02-design-styles-systems.md` | Styles & systems | March 2026 |
-| `03-standards-compliance.md` | WCAG, SEO, performance standards | July 2026 |
-| `04-modern-features-2026.md` | Modern feature recipes **+** full §44 platform catalogue | July 10 2026 |
+| `01-design-theory-practice.md` | 125 KB (128,063 bytes) | July 2026 |
+| `02-design-styles-systems.md` | 125 KB (127,876 bytes) | July 2026 |
+| `03-standards-compliance.md` | 243 KB (248,362 bytes) | July 2026 |
+| `04-modern-features-2026.md` | 214 KB (219,237 bytes) | 10 July 2026 |
 
 ---
 
-## 🎯 Use Cases
-
-### **Building an Admin Dashboard?**
-1. **01** → Section 8 (Admin Template Design)
-2. **01** → Section 5 (Color Theory for Data)
-3. **03** → Section 10 (CSS Modern Patterns)
-4. **04** → Section 18 (CSS Architecture with `@layer`)
-
-### **Creating a Marketing Site?**
-1. **01** → Section 9 (Frontend/Marketing Design)
-2. **01** → Section 4 (Eye-Tracking Patterns)
-3. **03** → Section 8 (SEO & Meta Tags)
-4. **04** → Section 6 (Scroll-Driven Animations)
-
-### **Ensuring Accessibility Compliance?**
-1. **03** → Section 2 (WCAG 2.2)
-2. **03** → Section 6 (ARIA Patterns)
-3. **03** → Section 7 (Accessibility Deep Dive)
-4. **01** → Section 10 (Accessibility Fundamentals)
-
-### **Getting AI to Build Modern UI?**
-1. **04** → Copy relevant recipe sections
-2. Paste into AI prompt as context
-3. Request native 2025–2026 solutions
-4. Verify support in **04 §44** (147-feature catalogue) and compliance in **03**
-
-### **“Is this API Baseline yet?”**
-1. **04** → **§44** Vanilla Web Platform Catalogue (C/F/S versions + Baseline dates)
-2. **04** → earlier sections for code patterns if Baseline / progressive-enhance
-
----
-
-## 📝 Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| 2026.7.10c | July 10 2026 | Merged full Web Features catalogue into **04 §44** (no 5th file); **03** gains Sanitizer, focusgroup, requestClose, URLPattern/Navigation/Trusted Types; Invokers Baseline 2025-12-12 |
-| 2026.7.10b | July 10 2026 | (superseded) temporary 05 file approach — content now lives only in 01–04 |
-| 2026.7.10 | July 10 2026 | Baseline digests catalogue: §43 gap fill |
-| 2026.7.1 | July 2026 | Vanilla renaissance pass 2: Temporal, WeakMap upsert, Declarative Shadow DOM, Speculation Rules, Doc PiP, Close Watcher, Compression Streams, CSS random/toggles, §42 |
-| 2026.7 | July 2026 | Aligned 03/04 with vanilla catalogue: Invokers, `closedby`, carousels, ES2026 data APIs, Grid Lanes, Baseline matrix |
-| 2026.1 | March 2026 | Initial consolidation, renamed files, added README |
-| 2025.4 | January 2026 | Added ES2026 features, WebGPU, File System API |
-| 2025.3 | November 2025 | Added experimental proposals notes |
-| 2025.2 | September 2025 | Added Browser Support Matrix |
-| 2025.1 | June 2025 | Initial compilation |
-
----
-
-## 🔗 Related Resources
+## External resources
 
 - [MDN Web Docs](https://developer.mozilla.org/)
-- [WCAG 2.2 Guidelines](https://www.w3.org/TR/WCAG22/)
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+- [Web Platform Baseline](https://web.dev/baseline)
+- [Web Features](https://github.com/web-platform-dx/web-features)
+- [Can I Use](https://caniuse.com/)
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
-- [Can I Use](https://caniuse.com/) — Browser compatibility
-- [Design Tokens Community](https://designtokens.org/)
+- [Design Tokens Community Group](https://designtokens.org/)
 
 ---
 
-## 📄 License
+## Tips
 
-This repository is provided as-is for educational and professional reference purposes. All content is compiled from publicly available industry standards, documentation, and best practices.
-
----
-
-## 💡 Tips for Using This Library
-
-1. **Don't read cover-to-cover** — Use as a reference. Jump to relevant sections.
-2. **Bookmark frequently used sections** — Color contrast formulas, ARIA patterns, browser support tables.
-3. **Use search (Ctrl+F)** — All documents are searchable for quick lookups.
-4. **Combine documents** — Real projects need theory + styles + standards + implementation.
-5. **Update regularly** — Web standards evolve. Check for updates quarterly.
+1. Jump to the section you need — use search (Ctrl/Cmd+F).  
+2. Bookmark high-traffic sections: contrast, ARIA patterns, Core Web Vitals, `04` §16.  
+3. Real projects usually need theory + styles + standards + implementation.  
+4. Support tables are dated snapshots; re-check Baseline and target browsers before shipping.
 
 ---
 
-**Last Updated:** July 2026  
-**Total Content:** ~530+ KB (living library)  
-**Estimated Reading Time:** 40–60 hours (full library)
+**Last updated:** July 2026  
+**Library size:** 707 KB (723,538 bytes) across the four documents  
 
----
 
-<div align="center">
-
-**🎨 Design Theory** · **🎯 Design Styles** · **📐 Standards** · **⚡ Modern Features**
-
-*Your complete reference for modern web design & development*
-
-</div>
+Provided as educational and professional reference material compiled from public standards, documentation, and industry practice.

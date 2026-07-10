@@ -1,8 +1,7 @@
 # Design Theory & Practice for Web Interfaces
 
 > **Edition:** July 2026  
-> **Scope:** Evidence-aware visual design, color, typography, spacing, responsive layout, product/admin interfaces, marketing sites, accessibility, tokens, testing, and governance.  
-> **Companion:** `02-design-styles-systems.md` contains the non-duplicated catalogue of named styles, historical movements, major design systems, and implementation methodologies.
+> **Scope:** Evidence-aware visual design, color, typography, spacing, responsive layout, product/admin interfaces, marketing sites, accessibility, tokens, testing, and governance.
 
 This is a living reference. It distinguishes standards from research findings, heuristics, and trends; avoids unsupported universal claims; and requires context-specific validation.
 
@@ -140,7 +139,6 @@ This is a living reference. It distinguishes standards from research findings, h
   - [14.2 Browser and Performance References](#142-browser-and-performance-references)
   - [14.3 Usability and Perception Research](#143-usability-and-perception-research)
   - [14.4 Current Implementation Documentation](#144-current-implementation-documentation)
-  - [14.5 Companion Reference](#145-companion-reference)
 
 ---
 
@@ -2338,11 +2336,3 @@ The guide was reconciled against primary standards, official platform documentat
 - [Bootstrap 5.3 — Color modes](https://getbootstrap.com/docs/5.3/customize/color-modes/)
 - [Storybook — Accessibility testing](https://storybook.js.org/docs/writing-tests/accessibility-testing)
 - [Playwright — Accessibility testing guidance](https://playwright.dev/docs/accessibility-testing)
-
-### 14.5 Companion Reference
-
-For the histories, classifications, strengths, risks, and application guidance of named styles and design systems, see **`02-design-styles-systems.md`**. Keeping that catalogue separate prevents this practice guide from repeating the same movements and product systems.
-
----
-
-> **Revision:** 2026.2 — reorganized, deduplicated, and research-corrected.

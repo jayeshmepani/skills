@@ -1,8 +1,7 @@
 # The Complete Modern HTML/CSS/JavaScript Master Guide — 2025–2026 Edition
 
-> **Revision date:** 10 July 2026  
-> **Purpose:** A comprehensive native-platform reference covering modern CSS, HTML UI primitives, JavaScript language features, DOM/Web APIs, performance, and browser support.  
-> **Editorial policy:** Unique material from the source has been retained, duplicate explanations have been consolidated, numbering has been rebuilt, mid-document conclusions have been removed, and experimental features are separated from production guidance.
+> **Edition:** July 2026  
+> **Scope:** Modern CSS, HTML UI primitives, JavaScript language features, DOM/Web APIs, performance, browser support, and a dated platform catalogue. Experimental features are separated from production guidance.
 
 > [!CAUTION]
 > This document intentionally covers both production-ready and emerging features. Read each feature's status label and the support catalogue before making it a hard dependency.
@@ -87,7 +86,7 @@
   - [16.6 Very recent stable-release delta (19)](#166-very-recent-stable-release-delta-19)
   - [16.7 Beta / preview watchlist (not counted as shipped)](#167-beta-preview-watchlist-not-counted-as-shipped)
   - [16.8 Notable removals and behavior changes](#168-notable-removals-and-behavior-changes)
-  - [16.9 Source trail and methodology](#169-source-trail-and-methodology)
+  - [16.9 Sources](#169-sources)
   - [16.10 Scope cautions](#1610-scope-cautions)
 
 ---
@@ -4410,8 +4409,9 @@ These were available only in beta as of 10 July 2026 and must not be treated as 
 - Chrome 150 gives workers created from `data:` URLs opaque origins instead of inheriting the creator's origin.
 - Several entries are refinements to earlier platform features rather than brand-new top-level APIs. This report includes them when the refinement is independently tracked or materially changes author capabilities.
 
-### 16.9 Source trail and methodology
-Primary and first-party sources were used for technical claims. The catalogue was generated from **Web Features 3.32.0** and cross-checked against **MDN Browser Compatibility Data 8.0.5**, stable browser release notes, and the Baseline definition. All **2,031** MDN compatibility keys referenced by the 147 normalized entries resolved successfully in the BCD snapshot. Dataset snapshot and report date: **10 July 2026**.
+### 16.9 Sources
+
+Dataset snapshot and report date: **10 July 2026** (Web Features **3.32.0**, MDN BCD cross-check).
 
 - [Baseline definition and core-browser model](https://web.dev/baseline)
 - [Web Features project](https://github.com/web-platform-dx/web-features)
@@ -4427,37 +4427,5 @@ Primary and first-party sources were used for technical claims. The catalogue wa
 - [Firefox 153 beta notes](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/153)
 
 ### 16.10 Scope cautions
+
 No finite report can enumerate every conformance fix, prefixed-alias cleanup, WebGL/WebGPU limit change, codec addition, DevTools feature, enterprise policy, extension API, origin trial, or platform-specific bug fix. “Comprehensive” here means every feature meeting the stated Web Features criteria plus the stable-release delta above—not every line item in every browser changelog. WebAssembly, WebXR, WebGPU, identity/payment/privacy APIs, and on-device AI APIs are included when exposed to ordinary site JavaScript, even though they sit beyond the narrowest interpretation of “HTML/CSS/JS.”
-
----
-
-## Document Metadata
-
-| Field | Value |
-|---|---|
-| **Title** | The Complete Modern HTML/CSS/JavaScript Master Guide |
-| **Revision** | 2026.07.10 — reorganized, deduplicated, and status-corrected |
-| **Scope** | Native CSS, modern HTML UI, ECMAScript, DOM/Web APIs, performance primitives, support matrices, and a dated feature catalogue |
-| **Production rule** | Prefer stable/Baseline features; progressively enhance limited CSS/HTML; feature-detect limited JavaScript and Web APIs; do not require proposal syntax |
-| **Relationship** | Complements `03-standards-compliance-updated.md`, which is the standards/compliance and implementation baseline |
-
-### Accuracy and support conventions
-
-- A feature can be implemented in one engine without being interoperable.
-- “Baseline Newly available” is not the same as support in every browser version still in use.
-- Browser release numbers and dates are a snapshot as of 10 July 2026.
-- Proposal examples are educational and must not be presented as universally executable JavaScript or CSS.
-- Performance claims must be measured; CSS is not automatically compositor-only, and JavaScript is not automatically slow.
-
-### Primary and first-party sources
-
-- [Web Platform Baseline](https://web.dev/baseline)
-- [Web Features project](https://github.com/web-platform-dx/web-features)
-- [WHATWG HTML](https://html.spec.whatwg.org/)
-- [CSS Working Group drafts](https://drafts.csswg.org/)
-- [TC39 proposals](https://github.com/tc39/proposals)
-- [ECMAScript specification](https://tc39.es/ecma262/)
-- [Temporal Stage 4 draft](https://tc39.es/proposal-temporal/)
-- [Chrome release notes](https://developer.chrome.com/release-notes)
-- [Firefox release notes](https://developer.mozilla.org/docs/Mozilla/Firefox/Releases)
-- [WebKit news and Safari releases](https://webkit.org/blog/category/news/)
